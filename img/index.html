@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Dharatatva — Elements of Earth</title>
+
+  <!-- Luxury Editorial Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP Suite -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <link rel="stylesheet" href="css/home_style.css">
+</head>
+<body>
+
+  <div class="paper-grain"></div>
+  <div class="toast-alert" id="toastAlert">L'Atelier Link Copied</div>
+
+  <div class="global-backdrop" id="globalBackdrop"></div>
+
+  <div class="atelier-showcase">
+    <div class="ambient-glow" id="ambientGlow"></div>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-left">
+        <button class="header-btn" id="menuBtn" aria-label="Open Atelier Menu">
+          <div class="menu-icon-bars">
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        <div class="brand-mark">L'Atelier</div>
+      </div>
+
+      <div class="header-right">
+        <button class="header-btn" id="searchBtn" aria-label="Search Archives">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+
+        <button class="header-btn" id="cartBtn" aria-label="View Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <div class="cart-indicator"></div>
+        </button>
+
+        <button class="header-btn" id="userBtn" aria-label="Guest Access">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="search-sub-bar" id="searchSubBar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#74726b" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search Santal, Iris, Oils, Extraits..." id="searchInput">
+    </div>
+
+    <!-- CATEGORIES & GAUGE STRIP -->
+    <div class="unified-category-bar">
+      <div class="category-zone">
+        <span class="zone-label">Explore by Category</span>
+        <div class="category-scroll-container">
+          <nav class="category-rail" id="categoryRail">
+            <button class="cat-btn active" data-cat="serum">
+              <svg viewBox="0 0 24 24"><path d="M12 2v6m-4 5a4 4 0 0 0 8 0V8H8v5zM9 2h6"/></svg>
+              Sérums
+            </button>
+            <button class="cat-btn" data-cat="oil">
+              <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              Huiles
+            </button>
+            <button class="cat-btn" data-cat="cream">
+              <svg viewBox="0 0 24 24"><path d="M4 11h16a2 2 0 0 1 2 2v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-6a2 2 0 0 1 2-2zm2-5h12l-1 5H7l-1-5z"/></svg>
+              Crèmes
+            </button>
+            <button class="cat-btn" data-cat="elixir">
+              <svg viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+              Élixirs
+            </button>
+            <button class="cat-btn" data-cat="mist">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-4.2-6.8l-2.1 2.1m-9.4 9.4l-2.1 2.1m0-13.6l2.1 2.1m9.4 9.4l2.1 2.1"/></svg>
+              Brumes
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <div class="zone-divider"></div>
+
+      <div class="editorial-counter-gauge">
+        <span class="zone-label" style="text-align: right;">Product</span>
+        <div class="counter-digits">
+          <span class="counter-active" id="countActive">01</span>
+          <span class="counter-slash">/</span>
+          <span class="counter-total" id="countTotal">03</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT STAGE (Live Swipe Restored) -->
+    <div class="stage-wrapper" id="swipeArea">
+      <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+
+      <div class="product-canvas" id="productCanvas">
+        <img class="product-img" id="productDisplay" 
+             src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=90" 
+             alt="Luxury Atelier Creation">
+        <div class="product-reflection"></div>
+      </div>
+
+      <button class="arrow-btn next" id="nextBtn" aria-label="Next Product">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <!-- ENRICHED PRODUCT DETAILS DOCK -->
+    <div class="details-dock">
+      <div class="details-inner" id="detailsTriggerArea">
+        
+        <!-- Curated Status Badge + Batch Tag -->
+        <div class="meta-tag-strip">
+          <span class="curation-badge" id="prodBadge">BESTSELLER</span>
+          <span class="product-subtag" id="prodTag">Formule № 01 — 50 ML</span>
+        </div>
+
+        <h1 class="product-name" id="prodName">Santal <em>Céleste</em></h1>
+
+        <!-- Star Rating + Review Counter -->
+        <div class="rating-row">
+          <div class="stars-cluster">★★★★★</div>
+          <span class="rating-num" id="prodRating">4.9</span>
+          <span class="review-count" id="prodReviews">(415 Reviews)</span>
+        </div>
+
+        <p class="product-notes" id="prodNotes">Aged Mysore heartwood cold-distilled with crushed cardamome and Florentine iris butter.</p>
+        
+        <!-- Price Cluster with Cut MRP & Discount % -->
+        <div class="price-action-cluster">
+          <div class="price-group">
+            <div class="price-line-top">
+              <span class="product-price" id="prodPrice">₹385</span>
+              <span class="product-mrp" id="prodMrp">₹538</span>
+            </div>
+            <span class="discount-pill" id="prodDiscount">15% OFF • SAVE ₹150</span>
+          </div>
+
+          <button class="acquire-pill" id="openProductInfoBtn">Read More..</button>
+        </div>
+
+        <div class="dots-track" id="dotsTrack">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. PRODUCT INFO MONOGRAPH DRAWER -->
+  <div class="product-info-sheet" id="productInfoSheet">
+    <div class="sheet-drag-pill"></div>
+
+    <div class="drawer-nav-bar">
+      <span class="drawer-provenance">Grasse • France</span>
+      <div class="drawer-nav-actions">
+        <button class="icon-action-btn" id="shareBtn" aria-label="Share Creation">
+          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+
+        <button class="modal-close-black" id="closeProductInfoBtn">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="drawer-content-scroll">
+      <div class="drawer-spotlight">
+        <img class="drawer-thumb" id="drawerThumb" 
+             src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=85" 
+             alt="Thumbnail">
+        <div class="drawer-title-group">
+          <h2 id="drawerTitle">Santal <em>Céleste</em></h2>
+          <span class="drawer-edition-id" id="drawerEditionId">Single Harvest • 300 Flacons</span>
+        </div>
+      </div>
+
+      <span class="drawer-section-label">Sélection du Volume</span>
+      <div class="vol-row">
+        <div class="vol-card" onclick="selectVol(30, 0.75, this)">
+          <span class="vol-size">30 ML</span>
+          <span class="vol-tag">Nomad</span>
+        </div>
+        <div class="vol-card active" onclick="selectVol(50, 1.0, this)">
+          <span class="vol-size">50 ML</span>
+          <span class="vol-tag">Signature</span>
+        </div>
+        <div class="vol-card" onclick="selectVol(100, 1.6, this)">
+          <span class="vol-size">100 ML</span>
+          <span class="vol-tag">Monolith</span>
+        </div>
+      </div>
+
+      <span class="drawer-section-label">Architecture Olfactive</span>
+      <div class="notes-pyramid">
+        <div class="note-row">
+          <span class="level">Tête (Top)</span>
+          <span class="fragrance" id="noteTop">Cardamome Noire & Bergamote</span>
+        </div>
+        <div class="note-row">
+          <span class="level">Cœur (Heart)</span>
+          <span class="fragrance" id="noteHeart">Beurre d'Iris Florentin</span>
+        </div>
+        <div class="note-row">
+          <span class="level">Fond (Base)</span>
+          <span class="fragrance" id="noteBase">Santal Mysore 6 Ans</span>
+        </div>
+      </div>
+
+      <span class="drawer-section-label">Spécifications du Flacon</span>
+      <div class="specs-strip">
+        <div class="spec-box">
+          <span>Extraction</span>
+          <strong>Cryo-Inerte −12°C</strong>
+        </div>
+        <div class="spec-box">
+          <span>Concentration</span>
+          <strong>32% Extrait Pur</strong>
+        </div>
+        <div class="spec-box">
+          <span>Verrerie</span>
+          <strong>Cristal Lourd 340g</strong>
+        </div>
+        <div class="spec-box">
+          <span>Bouchon</span>
+          <strong>Laiton Patiné Main</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer-action-deck">
+      <button class="btn-explore" onclick="triggerExplore()">
+        <span>Explore Story</span>
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+
+      <button class="btn-buy" id="drawerBuyBtn" onclick="triggerReserve()">
+        <span id="drawerPriceBtn">Acquire — ₹24,500</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. CENTER MENU MODAL -->
+  <div class="center-menu-modal" id="centerMenuModal">
+    <div class="modal-top-bar">
+      <span class="modal-pretitle">Maison & Informations</span>
+      <button class="modal-close-black" id="closeMenuBtn">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <ul class="menu-editorial-links">
+      <li class="menu-link-item" onclick="openPageNotice('About Maison L\'Atelier')">
+        <span class="title">About the Maison</span>
+        <span class="badge">01 • Heritage</span>
+      </li>
+      <li class="menu-link-item" onclick="openPageNotice('Terms & Allocation Conditions')">
+        <span class="title">Terms & Conditions</span>
+        <span class="badge">02 • Legal</span>
+      </li>
+      <li class="menu-link-item" onclick="openPageNotice('Botanical Disclaimer & Safety')">
+        <span class="title">Disclaimer & Safety</span>
+        <span class="badge">03 • Integrity</span>
+      </li>
+    </ul>
+
+    <div class="concierge-card">
+      <h4>Private Concierge & Salons</h4>
+      <div class="concierge-detail">
+        <p><strong>Salons Privés:</strong> 12 Rue de la Paix, Paris • New Delhi</p>
+        <p><strong>Hotline:</strong> +91 (0) 11 4982 0000</p>
+        <p><strong>Liaison:</strong> concierge@latelier-parfums.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SIDE CART DRAWER -->
+  <div class="side-cart-drawer" id="sideCartDrawer">
+    <div class="cart-header">
+      <h3 class="cart-title">Votre Panier</h3>
+      <button class="modal-close-black" id="closeCartBtn">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="cart-items-scroll">
+      <div class="cart-item-row">
+        <img class="cart-item-thumb" id="cartThumb" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=300&q=85" alt="Cart Item">
+        <div class="cart-item-info">
+          <h4 class="cart-item-name" id="cartItemName">Santal Céleste</h4>
+          <span class="cart-item-meta" id="cartItemMeta">50 ML Extrait • Batch № 042</span>
+          <span class="cart-item-price" id="cartItemPrice">₹24,500</span>
+        </div>
+      </div>
+
+      <div class="cart-packaging-note">
+        <p><strong>Atelier White-Glove Transit:</strong> Includes hand-polished paulownia wood coffret, wax seal & complimentary custom calligraphic note.</p>
+      </div>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-subtotal-row">
+        <span>Subtotal Allocation</span>
+        <strong id="cartSubtotal">₹24,500</strong>
+      </div>
+      <button class="checkout-btn" onclick="executeCheckout()">
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- 4. USER AUTH DRAWER -->
+  <div class="user-auth-sheet" id="userAuthSheet">
+    <div class="sheet-drag-pill"></div>
+    
+    <div style="display: flex; justify-content: flex-end; margin-top: -8px; margin-bottom: 6px;">
+      <button class="modal-close-black" id="closeUserBtn">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="namaste-header">
+      <div class="namaste-icon-wrap">🙏</div>
+      <h3 class="namaste-title">Namasté, Honoured Guest</h3>
+      <span class="namaste-sub">नमस्ते • Private Cellar Vault</span>
+    </div>
+
+    <div class="auth-form-step" id="authStepPhone">
+      <div class="input-field-group">
+        <span class="country-code">+91 (IN)</span>
+        <input type="tel" class="mobile-input" id="phoneInput" placeholder="Enter 10-digit mobile number" maxlength="10">
+      </div>
+      <button class="auth-submit-btn" onclick="requestOtp()">
+        Request Private Key (OTP)
+      </button>
+      <p style="font-size: 8.5px; color: var(--muted); text-align: center; margin-top: 10px;">Instant secure login. We do not transmit spam or promotional messages.</p>
+    </div>
+
+    <div class="auth-form-step" id="authStepOtp" style="display: none;">
+      <p style="font-size: 11px; text-align: center; color: var(--muted);">
+        Enter 4-digit verification key sent to <strong id="userPhoneDisplay">+91 98765 43210</strong>
+      </p>
+      <div class="otp-digit-boxes">
+        <input type="tel" maxlength="1" class="otp-box" oninput="focusNext(this)">
+        <input type="tel" maxlength="1" class="otp-box" oninput="focusNext(this)">
+        <input type="tel" maxlength="1" class="otp-box" oninput="focusNext(this)">
+        <input type="tel" maxlength="1" class="otp-box" oninput="focusNext(this)">
+      </div>
+      <button class="auth-submit-btn" onclick="verifyOtp()">
+        Verify & Access Atelier
+      </button>
+      <button onclick="backToPhone()" style="background: none; border: none; font-size: 10px; color: var(--bronze); margin-top: 6px; cursor: pointer; text-transform: uppercase;">
+        ← Change Number
+      </button>
+    </div>
+  </div>
+  <script src="js/home_app.js"></script>
+</body>
+</html>
