@@ -1,373 +1,780 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Dharatatva — Elements of Earth</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Dharā Herbals — Botanical Kumkumadi Rasāyana</title>
+  
+  <!-- Tailwind CSS & GSAP Engine -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-  <!-- Luxury Editorial Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --aged-gold: #b38838;
+      --deep-forest: #17281d;
+      --bark-brown: #3d2f20;
+    }
 
-  <!-- GSAP Suite -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <link rel="stylesheet" href="css/home_style.css">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #ede2cf;
+      color: #241c14;
+      overflow-x: hidden;
+      overscroll-behavior-y: none;
+    }
+
+    .font-botanical {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Ancient Palm-Leaf Parchment Shader Texture */
+    .ancient-parchment {
+      background-color: #ede2cf;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(179, 136, 56, 0.08) 0%, transparent 70%),
+        radial-gradient(circle at 10% 20%, rgba(61, 47, 32, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(23, 40, 29, 0.09) 0%, transparent 50%),
+        repeating-linear-gradient(0deg, rgba(61, 47, 32, 0.02) 0px, rgba(61, 47, 32, 0.02) 1px, transparent 1px, transparent 4px),
+        repeating-linear-gradient(90deg, rgba(61, 47, 32, 0.015) 0px, rgba(61, 47, 32, 0.015) 1px, transparent 1px, transparent 6px);
+    }
+
+    /* Centerpiece Mandala Watermark */
+    .mandala-watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(85vw, 680px);
+      height: min(85vw, 680px);
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500' fill='none' stroke='%233d2f20' stroke-width='1.5'%3E%3Ccircle cx='250' cy='250' r='235' stroke-dasharray='4 4'/%3E%3Ccircle cx='250' cy='250' r='210'/%3E%3Ccircle cx='250' cy='250' r='180' stroke-dasharray='6 3'/%3E%3Ccircle cx='250' cy='250' r='140'/%3E%3Ccircle cx='250' cy='250' r='80'/%3E%3Ccircle cx='250' cy='250' r='30'/%3E%3Cpath d='M250 15 L250 485 M15 250 L485 250 M84 84 L416 416 M84 416 L416 84' stroke-width='0.75'/%3E%3Cpath d='M250 40 Q285 140 250 250 Q215 140 250 40 Z'/%3E%3Cpath d='M250 460 Q285 360 250 250 Q215 360 250 460 Z'/%3E%3Cpath d='M40 250 Q140 285 250 250 Q140 215 40 250 Z'/%3E%3Cpath d='M460 250 Q360 285 250 250 Q360 215 460 250 Z'/%3E%3Cpath d='M101 101 Q190 160 250 250 Q160 190 101 101 Z'/%3E%3Cpath d='M399 399 Q310 340 250 250 Q340 310 399 399 Z'/%3E%3Cpath d='M101 399 Q190 340 250 250 Q160 310 101 399 Z'/%3E%3Cpath d='M399 101 Q310 160 250 250 Q340 190 399 101 Z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .vignette-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      box-shadow: inset 0 0 120px 30px rgba(61, 47, 32, 0.16);
+    }
+
+    .herbal-parchment-card {
+      background: linear-gradient(135deg, rgb(247 241 230 / 12%) 0%, rgb(237 226 207 / 45%) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(179, 136, 56, 0.35);
+      box-shadow: 0 16px 36px -12px rgba(61, 47, 32, 0.14), inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+      position: relative;
+    }
+
+    .vedic-corners::before,
+    .vedic-corners::after {
+      content: "✦";
+      position: absolute;
+      font-size: 7px;
+      color: var(--aged-gold);
+      opacity: 0.8;
+    }
+    .vedic-corners::before { top: 8px; left: 10px; }
+    .vedic-corners::after { bottom: 8px; right: 10px; }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* ========================================================
+       STAGE & VISUALIZER ENGINE
+       ======================================================== */
+    .stage-bottle {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
+      transform-origin: center center;
+    }
+
+    .open-body {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      clip-path: inset(45% 0 0 0);
+      z-index: 10;
+      filter: drop-shadow(0 20px 30px rgba(36,28,20,0.22));
+    }
+
+    .open-cap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      clip-path: inset(0 0 70% 0);
+      z-index: 25;
+      will-change: transform, opacity;
+      transform-origin: 54% 13%;
+      opacity: 0;
+      filter: drop-shadow(0 15px 25px rgba(36,28,20,0.28));
+    }
+
+    .closed-bottle {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: 20;
+      will-change: opacity, transform;
+      filter: drop-shadow(0 22px 35px rgba(36,28,20,0.25));
+    }
+
+    .blast-origin {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .ingredient-node {
+      position: absolute;
+      width: 62px;
+      height: 62px;
+      margin-left: -31px;
+      margin-top: -31px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.92) 0%, rgba(237,226,207,0.7) 80%);
+      border: 1px solid rgba(179, 136, 56, 0.45);
+      box-shadow: 0 10px 22px rgba(61,47,32,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform, opacity;
+      transform: translate3d(0, 0, 0) scale(0);
+      opacity: 0;
+    }
+
+    .ingredient-node img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    /* Modal Styling */
+    dialog::backdrop {
+      background: rgba(23, 40, 29, 0.65);
+      backdrop-filter: blur(8px);
+    }
+  </style>
 </head>
-<body>
+<body class="w-full antialiased ancient-parchment selection:bg-[#17281d] selection:text-[#ede2cf]">
 
-  <div class="paper-grain"></div>
-  <div class="toast-alert" id="toastAlert">L'Atelier Link Copied</div>
+  <div class="mandala-watermark"></div>
+  <div class="vignette-overlay"></div>
 
-  <div class="global-backdrop" id="globalBackdrop"></div>
-
-  <div class="atelier-showcase">
-    <div class="ambient-glow" id="ambientGlow"></div>
-
-    <!-- HEADER -->
-    <header>
-      <div class="header-left">
-        <button class="header-btn" id="menuBtn" aria-label="Open Atelier Menu">
-          <div class="menu-icon-bars">
-            <span></span>
-            <span></span>
-          </div>
-        </button>
-        <div class="brand-mark">L'Atelier</div>
+  <div class="w-full min-h-screen relative overflow-x-hidden pb-10 z-10">
+    
+    <!-- Top Header Bar -->
+    <header class="sticky top-0 z-40 w-full flex items-center justify-between px-6 py-4 bg-[#ede2cf]/85 backdrop-blur-md border-b border-[#b38838]/25 shadow-sm">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-full flex items-center justify-center text-[#f4ebd9] text-xs font-bold bg-[#8a482b] shadow-sm">
+          ॐ
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold tracking-[0.26em] uppercase text-[#142118]">DHARĀ HERBALS</span>
+          <span class="text-[9px] tracking-widest uppercase text-[#8a482b] -mt-0.5 font-semibold">ESTD. SHODHANA 1948</span>
+        </div>
       </div>
 
-      <div class="header-right">
-        <button class="header-btn" id="searchBtn" aria-label="Search Archives">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
+      <div class="flex items-center gap-3.5">
+        <div class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#b38838]/35 bg-[#e4d6be]/70">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#b38838] animate-pulse"></span>
+          <span id="stepIndicator" class="text-[10px] uppercase font-mono tracking-widest text-[#5c4a35]">CHAPTER // 01 · THE ELIXIR</span>
+        </div>
 
-        <button class="header-btn" id="cartBtn" aria-label="View Cart">
-          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <div class="cart-indicator"></div>
-        </button>
-
-        <button class="header-btn" id="userBtn" aria-label="Guest Access">
-          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <button onclick="document.getElementById('reviewDrawer').showModal()" class="text-xs font-semibold tracking-wider uppercase text-[#17281d] hover:text-[#b38838] transition flex items-center gap-1.5">
+          <span>Client Dossier</span>
+          <span class="text-[10px] font-mono text-[#b38838]">(248)</span>
         </button>
       </div>
     </header>
 
-    <div class="search-sub-bar" id="searchSubBar">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#74726b" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" placeholder="Search Santal, Iris, Oils, Extraits..." id="searchInput">
-    </div>
+    <!-- Center Stage Visualizer -->
+    <div id="productViewer" class="fixed top-[46%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[310px] sm:w-[390px] h-[440px] z-10 pointer-events-none flex items-center justify-center will-change-transform">
+      <div class="absolute w-[300px] h-[300px] rounded-full border border-[#b38838]/25 bg-gradient-to-tr from-[#b38838]/20 via-[#3d2f20]/10 to-transparent blur-3xl -z-10"></div>
 
-    <!-- CATEGORIES & GAUGE STRIP -->
-    <div class="unified-category-bar">
-      <div class="category-zone">
-        <span class="zone-label">Explore by Category</span>
-        <div class="category-scroll-container">
-          <nav class="category-rail" id="categoryRail">
-            <button class="cat-btn active" data-cat="serum">
-              <svg viewBox="0 0 24 24"><path d="M12 2v6m-4 5a4 4 0 0 0 8 0V8H8v5zM9 2h6"/></svg>
-              Sérums
-            </button>
-            <button class="cat-btn" data-cat="oil">
-              <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-              Huiles
-            </button>
-            <button class="cat-btn" data-cat="cream">
-              <svg viewBox="0 0 24 24"><path d="M4 11h16a2 2 0 0 1 2 2v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-6a2 2 0 0 1 2-2zm2-5h12l-1 5H7l-1-5z"/></svg>
-              Crèmes
-            </button>
-            <button class="cat-btn" data-cat="elixir">
-              <svg viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
-              Élixirs
-            </button>
-            <button class="cat-btn" data-cat="mist">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-4.2-6.8l-2.1 2.1m-9.4 9.4l-2.1 2.1m0-13.6l2.1 2.1m9.4 9.4l2.1 2.1"/></svg>
-              Brumes
-            </button>
-          </nav>
-        </div>
-      </div>
-
-      <div class="zone-divider"></div>
-
-      <div class="editorial-counter-gauge">
-        <span class="zone-label" style="text-align: right;">Product</span>
-        <div class="counter-digits">
-          <span class="counter-active" id="countActive">01</span>
-          <span class="counter-slash">/</span>
-          <span class="counter-total" id="countTotal">03</span>
-        </div>
+      <div class="stage-bottle" id="stageBottle">
+        <img class="open-body" src="20.png" alt="Open Bottle Body" />
+        <img class="closed-bottle" id="closedBottle" src="15.png" alt="Closed Bottle" />
+        <img class="open-cap" id="floatingCap" src="20.png" alt="Flying Cap" />
+        <div class="blast-origin" id="blastOrigin"></div>
       </div>
     </div>
 
-    <!-- PRODUCT STAGE (Live Swipe Restored) -->
-    <div class="stage-wrapper" id="swipeArea">
-      <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
+    <!-- Scrollytelling Panels Container -->
+    <div class="relative z-20 w-full">
 
-      <div class="product-canvas" id="productCanvas">
-        <img class="product-img" id="productDisplay" 
-             src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1000&q=90" 
-             alt="Luxury Atelier Creation">
-        <div class="product-reflection"></div>
-      </div>
-
-      <button class="arrow-btn next" id="nextBtn" aria-label="Next Product">
-        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-
-    <!-- ENRICHED PRODUCT DETAILS DOCK -->
-    <div class="details-dock">
-      <div class="details-inner" id="detailsTriggerArea">
-        
-        <!-- Curated Status Badge + Batch Tag -->
-        <div class="meta-tag-strip">
-          <span class="curation-badge" id="prodBadge">BESTSELLER</span>
-          <span class="product-subtag" id="prodTag">Formule № 01 — 50 ML</span>
-        </div>
-
-        <h1 class="product-name" id="prodName">Santal <em>Céleste</em></h1>
-
-        <!-- Star Rating + Review Counter -->
-        <div class="rating-row">
-          <div class="stars-cluster">★★★★★</div>
-          <span class="rating-num" id="prodRating">4.9</span>
-          <span class="review-count" id="prodReviews">(415 Reviews)</span>
-        </div>
-
-        <p class="product-notes" id="prodNotes">Aged Mysore heartwood cold-distilled with crushed cardamome and Florentine iris butter.</p>
-        
-        <!-- Price Cluster with Cut MRP & Discount % -->
-        <div class="price-action-cluster">
-          <div class="price-group">
-            <div class="price-line-top">
-              <span class="product-price" id="prodPrice">₹385</span>
-              <span class="product-mrp" id="prodMrp">₹538</span>
-            </div>
-            <span class="discount-pill" id="prodDiscount">15% OFF • SAVE ₹150</span>
+      <!-- Section 1: Intro -->
+      <section id="sec-1" class="min-h-screen flex flex-col justify-between px-6 pt-10 pb-20 pointer-events-none max-w-4xl mx-auto">
+        <div class="text-center pt-2 select-none pointer-events-auto">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#b38838]/40 bg-[#e4d6be]/80 shadow-sm mb-3.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#b38838]"></span>
+            <span class="text-[11px] font-medium tracking-wider text-[#5c4a35]">100% Classical Botanical Decoction</span>
           </div>
 
-          <button class="acquire-pill" id="openProductInfoBtn">Read More..</button>
+          <h1 class="font-botanical text-4xl sm:text-6xl font-medium tracking-tight leading-[1.05] text-[#17281d]">
+            HERB-O-CARE<br/><span class="italic text-3xl sm:text-5xl font-normal text-[#3d2f20]">Night Radiance Rasāyana</span>
+          </h1>
+          <p class="text-xs sm:text-sm tracking-[0.24em] text-[#6e5d48] uppercase mt-3">
+            Pure Kashmiri Saffron · 26 Sacred Roots · Wood-Churned Sesame
+          </p>
         </div>
 
-        <div class="dots-track" id="dotsTrack">
-          <div class="dot active"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
+        <div class="grid grid-cols-2 gap-3.5 sm:gap-4 pointer-events-auto">
+          <div class="herbal-parchment-card vedic-corners rounded-2xl p-4 sm:p-5">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[9px] uppercase font-mono tracking-widest text-[#6e5d48]">Dosha Action</span>
+              <span class="text-[10px] font-bold text-[#b38838]">VATA · PITTA</span>
+            </div>
+            <span class="text-sm sm:text-base font-botanical font-semibold text-[#17281d] block">Restores Natural Ojas</span>
+            <p class="text-[11px] text-[#544432] mt-1 leading-snug">Pacifies roughness and dullness while sealing hydration naturally.</p>
+          </div>
+
+          <div class="herbal-parchment-card vedic-corners rounded-2xl p-4 sm:p-5">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[9px] uppercase font-mono tracking-widest text-[#6e5d48]">Decoction Cycle</span>
+              <span class="text-[10px] font-mono text-[#17281d]">100-Hour Kshira Pak</span>
+            </div>
+            <span class="text-sm sm:text-base font-botanical font-semibold text-[#17281d] block">Slow Copper Vessel Stewed</span>
+            <p class="text-[11px] text-[#544432] mt-1 leading-snug">Infused over low flame with pure goat's milk for deep bio-absorption.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Apothecary Dropper -->
+      <section id="sec-2" class="min-h-screen flex flex-col justify-between px-6 pt-20 pb-20 pointer-events-none max-w-4xl mx-auto">
+        <div class="herbal-parchment-card vedic-corners rounded-3xl p-6 pointer-events-auto">
+          <div class="flex items-center justify-between mb-2 border-b border-[#b38838]/25 pb-2">
+            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#b38838] font-bold">Chapter 02 · The Daily Ritual</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-[#17281d] text-[#ede2cf] text-[10px] font-mono">3–4 DROPS PER DOSE</span>
+          </div>
+          <h3 class="font-botanical text-2xl font-semibold text-[#17281d]">Apothecary Amber Micro-Dropper</h3>
+          <p class="text-xs sm:text-sm text-[#544432] leading-relaxed mt-2 font-light">
+            Crafted with ultraviolet-filtering pharmaceutical glass that insulates delicate volatile saffron carotenoids against ambient light breakdown.
+          </p>
         </div>
 
-      </div>
+        <div class="herbal-parchment-card rounded-3xl p-6 pointer-events-auto space-y-3.5">
+          <span class="text-[10px] text-[#6e5d48] uppercase font-bold tracking-widest block border-b border-[#b38838]/25 pb-1">Classical Herbal Formulation</span>
+          
+          <div class="flex items-center justify-between text-xs sm:text-sm border-b border-[#b38838]/20 pb-2.5">
+            <div>
+              <p class="font-medium text-[#17281d]">Kashmiri Saffron (Grade-1 Mogra)</p>
+              <p class="text-[11px] text-[#6e5d48]">Imparts golden luminescence & improves elasticity</p>
+            </div>
+            <span class="text-xs font-mono text-[#b38838]">Pure Stigmas</span>
+          </div>
+
+          <div class="flex items-center justify-between text-xs sm:text-sm border-b border-[#b38838]/20 pb-2.5">
+            <div>
+              <p class="font-medium text-[#17281d]">Red Sandalwood & Wild Manjistha</p>
+              <p class="text-[11px] text-[#6e5d48]">Deeply cools skin warmth & clears hyperpigmentation</p>
+            </div>
+            <span class="text-xs font-mono text-[#b38838]">Root Extract</span>
+          </div>
+
+          <div class="flex items-center justify-between text-xs sm:text-sm">
+            <div>
+              <p class="font-medium text-[#17281d]">Vetiver & Blue Water Lily</p>
+              <p class="text-[11px] text-[#6e5d48]">Tightens skin texture without pore congestion</p>
+            </div>
+            <span class="text-xs font-mono text-[#b38838]">Pure Hydrosol</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Transformation Observations -->
+      <section id="sec-3" class="min-h-screen flex flex-col justify-between px-6 pt-20 pb-20 pointer-events-none max-w-4xl mx-auto">
+        <div class="herbal-parchment-card vedic-corners rounded-3xl p-6 pointer-events-auto">
+          <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#b38838] font-bold block mb-1">28-Day Mandala Observation</span>
+          <h2 class="font-botanical text-2xl font-semibold text-[#17281d]">Observable Dermal Transformation</h2>
+          
+          <div class="grid grid-cols-3 gap-2.5 mt-4 text-center">
+            <div class="rounded-2xl p-3.5 bg-[#e4d6be]/70 border border-[#b38838]/30">
+              <span class="font-botanical text-2xl font-bold text-[#17281d] block">96%</span>
+              <span class="text-[10px] text-[#544432] leading-tight block mt-1">Smoother Texture</span>
+            </div>
+            <div class="rounded-2xl p-3.5 bg-[#e4d6be]/70 border border-[#b38838]/30">
+              <span class="font-botanical text-2xl font-bold text-[#17281d] block">48H</span>
+              <span class="text-[10px] text-[#544432] leading-tight block mt-1">Nectar Retention</span>
+            </div>
+            <div class="rounded-2xl p-3.5 bg-[#e4d6be]/70 border border-[#b38838]/30">
+              <span class="font-botanical text-2xl font-bold text-[#17281d] block">0%</span>
+              <span class="text-[10px] text-[#544432] leading-tight block mt-1">Synthetic Fillers</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="herbal-parchment-card rounded-3xl p-6 pointer-events-auto space-y-3">
+          <details class="group cursor-pointer">
+            <summary class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#17281d] list-none">
+              <span>Full Botanical INCI Ingredient List</span>
+              <span class="transition group-open:rotate-180 text-sm font-mono text-[#b38838]">↓</span>
+            </summary>
+            <p class="text-[11px] text-[#544432] mt-3 leading-relaxed border-t border-[#b38838]/25 pt-3 font-light">
+              Sesamum Indicum (Black Sesame) Seed Oil*, Caprae Lac (Goat's Milk), Crocus Sativus (Kashmiri Saffron), Pterocarpus Santalinus (Red Sandalwood), Rubia Cordifolia (Manjistha), Vetiveria Zizanioides (Ushira), Glycyrrhiza Glabra (Licorice Root), Nelumbo Nucifera (Blue Lotus), Ficus Benghalensis (Banyan Roots), Tocopherol (Sunflower Vitamin E). *Wood-churned organic.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Section 4: Reviews (Background returns to original 15.png state) -->
+      <section id="sec-4" class="w-full px-6 pt-20 pb-20 bg-[#ede2cf]/85 backdrop-blur-md border-t border-[#b38838]/30 relative z-20">
+        <div class="max-w-4xl mx-auto">
+          
+          <div class="flex items-end justify-between mb-6">
+            <div>
+              <span class="text-[10px] font-mono tracking-widest uppercase text-[#b38838] font-bold">Community Certified</span>
+              <h3 class="font-botanical text-3xl sm:text-4xl font-semibold text-[#17281d] mt-0.5">Sadhaka Dossiers</h3>
+              <p class="text-xs text-[#6e5d48] mt-1">Real experiences from conscious wellness practitioners</p>
+            </div>
+            <div class="text-right">
+              <div class="flex items-center gap-1 text-[#b38838] text-sm">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <span class="text-sm font-bold text-[#17281d]">4.94 / 5.0</span>
+            </div>
+          </div>
+
+          <!-- Customer Lightbox Reel -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs uppercase font-bold tracking-wider text-[#6e5d48]">Customer Texture Photos</span>
+              <button onclick="document.getElementById('reviewDrawer').showModal()" class="text-xs text-[#8c6b38] font-semibold hover:underline">View All (42)</button>
+            </div>
+
+            <div class="flex gap-3.5 overflow-x-auto no-scrollbar py-2 scroll-smooth">
+              <div onclick="openLightboxImage('https://images.unsplash.com/photo-1608248597359-2d1d589d81d2?w=900')" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition hover:opacity-90">
+                <img src="https://images.unsplash.com/photo-1608248597359-2d1d589d81d2?w=400&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Review 1"/>
+              </div>
+              <div onclick="openLightboxImage('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900')" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition hover:opacity-90">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Review 2"/>
+              </div>
+              <div onclick="openLightboxImage('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900')" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition hover:opacity-90">
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Review 3"/>
+              </div>
+              <div onclick="openLightboxImage('https://images.unsplash.com/photo-1608248545934-2e6566c5d799?w=900')" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition hover:opacity-90">
+                <img src="https://images.unsplash.com/photo-1608248545934-2e6566c5d799?w=400&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Review 4"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cards Swiper -->
+          <div class="mb-6">
+            <div class="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory py-2">
+              <div class="snap-center shrink-0 w-[84vw] max-w-[340px] herbal-parchment-card rounded-3xl p-5 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <div>
+                      <span class="text-sm font-semibold text-[#17281d]">Aarya Sharma</span>
+                      <span class="text-[10px] text-[#6e5d48] block">Verified Sadhaka · Rishikesh</span>
+                    </div>
+                    <div class="text-[#b38838] text-xs">★★★★★</div>
+                  </div>
+                  <p class="text-xs text-[#544432] leading-relaxed mb-3 font-light">
+                    "The earthy aroma of authentic saffron and sandalwood is so calming before bed. In just two weeks, waking up with hydrated, bouncy skin has become standard."
+                  </p>
+                </div>
+                <div class="flex items-center gap-2 pt-2 border-t border-[#b38838]/25">
+                  <span class="text-[10px] font-mono text-[#b38838]">Verified Formulation Purchase</span>
+                </div>
+              </div>
+
+              <div class="snap-center shrink-0 w-[84vw] max-w-[340px] herbal-parchment-card rounded-3xl p-5 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <div>
+                      <span class="text-sm font-semibold text-[#17281d]">Dr. Neil Varma</span>
+                      <span class="text-[10px] text-[#6e5d48] block">Ayurvedic Physician · London</span>
+                    </div>
+                    <div class="text-[#b38838] text-xs">★★★★★</div>
+                  </div>
+                  <p class="text-xs text-[#544432] leading-relaxed mb-3 font-light">
+                    "Rare to see classical decoction protocols respected so precisely. Zero synthetic binders, perfect for dry and Pitta-reactive skin."
+                  </p>
+                </div>
+                <div class="flex items-center gap-2 pt-2 border-t border-[#b38838]/25">
+                  <span class="text-[10px] font-mono text-[#b38838]">Verified Formulation Purchase</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="document.getElementById('reviewDrawer').showModal()" class="w-full py-4 herbal-parchment-card hover:bg-white/80 text-[#17281d] text-xs font-bold tracking-[0.2em] uppercase rounded-2xl transition flex items-center justify-center gap-2 shadow-sm">
+            <span>Read All 248 Reviews</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- Section 5: PRODUCT BUY / CHECKOUT SECTION -->
+      <section id="sec-5" class="w-full px-6 pt-12 pb-24 bg-[#ede2cf] relative z-20 border-t border-[#b38838]/30">
+        <div class="max-w-4xl mx-auto">
+          
+          <div class="text-center mb-8">
+            <span class="text-[10px] font-mono tracking-[0.24em] uppercase text-[#b38838] font-bold block mb-2">SACRED APOTHECARY DISPATCH</span>
+            <h2 class="font-botanical text-3xl sm:text-5xl font-medium text-[#17281d]">Claim Your Night Rasāyana</h2>
+            <p class="text-xs sm:text-sm text-[#6e5d48] max-w-md mx-auto mt-2">Fresh small-batch copper extraction shipped directly from our certified herbal laboratory.</p>
+          </div>
+
+          <!-- TOP CENTER VARIANT IMAGE -->
+          <div class="flex flex-col items-center justify-center mb-6 relative">
+            <div class="w-48 h-48 sm:w-56 sm:h-56 relative flex items-center justify-center">
+              <div class="absolute inset-0 rounded-full bg-radial from-[#b38838]/20 via-transparent to-transparent blur-2xl -z-10"></div>
+              <img 
+                id="variantDisplayImg" 
+                src="15.png" 
+                alt="Product Variant" 
+                class="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(36,28,20,0.22)] transition-transform duration-300" 
+              />
+            </div>
+            <span id="variantBadgeLabel" class="mt-2 text-[10px] uppercase font-mono tracking-widest px-3 py-1 rounded-full bg-[#17281d] text-[#ede2cf] shadow-sm font-semibold">
+              30ml Micro-Dose Selected
+            </span>
+          </div>
+
+          <div class="herbal-parchment-card vedic-corners rounded-3xl p-6 sm:p-10 max-w-2xl mx-auto shadow-xl">
+            
+            <!-- Volume Selection Tabs -->
+            <div class="mb-6">
+              <label class="text-[10px] uppercase font-mono tracking-widest text-[#6e5d48] font-bold block mb-2.5">Select Sacred Volume</label>
+              <div class="grid grid-cols-2 gap-3">
+                <button type="button" id="cardBtn30" onclick="setVariant(30)" class="p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#17281d] text-[#ede2cf] border-[#17281d] shadow-md">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-sm">30ml Micro-Dose</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#b38838] text-white">SAVE 25%</span>
+                  </div>
+                  <span class="text-xs opacity-80">30-Day Classical Cycle</span>
+                  <span class="font-botanical text-lg font-bold mt-2">₹1,450 <span class="line-through text-xs font-normal opacity-60">₹1,950</span></span>
+                </button>
+
+                <button type="button" id="cardBtn50" onclick="setVariant(50)" class="p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#e4d6be]/70 text-[#17281d] border-[#b38838]/30">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-sm">50ml Sadhana Jar</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#17281d]/15 text-[#17281d] font-bold">BEST VALUE</span>
+                  </div>
+                  <span class="text-xs opacity-75">60-Day Deep Cell Rejuvenation</span>
+                  <span class="font-botanical text-lg font-bold mt-2">₹2,250 <span class="line-through text-xs font-normal opacity-60">₹2,950</span></span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Guarantee Perks -->
+            <div class="grid grid-cols-3 gap-2 border-y border-[#b38838]/25 py-4 mb-6 text-center text-[11px] text-[#544432]">
+              <div><span class="font-bold text-[#17281d] block">Free Express</span><span>Pan-India 48H</span></div>
+              <div class="border-x border-[#b38838]/25 px-1"><span class="font-bold text-[#17281d] block">Cash on Delivery</span><span>Available</span></div>
+              <div><span class="font-bold text-[#17281d] block">Fresh Batch</span><span>Made Sept 2026</span></div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex flex-col sm:flex-row items-center gap-3.5">
+              <div class="flex items-center justify-between w-full sm:w-auto border border-[#b38838]/40 rounded-full px-4 py-3 bg-white/70">
+                <span class="text-xs font-semibold text-[#6e5d48] uppercase tracking-wider mr-4">Qty:</span>
+                <div class="flex items-center gap-3">
+                  <button onclick="setQuantity(-1)" class="w-6 h-6 rounded-full bg-[#e4d6be] text-[#17281d] font-bold flex items-center justify-center active:scale-90 transition">-</button>
+                  <span id="qtyVal" class="text-sm font-bold text-[#17281d] w-6 text-center">1</span>
+                  <button onclick="setQuantity(1)" class="w-6 h-6 rounded-full bg-[#e4d6be] text-[#17281d] font-bold flex items-center justify-center active:scale-90 transition">+</button>
+                </div>
+              </div>
+
+              <button onclick="executeOrder()" class="w-full flex-1 py-4 bg-[#17281d] hover:bg-[#253f2e] text-[#ede2cf] text-xs font-bold tracking-[0.22em] uppercase rounded-full shadow-lg active:scale-[0.98] transition flex items-center justify-center gap-2">
+                <span>Dispatch My Order Now</span>
+                <span id="buyBtnPrice" class="font-mono text-sm text-[#b38838]">(₹1,450)</span>
+              </button>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 text-[10px] text-[#6e5d48] uppercase tracking-widest mt-4 font-mono">
+              <svg class="w-3.5 h-3.5 text-[#15803d]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Authentic Vedic Guarantee · 14-Day Return Protection</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </div>
-  </div>
 
-  <!-- 1. PRODUCT INFO MONOGRAPH DRAWER -->
-  <div class="product-info-sheet" id="productInfoSheet">
-    <div class="sheet-drag-pill"></div>
+    <!-- Handcrafted Bottom Bar (Auto-hides cleanly on reaching Section 5) -->
+    <div id="stickyBottomBar" class="fixed bottom-0 left-0 w-full z-30 bg-[#ede2cf]/90 backdrop-blur-2xl border-t border-[#b38838]/35 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3 shadow-[0_-12px_36px_rgba(36,28,20,0.1)] transition-transform duration-300">
+      <div class="max-w-4xl mx-auto w-full flex items-center justify-between gap-3">
+        
+        <div class="flex items-center gap-2.5 sm:gap-3.5">
+          <!-- Size Selector -->
+          <div class="hidden xs:flex items-center p-1 rounded-full bg-[#e4d6be] border border-[#b38838]/35">
+            <button id="footerBtn30" onclick="setVariant(30)" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition bg-[#17281d] text-[#ede2cf] shadow-sm">30ml</button>
+            <button id="footerBtn50" onclick="setVariant(50)" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition text-[#6e5d48]">50ml</button>
+          </div>
 
-    <div class="drawer-nav-bar">
-      <span class="drawer-provenance">Grasse • France</span>
-      <div class="drawer-nav-actions">
-        <button class="icon-action-btn" id="shareBtn" aria-label="Share Creation">
-          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          <!-- Price Display -->
+          <div class="flex flex-col justify-center">
+            <div class="flex items-center gap-1.5">
+              <span id="footerSalePrice" class="font-botanical text-lg sm:text-xl font-bold text-[#17281d] leading-none">₹1,450</span>
+              <span id="footerBadge" class="px-1.5 py-0.5 rounded-full bg-[#17281d]/15 text-[#17281d] text-[9px] font-bold font-mono tracking-tight leading-none">-25%</span>
+            </div>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span id="footerOriginalPrice" class="text-[11px] text-[#6e5d48] line-through leading-none">₹1,950</span>
+              <span class="text-[9px] uppercase tracking-wider text-[#b38838] font-bold">RITUAL OFFER</span>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="document.getElementById('sec-5').scrollIntoView({behavior:'smooth'})" class="flex-1 max-w-[170px] sm:max-w-xs py-3.5 sm:py-4 bg-[#17281d] text-[#ede2cf] text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase rounded-full shadow-lg text-center transition hover:bg-[#253f2e]">
+          Order Ritual
         </button>
-
-        <button class="modal-close-black" id="closeProductInfoBtn">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
       </div>
     </div>
 
-    <div class="drawer-content-scroll">
-      <div class="drawer-spotlight">
-        <img class="drawer-thumb" id="drawerThumb" 
-             src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=85" 
-             alt="Thumbnail">
-        <div class="drawer-title-group">
-          <h2 id="drawerTitle">Santal <em>Céleste</em></h2>
-          <span class="drawer-edition-id" id="drawerEditionId">Single Harvest • 300 Flacons</span>
+    <!-- HTML5 Native Dialog for Dossier Reviews -->
+    <dialog id="reviewDrawer" class="w-full max-w-2xl bg-[#ede2cf] p-0 rounded-t-[32px] sm:rounded-3xl border-t-2 sm:border border-[#b38838]/40 shadow-2xl m-auto">
+      <div class="p-6 border-b border-[#b38838]/25 flex items-center justify-between">
+        <div>
+          <h3 class="font-botanical text-2xl font-bold text-[#17281d]">Verified Client Dossier</h3>
+          <p class="text-xs text-[#6e5d48]">248 authentic reviews & real camera submissions</p>
+        </div>
+        <button onclick="document.getElementById('reviewDrawer').close()" class="w-8 h-8 rounded-full bg-[#e4d6be] border border-[#b38838]/35 flex items-center justify-center text-xs font-bold text-[#17281d]">✕</button>
+      </div>
+      <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto no-scrollbar">
+        <div class="herbal-parchment-card rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-sm font-semibold text-[#17281d]">Meera Nair</span>
+            <span class="text-xs text-[#6e5d48]">Kochi · 3 days ago</span>
+          </div>
+          <div class="text-[#b38838] text-xs mb-2">★★★★★</div>
+          <p class="text-xs sm:text-sm text-[#544432] leading-relaxed font-light">
+            "The purity of saffron and sandalwood is unmistakable. Absorbs seamlessly without feeling heavy, leaving a radiant morning glow."
+          </p>
         </div>
       </div>
+    </dialog>
 
-      <span class="drawer-section-label">Sélection du Volume</span>
-      <div class="vol-row">
-        <div class="vol-card" onclick="selectVol(30, 0.75, this)">
-          <span class="vol-size">30 ML</span>
-          <span class="vol-tag">Nomad</span>
-        </div>
-        <div class="vol-card active" onclick="selectVol(50, 1.0, this)">
-          <span class="vol-size">50 ML</span>
-          <span class="vol-tag">Signature</span>
-        </div>
-        <div class="vol-card" onclick="selectVol(100, 1.6, this)">
-          <span class="vol-size">100 ML</span>
-          <span class="vol-tag">Monolith</span>
-        </div>
+    <!-- HTML5 Native Dialog for Image Lightbox -->
+    <dialog id="imageLightbox" class="bg-transparent p-0 border-0 outline-none m-auto" onclick="this.close()">
+      <div class="relative p-4 flex flex-col items-center">
+        <img id="lightboxTarget" src="" class="max-w-[92vw] max-h-[82vh] rounded-2xl object-contain shadow-2xl border border-white/20" alt="Dossier item" />
+        <span class="text-white text-xs mt-3 font-mono">Tap anywhere to close</span>
       </div>
+    </dialog>
 
-      <span class="drawer-section-label">Architecture Olfactive</span>
-      <div class="notes-pyramid">
-        <div class="note-row">
-          <span class="level">Tête (Top)</span>
-          <span class="fragrance" id="noteTop">Cardamome Noire & Bergamote</span>
-        </div>
-        <div class="note-row">
-          <span class="level">Cœur (Heart)</span>
-          <span class="fragrance" id="noteHeart">Beurre d'Iris Florentin</span>
-        </div>
-        <div class="note-row">
-          <span class="level">Fond (Base)</span>
-          <span class="fragrance" id="noteBase">Santal Mysore 6 Ans</span>
-        </div>
-      </div>
-
-      <span class="drawer-section-label">Spécifications du Flacon</span>
-      <div class="specs-strip">
-        <div class="spec-box">
-          <span>Extraction</span>
-          <strong>Cryo-Inerte −12°C</strong>
-        </div>
-        <div class="spec-box">
-          <span>Concentration</span>
-          <strong>32% Extrait Pur</strong>
-        </div>
-        <div class="spec-box">
-          <span>Verrerie</span>
-          <strong>Cristal Lourd 340g</strong>
-        </div>
-        <div class="spec-box">
-          <span>Bouchon</span>
-          <strong>Laiton Patiné Main</strong>
-        </div>
-      </div>
-    </div>
-
-    <div class="drawer-action-deck">
-      <button class="btn-explore" onclick="triggerExplore()">
-        <span>Explore Story</span>
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-
-      <button class="btn-buy" id="drawerBuyBtn" onclick="triggerReserve()">
-        <span id="drawerPriceBtn">Acquire — ₹24,500</span>
-      </button>
-    </div>
   </div>
 
-  <!-- 2. CENTER MENU MODAL -->
-  <div class="center-menu-modal" id="centerMenuModal">
-    <div class="modal-top-bar">
-      <span class="modal-pretitle">Maison & Informations</span>
-      <button class="modal-close-black" id="closeMenuBtn">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
+  <!-- ULTRA-PERFORMANT 10/10 CORE LOGIC -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
 
-    <ul class="menu-editorial-links">
-      <li class="menu-link-item" onclick="openPageNotice('About Maison L\'Atelier')">
-        <span class="title">About the Maison</span>
-        <span class="badge">01 • Heritage</span>
-      </li>
-      <li class="menu-link-item" onclick="openPageNotice('Terms & Allocation Conditions')">
-        <span class="title">Terms & Conditions</span>
-        <span class="badge">02 • Legal</span>
-      </li>
-      <li class="menu-link-item" onclick="openPageNotice('Botanical Disclaimer & Safety')">
-        <span class="title">Disclaimer & Safety</span>
-        <span class="badge">03 • Integrity</span>
-      </li>
-    </ul>
+    // 1. DYNAMIC INGREDIENT INJECTION
+    const blastOrigin = document.getElementById("blastOrigin");
+    const blastElements = [];
+    const totalItems = 28;
 
-    <div class="concierge-card">
-      <h4>Private Concierge & Salons</h4>
-      <div class="concierge-detail">
-        <p><strong>Salons Privés:</strong> 12 Rue de la Paix, Paris • New Delhi</p>
-        <p><strong>Hotline:</strong> +91 (0) 11 4982 0000</p>
-        <p><strong>Liaison:</strong> concierge@latelier-parfums.com</p>
-      </div>
-    </div>
-  </div>
+    for (let i = 1; i <= totalItems; i++) {
+      const node = document.createElement("div");
+      node.className = "ingredient-node";
+      
+      const img = document.createElement("img");
+      img.src = `ingredients/${i}.png`;
+      img.alt = "";
+      img.onerror = () => {
+        img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='38' fill='%23b38838' opacity='0.85'/%3E%3Cpath d='M50 25 Q65 45 50 75 Q35 45 50 25 Z' fill='%2317281d'/%3E%3C/svg%3E";
+      };
+      
+      node.appendChild(img);
+      blastOrigin.appendChild(node);
 
-  <!-- 3. SIDE CART DRAWER -->
-  <div class="side-cart-drawer" id="sideCartDrawer">
-    <div class="cart-header">
-      <h3 class="cart-title">Votre Panier</h3>
-      <button class="modal-close-black" id="closeCartBtn">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
+      const angle = (i / totalItems) * Math.PI * 2 + (i % 2 ? 0.25 : -0.25);
+      const radius = 190 + (i % 3) * 90;
+      blastElements.push({
+        el: node,
+        targetX: Math.cos(angle) * radius * 1.35,
+        targetY: Math.sin(angle) * radius - 60,
+        rot: (Math.random() - 0.5) * 90
+      });
+    }
 
-    <div class="cart-items-scroll">
-      <div class="cart-item-row">
-        <img class="cart-item-thumb" id="cartThumb" src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=300&q=85" alt="Cart Item">
-        <div class="cart-item-info">
-          <h4 class="cart-item-name" id="cartItemName">Santal Céleste</h4>
-          <span class="cart-item-meta" id="cartItemMeta">50 ML Extrait • Batch № 042</span>
-          <span class="cart-item-price" id="cartItemPrice">₹24,500</span>
-        </div>
-      </div>
+    // 2. HARDWARE-ACCELERATED MASTER TIMELINE (60FPS LOCKED)
+    const masterTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#sec-1",
+        start: "top top",
+        endTrigger: "#sec-4",
+        end: "top 20%",
+        scrub: 1.1
+      }
+    });
 
-      <div class="cart-packaging-note">
-        <p><strong>Atelier White-Glove Transit:</strong> Includes hand-polished paulownia wood coffret, wax seal & complimentary custom calligraphic note.</p>
-      </div>
-    </div>
+    // Phase A: Bottle Zoom-in
+    masterTimeline.to("#stageBottle", { scale: 1.28, ease: "power2.out", duration: 2.5 }, 0);
 
-    <div class="cart-footer">
-      <div class="cart-subtotal-row">
-        <span>Subtotal Allocation</span>
-        <strong id="cartSubtotal">₹24,500</strong>
-      </div>
-      <button class="checkout-btn" onclick="executeCheckout()">
-        Proceed to Checkout
-      </button>
-    </div>
-  </div>
+    // Phase B: Cap Unscrew & Fly
+    masterTimeline.to("#closedBottle", { opacity: 0, y: -16, rotation: -4, duration: 1 }, 0);
+    masterTimeline.to("#floatingCap", { opacity: 1, y: 75, duration: 0.8 }, 0);
+    masterTimeline.to("#floatingCap", { y: -100, rotation: -14, scale: 1.1, ease: "power1.out", duration: 1.7 }, 0.8);
 
-  <!-- 4. USER AUTH DRAWER -->
-  <div class="user-auth-sheet" id="userAuthSheet">
-    <div class="sheet-drag-pill"></div>
-    
-    <div style="display: flex; justify-content: flex-end; margin-top: -8px; margin-bottom: 6px;">
-      <button class="modal-close-black" id="closeUserBtn">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
+    // Phase C: 28 Ingredients Blast Outward
+    blastElements.forEach((item, idx) => {
+      masterTimeline.fromTo(item.el, 
+        { x: 0, y: 0, scale: 0, opacity: 0, rotation: 0 },
+        { 
+          x: item.targetX, 
+          y: item.targetY, 
+          scale: 1, 
+          opacity: 1, 
+          rotation: item.rot, 
+          ease: "power2.out", 
+          duration: 1.8 
+        }, 
+        0.7 + (idx % 4) * 0.04
+      );
+    });
 
-    <div class="namaste-header">
-      <div class="namaste-icon-wrap">🙏</div>
-      <h3 class="namaste-title">Namasté, Honoured Guest</h3>
-      <span class="namaste-sub">नमस्ते • Private Cellar Vault</span>
-    </div>
+    // Phase D: Settle Back Cleanly to Original (15.png) for Section 4 (Reviews)
+    masterTimeline.to(blastElements.map(b => b.el), { x: 0, y: 0, scale: 0, opacity: 0, duration: 1.2, ease: "power2.in" }, 2.5);
+    masterTimeline.to("#floatingCap", { y: 45, opacity: 0, duration: 1 }, 2.6);
+    masterTimeline.to("#closedBottle", { opacity: 1, y: 0, rotation: 0, duration: 1 }, 2.7);
+    masterTimeline.to("#stageBottle", { scale: 1, ease: "power2.inOut", duration: 1.2 }, 2.5);
 
-    <div class="auth-form-step" id="authStepPhone">
-      <div class="input-field-group">
-        <span class="country-code">+91 (IN)</span>
-        <input type="tel" class="mobile-input" id="phoneInput" placeholder="Enter 10-digit mobile number" maxlength="10">
-      </div>
-      <button class="auth-submit-btn" onclick="requestOtp()">
-        Request Private Key (OTP)
-      </button>
-      <p style="font-size: 8.5px; color: var(--muted); text-align: center; margin-top: 10px;">Instant secure login. We do not transmit spam or promotional messages.</p>
-    </div>
+    // 3. CHAPTER STEP INDICATORS
+    const chapters = [
+      { id: "#sec-1", text: "CHAPTER // 01 · THE ELIXIR" },
+      { id: "#sec-2", text: "CHAPTER // 02 · APPLICATION" },
+      { id: "#sec-3", text: "CHAPTER // 03 · HERBAL ALCHEMY" },
+      { id: "#sec-4", text: "CHAPTER // 04 · DOSSIERS" }
+    ];
 
-    <div class="auth-form-step" id="authStepOtp" style="display: none;">
-      <p style="font-size: 11px; text-align: center; color: var(--muted);">
-        Enter 4-digit verification key sent to <strong id="userPhoneDisplay">+91 98765 43210</strong>
-      </p>
-      <div class="otp-digit-boxes">
-        <input type="tel" maxlength="1" class="otp-box" oninput="focusNext(this)">
-        <input type="tel" maxlength="1" class="otp-box" oninput="focusNext(this)">
-        <input type="tel" maxlength="1" class="otp-box" oninput="focusNext(this)">
-        <input type="tel" maxlength="1" class="otp-box" oninput="focusNext(this)">
-      </div>
-      <button class="auth-submit-btn" onclick="verifyOtp()">
-        Verify & Access Atelier
-      </button>
-      <button onclick="backToPhone()" style="background: none; border: none; font-size: 10px; color: var(--bronze); margin-top: 6px; cursor: pointer; text-transform: uppercase;">
-        ← Change Number
-      </button>
-    </div>
-  </div>
-  <script src="js/home_app.js"></script>
+    chapters.forEach((c) => {
+      ScrollTrigger.create({
+        trigger: c.id,
+        start: "top 60%",
+        end: "bottom 60%",
+        onEnter: () => { document.getElementById("stepIndicator").textContent = c.text; },
+        onLeaveBack: () => {
+          const prev = chapters[chapters.indexOf(c) - 1];
+          if (prev) document.getElementById("stepIndicator").textContent = prev.text;
+        }
+      });
+    });
+
+    // 4. INTERSECTION OBSERVER FOR SECTION 5 CLEANUP (No layout thrashing)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const bar = document.getElementById("stickyBottomBar");
+        const viewer = document.getElementById("productViewer");
+        if (entry.isIntersecting) {
+          bar.style.transform = "translateY(115%)";
+          bar.style.opacity = "0";
+          viewer.style.opacity = "0";
+        } else {
+          bar.style.transform = "translateY(0)";
+          bar.style.opacity = "1";
+          viewer.style.opacity = "1";
+        }
+      });
+    }, { threshold: 0.12 });
+
+    observer.observe(document.getElementById("sec-5"));
+
+    // 5. REACTIVE VARIANT & ORDER ENGINE
+    const variants = {
+      30: { price: 1450, orig: 1950, img: "15.png", label: "30ml Micro-Dose Selected" },
+      50: { price: 2250, orig: 2950, img: "50.png", label: "50ml Sadhana Jar Selected" }
+    };
+
+    let selectedVariant = 30;
+    let selectedQty = 1;
+
+    function setVariant(vol) {
+      selectedVariant = vol;
+      const v = variants[vol];
+
+      // Dynamic Image Swap with clean Spring Bounce
+      const displayImg = document.getElementById("variantDisplayImg");
+      displayImg.style.transform = "scale(0.85)";
+      displayImg.style.opacity = "0.3";
+      
+      setTimeout(() => {
+        displayImg.src = v.img;
+        displayImg.onerror = () => { displayImg.src = "16.png"; };
+        document.getElementById("variantBadgeLabel").textContent = v.label;
+        displayImg.style.transform = "scale(1)";
+        displayImg.style.opacity = "1";
+      }, 160);
+
+      // Card Active Styles
+      const btn30 = document.getElementById("cardBtn30");
+      const btn50 = document.getElementById("cardBtn50");
+      const f30 = document.getElementById("footerBtn30");
+      const f50 = document.getElementById("footerBtn50");
+
+      if (vol === 30) {
+        btn30.className = "p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#17281d] text-[#ede2cf] border-[#17281d] shadow-md";
+        btn50.className = "p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#e4d6be]/70 text-[#17281d] border-[#b38838]/30";
+        f30.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase transition bg-[#17281d] text-[#ede2cf] shadow-sm";
+        f50.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase transition text-[#6e5d48]";
+      } else {
+        btn50.className = "p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#17281d] text-[#ede2cf] border-[#17281d] shadow-md";
+        btn30.className = "p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#e4d6be]/70 text-[#17281d] border-[#b38838]/30";
+        f50.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase transition bg-[#17281d] text-[#ede2cf] shadow-sm";
+        f30.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase transition text-[#6e5d48]";
+      }
+      recalculateCart();
+    }
+
+    function setQuantity(delta) {
+      selectedQty = Math.max(1, selectedQty + delta);
+      document.getElementById("qtyVal").textContent = selectedQty;
+      recalculateCart();
+    }
+
+    function recalculateCart() {
+      const v = variants[selectedVariant];
+      const sale = (v.price * selectedQty).toLocaleString('en-IN');
+      const orig = (v.orig * selectedQty).toLocaleString('en-IN');
+      const off = Math.round(((v.orig - v.price) / v.orig) * 100);
+
+      document.getElementById("buyBtnPrice").textContent = `(₹${sale})`;
+      document.getElementById("footerSalePrice").textContent = `₹${sale}`;
+      document.getElementById("footerOriginalPrice").textContent = `₹${orig}`;
+      document.getElementById("footerBadge").textContent = `-${off}%`;
+    }
+
+    function executeOrder() {
+      alert(`Dispatching Order:\n\nProduct: HERB-O-CARE Kumkumadi Rasāyana\nSize: ${selectedVariant}ml\nQuantity: ${selectedQty}\nTotal: ₹${(variants[selectedVariant].price * selectedQty).toLocaleString('en-IN')}\n\nPriority Air Dispatch Confirmed.`);
+    }
+
+    function openLightboxImage(src) {
+      const modal = document.getElementById("imageLightbox");
+      document.getElementById("lightboxTarget").src = src;
+      modal.showModal();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      setVariant(30);
+    });
+  </script>
 </body>
 </html>
