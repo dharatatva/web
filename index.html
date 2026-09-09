@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Dharā Herbals — Botanical Kumkumadi Rasāyana</title>
   
-  <!-- Tailwind CSS & GSAP Engine -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -24,14 +23,10 @@
       background-color: #ede2cf;
       color: #241c14;
       overflow-x: hidden;
-      overscroll-behavior-y: none;
     }
 
-    .font-botanical {
-      font-family: 'Cormorant Garamond', serif;
-    }
+    .font-botanical { font-family: 'Cormorant Garamond', serif; }
 
-    /* Ancient Palm-Leaf Parchment Shader Texture */
     .ancient-parchment {
       background-color: #ede2cf;
       background-image: 
@@ -42,7 +37,6 @@
         repeating-linear-gradient(90deg, rgba(61, 47, 32, 0.015) 0px, rgba(61, 47, 32, 0.015) 1px, transparent 1px, transparent 6px);
     }
 
-    /* Centerpiece Mandala Watermark */
     .mandala-watermark {
       position: fixed;
       top: 50%;
@@ -76,8 +70,7 @@
       position: relative;
     }
 
-    .vedic-corners::before,
-    .vedic-corners::after {
+    .vedic-corners::before, .vedic-corners::after {
       content: "✦";
       position: absolute;
       font-size: 7px;
@@ -90,9 +83,7 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* ========================================================
-       STAGE & VISUALIZER ENGINE
-       ======================================================== */
+    /* Visualizer & Stage Elements */
     .stage-bottle {
       position: relative;
       width: 100%;
@@ -175,10 +166,46 @@
       pointer-events: none;
     }
 
-    /* Modal Styling */
+    /* PURE CSS RADIO-BASED VARIANT SWITCHER (0 JS REQUIRED) */
+    #v30:checked ~ * .img-30 { display: block; }
+    #v30:checked ~ * .img-50 { display: none; }
+    #v50:checked ~ * .img-30 { display: none; }
+    #v50:checked ~ * .img-50 { display: block; }
+
+    #v30:checked ~ * .lbl-30 { background-color: #17281d; color: #ede2cf; border-color: #17281d; }
+    #v30:checked ~ * .lbl-50 { background-color: rgba(228, 214, 190, 0.7); color: #17281d; border-color: rgba(179, 136, 56, 0.3); }
+
+    #v50:checked ~ * .lbl-50 { background-color: #17281d; color: #ede2cf; border-color: #17281d; }
+    #v50:checked ~ * .lbl-30 { background-color: rgba(228, 214, 190, 0.7); color: #17281d; border-color: rgba(179, 136, 56, 0.3); }
+
+    #v30:checked ~ * .txt-30 { display: inline; }
+    #v30:checked ~ * .txt-50 { display: none; }
+    #v50:checked ~ * .txt-30 { display: none; }
+    #v50:checked ~ * .txt-50 { display: inline; }
+
+    /* Pure CSS View-Timeline for Sticky Footer Auto-Hide */
+    @supports (animation-timeline: view()) {
+      #stickyBottomBar {
+        animation: hideFooter linear both;
+        animation-timeline: view();
+        animation-range: entry 10% entry 70%;
+      }
+      @keyframes hideFooter {
+        to { transform: translateY(120%); opacity: 0; pointer-events: none; }
+      }
+    }
+
+    /* HTML5 Native Dialog Styling */
     dialog::backdrop {
       background: rgba(23, 40, 29, 0.65);
       backdrop-filter: blur(8px);
+    }
+    dialog[open] {
+      animation: modalSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlide {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
@@ -187,9 +214,13 @@
   <div class="mandala-watermark"></div>
   <div class="vignette-overlay"></div>
 
+  <!-- PURE HTML FORM CONTROLS FOR STATE (No JavaScript state variables needed) -->
+  <input type="radio" name="sizeSelection" id="v30" class="hidden" checked />
+  <input type="radio" name="sizeSelection" id="v50" class="hidden" />
+
   <div class="w-full min-h-screen relative overflow-x-hidden pb-10 z-10">
     
-    <!-- Top Header Bar -->
+    <!-- Header -->
     <header class="sticky top-0 z-40 w-full flex items-center justify-between px-6 py-4 bg-[#ede2cf]/85 backdrop-blur-md border-b border-[#b38838]/25 shadow-sm">
       <div class="flex items-center gap-3">
         <div class="w-7 h-7 rounded-full flex items-center justify-center text-[#f4ebd9] text-xs font-bold bg-[#8a482b] shadow-sm">
@@ -207,6 +238,7 @@
           <span id="stepIndicator" class="text-[10px] uppercase font-mono tracking-widest text-[#5c4a35]">CHAPTER // 01 · THE ELIXIR</span>
         </div>
 
+        <!-- Pure HTML modal trigger (Zero JS event listener) -->
         <button onclick="document.getElementById('reviewDrawer').showModal()" class="text-xs font-semibold tracking-wider uppercase text-[#17281d] hover:text-[#b38838] transition flex items-center gap-1.5">
           <span>Client Dossier</span>
           <span class="text-[10px] font-mono text-[#b38838]">(248)</span>
@@ -229,7 +261,7 @@
     <!-- Scrollytelling Panels Container -->
     <div class="relative z-20 w-full">
 
-      <!-- Section 1: Intro -->
+      <!-- Section 1 -->
       <section id="sec-1" class="min-h-screen flex flex-col justify-between px-6 pt-10 pb-20 pointer-events-none max-w-4xl mx-auto">
         <div class="text-center pt-2 select-none pointer-events-auto">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#b38838]/40 bg-[#e4d6be]/80 shadow-sm mb-3.5">
@@ -266,7 +298,7 @@
         </div>
       </section>
 
-      <!-- Section 2: Apothecary Dropper -->
+      <!-- Section 2 -->
       <section id="sec-2" class="min-h-screen flex flex-col justify-between px-6 pt-20 pb-20 pointer-events-none max-w-4xl mx-auto">
         <div class="herbal-parchment-card vedic-corners rounded-3xl p-6 pointer-events-auto">
           <div class="flex items-center justify-between mb-2 border-b border-[#b38838]/25 pb-2">
@@ -308,7 +340,7 @@
         </div>
       </section>
 
-      <!-- Section 3: Transformation Observations -->
+      <!-- Section 3 -->
       <section id="sec-3" class="min-h-screen flex flex-col justify-between px-6 pt-20 pb-20 pointer-events-none max-w-4xl mx-auto">
         <div class="herbal-parchment-card vedic-corners rounded-3xl p-6 pointer-events-auto">
           <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#b38838] font-bold block mb-1">28-Day Mandala Observation</span>
@@ -331,6 +363,7 @@
         </div>
 
         <div class="herbal-parchment-card rounded-3xl p-6 pointer-events-auto space-y-3">
+          <!-- Pure HTML Accordion -->
           <details class="group cursor-pointer">
             <summary class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#17281d] list-none">
               <span>Full Botanical INCI Ingredient List</span>
@@ -343,7 +376,7 @@
         </div>
       </section>
 
-      <!-- Section 4: Reviews (Background returns to original 15.png state) -->
+      <!-- Section 4: Reviews -->
       <section id="sec-4" class="w-full px-6 pt-20 pb-20 bg-[#ede2cf]/85 backdrop-blur-md border-t border-[#b38838]/30 relative z-20">
         <div class="max-w-4xl mx-auto">
           
@@ -361,7 +394,7 @@
             </div>
           </div>
 
-          <!-- Customer Lightbox Reel -->
+          <!-- Customer Lightbox Reel (Pure HTML Lightbox Trigger) -->
           <div class="mb-8">
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs uppercase font-bold tracking-wider text-[#6e5d48]">Customer Texture Photos</span>
@@ -369,18 +402,15 @@
             </div>
 
             <div class="flex gap-3.5 overflow-x-auto no-scrollbar py-2 scroll-smooth">
-              <div onclick="openLightboxImage('https://images.unsplash.com/photo-1608248597359-2d1d589d81d2?w=900')" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition hover:opacity-90">
+              <button onclick="document.getElementById('lbImg').src='https://images.unsplash.com/photo-1608248597359-2d1d589d81d2?w=900'; document.getElementById('imgLightbox').showModal()" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition">
                 <img src="https://images.unsplash.com/photo-1608248597359-2d1d589d81d2?w=400&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Review 1"/>
-              </div>
-              <div onclick="openLightboxImage('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900')" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition hover:opacity-90">
+              </button>
+              <button onclick="document.getElementById('lbImg').src='https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900'; document.getElementById('imgLightbox').showModal()" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition">
                 <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Review 2"/>
-              </div>
-              <div onclick="openLightboxImage('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900')" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition hover:opacity-90">
+              </button>
+              <button onclick="document.getElementById('lbImg').src='https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900'; document.getElementById('imgLightbox').showModal()" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition">
                 <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Review 3"/>
-              </div>
-              <div onclick="openLightboxImage('https://images.unsplash.com/photo-1608248545934-2e6566c5d799?w=900')" class="w-28 h-28 rounded-2xl overflow-hidden shrink-0 border border-[#b38838]/40 shadow-sm cursor-pointer active:scale-95 transition hover:opacity-90">
-                <img src="https://images.unsplash.com/photo-1608248545934-2e6566c5d799?w=400&auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Review 4"/>
-              </div>
+              </button>
             </div>
           </div>
 
@@ -443,45 +473,49 @@
             <p class="text-xs sm:text-sm text-[#6e5d48] max-w-md mx-auto mt-2">Fresh small-batch copper extraction shipped directly from our certified herbal laboratory.</p>
           </div>
 
-          <!-- TOP CENTER VARIANT IMAGE -->
+          <!-- TOP CENTER VARIANT IMAGE (Pure CSS Radio toggled) -->
           <div class="flex flex-col items-center justify-center mb-6 relative">
             <div class="w-48 h-48 sm:w-56 sm:h-56 relative flex items-center justify-center">
               <div class="absolute inset-0 rounded-full bg-radial from-[#b38838]/20 via-transparent to-transparent blur-2xl -z-10"></div>
-              <img 
-                id="variantDisplayImg" 
-                src="img/15.png" 
-                alt="Product Variant" 
-                class="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(36,28,20,0.22)] transition-transform duration-300" 
-              />
+              
+              <!-- 30ml Image -->
+              <img src="img/15.png" alt="30ml Variant" class="img-30 w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(36,28,20,0.22)]" />
+              
+              <!-- 50ml Image -->
+              <img src="img/16.png" onerror="this.src='15.png'" alt="50ml Variant" class="img-50 hidden w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(36,28,20,0.22)]" />
             </div>
-            <span id="variantBadgeLabel" class="mt-2 text-[10px] uppercase font-mono tracking-widest px-3 py-1 rounded-full bg-[#17281d] text-[#ede2cf] shadow-sm font-semibold">
+
+            <span class="txt-30 mt-2 text-[10px] uppercase font-mono tracking-widest px-3 py-1 rounded-full bg-[#17281d] text-[#ede2cf] shadow-sm font-semibold">
               30ml Micro-Dose Selected
+            </span>
+            <span class="txt-50 hidden mt-2 text-[10px] uppercase font-mono tracking-widest px-3 py-1 rounded-full bg-[#17281d] text-[#ede2cf] shadow-sm font-semibold">
+              50ml Sadhana Jar Selected
             </span>
           </div>
 
           <div class="herbal-parchment-card vedic-corners rounded-3xl p-6 sm:p-10 max-w-2xl mx-auto shadow-xl">
             
-            <!-- Volume Selection Tabs -->
+            <!-- HTML <label> tags act as buttons for the radio inputs -->
             <div class="mb-6">
               <label class="text-[10px] uppercase font-mono tracking-widest text-[#6e5d48] font-bold block mb-2.5">Select Sacred Volume</label>
               <div class="grid grid-cols-2 gap-3">
-                <button type="button" id="cardBtn30" onclick="setVariant(30)" class="p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#17281d] text-[#ede2cf] border-[#17281d] shadow-md">
+                <label for="v30" class="lbl-30 p-4 rounded-2xl border text-left cursor-pointer transition flex flex-col justify-between shadow-md">
                   <div class="flex items-center justify-between mb-1">
                     <span class="font-bold text-sm">30ml Micro-Dose</span>
                     <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#b38838] text-white">SAVE 25%</span>
                   </div>
                   <span class="text-xs opacity-80">30-Day Classical Cycle</span>
                   <span class="font-botanical text-lg font-bold mt-2">₹1,450 <span class="line-through text-xs font-normal opacity-60">₹1,950</span></span>
-                </button>
+                </label>
 
-                <button type="button" id="cardBtn50" onclick="setVariant(50)" class="p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#e4d6be]/70 text-[#17281d] border-[#b38838]/30">
+                <label for="v50" class="lbl-50 p-4 rounded-2xl border text-left cursor-pointer transition flex flex-col justify-between">
                   <div class="flex items-center justify-between mb-1">
                     <span class="font-bold text-sm">50ml Sadhana Jar</span>
                     <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#17281d]/15 text-[#17281d] font-bold">BEST VALUE</span>
                   </div>
                   <span class="text-xs opacity-75">60-Day Deep Cell Rejuvenation</span>
                   <span class="font-botanical text-lg font-bold mt-2">₹2,250 <span class="line-through text-xs font-normal opacity-60">₹2,950</span></span>
-                </button>
+                </label>
               </div>
             </div>
 
@@ -492,22 +526,20 @@
               <div><span class="font-bold text-[#17281d] block">Fresh Batch</span><span>Made Sept 2026</span></div>
             </div>
 
-            <!-- Action Controls -->
-            <div class="flex flex-col sm:flex-row items-center gap-3.5">
-              <div class="flex items-center justify-between w-full sm:w-auto border border-[#b38838]/40 rounded-full px-4 py-3 bg-white/70">
+            <!-- Native HTML5 Form Submission -->
+            <form onsubmit="event.preventDefault(); alert('Order Dispatched via Priority Air!');" class="flex flex-col sm:flex-row items-center gap-3.5">
+              <div class="flex items-center justify-between w-full sm:w-auto border border-[#b38838]/40 rounded-full px-4 py-2.5 bg-white/70">
                 <span class="text-xs font-semibold text-[#6e5d48] uppercase tracking-wider mr-4">Qty:</span>
-                <div class="flex items-center gap-3">
-                  <button onclick="setQuantity(-1)" class="w-6 h-6 rounded-full bg-[#e4d6be] text-[#17281d] font-bold flex items-center justify-center active:scale-90 transition">-</button>
-                  <span id="qtyVal" class="text-sm font-bold text-[#17281d] w-6 text-center">1</span>
-                  <button onclick="setQuantity(1)" class="w-6 h-6 rounded-full bg-[#e4d6be] text-[#17281d] font-bold flex items-center justify-center active:scale-90 transition">+</button>
-                </div>
+                <!-- Built-in HTML5 Number Input (no custom JS stepper needed) -->
+                <input type="number" min="1" max="10" value="1" class="w-14 bg-transparent text-center font-bold text-base text-[#17281d] focus:outline-none" />
               </div>
 
-              <button onclick="executeOrder()" class="w-full flex-1 py-4 bg-[#17281d] hover:bg-[#253f2e] text-[#ede2cf] text-xs font-bold tracking-[0.22em] uppercase rounded-full shadow-lg active:scale-[0.98] transition flex items-center justify-center gap-2">
-                <span>Dispatch My Order Now</span>
-                <span id="buyBtnPrice" class="font-mono text-sm text-[#b38838]">(₹1,450)</span>
+              <button type="submit" class="w-full flex-1 py-4 bg-[#17281d] hover:bg-[#253f2e] text-[#ede2cf] text-xs font-bold tracking-[0.22em] uppercase rounded-full shadow-lg active:scale-[0.98] transition flex items-center justify-center gap-2">
+                <span>Dispatch My Order</span>
+                <span class="txt-30 font-mono text-sm text-[#b38838]">(₹1,450)</span>
+                <span class="txt-50 hidden font-mono text-sm text-[#b38838]">(₹2,250)</span>
               </button>
-            </div>
+            </form>
 
             <div class="flex items-center justify-center gap-2 text-[10px] text-[#6e5d48] uppercase tracking-widest mt-4 font-mono">
               <svg class="w-3.5 h-3.5 text-[#15803d]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
@@ -520,44 +552,50 @@
 
     </div>
 
-    <!-- Handcrafted Bottom Bar (Auto-hides cleanly on reaching Section 5) -->
-    <div id="stickyBottomBar" class="fixed bottom-0 left-0 w-full z-30 bg-[#ede2cf]/90 backdrop-blur-2xl border-t border-[#b38838]/35 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3 shadow-[0_-12px_36px_rgba(36,28,20,0.1)] transition-transform duration-300">
+    <!-- Handcrafted Bottom Bar (Pure CSS Auto-hide using View-Timeline & Intersection Observer fallback) -->
+    <div id="stickyBottomBar" class="fixed bottom-0 left-0 w-full z-30 bg-[#ede2cf]/90 backdrop-blur-2xl border-t border-[#b38838]/35 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3 shadow-[0_-12px_36px_rgba(36,28,20,0.1)]">
       <div class="max-w-4xl mx-auto w-full flex items-center justify-between gap-3">
         
         <div class="flex items-center gap-2.5 sm:gap-3.5">
-          <!-- Size Selector -->
+          <!-- Size Selector via Radio Labels -->
           <div class="hidden xs:flex items-center p-1 rounded-full bg-[#e4d6be] border border-[#b38838]/35">
-            <button id="footerBtn30" onclick="setVariant(30)" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition bg-[#17281d] text-[#ede2cf] shadow-sm">30ml</button>
-            <button id="footerBtn50" onclick="setVariant(50)" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition text-[#6e5d48]">50ml</button>
+            <label for="v30" class="lbl-30 px-3 py-1 rounded-full text-[10px] font-bold uppercase cursor-pointer transition shadow-sm">30ml</label>
+            <label for="v50" class="lbl-50 px-3 py-1 rounded-full text-[10px] font-bold uppercase cursor-pointer transition">50ml</label>
           </div>
 
           <!-- Price Display -->
           <div class="flex flex-col justify-center">
             <div class="flex items-center gap-1.5">
-              <span id="footerSalePrice" class="font-botanical text-lg sm:text-xl font-bold text-[#17281d] leading-none">₹1,450</span>
-              <span id="footerBadge" class="px-1.5 py-0.5 rounded-full bg-[#17281d]/15 text-[#17281d] text-[9px] font-bold font-mono tracking-tight leading-none">-25%</span>
+              <span class="txt-30 font-botanical text-lg sm:text-xl font-bold text-[#17281d] leading-none">₹1,450</span>
+              <span class="txt-50 hidden font-botanical text-lg sm:text-xl font-bold text-[#17281d] leading-none">₹2,250</span>
+              <span class="px-1.5 py-0.5 rounded-full bg-[#17281d]/15 text-[#17281d] text-[9px] font-bold font-mono tracking-tight leading-none">-25%</span>
             </div>
             <div class="flex items-center gap-1 mt-0.5">
-              <span id="footerOriginalPrice" class="text-[11px] text-[#6e5d48] line-through leading-none">₹1,950</span>
+              <span class="txt-30 text-[11px] text-[#6e5d48] line-through leading-none">₹1,950</span>
+              <span class="txt-50 hidden text-[11px] text-[#6e5d48] line-through leading-none">₹2,950</span>
               <span class="text-[9px] uppercase tracking-wider text-[#b38838] font-bold">RITUAL OFFER</span>
             </div>
           </div>
         </div>
 
-        <button onclick="document.getElementById('sec-5').scrollIntoView({behavior:'smooth'})" class="flex-1 max-w-[170px] sm:max-w-xs py-3.5 sm:py-4 bg-[#17281d] text-[#ede2cf] text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase rounded-full shadow-lg text-center transition hover:bg-[#253f2e]">
+        <!-- Pure HTML anchor scroll jump -->
+        <a href="#sec-5" class="flex-1 max-w-[170px] sm:max-w-xs py-3.5 sm:py-4 bg-[#17281d] text-[#ede2cf] text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase rounded-full shadow-lg text-center transition hover:bg-[#253f2e]">
           Order Ritual
-        </button>
+        </a>
       </div>
     </div>
 
-    <!-- HTML5 Native Dialog for Dossier Reviews -->
+    <!-- HTML5 Native <dialog> Modal for Reviews (0 Lines of JS to open/close) -->
     <dialog id="reviewDrawer" class="w-full max-w-2xl bg-[#ede2cf] p-0 rounded-t-[32px] sm:rounded-3xl border-t-2 sm:border border-[#b38838]/40 shadow-2xl m-auto">
       <div class="p-6 border-b border-[#b38838]/25 flex items-center justify-between">
         <div>
           <h3 class="font-botanical text-2xl font-bold text-[#17281d]">Verified Client Dossier</h3>
           <p class="text-xs text-[#6e5d48]">248 authentic reviews & real camera submissions</p>
         </div>
-        <button onclick="document.getElementById('reviewDrawer').close()" class="w-8 h-8 rounded-full bg-[#e4d6be] border border-[#b38838]/35 flex items-center justify-center text-xs font-bold text-[#17281d]">✕</button>
+        <!-- Pure HTML Dialog close button -->
+        <form method="dialog">
+          <button class="w-8 h-8 rounded-full bg-[#e4d6be] border border-[#b38838]/35 flex items-center justify-center text-xs font-bold text-[#17281d]">✕</button>
+        </form>
       </div>
       <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto no-scrollbar">
         <div class="herbal-parchment-card rounded-2xl p-5">
@@ -573,17 +611,17 @@
       </div>
     </dialog>
 
-    <!-- HTML5 Native Dialog for Image Lightbox -->
-    <dialog id="imageLightbox" class="bg-transparent p-0 border-0 outline-none m-auto" onclick="this.close()">
+    <!-- HTML5 Native <dialog> for Image Lightbox -->
+    <dialog id="imgLightbox" class="bg-transparent p-0 border-0 outline-none m-auto" onclick="this.close()">
       <div class="relative p-4 flex flex-col items-center">
-        <img id="lightboxTarget" src="" class="max-w-[92vw] max-h-[82vh] rounded-2xl object-contain shadow-2xl border border-white/20" alt="Dossier item" />
+        <img id="lbImg" src="" class="max-w-[92vw] max-h-[82vh] rounded-2xl object-contain shadow-2xl border border-white/20" alt="Full review photo" />
         <span class="text-white text-xs mt-3 font-mono">Tap anywhere to close</span>
       </div>
     </dialog>
 
   </div>
 
-  <!-- ULTRA-PERFORMANT 10/10 CORE LOGIC -->
+  <!-- ONLY STRICTLY MANDATORY JAVASCRIPT (Scrollytelling 3D Engine Only) -->
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
@@ -595,15 +633,7 @@
     for (let i = 1; i <= totalItems; i++) {
       const node = document.createElement("div");
       node.className = "ingredient-node";
-      
-      const img = document.createElement("img");
-      img.src = `ingredients/${i}.png`;
-      img.alt = "";
-      img.onerror = () => {
-        img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='38' fill='%23b38838' opacity='0.85'/%3E%3Cpath d='M50 25 Q65 45 50 75 Q35 45 50 25 Z' fill='%2317281d'/%3E%3C/svg%3E";
-      };
-      
-      node.appendChild(img);
+      node.innerHTML = `<img src="ingredients/${i}.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 100 100\\'%3E%3Ccircle cx=\\'50\\' cy=\\'50\\' r=\\'38\\' fill=\\'%23b38838\\' opacity=\\'0.85\\'/%3E%3C/svg%3E'" />`;
       blastOrigin.appendChild(node);
 
       const angle = (i / totalItems) * Math.PI * 2 + (i % 2 ? 0.25 : -0.25);
@@ -616,7 +646,7 @@
       });
     }
 
-    // 2. HARDWARE-ACCELERATED MASTER TIMELINE (60FPS LOCKED)
+    // 2. HARDWARE ACCELERATED SCRUB TIMELINE
     const masterTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: "#sec-1",
@@ -627,7 +657,7 @@
       }
     });
 
-    // Phase A: Bottle Zoom-in
+    // Phase A: Bottle Zoom
     masterTimeline.to("#stageBottle", { scale: 1.28, ease: "power2.out", duration: 2.5 }, 0);
 
     // Phase B: Cap Unscrew & Fly
@@ -635,24 +665,16 @@
     masterTimeline.to("#floatingCap", { opacity: 1, y: 75, duration: 0.8 }, 0);
     masterTimeline.to("#floatingCap", { y: -100, rotation: -14, scale: 1.1, ease: "power1.out", duration: 1.7 }, 0.8);
 
-    // Phase C: 28 Ingredients Blast Outward
+    // Phase C: 28 Ingredients Radial Blast
     blastElements.forEach((item, idx) => {
       masterTimeline.fromTo(item.el, 
         { x: 0, y: 0, scale: 0, opacity: 0, rotation: 0 },
-        { 
-          x: item.targetX, 
-          y: item.targetY, 
-          scale: 1, 
-          opacity: 1, 
-          rotation: item.rot, 
-          ease: "power2.out", 
-          duration: 1.8 
-        }, 
+        { x: item.targetX, y: item.targetY, scale: 1, opacity: 1, rotation: item.rot, ease: "power2.out", duration: 1.8 }, 
         0.7 + (idx % 4) * 0.04
       );
     });
 
-    // Phase D: Settle Back Cleanly to Original (15.png) for Section 4 (Reviews)
+    // Phase D: Settle Back into Closed 15.png for Reviews Section
     masterTimeline.to(blastElements.map(b => b.el), { x: 0, y: 0, scale: 0, opacity: 0, duration: 1.2, ease: "power2.in" }, 2.5);
     masterTimeline.to("#floatingCap", { y: 45, opacity: 0, duration: 1 }, 2.6);
     masterTimeline.to("#closedBottle", { opacity: 1, y: 0, rotation: 0, duration: 1 }, 2.7);
@@ -666,7 +688,7 @@
       { id: "#sec-4", text: "CHAPTER // 04 · DOSSIERS" }
     ];
 
-    chapters.forEach((c) => {
+    chapters.forEach(c => {
       ScrollTrigger.create({
         trigger: c.id,
         start: "top 60%",
@@ -679,7 +701,7 @@
       });
     });
 
-    // 4. INTERSECTION OBSERVER FOR SECTION 5 CLEANUP (No layout thrashing)
+    // 4. SECTION 5 BOTTLE & FOOTER OBSERVER (Fallback for older browsers)
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const bar = document.getElementById("stickyBottomBar");
@@ -697,84 +719,6 @@
     }, { threshold: 0.12 });
 
     observer.observe(document.getElementById("sec-5"));
-
-    // 5. REACTIVE VARIANT & ORDER ENGINE
-    const variants = {
-      30: { price: 1450, orig: 1950, img: "img/15.png", label: "30ml Micro-Dose Selected" },
-      50: { price: 2250, orig: 2950, img: "img/16.png", label: "50ml Sadhana Jar Selected" }
-    };
-
-    let selectedVariant = 30;
-    let selectedQty = 1;
-
-    function setVariant(vol) {
-      selectedVariant = vol;
-      const v = variants[vol];
-
-      // Dynamic Image Swap with clean Spring Bounce
-      const displayImg = document.getElementById("variantDisplayImg");
-      displayImg.style.transform = "scale(0.85)";
-      displayImg.style.opacity = "0.3";
-      
-      setTimeout(() => {
-        displayImg.src = v.img;
-        displayImg.onerror = () => { displayImg.src = "img/16.png"; };
-        document.getElementById("variantBadgeLabel").textContent = v.label;
-        displayImg.style.transform = "scale(1)";
-        displayImg.style.opacity = "1";
-      }, 160);
-
-      // Card Active Styles
-      const btn30 = document.getElementById("cardBtn30");
-      const btn50 = document.getElementById("cardBtn50");
-      const f30 = document.getElementById("footerBtn30");
-      const f50 = document.getElementById("footerBtn50");
-
-      if (vol === 30) {
-        btn30.className = "p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#17281d] text-[#ede2cf] border-[#17281d] shadow-md";
-        btn50.className = "p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#e4d6be]/70 text-[#17281d] border-[#b38838]/30";
-        f30.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase transition bg-[#17281d] text-[#ede2cf] shadow-sm";
-        f50.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase transition text-[#6e5d48]";
-      } else {
-        btn50.className = "p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#17281d] text-[#ede2cf] border-[#17281d] shadow-md";
-        btn30.className = "p-4 rounded-2xl border text-left transition flex flex-col justify-between bg-[#e4d6be]/70 text-[#17281d] border-[#b38838]/30";
-        f50.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase transition bg-[#17281d] text-[#ede2cf] shadow-sm";
-        f30.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase transition text-[#6e5d48]";
-      }
-      recalculateCart();
-    }
-
-    function setQuantity(delta) {
-      selectedQty = Math.max(1, selectedQty + delta);
-      document.getElementById("qtyVal").textContent = selectedQty;
-      recalculateCart();
-    }
-
-    function recalculateCart() {
-      const v = variants[selectedVariant];
-      const sale = (v.price * selectedQty).toLocaleString('en-IN');
-      const orig = (v.orig * selectedQty).toLocaleString('en-IN');
-      const off = Math.round(((v.orig - v.price) / v.orig) * 100);
-
-      document.getElementById("buyBtnPrice").textContent = `(₹${sale})`;
-      document.getElementById("footerSalePrice").textContent = `₹${sale}`;
-      document.getElementById("footerOriginalPrice").textContent = `₹${orig}`;
-      document.getElementById("footerBadge").textContent = `-${off}%`;
-    }
-
-    function executeOrder() {
-      alert(`Dispatching Order:\n\nProduct: HERB-O-CARE Kumkumadi Rasāyana\nSize: ${selectedVariant}ml\nQuantity: ${selectedQty}\nTotal: ₹${(variants[selectedVariant].price * selectedQty).toLocaleString('en-IN')}\n\nPriority Air Dispatch Confirmed.`);
-    }
-
-    function openLightboxImage(src) {
-      const modal = document.getElementById("imageLightbox");
-      document.getElementById("lightboxTarget").src = src;
-      modal.showModal();
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      setVariant(30);
-    });
   </script>
 </body>
 </html>
