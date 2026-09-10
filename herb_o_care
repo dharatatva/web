@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Dharatatva — Herb-O-Care Churan</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #eeebe3;
+      --surface: #ffffff;
+      --text: #171614;
+      --muted: #7b7871;
+      --bronze: #8e7146;
+      --herbal-green: #1a5632;
+      --hairline: rgba(23, 22, 20, 0.08);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .paper-grain {
+      position: fixed;
+      inset: 0;
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .showcase-frame {
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      position: relative;
+      background: var(--bg);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    @media (min-width: 600px) {
+      body { background-color: #dfdcd3; }
+      .showcase-frame {
+        max-width: 430px;
+        box-shadow: 0 0 70px rgba(0, 0, 0, 0.12);
+        border-left: 1px solid var(--hairline);
+        border-right: 1px solid var(--hairline);
+      }
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      padding: 12px 20px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 60;
+      flex-shrink: 0;
+      background: rgba(238, 235, 227, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(23, 22, 20, 0.05);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      padding: 4px;
+      position: relative;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .header-btn:active {
+      transform: scale(0.92);
+      opacity: 0.75;
+    }
+
+    .menu-icon-bars {
+      width: 18px;
+      height: 11px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-icon-bars span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 1px;
+    }
+
+    .menu-icon-bars span:last-child { width: 60%; }
+
+    .brand-mark {
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-right svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text);
+      stroke-width: 1.65;
+      fill: none;
+    }
+
+    .cart-indicator {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 6px;
+      height: 6px;
+      background: var(--bronze);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--bg);
+    }
+
+    /* STAGE */
+    .stage-canvas {
+      flex: 1;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+    }
+
+    /* FLOATING BOTTLE ANCHOR */
+    .product-visual-anchor {
+      position: absolute;
+      top: 36%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 340px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: filter 0.3s ease;
+      will-change: transform, opacity, top, left;
+    }
+
+    .product-bottle-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 25px rgba(26, 40, 20, 0.22));
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    /* STEP VIEWS */
+    .step-view {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 16px 20px 88px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      z-index: 15;
+    }
+
+    .step-view.active-step {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* STEP 0: HERO */
+    .hero-view {
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 96px;
+    }
+
+    .hero-title-wrap {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-main-title {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .hero-sub-italic {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+
+    .hero-subtitle-caps {
+      font-size: 8.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .scroll-guide {
+      margin-top: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .scroll-label {
+      font-size: 7.5px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 20px;
+      background: linear-gradient(to bottom, rgba(23, 22, 20, 0.4), transparent);
+      animation: pulseLine 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* TYPO & BADGES */
+    .step-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(26, 86, 50, 0.08);
+      color: var(--herbal-green);
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      width: fit-content;
+      margin-bottom: 6px;
+    }
+
+    .step-header-title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .step-header-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-top: 3px;
+    }
+
+    /* STEP 1: HERBS GRID */
+    .herbs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .herb-chip {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .herb-chip .name {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .herb-chip .action {
+      font-size: 9px;
+      color: var(--bronze);
+      font-weight: 500;
+    }
+
+    .herb-chip .botanical {
+      font-size: 8px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .dosha-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .dosha-pill {
+      flex: 1;
+      text-align: center;
+      padding: 7px 4px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid var(--hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dosha-pill .dosha-name {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .dosha-pill .dosha-state {
+      font-size: 8.5px;
+      color: var(--herbal-green);
+      font-weight: 600;
+    }
+
+    /* STEP 2: BENEFITS */
+    .pointers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .benefit-item {
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    }
+
+    .benefit-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(142, 113, 70, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--bronze);
+    }
+
+    .benefit-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .benefit-text-wrap { flex: 1; }
+    .benefit-title { font-size: 11px; font-weight: 700; color: var(--text); }
+    .benefit-desc { font-size: 9.5px; color: var(--muted); line-height: 1.35; }
+
+    /* STEP 3: RITUAL + INGREDIENTS */
+    .step3-stack-container {
+      width: 100%;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 25;
+    }
+
+    .ritual-card {
+      background: linear-gradient(135deg, #2a251e 0%, #151412 100%);
+      border-radius: 16px;
+      padding: 10px 13px 8px;
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .ritual-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+    }
+
+    .ritual-top span {
+      font-size: 7.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #dfba86;
+      font-weight: 600;
+    }
+
+    .ritual-steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 10px;
+    }
+
+    .ritual-step-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .ritual-num {
+      font-family: var(--font-serif);
+      font-size: 12.5px;
+      color: #dfba86;
+      line-height: 1;
+    }
+
+    .ritual-title {
+      font-size: 9px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .ritual-sub {
+      font-size: 7.5px;
+      color: rgba(255, 255, 255, 0.62);
+      line-height: 1.25;
+    }
+
+    .herbarium-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 8px 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .herbarium-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 6px;
+    }
+
+    .herbarium-tag {
+      font-size: 7.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 700;
+    }
+
+    .herbarium-title-compact {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .herbarium-scroll-tray {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 1px 1px 3px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .herbarium-scroll-tray::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ingredient-slot {
+      flex: 0 0 38px;
+      height: 38px;
+      background: #fbfaf8;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      overflow: hidden;
+    }
+
+    .ingredient-slot:active {
+      transform: scale(0.92);
+    }
+
+    .ingredient-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+    }
+
+    .ingredient-avatar svg,
+    .ingredient-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ====================================================================
+       STEP 4: FULL-PAGE BUY NOW (PROMINENT LARGE PRODUCT DISPLAY)
+       ==================================================================== */
+    .checkout-view {
+      padding: 6px 16px 14px !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px;
+      overflow: hidden;
+    }
+
+    .dispatch-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .dispatch-eyebrow {
+      font-size: 8px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .dispatch-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .dispatch-desc {
+      font-size: 9px;
+      color: var(--muted);
+      line-height: 1.35;
+      max-width: 300px;
+      margin-top: 3px;
+    }
+
+    /* ENLARGED FULL CONTAINER FOR BUY NOW PRODUCT */
+    .checkout-visual-container {
+      flex: 1;
+      width: 100%;
+      min-height: 210px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 4px 0 8px;
+    }
+
+    .checkout-product-img-wrap {
+      width: 100%;
+      height: 100%;
+      max-width: 300px;
+      border-radius: 20px;
+      background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(238, 235, 227, 0.25) 75%);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+      border: 1px solid rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 4px;
+    }
+
+    .checkout-product-img {
+      width: 100%;
+      height: 100%;
+      max-height: 230px;
+      object-fit: contain;
+      transform: scale(1.22);
+      filter: drop-shadow(0 16px 22px rgba(26, 40, 20, 0.20));
+      transition: transform 0.3s ease;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .checkout-dose-badge {
+      position: absolute;
+      bottom: -10px;
+      background: #171614;
+      color: #ffffff;
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+      z-index: 5;
+    }
+
+    /* BOTTOM DETAILS CARD */
+    .checkout-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 11px 14px 9px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .card-label {
+      font-size: 7.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .volume-selector-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .volume-box {
+      border: 1.5px solid rgba(23, 22, 20, 0.08);
+      background: #f8f7f4;
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .volume-box.selected {
+      background: #171614;
+      border-color: #171614;
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(23, 22, 20, 0.16);
+    }
+
+    .volume-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vol-name {
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .volume-box.selected .vol-name {
+      color: #ffffff;
+    }
+
+    .vol-badge {
+      font-size: 7px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #e8a74e;
+      color: #171614;
+      text-transform: uppercase;
+    }
+
+    .volume-box:not(.selected) .vol-badge {
+      background: rgba(23, 22, 20, 0.08);
+      color: var(--muted);
+    }
+
+    .vol-cycle {
+      font-size: 8.5px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .volume-box.selected .vol-cycle {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .vol-price-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .vol-price {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .volume-box.selected .vol-price {
+      color: #ffffff;
+    }
+
+    .vol-original-price {
+      font-size: 8.5px;
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    .volume-box.selected .vol-original-price {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .perks-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      text-align: center;
+    }
+
+    .perk-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .perk-item:not(:last-child) {
+      border-right: 1px solid var(--hairline);
+    }
+
+    .perk-title {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .perk-sub {
+      font-size: 7.5px;
+      color: var(--muted);
+    }
+
+    /* Qty & Dispatch Button */
+    .action-checkout-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .qty-counter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f1efe8;
+      border-radius: 24px;
+      padding: 4px 6px;
+      width: 76px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: none;
+      background: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+    }
+
+    .qty-btn:active {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .qty-num {
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .dispatch-submit-btn {
+      flex: 1;
+      height: 38px;
+      background: #171614;
+      color: #ffffff;
+      border: none;
+      border-radius: 24px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(23, 22, 20, 0.22);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dispatch-submit-btn:active {
+      transform: scale(0.96);
+      background: var(--bronze);
+    }
+
+    .guarantee-note {
+      text-align: center;
+      font-size: 7.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .guarantee-note svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--herbal-green);
+    }
+
+    /* FLOATING BOTTOM DOCK */
+    .dock-wrapper {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
+      z-index: 70;
+      pointer-events: none;
+    }
+
+    .pill-action-capsule {
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 5px 6px 5px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      pointer-events: auto;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .pill-action-capsule.hidden-capsule {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px) scale(0.9);
+    }
+
+    .dock-icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      padding: 4px;
+      transition: transform 0.2s ease;
+    }
+
+    .dock-icon-btn:active {
+      transform: scale(0.88);
+    }
+
+    .dock-icon-btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dock-divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(23, 22, 20, 0.12);
+    }
+
+    .buy-now-btn {
+      background: #171614;
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      padding: 9px 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(23, 22, 20, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .buy-now-btn:active {
+      transform: scale(0.94);
+      background: var(--bronze);
+    }
+
+    .buy-now-btn svg {
+      width: 13px;
+      height: 13px;
+      stroke: #ffffff;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .dock-circle-play {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      pointer-events: auto;
+      color: var(--text);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .dock-circle-play:active {
+      transform: scale(0.9);
+      background: var(--bg);
+    }
+
+    .dock-circle-play svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+      margin-left: 2px;
+    }
+
+    /* RIGHT DOTS */
+    .step-dots {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 50;
+    }
+
+    .step-dot {
+      width: 3px;
+      height: 3px;
+      background: rgba(23, 22, 20, 0.2);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .step-dot.active {
+      height: 18px;
+      background: var(--bronze);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="paper-grain"></div>
+
+  <div class="showcase-frame">
+    <!-- HEADER -->
+    <header>
+      <div class="header-left">
+        <button class="header-btn" id="menuBtn" aria-label="Open Menu">
+          <div class="menu-icon-bars">
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        <div class="brand-mark">Dharatatva</div>
+      </div>
+
+      <div class="header-right">
+        <button class="header-btn" id="cartBtn" aria-label="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <div class="cart-indicator"></div>
+        </button>
+
+        <button class="header-btn" id="userBtn" aria-label="Account">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- VIRTUAL ZERO-SCROLL STAGE -->
+    <main class="stage-canvas" id="interactiveStage">
+
+      <!-- SCROLLING BOTTLE (LARGE & CRISP ON STEP 3 WITH img/16.png) -->
+      <div class="product-visual-anchor" id="bottleAnchor">
+        <img class="product-bottle-img" id="stageProductImg" alt="Dharatatva Herb-O-Care Churan" src="15.jpg" />
+      </div>
+
+      <!-- STEP 0: HERO VIEW -->
+      <section class="step-view hero-view active-step" id="step0">
+        <div class="hero-title-wrap">
+          <h1 class="hero-main-title">Night</h1>
+          <div class="hero-sub-italic">rasāyana</div>
+          <p class="hero-subtitle-caps">Sacred Copper Distillate</p>
+        </div>
+
+        <div class="scroll-guide">
+          <span class="scroll-label">Scroll to Explore</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- STEP 1: HERBS & TRIDOSHA -->
+      <section class="step-view" id="step1">
+        <div>
+          <span class="step-pill-badge">Vedic Botanical Blend</span>
+          <h2 class="step-header-title">Six-Fold Gut Alchemy</h2>
+          <p class="step-header-desc">Formulated with micro-pulverized wild roots for optimum nutrient assimilation.</p>
+        </div>
+
+        <div class="herbs-grid">
+          <div class="herb-chip">
+            <span class="name">Haritaki</span>
+            <span class="action">Deep Cleanse</span>
+            <span class="botanical">Terminalia chebula</span>
+          </div>
+          <div class="herb-chip">
+            <span class="name">Bibhitaki</span>
+            <span class="action">Kapha Pacifier</span>
+            <span class="botanical">Terminalia bellirica</span>
+          </div>
+          <div class="herb-chip">
+            <span class="name">Amalaki</span>
+            <span class="action">Pitta Balance</span>
+            <span class="botanical">Phyllanthus emblica</span>
+          </div>
+          <div class="herb-chip">
+            <span class="name">Saunf & Ajwain</span>
+            <span class="action">Vata Soothing</span>
+            <span class="botanical">Carminative Distillate</span>
+          </div>
+        </div>
+
+        <div class="dosha-row">
+          <div class="dosha-pill">
+            <span class="dosha-name">Vata</span>
+            <span class="dosha-state">Calmed ↓</span>
+          </div>
+          <div class="dosha-pill">
+            <span class="dosha-name">Pitta</span>
+            <span class="dosha-state">Balanced ⚖</span>
+          </div>
+          <div class="dosha-pill">
+            <span class="dosha-name">Kapha</span>
+            <span class="dosha-state">Lightened ✦</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: RESTORATIVE BENEFITS -->
+      <section class="step-view" id="step2">
+        <div>
+          <span class="step-pill-badge">Therapeutic Action</span>
+          <h2 class="step-header-title">Daily Restorative Benefits</h2>
+          <p class="step-header-desc">Zero habit-forming ingredients. 100% pure sun-dried Himalayan herbs.</p>
+        </div>
+
+        <div class="pointers-list">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="benefit-text-wrap">
+              <div class="benefit-title">Relieves Morning Sluggishness</div>
+              <div class="benefit-desc">Enhances gut transit time naturally without irritating mucosal wall.</div>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </div>
+            <div class="benefit-text-wrap">
+              <div class="benefit-title">Nocturnal Digest Reset</div>
+              <div class="benefit-desc">Ignites Agni (digestive fire) during cellular rest phases.</div>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="benefit-text-wrap">
+              <div class="benefit-title">Microbiome Shield</div>
+              <div class="benefit-desc">Inhibits endotoxin buildup & supports beneficial flora growth.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3: RITUAL BLUEPRINT + SACRED HERBARIUM -->
+      <section class="step-view" id="step3">
+        <div>
+          <span class="step-pill-badge">Dosage & Forest Alchemy</span>
+          <h2 class="step-header-title">The Sandhya Ritual</h2>
+          <p class="step-header-desc">Consume 30 minutes before sleep for optimal rasāyana assimilation.</p>
+        </div>
+
+        <div class="step3-stack-container">
+          <!-- RITUAL CARD -->
+          <div class="ritual-card">
+            <div class="ritual-top">
+              <span>Ritual Blueprint</span>
+              <span style="color: #ffffff; font-size: 8.5px;">Batch #HC-26</span>
+            </div>
+            <div class="ritual-steps-grid">
+              <div class="ritual-step-cell">
+                <span class="ritual-num">01</span>
+                <span class="ritual-title">3-5 Grams</span>
+                <span class="ritual-sub">Half teaspoon in warm water or cow's ghee.</span>
+              </div>
+              <div class="ritual-step-cell">
+                <span class="ritual-num">02</span>
+                <span class="ritual-title">Lukewarm Water</span>
+                <span class="ritual-sub">Stir well and sip slowly in mindful state.</span>
+              </div>
+              <div class="ritual-step-cell">
+                <span class="ritual-num">03</span>
+                <span class="ritual-title">Zero Sugar</span>
+                <span class="ritual-sub">Free of sodium, additives and preservatives.</span>
+              </div>
+              <div class="ritual-step-cell">
+                <span class="ritual-num">04</span>
+                <span class="ritual-title">Consistent Rhythm</span>
+                <span class="ritual-sub">Recommended 21-day continuous cycle.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 28 RARE FOREST INGREDIENTS CARD -->
+          <div class="herbarium-card">
+            <div class="herbarium-header-row">
+              <span class="herbarium-tag">SACRED HERBARIUM</span>
+              <span class="herbarium-title-compact">28 Rare Forest Ingredients</span>
+            </div>
+
+            <!-- Interactive Ingredient Visual Tray -->
+            <div class="herbarium-scroll-tray">
+              <div class="ingredient-slot" title="Terminalia chebula (Haritaki)">
+                <div class="ingredient-avatar">
+                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#e2dcce"/><path d="M14 26C16 20 24 16 26 14C24 20 18 24 14 26Z" fill="#586844"/><circle cx="21" cy="20" r="4" fill="#3b482d"/></svg>
+                </div>
+              </div>
+
+              <div class="ingredient-slot" title="Micro-pulverized Guggulu & Sunthi">
+                <div class="ingredient-avatar">
+                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#ebd9be"/><circle cx="18" cy="18" r="6" fill="#c49a62"/><circle cx="24" cy="22" r="5" fill="#a77a45"/><circle cx="16" cy="24" r="4" fill="#b98a51"/></svg>
+                </div>
+              </div>
+
+              <div class="ingredient-slot" title="Wild Amala & Rasayana Resin">
+                <div class="ingredient-avatar">
+                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#d9c2b0"/><circle cx="16" cy="17" r="5" fill="#8c4320"/><circle cx="23" cy="16" r="6" fill="#6d2e13"/><circle cx="20" cy="23" r="5.5" fill="#a24f26"/></svg>
+                </div>
+              </div>
+
+              <div class="ingredient-slot" title="Sun-dried Heartwood Bark">
+                <div class="ingredient-avatar">
+                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#dfd1c2"/><rect x="13" y="16" width="14" height="4" rx="2" fill="#824c28" transform="rotate(-15 20 18)"/><rect x="15" y="20" width="13" height="4" rx="2" fill="#5d351a" transform="rotate(10 21 22)"/></svg>
+                </div>
+              </div>
+
+              <div class="ingredient-slot" title="Vedic Cinnamon & Twak">
+                <div class="ingredient-avatar">
+                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#e6d5c3"/><rect x="12" y="14" width="16" height="3" rx="1.5" fill="#7a4124" transform="rotate(28 20 15)"/><rect x="11" y="22" width="17" height="3" rx="1.5" fill="#98532f" transform="rotate(-25 19 23)"/></svg>
+                </div>
+              </div>
+
+              <div class="ingredient-slot" title="Carminative Ajwain & Saunf Seeds">
+                <div class="ingredient-avatar">
+                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#dcd2bf"/><circle cx="15" cy="16" r="2" fill="#674f32"/><circle cx="20" cy="15" r="2" fill="#8b6c47"/><circle cx="24" cy="18" r="2" fill="#674f32"/><circle cx="17" cy="22" r="2" fill="#8b6c47"/><circle cx="23" cy="23" r="2" fill="#533d25"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: FULL-PAGE BUY NOW (ENLARGED & PERFECT PROPORTIONS) -->
+      <section class="step-view checkout-view" id="step4">
+        <!-- Top Header -->
+        <div class="dispatch-header">
+          <span class="dispatch-eyebrow">Sacred Apothecary Dispatch</span>
+          <h2 class="dispatch-title">Claim Your Night Rasāyana</h2>
+          <p class="dispatch-desc">Fresh small-batch copper extraction shipped directly from our certified herbal laboratory.</p>
+        </div>
+
+        <!-- Upper Dedicated Image Container (Enlarged & Sharp) -->
+        <div class="checkout-visual-container">
+          <div class="checkout-product-img-wrap">
+            <img id="buyNowProductImg" class="checkout-product-img" alt="Herb-O-Care Churan Bottle" src="15.jpg" />
+          </div>
+          <div class="checkout-dose-badge" id="selectedDoseBadge">100G MICRO-DOSE SELECTED</div>
+        </div>
+
+        <!-- Bottom Details & Pricing Card -->
+        <div class="checkout-card">
+          <div class="card-label">Select Sacred Volume</div>
+          
+          <div class="volume-selector-grid">
+            <div class="volume-box selected" id="volOption1" data-price="949" data-name="100g Micro-Dose" data-badge="100G MICRO-DOSE SELECTED">
+              <div class="volume-header">
+                <span class="vol-name">100g Micro-Dose</span>
+                <span class="vol-badge">SAVE 25%</span>
+              </div>
+              <div class="vol-cycle">30-Day Cycle</div>
+              <div class="vol-price-wrap">
+                <span class="vol-price">₹949</span>
+                <span class="vol-original-price">₹1,260</span>
+              </div>
+            </div>
+
+            <div class="volume-box" id="volOption2" data-price="1850" data-name="250g Sadhana Jar" data-badge="250G SADHANA JAR SELECTED">
+              <div class="volume-header">
+                <span class="vol-name">250g Sadhana Jar</span>
+                <span class="vol-badge">BEST VALUE</span>
+              </div>
+              <div class="vol-cycle">75-Day Deep Ritual</div>
+              <div class="vol-price-wrap">
+                <span class="vol-price">₹1,850</span>
+                <span class="vol-original-price">₹2,490</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perks row -->
+          <div class="perks-row">
+            <div class="perk-item">
+              <span class="perk-title">Free Express</span>
+              <span class="perk-sub">Pan-India 48H</span>
+            </div>
+            <div class="perk-item">
+              <span class="perk-title">Cash on Delivery</span>
+              <span class="perk-sub">Verified Available</span>
+            </div>
+            <div class="perk-item">
+              <span class="perk-title">Fresh Batch</span>
+              <span class="perk-sub">Copper Infused</span>
+            </div>
+          </div>
+
+          <!-- Qty & Dispatch Button -->
+          <div class="action-checkout-row">
+            <div class="qty-counter">
+              <button class="qty-btn" id="qtyMinus" aria-label="Decrease quantity">−</button>
+              <span class="qty-num" id="qtyVal">1</span>
+              <button class="qty-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="dispatch-submit-btn" id="orderSubmitBtn">
+              <span id="submitBtnText">DISPATCH ORDER NOW (₹949)</span>
+            </button>
+          </div>
+
+          <div class="guarantee-note">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span>100% Authentic Vedic Guarantee · 14-Day Returns</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRESS INDICATOR DOTS -->
+      <div class="step-dots" id="stepDots">
+        <div class="step-dot active" data-index="0"></div>
+        <div class="step-dot" data-index="1"></div>
+        <div class="step-dot" data-index="2"></div>
+        <div class="step-dot" data-index="3"></div>
+        <div class="step-dot" data-index="4"></div>
+      </div>
+
+    </main>
+
+    <!-- FLOATING DOCK -->
+    <div class="dock-wrapper" id="floatingDock">
+      <div class="pill-action-capsule" id="pillActionCapsule">
+        <button class="dock-icon-btn" id="dockHomeBtn" aria-label="Reset to Hero">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </button>
+
+        <div class="dock-divider"></div>
+
+        <button class="dock-icon-btn" id="dockShareBtn" aria-label="Share Ritual">
+          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+
+        <button class="buy-now-btn" id="dockBuyBtn">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <span>BUY NOW</span>
+        </button>
+      </div>
+
+      <button class="dock-circle-play" id="dockPlayBtn" aria-label="Next Step">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // ==========================================================
+    // IMAGE ASSETS CONFIGURATION
+    // ==========================================================
+    const DEFAULT_PRODUCT_IMG = 'https://dharatatva.github.io/web/img/15.png';
+    const SECTION3_PRODUCT_IMG = 'https://dharatatva.github.io/web/img/17.png'; // Step 3 image
+
+    const stageProductImg = document.getElementById('stageProductImg');
+    const buyNowProductImg = document.getElementById('buyNowProductImg');
+
+    // Initialize defaults
+    stageProductImg.src = DEFAULT_PRODUCT_IMG;
+    buyNowProductImg.src = DEFAULT_PRODUCT_IMG;
+
+    function haptic(ms = 8) {
+      if (typeof navigator.vibrate === 'function') {
+        try { navigator.vibrate(ms); } catch (e) {}
+      }
+    }
+
+    const totalSteps = 5;
+    let currentStep = 0;
+    let isTransitioning = false;
+
+    // Elements
+    const views = [
+      document.getElementById('step0'),
+      document.getElementById('step1'),
+      document.getElementById('step2'),
+      document.getElementById('step3'),
+      document.getElementById('step4')
+    ];
+    const bottle = document.getElementById('bottleAnchor');
+    const dots = document.querySelectorAll('.step-dot');
+    const stage = document.getElementById('interactiveStage');
+    const pillActionCapsule = document.getElementById('pillActionCapsule');
+
+    // Coordinates for steps 0 to 4
+    const bottleStates = [
+      { top: '36%', left: '50%', scale: 0.88, opacity: 1, filter: 'drop-shadow(0 20px 25px rgba(26, 40, 20, 0.24))' },
+      { top: '24%', left: '78%', scale: 0.65, opacity: 1, filter: 'drop-shadow(0 14px 18px rgba(26, 40, 20, 0.18))' },
+      { top: '24%', left: '78%', scale: 0.62, opacity: 1, filter: 'drop-shadow(0 12px 16px rgba(26, 40, 20, 0.16))' },
+      // Step 3 (HERBARIUM + RITUAL): Large prominent image nicely filling the mid-stage
+      { top: '33%', left: '50%', scale: 1.08, opacity: 1, filter: 'drop-shadow(0 18px 24px rgba(26, 40, 20, 0.25))' },
+      // Step 4: Hidden (Replaced by dedicated enlarged buy-now card container)
+      { top: '33%', left: '50%', scale: 0.5, opacity: 0, filter: 'none' }
+    ];
+
+    function goToStep(nextIndex, direction = 1) {
+      if (nextIndex < 0 || nextIndex >= totalSteps || isTransitioning || nextIndex === currentStep) return;
+      isTransitioning = true;
+      haptic(10);
+
+      const currentView = views[currentStep];
+      const nextView = views[nextIndex];
+
+      // Update dots
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === nextIndex));
+
+      // Hide/Show floating pill capsule on checkout
+      if (nextIndex === 4) {
+        pillActionCapsule.classList.add('hidden-capsule');
+      } else {
+        pillActionCapsule.classList.remove('hidden-capsule');
+      }
+
+      // Smooth Crossfade Image replacement for Step 3 (img/16.png)
+      const targetImageSrc = (nextIndex === 3) ? SECTION3_PRODUCT_IMG : DEFAULT_PRODUCT_IMG;
+      if (stageProductImg.getAttribute('src') !== targetImageSrc) {
+        gsap.to(stageProductImg, {
+          opacity: 0.15,
+          duration: 0.16,
+          ease: 'power1.out',
+          onComplete: () => {
+            stageProductImg.src = targetImageSrc;
+            gsap.to(stageProductImg, {
+              opacity: 1,
+              duration: 0.24,
+              ease: 'power2.inOut'
+            });
+          }
+        });
+      }
+
+      // Outgoing View Animation
+      gsap.to(currentView, {
+        opacity: 0,
+        y: direction * -24,
+        duration: 0.3,
+        ease: 'power2.in',
+        onComplete: () => {
+          currentView.classList.remove('active-step');
+        }
+      });
+
+      // Bottle smooth choreograph
+      const bState = bottleStates[nextIndex];
+      gsap.to(bottle, {
+        top: bState.top,
+        left: bState.left,
+        scale: bState.scale,
+        opacity: bState.opacity,
+        filter: bState.filter,
+        duration: 0.48,
+        ease: 'power3.out'
+      });
+
+      // Incoming View Animation
+      nextView.classList.add('active-step');
+      gsap.fromTo(nextView, 
+        { opacity: 0, y: direction * 24 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.4, 
+          delay: 0.1, 
+          ease: 'power3.out',
+          onComplete: () => {
+            currentStep = nextIndex;
+            isTransitioning = false;
+          }
+        }
+      );
+    }
+
+    // Direct dot click navigation
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        if (idx !== currentStep) {
+          goToStep(idx, idx > currentStep ? 1 : -1);
+        }
+      });
+    });
+
+    // Virtual Scroll / Wheel handling
+    let wheelAccumulator = 0;
+    window.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (isTransitioning) return;
+      wheelAccumulator += e.deltaY;
+      if (wheelAccumulator > 35) {
+        goToStep(currentStep + 1, 1);
+        wheelAccumulator = 0;
+      } else if (wheelAccumulator < -35) {
+        goToStep(currentStep - 1, -1);
+        wheelAccumulator = 0;
+      }
+    }, { passive: false });
+
+    // Touch gesture swipe handling
+    let touchStartY = 0;
+    stage.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      if (isTransitioning) return;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffY = touchStartY - touchEndY;
+
+      if (diffY > 38) {
+        goToStep(currentStep + 1, 1);
+      } else if (diffY < -38) {
+        goToStep(currentStep - 1, -1);
+      }
+    }, { passive: true });
+
+    // Bottom Action Buttons
+    document.getElementById('dockPlayBtn').addEventListener('click', () => {
+      const next = (currentStep + 1) % totalSteps;
+      goToStep(next, next > currentStep ? 1 : -1);
+    });
+
+    document.getElementById('dockHomeBtn').addEventListener('click', () => {
+      goToStep(0, -1);
+    });
+
+    document.getElementById('dockBuyBtn').addEventListener('click', () => {
+      haptic(15);
+      if (currentStep !== 4) {
+        goToStep(4, 1);
+      }
+    });
+
+    document.getElementById('dockShareBtn').addEventListener('click', () => {
+      haptic(15);
+      if (navigator.share) {
+        navigator.share({
+          title: "Dharatatva — Herb-O-Care Churan",
+          text: "Discover the nocturnal Ayurvedic Rasāyana ritual.",
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+      }
+    });
+
+    // ==========================================
+    // CHECKOUT PRICING & LOGIC (STEP 4)
+    // ==========================================
+    let unitPrice = 949;
+    let quantity = 1;
+    const vol1 = document.getElementById('volOption1');
+    const vol2 = document.getElementById('volOption2');
+    const doseBadge = document.getElementById('selectedDoseBadge');
+    const qtyVal = document.getElementById('qtyVal');
+    const submitBtnText = document.getElementById('submitBtnText');
+
+    function updateTotalPrice() {
+      const total = unitPrice * quantity;
+      submitBtnText.textContent = `DISPATCH ORDER NOW (₹${total.toLocaleString('en-IN')})`;
+    }
+
+    vol1.addEventListener('click', () => {
+      haptic(10);
+      vol1.classList.add('selected');
+      vol2.classList.remove('selected');
+      unitPrice = parseInt(vol1.getAttribute('data-price'), 10);
+      doseBadge.textContent = vol1.getAttribute('data-badge');
+      updateTotalPrice();
+    });
+
+    vol2.addEventListener('click', () => {
+      haptic(10);
+      vol2.classList.add('selected');
+      vol1.classList.remove('selected');
+      unitPrice = parseInt(vol2.getAttribute('data-price'), 10);
+      doseBadge.textContent = vol2.getAttribute('data-badge');
+      updateTotalPrice();
+    });
+
+    document.getElementById('qtyPlus').addEventListener('click', () => {
+      haptic(10);
+      if (quantity < 10) {
+        quantity++;
+        qtyVal.textContent = quantity;
+        updateTotalPrice();
+      }
+    });
+
+    document.getElementById('qtyMinus').addEventListener('click', () => {
+      haptic(10);
+      if (quantity > 1) {
+        quantity--;
+        qtyVal.textContent = quantity;
+        updateTotalPrice();
+      }
+    });
+
+    document.getElementById('orderSubmitBtn').addEventListener('click', () => {
+      haptic(25);
+      const selectedProduct = vol1.classList.contains('selected') ? "100g Micro-Dose" : "250g Sadhana Jar";
+      alert(`Order Confirmed!\n\nProduct: Dharatatva Herb-O-Care (${selectedProduct})\nQty: ${quantity}\nTotal: ₹${(unitPrice * quantity).toLocaleString('en-IN')}\nPayment: Cash on Delivery / UPI`);
+    });
+  </script>
+</body>
+</html>
