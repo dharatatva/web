@@ -128,7 +128,7 @@
       letter-spacing: -0.01em;
     }
 
-    /* TOP NAVIGATION (FIXED: Shell-Aware Full Width with Clean Padding) */
+    /* TOP NAVIGATION */
     .top-floating-bar {
       position: fixed;
       top: 0;
@@ -332,7 +332,7 @@
       margin-left: 0;
     }
 
-    /* PRODUCT HERO STAGE */
+    /* PRODUCT HERO STAGE (UPDATED: Edge-to-Edge Top, Left & Right) */
     .product-fixed-viewport {
       position: fixed;
       top: 0;
@@ -340,9 +340,9 @@
       transform: translateX(-50%);
       width: 100%;
       max-width: 100%;
-      height: 52vh;
-      min-height: 370px;
-      background: radial-gradient(circle at 60% 40%, #FFFFFF 0%, #EDE8DC 85%);
+      height: 65vh;
+      min-height: 480px;
+      background: var(--bg-cream);
       overflow: hidden;
       z-index: 1;
     }
@@ -366,15 +366,43 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 60px 20px 40px;
+      padding: 0;
+      margin: 0;
       position: relative;
+      overflow: hidden;
     }
 
     .hero-slide-item img {
-      max-height: 85%;
-      max-width: 230px;
-      object-fit: contain;
-      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.16));
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+	
+	/* SEAMLESS FROSTED BLUR & DIFFUSED GRADIENT MIST OVERLAY (REPLICATING REFERENCE UI) */
+    .hero-stage-fade-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(180deg,
+        rgba(247, 245, 240, 0) 0%,
+        rgba(247, 245, 240, 0.12) 20%,
+        rgba(247, 245, 240, 0.42) 48%,
+        rgba(247, 245, 240, 0.82) 75%,
+        rgba(247, 245, 240, 0.98) 92%,
+        #F7F5F0 100%
+      );
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 25%, black 75%);
+      mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 25%, black 75%);
+      pointer-events: none;
+      z-index: 20;
     }
 
     .floating-features-overlay {
@@ -419,23 +447,18 @@
       line-height: 1.15;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
+    /* SLIDER DOTS CAPSULE (Clean Floating Placement on Photo) */
     .bottom-slider-indicator-capsule {
       position: absolute;
-      bottom: 25px;
+      bottom: 42px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      padding: 5px 10px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       z-index: 28;
     }
 
@@ -443,7 +466,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.28);
       transition: all 0.25s;
     }
 
@@ -456,19 +479,19 @@
     /* HERO STAGE CORNER SHARE BUTTON */
     .hero-share-corner-btn {
       position: absolute;
-      bottom: 20px;
+      bottom: 50px;
       right: 18px;
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.95);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
       cursor: pointer;
       color: var(--primary-dark);
       z-index: 28;
@@ -483,12 +506,16 @@
     /* SCROLLING CONTENT LAYER */
     .scrolling-content-layer {
       position: relative;
-      z-index: 10;
-      margin-top: 51vh;
-      background: linear-gradient(180deg, rgb(237 232 220 / 78%) 0%, rgb(240 235 225) 28px, rgba(247, 245, 240, 0.94) 60px, #F7F5F0 90px, #F7F5F0 100%);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      padding-top: 36px;
+      z-index: 25;
+      margin-top: 60vh;
+      background: linear-gradient(180deg, 
+        rgba(247, 245, 240, 0) 0%, 
+        rgba(247, 245, 240, 0.45) 30px, 
+        rgba(247, 245, 240, 0.88) 65px, 
+        #F7F5F0 95px, 
+        #F7F5F0 100%
+      );
+      padding-top: 24px;
       min-height: auto;
       width: 100%;
     }
@@ -811,9 +838,9 @@
       transform: translateX(-50%);
       width: calc(100% - 24px);
       max-width: 408px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.65) 100%);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
+      background: linear-gradient(135deg, rgb(255 255 255 / 55%) 0%, rgba(255, 255, 255, 0.65) 100%);
+      backdrop-filter: blur(4px) saturate(180%);
+      -webkit-backdrop-filter: blur(4px) saturate(180%);
       border-radius: 36px;
       padding: 8px 10px 8px 16px;
       display: flex;
@@ -940,7 +967,7 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* GLOBAL BACKDROP & MODAL SHEET (CONFINED STRICTLY TO APP VIEWPORT SHELL) */
+    /* GLOBAL BACKDROP & MODAL SHEET */
     .global-backdrop {
       position: fixed;
       top: 0;
@@ -949,9 +976,9 @@
       transform: translateX(-50%);
       width: 100%;
       max-width: 100%;
-      background: rgba(10, 15, 12, 0.55);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: #0000002e;
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
       z-index: 500;
       opacity: 0;
       pointer-events: none;
@@ -970,10 +997,12 @@
       transform: translate(-50%, 105%);
       width: 100%;
       max-width: 100%;
-      background: #ffffff;
+      background: linear-gradient(135deg, rgb(255 255 255 / 85%) 0%, rgb(255 255 255 / 74%) 100%);
+      backdrop-filter: blur(23px) saturate(180%);
+      -webkit-backdrop-filter: blur(23px) saturate(180%);
       border-top-left-radius: 26px;
       border-top-right-radius: 26px;
-      padding: 14px 22px 0;
+      padding: 14px 18px 0;
       z-index: 510;
       box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.2);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1039,12 +1068,8 @@
     }
 
     .drawer-card-box {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border-radius: 20px;
+      border-radius: 27px;
       padding: 18px 16px;
-      border: var(--glass-border);
       margin-bottom: 14px;
       box-shadow: var(--glass-shadow);
     }
@@ -1078,15 +1103,11 @@
     .signals-swipe-deck::-webkit-scrollbar { display: none; }
 
     .signal-chip {
-      flex: 0 0 135px;
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      flex: 0 0 127px;
       border-radius: 14px;
-      padding: 12px 10px;
+      padding: 9px 9px;
       text-align: center;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
+      box-shadow: var(--glass-shadow);
     }
 
     .signal-chip strong {
@@ -1109,13 +1130,9 @@
     }
 
     .principle-sub-box {
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       border-radius: 14px;
       padding: 12px 10px;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
+      box-shadow: var(--glass-shadow);
     }
 
     .principle-sub-box h4 {
@@ -1182,14 +1199,10 @@
     }
 
     .dosha-pill-card {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.85);
       padding: 8px 4px;
       text-align: center;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
+      box-shadow: var(--glass-shadow);
     }
 
     .dosha-pill-card strong {
@@ -1240,13 +1253,9 @@
     }
 
     .pack-select-item {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      border-radius: 16px;
-      padding: 13px 12px;
-      margin-bottom: 10px;
+      border-radius: 18px;
+      padding: 12px 12px;
+      margin-bottom: 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1349,16 +1358,16 @@
       width: 100%;
       height: 44px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      border: none;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       padding: 0 14px;
       font-size: 13px;
       font-family: inherit;
       color: var(--primary-dark);
       outline: none;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+      box-shadow: var(--glass-shadow);
     }
 
     .form-grid-row {
@@ -1459,19 +1468,14 @@
       gap: 10px;
       overflow-x: auto;
       padding-bottom: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 9px;
+      margin-left: 6px;
     }
 
     .rev-drawer-photos-carousel::-webkit-scrollbar { display: none; }
 
     .rev-drawer-photo-thumb {
-      flex: 0 0 76px;
-      height: 82px;
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      border-radius: 16px;
+      border-radius: 9px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1481,14 +1485,13 @@
     }
 
     .rev-thumb-graphic-box {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 50px;
+      height: 50px;
+      border-radius: 9px;
       background: rgba(244, 239, 230, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 4px;
       overflow: hidden;
     }
 
@@ -1499,12 +1502,8 @@
     }
 
     .community-review-post-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      border-radius: 18px;
-      padding: 16px;
+      border-radius: 27px;
+      padding: 14px;
       margin-bottom: 12px;
       box-shadow: var(--glass-shadow);
     }
@@ -1642,11 +1641,7 @@
 
     /* FAQ ACCORDION */
     .faq-unit-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      border-radius: 14px;
+      border-radius: 27px;
       margin-bottom: 8px;
       overflow: hidden;
       box-shadow: var(--glass-shadow);
@@ -1687,7 +1682,7 @@
       transform: rotate(45deg);
     }
 
-    /* LIGHTBOX MODAL (FIXED: Confined Strictly to 440px Shell Width on Desktop with Compact Card & Swipe) */
+    /* LIGHTBOX MODAL */
     .lightbox-modal {
       position: fixed;
       top: 0;
@@ -1972,7 +1967,7 @@
   <div class="app-viewport-wrapper">
     <div class="app-viewport-shell">
 
-      <!-- Top Floating Bar (Full-Width Within Shell, Clean 18px Padding) -->
+      <!-- Top Floating Bar -->
       <div class="top-floating-bar">
         <div class="header-left-actions">
           <a href="https://dharatatva.github.io/web/" class="icon-circle-btn" title="Back to dharatatva.com">
@@ -2009,7 +2004,7 @@
         </div>
       </div>
 
-      <!-- PRODUCT HERO STAGE -->
+      <!-- PRODUCT HERO STAGE (EDGE TO EDGE FULL FIT) -->
       <div class="product-fixed-viewport" id="productFixedStage">
         <div class="floating-features-overlay">
           <div class="badge-icon-item">
@@ -2028,16 +2023,20 @@
 
         <div class="hero-slider-track" id="heroSliderTrack">
           <div class="hero-slide-item">
-            <img src="img/15.png" alt="Herb-O-Care Churan 100g Bottle" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80';" />
+            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=85" alt="Herb-O-Care Organic Skincare Ritual" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=85';" />
           </div>
           <div class="hero-slide-item">
-            <img src="img/16.png" alt="Herb-O-Care Secondary Angle" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=800&q=80';" />
+            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=85" alt="Pure Botanical Formula" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1000&q=85';" />
           </div>
           <div class="hero-slide-item">
-            <img src="img/15.png" style="filter: drop-shadow(0 20px 30px rgba(0,0,0,0.16)) hue-rotate(10deg);" alt="Herb-O-Care Ritual Pack" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80';" />
+            <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1000&q=85" alt="Ayurvedic Wellness Pack" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=85';" />
           </div>
         </div>
+		
+		<!-- SEAMLESS FROSTED BLUR & DIFFUSED GRADIENT MIST OVERLAY -->
+        <div class="hero-stage-fade-overlay"></div>
 
+        <!-- REFINED FLOATING DOTS CAPSULE -->
         <div class="bottom-slider-indicator-capsule">
           <div class="slider-dot active" id="dot0"></div>
           <div class="slider-dot" id="dot1"></div>
@@ -2191,7 +2190,7 @@
         </button>
       </div>
 
-      <!-- GLOBAL BACKDROP & MODAL SHEET (CONFINED STRICTLY TO APP VIEWPORT SHELL) -->
+      <!-- GLOBAL BACKDROP & MODAL SHEET -->
       <div class="global-backdrop" id="globalBackdrop"></div>
 
       <div class="modal-sheet" id="productDetailSheet">
@@ -2215,7 +2214,7 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX MODAL (FIXED: Confined Strictly to 440px Shell on Desktop) -->
+  <!-- LIGHTBOX MODAL -->
   <div class="lightbox-modal" id="lightboxModal">
     <div class="lightbox-top">
       <span id="lbCounter" style="font-weight: 800; font-size: 12px; letter-spacing: 0.06em; background: rgba(255,255,255,0.16); padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">1 / 6</span>
@@ -2339,16 +2338,16 @@
         </div>
       </div>
 
-      <div class="drawer-card-box" style="background:#FAF8F5;">
+      <div class="drawer-card-box">
         <span class="drawer-eyebrow-tag">More Than an Ordinary Fat Burner</span>
         <p style="font-size:12px; color:#555; line-height:1.6;">
           True transformation doesn't begin on the weighing scale. It begins within. A carefully crafted Ayurvedic herbal churna created for the modern body—supporting your journey from excess heaviness toward greater lightness, balance and well-being.
         </p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px;">
-          <div style="background:#FFF; padding:8px 10px; border-radius:10px; border:1px solid #ECE7DD; font-size:11px;">
+          <div style="padding:8px 10px; border-radius:10px; box-shadow: var(--glass-shadow); font-size:11px;">
             <strong>100% Herbal Purity</strong><div style="color:#777; font-size:9.5px;">No synthetic caffeine</div>
           </div>
-          <div style="background:#FFF; padding:8px 10px; border-radius:10px; border:1px solid #ECE7DD; font-size:11px;">
+          <div style="padding:8px 10px; border-radius:10px; box-shadow: var(--glass-shadow); font-size:11px;">
             <strong>Non-Habit Forming</strong><div style="color:#777; font-size:9.5px;">Zero jitters or crashes</div>
           </div>
         </div>
@@ -2415,25 +2414,21 @@
           <div class="rev-thumb-graphic-box">
             <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=200&q=80" alt="Texture 1" style="width:100%; height:100%; object-fit:cover;" />
           </div>
-          <span>Texture 1</span>
         </div>
         <div class="rev-drawer-photo-thumb" onclick="openPhoto(1); haptic(6);">
           <div class="rev-thumb-graphic-box">
             <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=200&q=80" alt="Herbal Mix" style="width:100%; height:100%; object-fit:cover;" />
           </div>
-          <span>Herbal Mix</span>
         </div>
         <div class="rev-drawer-photo-thumb" onclick="openPhoto(2); haptic(6);">
           <div class="rev-thumb-graphic-box">
             <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=200&q=80" alt="Decoction" style="width:100%; height:100%; object-fit:cover;" />
           </div>
-          <span>Decoction</span>
         </div>
         <div class="rev-drawer-photo-thumb" onclick="openPhoto(3); haptic(6);">
           <div class="rev-thumb-graphic-box">
             <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=200&q=80" alt="Unboxing" style="width:100%; height:100%; object-fit:cover;" />
           </div>
-          <span>Unboxing</span>
         </div>
       </div>
 
@@ -2879,7 +2874,6 @@
       const diffX = lbTouchEndX - lbTouchStartX;
       const diffY = lbTouchEndY - lbTouchStartY;
 
-      // Horizontal swipe threshold
       if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
         if (diffX < 0) {
           nextPhoto();
@@ -3023,7 +3017,11 @@ ${shareUrl}`;
     const welcomeModal = document.getElementById('welcomeDialogOverlay');
 
     function preloadAllSiteAssets() {
-      const assetUrls = ['img/15.png', 'img/16.png', 'img/18.png'];
+      const assetUrls = [
+        'https://images.unsplash.com/photo-1608248597359-2ff586118b62?auto=format&fit=crop&w=1000&q=85',
+        'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=85',
+        'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1000&q=85'
+      ];
       assetUrls.forEach(url => {
         const img = new Image();
         img.src = url;
