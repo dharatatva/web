@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>L'ATELIER — Galerie & Salons</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Dharatatva — Elements of Earth</title>
 
-  <!-- Optimized Fonts Loading -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
 
-  <!-- GSAP Suite (Loaded Efficiently) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
     :root {
+      --bg-cream: #F7F5F0;
       --bg: #eceae3;
       --surface: #ffffff;
       --text: #161513;
+      --primary-dark: #121815;
       --muted: #797771;
       --bronze: #8e7146;
-      --hairline: rgba(22, 21, 19, 0.08);
+      --accent-green: #1B5E3B;
+      --accent-gold: #C29B38;
+      --accent-rust: #B8532F;
+      --hairline: rgba(22, 21, 19, 0.09);
+      --card-tint: rgba(255, 255, 255, 0.55);
       --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-playfair: 'Playfair Display', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --glass-blur: blur(28px) saturate(180%);
     }
 
     *, *::before, *::after {
@@ -53,23 +60,35 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    .atelier-showcase {
+    .app-viewport-wrapper {
       width: 100%;
       height: 100vh;
       height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .app-viewport-shell {
+      width: 100vw;
+      max-width: 440px;
+      height: 100%;
       position: relative;
       background: var(--bg);
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
 
-    @media (min-width: 600px) {
-      body { background-color: #dfdcd3; }
-      .atelier-showcase {
-        max-width: 430px;
-        box-shadow: 0 0 80px rgba(0, 0, 0, 0.12);
+    @media (min-width: 481px) {
+      .app-viewport-wrapper {
+        background-color: #dfdcd3;
+      }
+      .app-viewport-shell {
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
         border-left: 1px solid var(--hairline);
         border-right: 1px solid var(--hairline);
       }
@@ -77,12 +96,12 @@
 
     .ambient-glow {
       position: absolute;
-      top: 38%;
+      top: 44%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 360px;
       height: 480px;
-      background: radial-gradient(ellipse, rgba(218, 194, 160, 0.32) 0%, transparent 68%);
+      background: radial-gradient(ellipse, rgba(168, 200, 160, 0.35) 0%, transparent 68%);
       filter: blur(60px);
       pointer-events: none;
       z-index: 1;
@@ -93,7 +112,7 @@
     /* HEADER */
     header {
       width: 100%;
-      padding: 15px 20px 12px;
+      padding: 12px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -102,92 +121,295 @@
       background: rgba(236, 234, 227, 0.95);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(22, 21, 19, 0.05);
     }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .header-btn {
+    .menu-toggle-btn {
       background: none;
       border: none;
       cursor: pointer;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      padding: 6px 2px;
+    }
+
+    .menu-toggle-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+
+    .menu-toggle-btn span:last-child {
+      width: 13px;
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: var(--font-playfair);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    .brand-logo-img {
+      height: 27px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+
+    .icon-circle-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      cursor: pointer;
       color: var(--text);
-      padding: 4px;
       position: relative;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      transition: transform 0.15s;
     }
 
-    .header-btn:active {
+    .icon-circle-btn:active {
       transform: scale(0.92);
-      opacity: 0.75;
     }
 
-    .menu-icon-bars {
-      width: 18px;
-      height: 11px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .menu-icon-bars span {
-      display: block;
-      width: 100%;
-      height: 1.5px;
-      background: var(--text);
-      border-radius: 1px;
-    }
-
-    .menu-icon-bars span:last-child { width: 60%; }
-
-    .brand-mark {
-      font-size: 11.5px;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .header-right svg {
-      width: 18px;
-      height: 18px;
+    .icon-circle-btn svg {
+      width: 17px;
+      height: 17px;
       stroke: var(--text);
-      stroke-width: 1.65;
       fill: none;
+      stroke-width: 2;
     }
 
-    .cart-indicator {
+    .notify-badge {
       position: absolute;
-      top: 1px;
-      right: 1px;
+      top: 6px;
+      right: 7px;
       width: 6px;
       height: 6px;
-      background: var(--bronze);
       border-radius: 50%;
-      box-shadow: 0 0 0 2px var(--bg);
+      background: #20201d;
+      border: 1.5px solid var(--bg);
     }
 
-    /* CATEGORY & INDEX STRIP */
+    /* AUDIO COMPONENT */
+    .audio-wrapper-group {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .audio-reminder-pill {
+      position: absolute;
+      right: 44px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--accent-green);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      white-space: nowrap;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.85) translateX(6px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 10;
+    }
+
+    .audio-reminder-pill.active {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+      pointer-events: auto;
+      animation: gentlePillPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes gentlePillPulse {
+      0%, 100% { box-shadow: 0 6px 18px rgba(27, 94, 59, 0.15); transform: translateY(0); }
+      50% { box-shadow: 0 8px 24px rgba(27, 94, 59, 0.28); transform: translateY(-2px); }
+    }
+
+    .header-audio-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--primary-dark);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      transition: box-shadow 0.25s, transform 0.15s;
+      z-index: 6;
+    }
+
+    .header-audio-btn:active {
+      transform: scale(0.92);
+    }
+
+    .header-audio-btn.attention {
+      box-shadow: 0 0 0 3px rgba(27, 94, 59, 0.3), 0 4px 14px rgba(0,0,0,0.08);
+      animation: btnGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes btnGlow {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(27, 94, 59, 0.25), 0 4px 14px rgba(0,0,0,0.08); }
+      50% { box-shadow: 0 0 0 5px rgba(27, 94, 59, 0.45), 0 6px 18px rgba(27, 94, 59, 0.2); }
+    }
+
+    .audio-progress-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+      pointer-events: none;
+    }
+
+    .audio-progress-bg {
+      fill: none;
+      stroke: #EAE5D8;
+      stroke-width: 2.2;
+    }
+
+    .audio-progress-bar {
+      fill: none;
+      stroke: var(--accent-green);
+      stroke-width: 2.2;
+      stroke-dasharray: 106.8;
+      stroke-dashoffset: 106.8;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.1s linear;
+    }
+
+    .audio-state-icon {
+      font-size: 12px;
+      margin-left: 1.5px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .header-audio-btn.playing .audio-state-icon {
+      margin-left: 0;
+    }
+
+    /* GREETING */
+    .greeting-section {
+      width: 100%;
+      padding: 10px 18px;
+      flex-shrink: 0;
+      z-index: 50;
+    }
+
+    .greeting-user-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .greeting-user-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .namaste-badge-btn {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 241, 230, 0.95) 100%);
+      border: 1px solid rgba(194, 155, 56, 0.38);
+      border-radius: 20px;
+      padding: 3px 8px 3px 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(142, 113, 70, 0.08);
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .namaste-badge-btn:active {
+      transform: scale(0.93);
+      background: #f4eee1;
+    }
+
+    .namaste-hands {
+      font-size: 13px;
+      line-height: 1;
+      display: inline-block;
+      animation: subtleFold 3s infinite ease-in-out;
+    }
+
+    @keyframes subtleFold {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    .namaste-text {
+      font-family: 'Rozha One', 'Cinzel', serif;
+      font-size: 10px;
+      color: #835c24;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .greeting-subtext {
+      font-size: 18px;
+      font-weight: 700;
+      color: #24221e;
+      letter-spacing: -0.02em;
+      margin-top: 4px;
+      line-height: 1.2;
+    }
+
+    /* CATEGORY & VIEW */
     .unified-category-bar {
       width: 100%;
-      margin-top: 6px;
-      padding: 0 16px 8px 20px;
+      padding: 0 16px 6px 18px;
       display: flex;
-      align-items: flex-start;
-      gap: 14px;
+      align-items: flex-end;
+      gap: 10px;
       z-index: 45;
       flex-shrink: 0;
     }
@@ -205,7 +427,7 @@
       text-transform: uppercase;
       color: var(--bronze);
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
       line-height: 1;
     }
 
@@ -213,8 +435,8 @@
       width: 100%;
       overflow: hidden;
       position: relative;
-      -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
-      mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black calc(100% - 18px), transparent 100%);
+      mask-image: linear-gradient(to right, black calc(100% - 18px), transparent 100%);
     }
 
     .category-rail {
@@ -223,95 +445,128 @@
       overflow-x: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
-      padding: 2px 24px 2px 0;
+      padding: 2px 18px 4px 0;
     }
 
     .category-rail::-webkit-scrollbar { display: none; }
 
     .cat-btn {
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
-      gap: 6px;
-      padding: 6.5px 13px;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid var(--hairline);
-      color: var(--muted);
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      justify-content: center;
+      gap: 5px;
+      width: 62px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--card-tint);
+      border: 1px solid rgba(22, 21, 19, 0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #3b3935;
+      font-size: 9.5px;
       font-weight: 600;
+      letter-spacing: 0.02em;
       cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
       flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .cat-btn svg {
-      width: 12px;
-      height: 12px;
+      width: 18px;
+      height: 18px;
       stroke: currentColor;
       fill: none;
-      stroke-width: 1.5;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .cat-btn.active {
-      background: var(--text);
+      background: #1f1e1a;
       color: #ffffff;
-      border-color: var(--text);
-      box-shadow: 0 4px 14px rgba(22, 21, 19, 0.15);
+      border-color: #1f1e1a;
+      box-shadow: 0 6px 16px rgba(22, 21, 19, 0.16);
+      transform: translateY(-1px);
     }
 
     .cat-btn.active svg { stroke: #ffffff; }
 
-    .zone-divider {
-      width: 1px;
-      height: 36px;
-      background: rgba(22, 21, 19, 0.1);
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-
-    .editorial-counter-gauge {
+    .view-zone {
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .view-zone .zone-label {
+      text-align: center;
+      margin-bottom: 7px;
+    }
+
+    .view-control-container {
+      display: flex;
+      align-items: center;
+      height: 60px;
       padding-left: 2px;
     }
 
-    .counter-digits {
+    .view-divider-line {
+      width: 1px;
+      height: 38px;
+      background: rgba(22, 21, 19, 0.18);
+      margin-right: 12px;
+      border-radius: 1px;
+    }
+
+    .view-toggle-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #e5e2d8;
+      border: 1px solid rgba(22, 21, 19, 0.08);
       display: flex;
-      align-items: baseline;
-      gap: 2px;
-      height: 26px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    .counter-active {
-      font-family: var(--font-serif);
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.6;
+    .view-toggle-btn:active {
+      transform: scale(0.92);
+      background: #dad6ca;
     }
 
-    .counter-slash {
-      font-size: 9.5px;
-      color: rgba(22, 21, 19, 0.25);
+    .view-grid-icon {
+      width: 17px;
+      height: 17px;
+      display: grid;
+      grid-template-columns: repeat(2, 6.5px);
+      grid-template-rows: repeat(2, 6.5px);
+      gap: 3.5px;
+      align-items: center;
+      justify-content: center;
     }
 
-    .counter-total {
-      font-family: var(--font-serif);
-      font-size: 12px;
-      color: var(--muted);
+    .view-grid-icon span {
+      display: block;
+      width: 6.5px;
+      height: 6.5px;
+      border: 1.4px solid #272522;
+      border-radius: 2px;
+      box-sizing: border-box;
+      background: transparent;
     }
 
-    /* PRODUCT STAGE */
+    /* STAGE */
     .stage-wrapper {
       flex: 1;
       position: relative;
       width: 100%;
-      padding: 6px 18px 8px;
+      padding: 2px 16px 6px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -328,11 +583,10 @@
       position: relative;
       width: 100%;
       height: 100%;
-      border-radius: 32px;
+      border-radius: 28px;
       overflow: hidden;
-      background: #ffffff;
-      box-shadow: 0 20px 50px rgba(22, 21, 19, 0.08), 0 4px 14px rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      background: #1a1a1a;
+      box-shadow: 0 20px 50px rgba(22, 21, 19, 0.12), 0 4px 14px rgba(0, 0, 0, 0.05);
       display: flex;
       flex-direction: column;
       transform: translate3d(0, 0, 0);
@@ -358,10 +612,9 @@
       transform-origin: center center;
     }
 
-    /* MINIMAL ARROWS */
     .arrow-btn {
       position: absolute;
-      top: 40%;
+      top: 42%;
       transform: translateY(-50%);
       width: 34px;
       height: 34px;
@@ -403,25 +656,22 @@
       stroke-linejoin: round;
     }
 
-    /* FROSTED GLASS DETAILS DOCK */
     .product-details-overlay {
       position: absolute;
-      bottom: 12px;
-      left: 12px;
-      right: 12px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
       background: linear-gradient(
-        180deg, 
-        rgba(105, 105, 105, 0.52) 0%, 
-        rgba(75, 75, 75, 0.72) 42%,
-        rgba(52, 52, 52, 0.88) 100%
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.22) 20%,
+        rgba(0, 0, 0, 0.58) 50%,
+        rgba(0, 0, 0, 0.82) 80%,
+        rgba(0, 0, 0, 0.94) 100%
       );
-      backdrop-filter: blur(28px) saturate(160%);
-      -webkit-backdrop-filter: blur(28px) saturate(160%);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 24px;
-      padding: 14px 18px;
+      padding: 55px 16px 14px;
       color: #ffffff;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.26), inset 0 1px 1px rgba(255, 255, 255, 0.35);
       display: flex;
       flex-direction: column;
       gap: 3px;
@@ -435,6 +685,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      margin-bottom: 2px;
     }
 
     .card-rating-row {
@@ -449,22 +700,24 @@
 
     .card-star {
       color: #f59e0b;
-      font-size: 13.5px;
+      font-size: 13px;
       line-height: 1;
     }
 
     .card-reviews {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.75);
       font-weight: 400;
       font-size: 12px;
     }
 
     .card-share-btn-top {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: #ffffff;
       display: flex;
       align-items: center;
@@ -495,23 +748,16 @@
       font-weight: 700;
       letter-spacing: -0.015em;
       color: #ffffff;
-      line-height: 1.2;
-      margin-top: 1px;
+      line-height: 1.15;
     }
 
     .card-desc {
       font-size: 11px;
-      color: rgba(255, 255, 255, 0.82);
+      color: rgba(255, 255, 255, 0.85);
       font-weight: 400;
       line-height: 1.35;
-      margin-bottom: 5px;
-    }
-
-    .card-divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.15);
-      margin: 1px 0 7px;
+      margin-top: 2px;
+      margin-bottom: 10px;
     }
 
     .card-price-row {
@@ -528,7 +774,7 @@
     }
 
     .card-price {
-      font-size: 1.42rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #ffffff;
       line-height: 1;
@@ -536,7 +782,7 @@
     }
 
     .card-mrp {
-      font-size: 12.5px;
+      font-size: 12px;
       color: #f87171;
       text-decoration: line-through;
       font-weight: 500;
@@ -546,56 +792,54 @@
     .card-discount-pill {
       background: #000000;
       color: #ffffff;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.02em;
-      padding: 4.5px 9.5px;
-      border-radius: 16px;
+      padding: 3.5px 7.5px;
+      border-radius: 12px;
       line-height: 1;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .card-explore-btn {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 7px 14px;
+      padding: 7px 15px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      background: #ffffff;
+      border: 1px solid #ffffff;
       color: #161513;
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
       transition: all 0.2s ease;
     }
 
     .card-explore-btn:active {
-      transform: scale(0.93);
-      background: var(--bronze);
-      color: #ffffff;
-      border-color: var(--bronze);
+      transform: scale(0.94);
+      background: #eceae3;
     }
 
     .card-explore-btn svg {
-      width: 11px;
-      height: 11px;
+      width: 12px;
+      height: 12px;
       stroke: currentColor;
       fill: none;
       stroke-width: 2.3;
     }
 
-    /* PAGINATION TRACK */
     .dots-track {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 6px;
-      padding: 8px 0 12px;
+      padding: 4px 0 8px;
       flex-shrink: 0;
-      min-height: 24px;
+      min-height: 16px;
     }
 
     .dot {
@@ -607,17 +851,17 @@
     }
 
     .dot.active {
-      width: 26px;
+      width: 24px;
       background: var(--text);
     }
 
-    /* MODALS & POPUPS */
+    /* GLOBAL BACKDROP */
     .global-backdrop {
-      position: fixed;
+      position: absolute;
       inset: 0;
-      background: rgba(22, 21, 19, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(10, 15, 12, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 100;
       opacity: 0;
       pointer-events: none;
@@ -629,134 +873,257 @@
       pointer-events: auto;
     }
 
-    .modal-close-black {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--text);
-      color: #ffffff;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(22, 21, 19, 0.2);
-      transition: transform 0.2s ease;
-    }
-
-    .modal-close-black svg {
-      width: 15px;
-      height: 15px;
-      stroke: #ffffff;
-      stroke-width: 2.2;
-    }
-
-    .modal-close-black:active { transform: scale(0.9); }
-
-    .center-menu-modal {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -46%) scale(0.96);
-      width: calc(100% - 32px);
-      max-width: 390px;
-      max-height: 86vh;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      border-radius: 22px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
-      z-index: 130;
-      padding: 22px;
+    /* FLOATING CURVED LUXURY DRAWER */
+    .curved-warm-drawer {
+      position: absolute;
+      top: 14px;
+      bottom: 14px;
+      left: 0;
+      width: 78%;
+      max-width: 325px;
+      background: #846d54;
+      border-top-right-radius: 36px;
+      border-bottom-right-radius: 36px;
+      z-index: 180;
       display: flex;
       flex-direction: column;
-      opacity: 0;
+      transform: translateX(-105%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 20px 0 50px rgba(0, 0, 0, 0.3);
+      color: #ffffff;
+      overflow: hidden;
       pointer-events: none;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      overflow-y: auto;
     }
 
-    .center-menu-modal.open {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
+    .curved-warm-drawer.open {
+      transform: translateX(0);
       pointer-events: auto;
     }
 
-    .modal-top-bar {
+    .warm-drawer-top {
+      padding: 20px 20px 10px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--hairline);
+      justify-content: flex-end;
     }
 
-    .modal-pretitle {
-      font-size: 8px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--bronze);
-      font-weight: 600;
+    .warm-drawer-close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      transition: transform 0.2s, color 0.2s;
     }
 
-    .menu-editorial-links {
-      list-style: none;
-      margin: 18px 0;
+    .warm-drawer-close:active {
+      transform: scale(0.9);
+      color: #ffffff;
+    }
+
+    .warm-drawer-close svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+    }
+
+    .warm-drawer-menu-list {
+      padding: 2px 18px 18px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      flex: 1;
     }
 
-    .menu-link-item {
-      padding: 12px 14px;
-      background: #ffffff;
-      border: 1px solid var(--hairline);
-      border-radius: 8px;
+    .warm-drawer-menu-list::-webkit-scrollbar { display: none; }
+
+    .drawer-section-heading {
+      font-size: 8px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #e5d3ba;
+      padding-left: 2px;
+      margin-top: 6px;
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .warm-menu-group {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .warm-menu-item {
+      display: flex;
       align-items: center;
+      gap: 14px;
+      color: rgba(255, 255, 255, 0.94);
       cursor: pointer;
-      color: var(--text);
+      transition: transform 0.18s ease, color 0.18s ease;
+      padding: 2px 0;
     }
 
-    .menu-link-item .title {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      font-weight: 400;
+    .warm-menu-item:active {
+      transform: translateX(4px);
+      color: #ffffff;
     }
 
-    .menu-link-item .badge {
-      font-size: 8px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .warm-item-icon {
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.85);
+      flex-shrink: 0;
     }
 
-    .concierge-card {
-      background: var(--bg);
-      border: 1px solid var(--hairline);
-      border-radius: 10px;
-      padding: 14px;
+    .warm-item-icon svg {
+      width: 19px;
+      height: 19px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .concierge-card h4 {
-      font-size: 8px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--bronze);
-      margin-bottom: 6px;
+    .warm-item-title {
+      font-size: 13.5px;
       font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
     }
 
-    .concierge-detail {
+    .warm-divider-subtle {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.14);
+      margin: 4px 0;
+    }
+
+    .concierge-glass-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 18px;
+      padding: 13px 14px;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .concierge-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .concierge-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .concierge-live-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a7f3d0;
+    }
+
+    .live-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.25);
+    }
+
+    .concierge-card-meta {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.4;
+    }
+
+    .whatsapp-action-pill {
+      background: #25d366;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       font-size: 11px;
-      line-height: 1.55;
-      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+      transition: transform 0.15s ease, background 0.15s ease;
+      margin-top: 2px;
     }
 
-    /* AUTH DRAWER */
-    .user-auth-sheet {
-      position: fixed;
+    .whatsapp-action-pill:active {
+      transform: scale(0.96);
+      background: #1eb956;
+    }
+
+    .whatsapp-action-pill svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .warm-drawer-footer-brand {
+      padding: 16px 20px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      background: #7d674f;
+      flex-shrink: 0;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-playfair);
+      font-size: 18px;
+      font-weight: 500;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .footer-brand-tagline {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    /* AUTH SHEET & MODALS */
+    .user-auth-sheet, .modal-sheet {
+      position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
@@ -765,25 +1132,15 @@
       border-top-left-radius: 26px;
       border-top-right-radius: 26px;
       padding: 14px 22px 32px;
-      z-index: 135;
+      z-index: 185;
       box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.2);
       transform: translateY(105%);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
-    @media (min-width: 600px) {
-      .user-auth-sheet {
-        max-width: 430px;
-        left: 50%;
-        right: auto;
-        transform: translate(-50%, 105%);
-      }
-      .user-auth-sheet.open {
-        transform: translate(-50%, 0%);
-      }
-    }
-
-    .user-auth-sheet.open { transform: translateY(0%); }
+    .user-auth-sheet.open, .modal-sheet.open { transform: translateY(0%); }
 
     .sheet-drag-pill {
       width: 42px;
@@ -799,8 +1156,8 @@
       margin-bottom: 20px;
     }
 
-    .namaste-icon-wrap {
-      font-size: 2.2rem;
+    .namaste-dialog-icon {
+      font-size: 2.3rem;
       margin-bottom: 4px;
       display: inline-block;
     }
@@ -877,9 +1234,7 @@
       color: var(--text);
     }
 
-    .otp-box:focus {
-      border-color: var(--text);
-    }
+    .otp-box:focus { border-color: var(--text); }
 
     .auth-submit-btn {
       width: 100%;
@@ -896,8 +1251,121 @@
       transition: background 0.2s ease;
     }
 
+    /* POLICY / INFO MODAL CONTENT */
+    .policy-content-body {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--muted);
+      padding: 10px 0 20px;
+    }
+
+    .policy-content-body h4 {
+      font-size: 14px;
+      color: var(--text);
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+
+    /* VEDIC WELCOME DIALOG */
+    .welcome-dialog-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 15, 12, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .welcome-dialog-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .welcome-dialog-card {
+      width: 100%;
+      max-width: 360px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 28px 22px 24px;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(232, 227, 215, 0.85);
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .welcome-dialog-overlay.active .welcome-dialog-card {
+      transform: scale(1);
+    }
+
+    .welcome-om-badge {
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .welcome-title {
+      font-family: var(--font-playfair);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .welcome-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .welcome-action-btn-primary {
+      width: 100%;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--text);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+      margin-bottom: 10px;
+      transition: transform 0.15s;
+    }
+
+    .welcome-action-btn-primary:active { transform: scale(0.98); }
+
+    .welcome-action-btn-secondary {
+      width: 100%;
+      height: 40px;
+      border-radius: 14px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(22, 21, 19, 0.15);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .welcome-action-btn-secondary:active { background: #F4EFE6; }
+
+    /* TOAST */
     .toast-alert {
-      position: fixed;
+      position: absolute;
       top: 24px;
       left: 50%;
       transform: translate(-50%, -40px);
@@ -909,7 +1377,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       font-weight: 500;
-      z-index: 300;
+      z-index: 600;
       pointer-events: none;
       opacity: 0;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
@@ -924,371 +1392,474 @@
 </head>
 <body>
 
+  <!-- AMBIENT AUDIO -->
+  <audio id="ambientAudio" loop preload="auto">
+    <source src="https://actions.google.com/sounds/v1/ambiences/meditation_bell_soundbath.ogg" type="audio/ogg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=meditation-flute-112195.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="paper-grain"></div>
-  <div class="toast-alert" id="toastAlert">Notice</div>
-  <div class="global-backdrop" id="globalBackdrop"></div>
 
-  <div class="atelier-showcase">
-    <div class="ambient-glow" id="ambientGlow"></div>
+  <div class="app-viewport-wrapper">
+    <div class="app-viewport-shell" id="appShell">
+      <div class="toast-alert" id="toastAlert">Notice</div>
+      <div class="global-backdrop" id="globalBackdrop"></div>
 
-    <!-- HEADER -->
-    <header>
-      <div class="header-left">
-        <button class="header-btn" id="menuBtn" aria-label="Open Atelier Menu">
-          <div class="menu-icon-bars">
+      <!-- VEDIC WELCOME DIALOG -->
+      <div class="welcome-dialog-overlay" id="welcomeDialogOverlay">
+        <div class="welcome-dialog-card">
+          <div class="welcome-om-badge">🌿</div>
+          <h2 class="welcome-title">Sacred Vedic Ritual</h2>
+          <p class="welcome-sub">
+            Enable peaceful background flute ambience for a sensory Ayurvedic wellness experience, while we cache ingredients and laboratory formulations for lightning-fast browsing.
+          </p>
+
+          <button class="welcome-action-btn-primary" onclick="acceptVedicExperience(true)">
+            <span>🎵 Begin Vedic Experience</span>
+            <span>→</span>
+          </button>
+
+          <button class="welcome-action-btn-secondary" onclick="acceptVedicExperience(false)">
+            Enter Silently
+          </button>
+        </div>
+      </div>
+
+      <div class="ambient-glow" id="ambientGlow"></div>
+
+      <!-- HEADER -->
+      <header>
+        <div class="header-left">
+          <button class="menu-toggle-btn" id="menuBtn" aria-label="Open Navigation Menu">
             <span></span>
             <span></span>
+          </button>
+
+          <a href="#" class="brand-logo-wrap">
+            Dharatatva
+          </a>
+        </div>
+
+        <div class="header-right-actions">
+          <button class="icon-circle-btn" id="notifyBtn" aria-label="Notifications" onclick="showToast('No new notices')">
+            <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <div class="notify-badge"></div>
+          </button>
+
+          <div class="audio-wrapper-group">
+            <div class="audio-reminder-pill" id="audioReminderPill" onclick="toggleAudio()">
+              <span>Tap for Sound</span>
+              <span style="font-size:11px; color:#725bb7;">🎵</span>
+            </div>
+
+            <div class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio()" title="Play / Pause Ambient Sound">
+              <svg class="audio-progress-svg" viewBox="0 0 38 38">
+                <circle class="audio-progress-bg" cx="19" cy="19" r="17"/>
+                <circle class="audio-progress-bar" id="audioProgressCircle" cx="19" cy="19" r="17"/>
+              </svg>
+              <div class="audio-state-icon" id="audioStateIcon">▶</div>
+            </div>
           </div>
-        </button>
-        <div class="brand-mark">L'Atelier</div>
-      </div>
-
-      <div class="header-right">
-        <button class="header-btn" id="cartBtn" aria-label="Cart" style="cursor: default;">
-          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <div class="cart-indicator"></div>
-        </button>
-
-        <button class="header-btn" id="userBtn" aria-label="Guest Access">
-          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </button>
-      </div>
-    </header>
-
-    <!-- CATEGORIES & INDEX GAUGE -->
-    <div class="unified-category-bar">
-      <div class="category-zone">
-        <span class="zone-label">Explore by Category</span>
-        <div class="category-scroll-container">
-          <nav class="category-rail" id="categoryRail">
-            <button class="cat-btn active" data-cat="serum">
-              <svg viewBox="0 0 24 24"><path d="M12 2v6m-4 5a4 4 0 0 0 8 0V8H8v5zM9 2h6"/></svg>
-              Sérums
-            </button>
-            <button class="cat-btn" data-cat="oil">
-              <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-              Huiles
-            </button>
-            <button class="cat-btn" data-cat="cream">
-              <svg viewBox="0 0 24 24"><path d="M4 11h16a2 2 0 0 1 2 2v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-6a2 2 0 0 1 2-2zm2-5h12l-1 5H7l-1-5z"/></svg>
-              Crèmes
-            </button>
-            <button class="cat-btn" data-cat="elixir">
-              <svg viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
-              Élixirs
-            </button>
-            <button class="cat-btn" data-cat="mist">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-4.2-6.8l-2.1 2.1m-9.4 9.4l-2.1 2.1m0-13.6l2.1 2.1m9.4 9.4l2.1 2.1"/></svg>
-              Brumes
-            </button>
-          </nav>
         </div>
-      </div>
+      </header>
 
-      <div class="zone-divider"></div>
-
-      <div class="editorial-counter-gauge">
-        <span class="zone-label" style="text-align: right;">Index</span>
-        <div class="counter-digits">
-          <span class="counter-active" id="countActive">01</span>
-          <span class="counter-slash">/</span>
-          <span class="counter-total" id="countTotal">03</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- PRODUCT STAGE FRAME -->
-    <div class="stage-wrapper" id="swipeArea">
-      <!-- Minimalist Prev Arrow -->
-      <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
-        <svg viewBox="0 0 24 24"><polyline points="14 18 8 12 14 6"/></svg>
-      </button>
-
-      <!-- UNIFIED CONTAINER -->
-      <div class="product-unified-card" id="productCanvas">
-        
-        <!-- Media Zone -->
-        <div class="product-media-zone">
-          <img class="product-img" id="productDisplay" 
-               src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=90" 
-               alt="Luxury Atelier Creation">
-        </div>
-
-        <!-- DETAILS OVERLAY -->
-        <div class="product-details-overlay" id="detailsCard">
+      <!-- GREETING -->
+      <div class="greeting-section">
+        <div class="greeting-user-row">
+          <span class="greeting-user-title">Hi, Honoured Guest</span>
           
-          <!-- TOP ROW: RATING + TOP SHARE BUTTON -->
-          <div class="card-top-row">
-            <div class="card-rating-row">
-              <span class="card-star">★</span>
-              <span id="prodRating">4.9</span>
-              <span class="card-reviews" id="prodReviews">(182)</span>
-            </div>
+          <button class="namaste-badge-btn" id="namasteTrigger" title="Open Namasté Vault">
+            <span class="namaste-hands">🙏</span>
+            <span class="namaste-text">नमस्ते</span>
+          </button>
+        </div>
+        <div class="greeting-subtext">Discover pure botanical harmony</div>
+      </div>
 
-            <button class="card-share-btn-top" id="shareBtn" aria-label="Share Product" onclick="handleProductShare(event)">
-              <svg viewBox="0 0 24 24">
-                <circle cx="18" cy="5" r="3"></circle>
-                <circle cx="6" cy="12" r="3"></circle>
-                <circle cx="18" cy="19" r="3"></circle>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-              </svg>
+      <!-- CATEGORY & VIEW BAR -->
+      <div class="unified-category-bar">
+        <div class="category-zone">
+          <span class="zone-label">Explore by Category</span>
+          <div class="category-scroll-container">
+            <nav class="category-rail" id="categoryRail">
+              <button class="cat-btn active" data-cat="health">
+                <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+                <span>Health</span>
+              </button>
+              <button class="cat-btn" data-cat="body">
+                <svg viewBox="0 0 24 24"><path d="M12 3a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/><path d="M5.5 21v-2.5a5.5 5.5 0 0 1 11 0V21"/><path d="M7 14h10"/></svg>
+                <span>Body</span>
+              </button>
+              <button class="cat-btn" data-cat="face">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M9.5 15a4 4 0 0 0 5 0"/></svg>
+                <span>Face</span>
+              </button>
+              <button class="cat-btn" data-cat="hair">
+                <svg viewBox="0 0 24 24"><path d="M4 18c2-3 4-5 8-5s6 2 8 5"/><path d="M12 2a5 5 0 0 0-5 5c0 3 2 5 5 9 3-4 5-6 5-9a5 5 0 0 0-5-5z"/></svg>
+                <span>Hair</span>
+              </button>
+            </nav>
+          </div>
+        </div>
+
+        <div class="view-zone">
+          <span class="zone-label">View</span>
+          <div class="view-control-container">
+            <div class="view-divider-line"></div>
+            <button class="view-toggle-btn" id="viewToggleBtn" aria-label="Toggle View" onclick="handleViewChange()">
+              <div class="view-grid-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </button>
           </div>
+        </div>
+      </div>
 
-          <!-- Title -->
-          <div class="card-title" id="prodName">Nectar d'Orris</div>
+      <!-- MAIN PRODUCT STAGE -->
+      <div class="stage-wrapper" id="swipeArea">
+        <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
+          <svg viewBox="0 0 24 24"><polyline points="14 18 8 12 14 6"/></svg>
+        </button>
 
-          <!-- Description -->
-          <div class="card-desc" id="prodNotes">Concentrated Tuscan iris butter complex for cellular radiance</div>
+        <div class="product-unified-card" id="productCanvas">
+          <div class="product-media-zone">
+            <img class="product-img" id="productDisplay" 
+                 src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90" 
+                 alt="Dharatatva Botanical Formulation">
+          </div>
 
-          <!-- Divider -->
-          <div class="card-divider"></div>
+          <div class="product-details-overlay" id="detailsCard">
+            <div class="card-top-row">
+              <div class="card-rating-row">
+                <span class="card-star">★</span>
+                <span id="prodRating">4.9</span>
+                <span class="card-reviews" id="prodReviews">(182)</span>
+              </div>
 
-          <!-- BOTTOM ROW: PRICE + MRP + SHIFTED DISCOUNT PILL + EXPLORE BUTTON -->
-          <div class="card-price-row">
-            <div class="card-price-group">
-              <span class="card-price" id="prodPrice">$38.00</span>
-              <span class="card-mrp" id="prodMrp">$52.00</span>
-              <span class="card-discount-pill" id="prodDiscount">-26%</span>
+              <button class="card-share-btn-top" id="shareBtn" aria-label="Share Product" onclick="handleProductShare(event)">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+              </button>
             </div>
 
-            <a class="card-explore-btn" id="exploreBtn" href="herb_o_care.html">
-              <span>Explore</span>
+            <div class="card-title" id="prodName">Herb-O-Care</div>
+            <div class="card-desc" id="prodNotes">Immunity booster formulated with raw botanical forest extracts</div>
+
+            <div class="card-price-row">
+              <div class="card-price-group">
+                <span class="card-price" id="prodPrice">₹383</span>
+                <span class="card-mrp" id="prodMrp">₹437</span>
+                <span class="card-discount-pill" id="prodDiscount">-12%</span>
+              </div>
+
+              <button class="card-explore-btn" id="exploreBtn" onclick="openProductDetailModal()">
+                <span>Explore</span>
+                <svg viewBox="0 0 24 24">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="arrow-btn next" id="nextBtn" aria-label="Next Product">
+          <svg viewBox="0 0 24 24"><polyline points="10 6 16 12 10 18"/></svg>
+        </button>
+      </div>
+
+      <div class="dots-track" id="dotsTrack">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- WARM FLOATING CURVED LUXURY DRAWER WITH FOOTER -->
+      <div class="curved-warm-drawer" id="editorialMenuDrawer">
+        <div class="warm-drawer-top">
+          <button class="warm-drawer-close" id="closeMenuBtn" aria-label="Close Navigation">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="warm-drawer-menu-list">
+          <div class="warm-menu-group">
+            <div class="warm-menu-item" onclick="openPolicyModal('about')">
+              <div class="warm-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <span class="warm-item-title">About Dharatatva</span>
+            </div>
+          </div>
+
+          <div class="warm-divider-subtle"></div>
+
+          <span class="drawer-section-heading">Orders & Fulfillment</span>
+          <div class="warm-menu-group">
+            <div class="warm-menu-item" onclick="openPolicyModal('shipping')">
+              <div class="warm-item-icon">
+                <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </div>
+              <span class="warm-item-title">Shipping Policy</span>
+            </div>
+
+            <div class="warm-menu-item" onclick="openPolicyModal('returns')">
+              <div class="warm-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
+              </div>
+              <span class="warm-item-title">Returns and Refunds</span>
+            </div>
+
+            <div class="warm-menu-item" onclick="openPolicyModal('cancellation')">
+              <div class="warm-item-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+              </div>
+              <span class="warm-item-title">Cancellation Policy</span>
+            </div>
+          </div>
+
+          <div class="warm-divider-subtle"></div>
+
+          <span class="drawer-section-heading">Governance</span>
+          <div class="warm-menu-group">
+            <div class="warm-menu-item" onclick="openPolicyModal('privacy')">
+              <div class="warm-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <span class="warm-item-title">Privacy Policy</span>
+            </div>
+
+            <div class="warm-menu-item" onclick="openPolicyModal('terms')">
+              <div class="warm-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <span class="warm-item-title">Terms and Conditions</span>
+            </div>
+          </div>
+
+          <div class="warm-divider-subtle"></div>
+
+          <span class="drawer-section-heading">Direct Concierge</span>
+          <div class="concierge-glass-card">
+            <div class="concierge-card-head">
+              <span class="concierge-card-title">Customer Service</span>
+              <div class="concierge-live-badge">
+                <div class="live-dot"></div>
+                <span>Live Assistance</span>
+              </div>
+            </div>
+
+            <div class="concierge-card-meta">
+              <p><strong>Sanctum Hours:</strong> Mon – Sat · 9:30 AM – 6:30 PM</p>
+              <p><strong>Care Desk:</strong> care@dharatatva.com</p>
+            </div>
+
+            <a href="https://wa.me/919876543210?text=Namaste%20Dharatatva%2C%20I%20need%20assistance%20with%20my%20order." target="_blank" rel="noopener" class="whatsapp-action-pill">
               <svg viewBox="0 0 24 24">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
               </svg>
+              <span>Chat on WhatsApp</span>
             </a>
           </div>
 
         </div>
 
+        <div class="warm-drawer-footer-brand">
+          <span class="footer-brand-title">Dharatatva</span>
+          <span class="footer-brand-tagline">SANCTUARY OF ANCIENT HERBS</span>
+        </div>
       </div>
 
-      <!-- Minimalist Next Arrow -->
-      <button class="arrow-btn next" id="nextBtn" aria-label="Next Product">
-        <svg viewBox="0 0 24 24"><polyline points="10 6 16 12 10 18"/></svg>
-      </button>
-    </div>
+      <!-- NAMASTE AUTH SHEET -->
+      <div class="user-auth-sheet" id="userAuthSheet">
+        <div class="sheet-drag-pill"></div>
+        
+        <div style="display: flex; justify-content: flex-end; margin-top: -8px; margin-bottom: 6px;">
+          <button class="icon-circle-btn" style="width:34px; height:34px;" id="closeUserBtn">
+            <svg viewBox="0 0 24 24" style="width:14px; height:14px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
 
-    <!-- Pagination Dots -->
-    <div class="dots-track" id="dotsTrack">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
+        <div class="namaste-header">
+          <div class="namaste-dialog-icon">🙏</div>
+          <h3 class="namaste-title">Namasté, Honoured Guest</h3>
+          <span class="namaste-sub">Dharatatva Vault</span>
+        </div>
 
-  </div>
+        <div class="auth-form-step" id="authStepPhone">
+          <div class="input-field-group">
+            <span class="country-code">+91 (IN)</span>
+            <input type="tel" class="mobile-input" id="phoneInput" placeholder="Enter 10-digit mobile number" maxlength="10">
+          </div>
+          <button class="auth-submit-btn" onclick="requestOtp()">
+            Request Private Key (OTP)
+          </button>
+        </div>
 
-  <!-- CENTER MENU MODAL -->
-  <div class="center-menu-modal" id="centerMenuModal">
-    <div class="modal-top-bar">
-      <span class="modal-pretitle">Maison & Informations</span>
-      <button class="modal-close-black" id="closeMenuBtn">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-
-    <ul class="menu-editorial-links">
-      <li class="menu-link-item" onclick="showToast('About Maison L\'Atelier')">
-        <span class="title">About the Maison</span>
-        <span class="badge">01 • Heritage</span>
-      </li>
-      <li class="menu-link-item" onclick="showToast('Terms & Conditions')">
-        <span class="title">Terms & Conditions</span>
-        <span class="badge">02 • Legal</span>
-      </li>
-      <li class="menu-link-item" onclick="showToast('Botanical Safety')">
-        <span class="title">Disclaimer & Safety</span>
-        <span class="badge">03 • Integrity</span>
-      </li>
-    </ul>
-
-    <div class="concierge-card">
-      <h4>Private Concierge & Salons</h4>
-      <div class="concierge-detail">
-        <p><strong>Salons Privés:</strong> 12 Rue de la Paix, Paris</p>
-        <p><strong>Hotline:</strong> +91 (0) 11 4982 0000</p>
-        <p><strong>Liaison:</strong> concierge@latelier-parfums.com</p>
+        <div class="auth-form-step" id="authStepOtp" style="display: none;">
+          <p style="font-size: 11px; text-align: center; color: var(--muted);">
+            Enter 4-digit verification key sent to <strong id="userPhoneDisplay">+91 98765 43210</strong>
+          </p>
+          <div class="otp-digit-boxes" id="otpContainer">
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric">
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric">
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric">
+            <input type="tel" maxlength="1" class="otp-box" inputmode="numeric">
+          </div>
+          <button class="auth-submit-btn" onclick="verifyOtp()">
+            Verify & Enter Vault
+          </button>
+          <button onclick="backToPhone()" style="background: none; border: none; font-size: 10px; color: var(--bronze); margin-top: 6px; cursor: pointer; text-transform: uppercase;">
+            ← Change Number
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- USER AUTH SHEET -->
-  <div class="user-auth-sheet" id="userAuthSheet">
-    <div class="sheet-drag-pill"></div>
-    
-    <div style="display: flex; justify-content: flex-end; margin-top: -8px; margin-bottom: 6px;">
-      <button class="modal-close-black" id="closeUserBtn">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-
-    <div class="namaste-header">
-      <div class="namaste-icon-wrap">🙏</div>
-      <h3 class="namaste-title">Namasté, Honoured Guest</h3>
-      <span class="namaste-sub">नमस्ते • Private Cellar Vault</span>
-    </div>
-
-    <div class="auth-form-step" id="authStepPhone">
-      <div class="input-field-group">
-        <span class="country-code">+91 (IN)</span>
-        <input type="tel" class="mobile-input" id="phoneInput" placeholder="Enter 10-digit mobile number" maxlength="10">
+      <!-- POLICY & INFO SHEET -->
+      <div class="modal-sheet" id="policyModalSheet">
+        <div class="sheet-drag-pill"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h3 id="policyModalTitle" style="font-family:var(--font-serif); font-size:1.4rem;">Information</h3>
+          <button class="icon-circle-btn" style="width:32px; height:32px;" onclick="closeAllModals()">
+            <svg viewBox="0 0 24 24" style="width:14px; height:14px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="policy-content-body" id="policyModalBody">
+          <!-- Populated via JS -->
+        </div>
       </div>
-      <button class="auth-submit-btn" onclick="requestOtp()">
-        Request Private Key (OTP)
-      </button>
-    </div>
 
-    <div class="auth-form-step" id="authStepOtp" style="display: none;">
-      <p style="font-size: 11px; text-align: center; color: var(--muted);">
-        Enter 4-digit verification key sent to <strong id="userPhoneDisplay">+91 98765 43210</strong>
-      </p>
-      <div class="otp-digit-boxes" id="otpContainer">
-        <input type="tel" maxlength="1" class="otp-box" inputmode="numeric">
-        <input type="tel" maxlength="1" class="otp-box" inputmode="numeric">
-        <input type="tel" maxlength="1" class="otp-box" inputmode="numeric">
-        <input type="tel" maxlength="1" class="otp-box" inputmode="numeric">
+      <!-- PRODUCT DETAIL BOTTOM SHEET -->
+      <div class="modal-sheet" id="productDetailSheet">
+        <div class="sheet-drag-pill"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h3 id="detailSheetTitle" style="font-family:var(--font-serif); font-size:1.4rem;">Product Formulation</h3>
+          <button class="icon-circle-btn" style="width:32px; height:32px;" onclick="closeAllModals()">
+            <svg viewBox="0 0 24 24" style="width:14px; height:14px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="policy-content-body" id="detailSheetBody">
+          <!-- Populated via JS -->
+        </div>
       </div>
-      <button class="auth-submit-btn" onclick="verifyOtp()">
-        Verify & Access Atelier
-      </button>
-      <button onclick="backToPhone()" style="background: none; border: none; font-size: 10px; color: var(--bronze); margin-top: 6px; cursor: pointer; text-transform: uppercase;">
-        ← Change Number
-      </button>
+
     </div>
   </div>
 
   <script>
     const collections = {
-      serum: {
-        glow: "rgba(218, 194, 160, 0.32)",
+      health: {
+        glow: "rgba(168, 200, 160, 0.35)",
         items: [
           { 
             rating: "4.9", 
             reviews: "182", 
-            name: "Nectar d'Orris", 
-            notes: "Concentrated Tuscan iris butter complex for cellular radiance", 
-            price: "$38.00", 
-            mrp: "$52.00", 
-            discount: "-26%",
-            img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=90"
-          },
-          { 
-            rating: "4.7", 
-            reviews: "115", 
-            name: "Cryo Ambre", 
-            notes: "Sub-zero botanical squalane restoring silken dermal texture", 
-            price: "$29.00", 
-            mrp: "$39.00", 
-            discount: "-25%",
-            img: "https://images.unsplash.com/photo-1608248597359-67d710d29759?auto=format&fit=crop&w=1000&q=90"
+            name: "Herb-O-Care", 
+            notes: "Immunity booster formulated with raw botanical forest extracts", 
+            price: "₹383", 
+            mrp: "₹437", 
+            discount: "-12%", 
+            img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90",
+            ingredients: "Triphala, Trikatu, Ashwagandha, and pure Himalayan Honey extract.",
+            usage: "Take 1 teaspoon twice daily with lukewarm water before meals."
           },
           { 
             rating: "4.8", 
             reviews: "94", 
             name: "Pet-O-Care", 
-            notes: "Deep multi-depth hydration and barrier support", 
-            price: "$32.00", 
-            mrp: "$44.00", 
-            discount: "-27%",
-            img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=90"
+            notes: "Natural digestive & vitality supplement with raw herbs", 
+            price: "₹449", 
+            mrp: "₹650", 
+            discount: "-30%", 
+            img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=90",
+            ingredients: "Isabgol husk, Amaltas fruit pulp, and soothing botanical fibers.",
+            usage: "Mix recommended proportion into feed or warm water as directed."
           }
         ]
       },
-      oil: {
+      body: {
         glow: "rgba(224, 175, 120, 0.32)",
         items: [
           { 
-            rating: "5.0", 
-            reviews: "210", 
-            name: "Huile Sublime", 
-            notes: "Cold-pressed virgin argan fortified with rare damask rose essence", 
-            price: "$28.00", 
-            mrp: "$38.00", 
-            discount: "-26%",
-            img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=1000&q=90"
-          },
-          { 
             rating: "4.8", 
-            reviews: "88", 
-            name: "Cyprès Noir", 
-            notes: "Resinous Mediterranean cypress steeped in aged French oak casks", 
-            price: "$34.00", 
-            mrp: "$46.00", 
-            discount: "-26%",
-            img: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=1000&q=90"
+            reviews: "115", 
+            name: "Botanical Depilatory Blend", 
+            notes: "Gentle herbal powder for body polishing and hair removal", 
+            price: "₹399", 
+            mrp: "₹599", 
+            discount: "-33%", 
+            img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1000&q=90",
+            ingredients: "Papain enzyme extract, pure Zinc Oxide, and fine Multani Mitti.",
+            usage: "Mix with rose water into a paste, apply smoothly, and rinse after 8 minutes."
           }
         ]
       },
-      cream: {
-        glow: "rgba(215, 195, 175, 0.28)",
+      face: {
+        glow: "rgba(218, 194, 160, 0.32)",
         items: [
           { 
             rating: "4.9", 
             reviews: "154", 
-            name: "Crème Souveraine", 
-            notes: "Whipped shea lipid emulsion infused with pure white peony root", 
-            price: "$36.00", 
-            mrp: "$48.00", 
-            discount: "-25%",
-            img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1000&q=90"
+            name: "Nectar d'Orris Glow Oil", 
+            notes: "Concentrated botanical iris root lipid complex for instant radiance", 
+            price: "₹749", 
+            mrp: "₹999", 
+            discount: "-25%", 
+            img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=90",
+            ingredients: "Cold-pressed Almond oil, Saffron stigma infusion, and Orris root extract.",
+            usage: "Gently massage 3 drops onto damp facial skin every evening."
+          },
+          { 
+            rating: "4.7", 
+            reviews: "88", 
+            name: "Pure Gulab Jal Face Mist", 
+            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
+            price: "₹299", 
+            mrp: "₹399", 
+            discount: "-25%", 
+            img: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1000&q=90",
+            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
+            usage: "Spritz directly onto face whenever skin needs instant hydration."
           }
         ]
       },
-      elixir: {
+      hair: {
         glow: "rgba(205, 155, 90, 0.34)",
         items: [
           { 
             rating: "5.0", 
             reviews: "320", 
-            name: "Ambre Solaire", 
-            notes: "Sensual amber accord lifted by sun-drenched bergamot and vanilla", 
-            price: "$45.00", 
-            mrp: "$60.00", 
-            discount: "-25%",
-            img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=1000&q=90"
+            name: "Root Revival Kesh Oil", 
+            notes: "Pure Bhringraj, Brahmi, and cold-pressed black sesame oil infusion", 
+            price: "₹499", 
+            mrp: "₹699", 
+            discount: "-28%", 
+            img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=1000&q=90",
+            ingredients: "Bhringraj whole plant, Brahmi leaves, Amla, and Black Sesame oil.",
+            usage: "Warm gently and massage into scalp overnight before washing."
           },
           { 
             rating: "4.9", 
-            reviews: "190", 
-            name: "Oud Impérial", 
-            notes: "Thirty-year aged wild Assamese oud wood blended with smoked tonka", 
-            price: "$58.00", 
-            mrp: "$75.00", 
-            discount: "-23%",
-            img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1000&q=90"
-          }
-        ]
-      },
-      mist: {
-        glow: "rgba(180, 200, 215, 0.3)",
-        items: [
-          { 
-            rating: "4.8", 
-            reviews: "78", 
-            name: "Brume d'Argent", 
-            notes: "Colloidal alpine essence enriched with Roman wild chamomile", 
-            price: "$22.00", 
-            mrp: "$30.00", 
-            discount: "-26%",
-            img: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1000&q=90"
+            reviews: "140", 
+            name: "Herb-O-Care Hair Pack", 
+            notes: "Micro-fine powder of Amla, Shikakai, Reetha, and Hibiscus leaves", 
+            price: "₹349", 
+            mrp: "₹499", 
+            discount: "-30%", 
+            img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1000&q=90",
+            ingredients: "Shikakai, Reetha, Amla fruit powder, and Hibiscus flower petals.",
+            usage: "Blend with curd or water, apply to scalp, leave for 30 minutes, and rinse."
           }
         ]
       }
     };
-
-    // Preload next images silently for zero network lag
-    function preloadImages() {
-      Object.values(collections).forEach(category => {
-        category.items.forEach(item => {
-          const img = new Image();
-          img.src = item.img;
-        });
-      });
-    }
-    window.addEventListener('load', preloadImages);
 
     function haptic(ms = 8) {
       if (typeof navigator.vibrate === 'function') {
@@ -1305,11 +1876,101 @@
       toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
     }
 
-    let currentCategory = 'serum';
+    /* AUDIO CONTROLLER */
+    const audioEl = document.getElementById('ambientAudio');
+    const audioBtn = document.getElementById('headerAudioBtn');
+    const audioIcon = document.getElementById('audioStateIcon');
+    const audioReminderPill = document.getElementById('audioReminderPill');
+    const progressCircle = document.getElementById('audioProgressCircle');
+    const circumference = 2 * Math.PI * 17;
+    let isAudioPlaying = false;
+
+    function dismissReminderPill() {
+      if (audioReminderPill) audioReminderPill.classList.remove('active');
+      if (audioBtn) audioBtn.classList.remove('attention');
+    }
+
+    function playAudio() {
+      return audioEl.play().then(() => {
+        isAudioPlaying = true;
+        audioBtn.classList.add('playing');
+        audioIcon.innerText = '❚❚';
+        dismissReminderPill();
+      }).catch(err => {
+        if (audioReminderPill) audioReminderPill.classList.add('active');
+        if (audioBtn) audioBtn.classList.add('attention');
+        throw err;
+      });
+    }
+
+    function pauseAudio() {
+      audioEl.pause();
+      isAudioPlaying = false;
+      audioBtn.classList.remove('playing');
+      audioIcon.innerText = '▶';
+    }
+
+    function toggleAudio() {
+      dismissReminderPill();
+      if (isAudioPlaying) pauseAudio();
+      else playAudio();
+    }
+
+    audioEl.addEventListener('timeupdate', () => {
+      if (audioEl.duration) {
+        const percent = audioEl.currentTime / audioEl.duration;
+        const offset = circumference - (percent * circumference);
+        progressCircle.style.strokeDashoffset = offset;
+      }
+    });
+
+    const CACHE_KEY = "dharatatva_welcome_accepted";
+    const welcomeModal = document.getElementById('welcomeDialogOverlay');
+
+    function preloadAllSiteAssets() {
+      Object.values(collections).forEach(category => {
+        category.items.forEach(item => {
+          const img = new Image();
+          img.src = item.img;
+        });
+      });
+    }
+
+    function acceptVedicExperience(withAudio) {
+      haptic(20);
+      localStorage.setItem(CACHE_KEY, "true");
+      welcomeModal.classList.remove('active');
+      preloadAllSiteAssets();
+      if (withAudio) playAudio();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const alreadyAccepted = localStorage.getItem(CACHE_KEY);
+      if (!alreadyAccepted) {
+        setTimeout(() => welcomeModal.classList.add('active'), 2700);
+      } else {
+        preloadAllSiteAssets();
+        setTimeout(() => {
+          playAudio().catch(() => {
+            const handleFirstUserTouch = () => {
+              playAudio().then(() => dismissReminderPill()).catch(() => {});
+            };
+            window.addEventListener('touchstart', handleFirstUserTouch, { once: true, passive: true });
+            window.addEventListener('click', handleFirstUserTouch, { once: true });
+          });
+        }, 800);
+      }
+    });
+
+    function handleViewChange() {
+      haptic(15);
+      showToast('Grid View: Coming Soon');
+    }
+
+    let currentCategory = 'health';
     let currentIndex = 0;
     let isAnimating = false;
 
-    // Cached Elements
     const prodImg = document.getElementById('productDisplay');
     const prodCanvas = document.getElementById('productCanvas');
     const prodName = document.getElementById('prodName');
@@ -1319,8 +1980,6 @@
     const prodPrice = document.getElementById('prodPrice');
     const prodMrp = document.getElementById('prodMrp');
     const prodDiscount = document.getElementById('prodDiscount');
-    const countActive = document.getElementById('countActive');
-    const countTotal = document.getElementById('countTotal');
     const dotsTrack = document.getElementById('dotsTrack');
     const detailsCard = document.getElementById('detailsCard');
     const ambientGlow = document.getElementById('ambientGlow');
@@ -1329,17 +1988,12 @@
 
     function updateNavigationState() {
       const total = collections[currentCategory].items.length;
-
-      countActive.textContent = `0${currentIndex + 1}`;
-      countTotal.textContent = `0${total}`;
-
       if (total <= 1) {
         prevBtn.classList.remove('visible');
         nextBtn.classList.remove('visible');
         dotsTrack.style.display = 'none';
         return;
       }
-
       dotsTrack.style.display = 'flex';
       dotsTrack.innerHTML = '';
       for (let i = 0; i < total; i++) {
@@ -1347,18 +2001,11 @@
         dot.className = `dot ${i === currentIndex ? 'active' : ''}`;
         dotsTrack.appendChild(dot);
       }
+      if (currentIndex > 0) prevBtn.classList.add('visible');
+      else prevBtn.classList.remove('visible');
 
-      if (currentIndex > 0) {
-        prevBtn.classList.add('visible');
-      } else {
-        prevBtn.classList.remove('visible');
-      }
-
-      if (currentIndex < total - 1) {
-        nextBtn.classList.add('visible');
-      } else {
-        nextBtn.classList.remove('visible');
-      }
+      if (currentIndex < total - 1) nextBtn.classList.add('visible');
+      else nextBtn.classList.remove('visible');
     }
 
     function renderProduct(direction = 1) {
@@ -1419,48 +2066,32 @@
     nextBtn.addEventListener('click', nextProduct);
     prevBtn.addEventListener('click', prevProduct);
 
-    function handleExploreClick(e) {
-      e.stopPropagation();
-      haptic(15);
-      const product = collections[currentCategory].items[currentIndex];
-      showToast(`Exploring ${product.name}...`);
-    }
-
-    // NATIVE SHARE (High Performance with Fallback)
     async function handleProductShare(e) {
       e.stopPropagation();
       haptic(16);
-
       const product = collections[currentCategory].items[currentIndex];
-      const pageUrl = window.location.href;
-
-      const shareText = `✨ *${product.name}*\n` +
-                        `⭐ Rating: ${product.rating} ${prodReviews.textContent}\n` +
+      const shareText = `✨ *${product.name}* — Dharatatva\n` +
+                        `⭐ Rating: ${product.rating} (${product.reviews})\n` +
                         `💰 Price: ${product.price} (MRP: ${product.mrp}, ${product.discount})\n` +
-                        `🌿 Details: ${product.notes}\n\n` +
-                        `View Collection: ${pageUrl}`;
+                        `🌿 Details: ${product.notes}`;
 
       if (navigator.share) {
         try {
-          await navigator.share({
-            title: `${product.name} — L'Atelier`,
-            text: shareText,
-            url: pageUrl
-          });
+          await navigator.share({ title: `${product.name} — Dharatatva`, text: shareText });
           showToast("Shared Successfully ✓");
         } catch (err) {
           if (err.name !== 'AbortError') {
-            await navigator.clipboard.writeText(`${shareText}\n${product.img}`);
+            await navigator.clipboard.writeText(shareText);
             showToast("Copied to Clipboard ✓");
           }
         }
       } else {
-        await navigator.clipboard.writeText(`${shareText}\n${product.img}`);
-        showToast("Product Info Copied to Clipboard ✓");
+        await navigator.clipboard.writeText(shareText);
+        showToast("Info Copied to Clipboard ✓");
       }
     }
 
-    // Touch Swipe Gesture
+    /* DRAG & SWIPE */
     let startX = 0, currentDragX = 0, isDragging = false;
     const swipeArea = document.getElementById('swipeArea');
 
@@ -1474,12 +2105,10 @@
       if (!isDragging) return;
       currentDragX = e.touches[0].clientX - startX;
       const total = collections[currentCategory].items.length;
-
       let resistance = 0.32;
       if (total <= 1 || (currentIndex === 0 && currentDragX > 0) || (currentIndex === total - 1 && currentDragX < 0)) {
         resistance = 0.08;
       }
-
       const resistanceX = currentDragX * resistance;
       gsap.set(prodCanvas, { x: resistanceX, rotation: resistanceX * 0.015 });
     }, { passive: true });
@@ -1488,7 +2117,6 @@
       if (!isDragging) return;
       isDragging = false;
       const total = collections[currentCategory].items.length;
-
       if (currentDragX < -45 && currentIndex < total - 1) {
         gsap.to(prodCanvas, { x: 0, rotation: 0, duration: 0.2 });
         nextProduct();
@@ -1504,7 +2132,7 @@
     swipeArea.addEventListener('touchend', finalizeDrag);
     swipeArea.addEventListener('touchcancel', finalizeDrag);
 
-    // CATEGORY BUTTON SWITCHING
+    /* CATEGORY SELECT */
     document.querySelectorAll('.cat-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const selectedCat = btn.dataset.cat;
@@ -1515,34 +2143,39 @@
         btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         
         currentCategory = selectedCat;
-        currentIndex = 0; // Atomic reset
+        currentIndex = 0;
         renderProduct(1);
       });
     });
 
-    // MODAL DISPATCHERS
+    /* MODAL MANAGEMENT */
     const globalBackdrop = document.getElementById('globalBackdrop');
-    const centerMenuModal = document.getElementById('centerMenuModal');
+    const editorialMenuDrawer = document.getElementById('editorialMenuDrawer');
     const userAuthSheet = document.getElementById('userAuthSheet');
+    const policyModalSheet = document.getElementById('policyModalSheet');
+    const productDetailSheet = document.getElementById('productDetailSheet');
 
     function closeAllModals() {
-      centerMenuModal.classList.remove('open');
+      if (welcomeModal.classList.contains('active')) return;
+      editorialMenuDrawer.classList.remove('open');
       userAuthSheet.classList.remove('open');
+      policyModalSheet.classList.remove('open');
+      productDetailSheet.classList.remove('open');
       globalBackdrop.classList.remove('active');
     }
 
     globalBackdrop.addEventListener('click', closeAllModals);
 
     document.getElementById('menuBtn').addEventListener('click', () => {
-      haptic(12);
+      haptic(14);
       closeAllModals();
       globalBackdrop.classList.add('active');
-      centerMenuModal.classList.add('open');
+      editorialMenuDrawer.classList.add('open');
     });
 
     document.getElementById('closeMenuBtn').addEventListener('click', closeAllModals);
 
-    document.getElementById('userBtn').addEventListener('click', () => {
+    document.getElementById('namasteTrigger').addEventListener('click', () => {
       haptic(15);
       closeAllModals();
       globalBackdrop.classList.add('active');
@@ -1550,6 +2183,65 @@
     });
 
     document.getElementById('closeUserBtn').addEventListener('click', closeAllModals);
+
+    /* POLICY & INFO MODAL */
+    const policyData = {
+      about: {
+        title: "About Dharatatva (धरातत्व)",
+        html: "<p>Dharatatva is founded on the deep reverence for earth's ancient botanical elements. Every formulation is meticulously crafted combining indigenous Ayurvedic wisdom with modern rigorous laboratory safety standards to ensure pure, unadulterated wellness.</p>"
+      },
+      shipping: {
+        title: "Shipping Policy",
+        html: "<p>We dispatch all orders within 24 to 48 hours using secure temperature-controlled courier partners. Standard delivery across India takes 3–5 business days.</p>"
+      },
+      returns: {
+        title: "Returns & Refunds",
+        html: "<p>Due to the sensitive nature of organic wellness formulations, unsealed or opened items cannot be returned. Damaged packages during transit are eligible for immediate replacement within 48 hours of delivery.</p>"
+      },
+      cancellation: {
+        title: "Cancellation Policy",
+        html: "<p>Orders can be cancelled prior to dispatch directly from your customer vault or by contacting our concierge desk on WhatsApp.</p>"
+      },
+      privacy: {
+        title: "Privacy Policy",
+        html: "<p>Your personal details, birth data, and formulation inquiries are held under strict confidentiality. We never share or monetize user data with third-party networks.</p>"
+      },
+      terms: {
+        title: "Terms and Conditions",
+        html: "<p>By entering Dharatatva's digital sanctum, you agree to abide by our governance and ethical botanical guidelines.</p>"
+      }
+    };
+
+    function openPolicyModal(key) {
+      haptic(12);
+      closeAllModals();
+      const policy = policyData[key];
+      document.getElementById('policyModalTitle').textContent = policy.title;
+      document.getElementById('policyModalBody').innerHTML = policy.html;
+      globalBackdrop.classList.add('active');
+      policyModalSheet.classList.add('open');
+    }
+
+    /* PRODUCT DETAIL BOTTOM SHEET */
+    function openProductDetailModal() {
+      haptic(14);
+      const product = collections[currentCategory].items[currentIndex];
+      document.getElementById('detailSheetTitle').textContent = product.name;
+      document.getElementById('detailSheetBody').innerHTML = `
+        <p style="margin-bottom:10px;"><strong>Botanical Notes:</strong> ${product.notes}</p>
+        <h4>Active Ingredients</h4>
+        <p>${product.ingredients}</p>
+        <h4 style="margin-top:10px;">Ritual Application / Dosage</h4>
+        <p>${product.usage}</p>
+        <div style="margin-top:20px;">
+          <a href="${product.url}" onclick="event.preventDefault(); showToast('Order placed successfully ✓'); closeAllModals();" class="welcome-action-btn-primary" style="text-decoration:none;">
+            Secure Formulation (${product.price})
+          </a>
+        </div>
+      `;
+      globalBackdrop.classList.add('active');
+      productDetailSheet.classList.add('open');
+    }
 
     function requestOtp() {
       const phone = document.getElementById('phoneInput').value.trim();
@@ -1570,33 +2262,14 @@
       document.getElementById('authStepPhone').style.display = 'flex';
     }
 
-    // ROBUST OTP INPUT & AUTO-PASTE HANDLING
     const otpBoxes = document.querySelectorAll('#otpContainer .otp-box');
     otpBoxes.forEach((box, idx) => {
       box.addEventListener('input', (e) => {
         const val = e.target.value;
-        if (val.length === 1 && idx < otpBoxes.length - 1) {
-          otpBoxes[idx + 1].focus();
-        }
+        if (val.length === 1 && idx < otpBoxes.length - 1) otpBoxes[idx + 1].focus();
       });
-
       box.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && !box.value && idx > 0) {
-          otpBoxes[idx - 1].focus();
-        }
-      });
-
-      box.addEventListener('paste', (e) => {
-        e.preventDefault();
-        const pasted = (e.clipboardData || window.clipboardData).getData('text').trim();
-        if (/^\d+$/.test(pasted)) {
-          const digits = pasted.split('');
-          otpBoxes.forEach((b, i) => {
-            if (digits[i]) b.value = digits[i];
-          });
-          const nextFocus = Math.min(digits.length, otpBoxes.length - 1);
-          otpBoxes[nextFocus].focus();
-        }
+        if (e.key === 'Backspace' && !box.value && idx > 0) otpBoxes[idx - 1].focus();
       });
     });
 
@@ -1606,7 +2279,6 @@
       setTimeout(closeAllModals, 1200);
     }
 
-    // INIT
     updateNavigationState();
   </script>
 </body>
