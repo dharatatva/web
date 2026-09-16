@@ -938,113 +938,79 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* UNIVERSAL SCRIM DRAWER */
-    .scrim-drawer-overlay {
+    /* GLOBAL BACKDROP & MODAL SHEET (CONFINED STRICTLY TO SCREEN SHELL) */
+    .global-backdrop {
       position: fixed;
-      inset: 0;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 440px;
       background: rgba(10, 15, 12, 0.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 500;
       opacity: 0;
-      visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.35s ease, visibility 0.35s ease;
-      display: flex;
-      justify-content: center;
+      transition: opacity 0.35s ease;
     }
 
-    .scrim-drawer-overlay.active {
+    .global-backdrop.active {
       opacity: 1;
-      visibility: visible;
       pointer-events: auto;
     }
 
-    .scrim-drawer-sheet {
+    .modal-sheet {
       position: fixed;
       bottom: 0;
       left: 50%;
       transform: translate(-50%, 105%);
-      width: 100vw;
-      max-width: 100%;
-      height: 92vh;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(247, 245, 240, 0.98) 100%);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border-top: var(--glass-border);
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 440px;
+      background: #ffffff;
+      border-top-left-radius: 26px;
+      border-top-right-radius: 26px;
+      padding: 14px 22px 32px;
       z-index: 510;
-      transition: transform 0.38s cubic-bezier(0.18, 0.9, 0.28, 1);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border-radius: 28px 28px 0 0;
-      pointer-events: auto;
+      box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 80vh;
+      overflow-y: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
 
-    @media (min-width: 769px) {
-      .scrim-drawer-sheet {
-        max-width: 440px;
-      }
+    .modal-sheet::-webkit-scrollbar {
+      display: none;
     }
 
-    .scrim-drawer-overlay.active .scrim-drawer-sheet {
+    .modal-sheet.open {
       transform: translate(-50%, 0%);
     }
 
-    .scrim-drawer-header {
-      padding: 34px 20px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      background: transparent;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.75);
-      flex-shrink: 0;
-    }
-
-    .scrim-handle {
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 44px;
-      height: 5px;
-      background: rgba(185, 177, 163, 0.85);
+    .sheet-drag-pill {
+      width: 42px;
+      height: 4px;
+      background: rgba(22, 21, 19, 0.15);
       border-radius: 3px;
-    }
-
-    .scrim-title {
-      font-size: 16.5px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      letter-spacing: -0.01em;
-    }
-
-    .scrim-close-btn {
-      background: rgba(255, 255, 255, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 0 auto 12px;
+      flex-shrink: 0;
       cursor: pointer;
+    }
+
+    .policy-content-body {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      padding: 6px 0 20px;
+    }
+
+    .policy-content-body h4 {
+      font-size: 14px;
       color: var(--primary-dark);
-      transition: transform 0.15s;
-    }
-
-    .scrim-close-btn:active {
-      transform: scale(0.9);
-    }
-
-    .scrim-drawer-body {
-      padding: 14px 18px 60px;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      flex: 1;
+      margin-top: 12px;
+      margin-bottom: 4px;
     }
 
     .seo-semantic-vault {
@@ -2004,7 +1970,7 @@
           <div class="slider-dot" id="dot2"></div>
         </div>
 
-        <!-- SHARE BUTTON (SET IN RED MARKED CORNER AREA) -->
+        <!-- SHARE BUTTON -->
         <button class="hero-share-corner-btn" onclick="shareProduct(); haptic(6);" title="Share Herb-O-Care">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="18" cy="5" r="3"/>
@@ -2121,7 +2087,7 @@
 
       </div>
 
-      <!-- FLOATING BOTTOM BAR (Cleaned: Share removed, Qty + Basket untouched) -->
+      <!-- FLOATING BOTTOM BAR -->
       <div class="floating-bottom-action-bar">
         <div class="float-left-dock">
           <span class="float-price-label">Total Price</span>
@@ -2151,21 +2117,25 @@
         </button>
       </div>
 
-    </div>
-  </div>
+      <!-- GLOBAL BACKDROP & MODAL SHEET (STRICTLY CONFINED TO APP VIEWPORT SHELL) -->
+      <div class="global-backdrop" id="globalBackdrop" onclick="closeDrawer()"></div>
 
-  <!-- UNIVERSAL SCRIM DRAWER -->
-  <div class="scrim-drawer-overlay" id="scrimOverlay" onclick="closeDrawer()">
-    <div class="scrim-drawer-sheet" onclick="event.stopPropagation()">
-      <div class="scrim-drawer-header">
-        <div class="scrim-handle" onclick="closeDrawer()"></div>
-        <div class="scrim-title" id="scrimDrawerTitle">Product Details</div>
-        <button class="scrim-close-btn" onclick="closeDrawer(); haptic(6);">✕</button>
+      <div class="modal-sheet" id="productDetailSheet">
+        <div class="sheet-drag-pill" onclick="closeDrawer()"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h3 id="detailSheetTitle" style="font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--primary-dark);">Product Details</h3>
+          <button class="icon-circle-btn" style="width:32px; height:32px;" onclick="closeDrawer(); haptic(6);" aria-label="Close Drawer">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <div class="policy-content-body" id="detailSheetBody">
+          <!-- Dynamically injected from SEO Vault -->
+        </div>
       </div>
 
-      <div class="scrim-drawer-body" id="scrimDrawerBody">
-        <!-- Dynamically injected from SEO Vault -->
-      </div>
     </div>
   </div>
 
@@ -2500,9 +2470,10 @@
     }
 
     function openDrawer(tabKey) {
-      const overlay = document.getElementById('scrimOverlay');
-      const titleEl = document.getElementById('scrimDrawerTitle');
-      const bodyEl = document.getElementById('scrimDrawerBody');
+      const backdrop = document.getElementById('globalBackdrop');
+      const sheet = document.getElementById('productDetailSheet');
+      const titleEl = document.getElementById('detailSheetTitle');
+      const bodyEl = document.getElementById('detailSheetBody');
 
       if (tabKey === 'details') {
         titleEl.innerText = "Ayurvedic Details & Pathway";
@@ -2518,19 +2489,23 @@
         bodyEl.innerHTML = document.getElementById('vault-reviews').innerHTML;
       }
 
-      overlay.classList.add('active');
+      backdrop.classList.add('active');
+      sheet.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
     function closeDrawer() {
-      document.getElementById('scrimOverlay').classList.remove('active');
+      const backdrop = document.getElementById('globalBackdrop');
+      const sheet = document.getElementById('productDetailSheet');
+      if (backdrop) backdrop.classList.remove('active');
+      if (sheet) sheet.classList.remove('open');
       document.body.style.overflow = '';
       resetTabsToBuyNow();
     }
 
     function toggleFaqUnit(unit) {
       const wasOpen = unit.classList.contains('open');
-      document.querySelectorAll('#scrimDrawerBody .faq-unit-card, #vault-faq .faq-unit-card').forEach(card => {
+      document.querySelectorAll('#detailSheetBody .faq-unit-card, #vault-faq .faq-unit-card').forEach(card => {
         card.classList.remove('open');
       });
       if (!wasOpen) {
@@ -2544,9 +2519,10 @@
     let selectedPayMode = 'upi';
 
     function openCheckoutDrawer(packMode) {
-      const overlay = document.getElementById('scrimOverlay');
-      const titleEl = document.getElementById('scrimDrawerTitle');
-      const bodyEl = document.getElementById('scrimDrawerBody');
+      const backdrop = document.getElementById('globalBackdrop');
+      const sheet = document.getElementById('productDetailSheet');
+      const titleEl = document.getElementById('detailSheetTitle');
+      const bodyEl = document.getElementById('detailSheetBody');
 
       titleEl.innerText = "EXPRESS AYURVEDIC CHECKOUT";
 
@@ -2707,7 +2683,8 @@
         pickCheckoutPack('detox', 1499, 2999, 'Complete Detox Pack (2 Jars)');
       }
 
-      overlay.classList.add('active');
+      backdrop.classList.add('active');
+      sheet.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
