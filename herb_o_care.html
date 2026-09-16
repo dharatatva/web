@@ -1,29 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Dharatatva — Herb-O-Care Churan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Herb-O-Care | Ayurvedic Churan for Digestion, Agni & Natural Fat Metabolism</title>
+  <meta name="description" content="Herb-O-Care Ayurvedic Churan crafted with 23+ sacred herbs to awaken Agni, clear Ama toxins, balance Kapha dosha, and activate Lekhana Karma fat metabolism." />
+  <meta name="keywords" content="Herb-O-Care, Ayurvedic Churan, Agni awakening, Lekhana Karma, Kapha balance, herbal fat burner, Dharatatva" />
+  <link rel="canonical" href="https://dharatatva.com/herb-o-care" />
+
+  <!-- Google Rich Snippet JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "Herb-O-Care Ayurvedic Churan",
+    "image": ["img/15.png", "img/16.png"],
+    "description": "Authentic Ayurvedic Churna with 23+ botanicals designed to awaken digestive Agni, clear Ama, and support healthy fat metabolism.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Dharatatva"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://dharatatva.com/herb-o-care",
+      "priceCurrency": "INR",
+      "price": "949",
+      "priceValidUntil": "2027-12-31",
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.94",
+      "reviewCount": "42",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #eeebe3;
+      --bg-cream: #F7F5F0;
+      --bg: #eceae3;
+      --bg-card: #FFFFFF;
       --surface: #ffffff;
-      --text: #171614;
-      --muted: #7b7871;
-      --bronze: #8e7146;
-      --herbal-green: #1a5632;
-      --hairline: rgba(23, 22, 20, 0.08);
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --primary-dark: #121815;
+      --accent-green: #1B5E3B;
+      --accent-gold: #C29B38;
+      --accent-rust: #B8532F;
+      --text-main: #1D2320;
+      --text-muted: #666E69;
+      --border-subtle: #E8E3D7;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+      --shadow-float: 0 14px 34px rgba(0, 0, 0, 0.16);
+
+      --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.52) 100%);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.92);
+      --glass-blur: blur(28px) saturate(180%);
+      --glass-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.95), 0 12px 32px rgba(0, 0, 0, 0.06);
     }
 
     *, *::before, *::after {
@@ -31,1664 +73,2771 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
-      user-select: none;
     }
 
-    html, body {
-      width: 100%;
-      height: 100%;
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
-      overflow: hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    .paper-grain {
-      position: fixed;
-      inset: 0;
-      opacity: 0.035;
-      pointer-events: none;
-      z-index: 999;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-
-    .showcase-frame {
-      width: 100%;
-      height: 100vh;
-      height: 100dvh;
-      position: relative;
-      background: var(--bg);
-      margin: 0 auto;
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.5;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
       display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      justify-content: center;
+      min-height: 100vh;
     }
 
-    @media (min-width: 600px) {
-      body { background-color: #dfdcd3; }
-      .showcase-frame {
-        max-width: 430px;
-        box-shadow: 0 0 70px rgba(0, 0, 0, 0.12);
-        border-left: 1px solid var(--hairline);
-        border-right: 1px solid var(--hairline);
+    .app-viewport-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      background-color: var(--bg);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .app-viewport-shell {
+      width: 100vw;
+      max-width: 440px;
+      background-color: var(--bg-cream);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 481px) {
+      .app-viewport-wrapper {
+        background-color: #dfdcd3;
+      }
+      .app-viewport-shell {
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
       }
     }
 
-    /* HEADER */
-    header {
-      width: 100%;
-      padding: 12px 20px 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 60;
-      flex-shrink: 0;
-      background: rgba(238, 235, 227, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(23, 22, 20, 0.05);
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .header-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      padding: 4px;
-      position: relative;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .header-btn:active {
-      transform: scale(0.92);
-      opacity: 0.75;
-    }
-
-    .menu-icon-bars {
-      width: 18px;
-      height: 11px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .menu-icon-bars span {
-      display: block;
-      width: 100%;
-      height: 1.5px;
-      background: var(--text);
-      border-radius: 1px;
-    }
-
-    .menu-icon-bars span:last-child { width: 60%; }
-
-    .brand-mark {
-      font-size: 11px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
+    h1, h2, h3, .serif-font {
+      font-family: 'Playfair Display', serif;
       font-weight: 600;
-      color: var(--text);
+      letter-spacing: -0.01em;
     }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .header-right svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--text);
-      stroke-width: 1.65;
-      fill: none;
-    }
-
-    .cart-indicator {
-      position: absolute;
-      top: 1px;
-      right: 1px;
-      width: 6px;
-      height: 6px;
-      background: var(--bronze);
-      border-radius: 50%;
-      box-shadow: 0 0 0 2px var(--bg);
-    }
-
-    /* STAGE */
-    .stage-canvas {
-      flex: 1;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      touch-action: none;
-    }
-
-    /* FLOATING BOTTLE ANCHOR */
-    .product-visual-anchor {
-      position: absolute;
-      top: 36%;
+    /* TOP NAVIGATION */
+    .top-floating-bar {
+      position: fixed;
+      top: 14px;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 280px;
-      height: 340px;
-      z-index: 20;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 408px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      transition: filter 0.3s ease;
-      will-change: transform, opacity, top, left;
-    }
-
-    .product-bottle-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 18px 25px rgba(26, 40, 20, 0.22));
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-      backface-visibility: hidden;
-      transform: translateZ(0);
-    }
-
-    /* STEP VIEWS */
-    .step-view {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      padding: 16px 20px 88px;
-      display: flex;
-      flex-direction: column;
       justify-content: space-between;
-      opacity: 0;
+      z-index: 100;
       pointer-events: none;
-      transform: translateY(20px);
-      z-index: 15;
     }
 
-    .step-view.active-step {
-      opacity: 1;
+    .header-left-actions, .header-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       pointer-events: auto;
-      transform: translateY(0);
     }
 
-    /* STEP 0: HERO */
-    .hero-view {
-      justify-content: flex-end;
-      align-items: center;
-      text-align: center;
-      padding-bottom: 96px;
-    }
-
-    .hero-title-wrap {
-      margin-top: auto;
+    .brand-logo-wrap {
       display: flex;
-      flex-direction: column;
       align-items: center;
-    }
-
-    .hero-main-title {
-      font-family: var(--font-serif);
-      font-size: 42px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      line-height: 0.95;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
-    .hero-sub-italic {
-      font-family: var(--font-serif);
-      font-size: 34px;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.1;
-      margin-top: 2px;
-    }
-
-    .hero-subtitle-caps {
-      font-size: 8.5px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--bronze);
-      font-weight: 600;
-      margin-top: 8px;
-    }
-
-    .scroll-guide {
-      margin-top: 22px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .scroll-label {
-      font-size: 7.5px;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 20px;
-      background: linear-gradient(to bottom, rgba(23, 22, 20, 0.4), transparent);
-      animation: pulseLine 1.8s ease-in-out infinite;
-    }
-
-    @keyframes pulseLine {
-      0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
-      50% { opacity: 1; transform: scaleY(1.2); }
-    }
-
-    /* TYPO & BADGES */
-    .step-pill-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: rgba(26, 86, 50, 0.08);
-      color: var(--herbal-green);
-      font-size: 8px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
       font-weight: 700;
-      width: fit-content;
-      margin-bottom: 6px;
+      color: var(--text-main);
+      letter-spacing: 0.05em;
     }
 
-    .step-header-title {
-      font-family: var(--font-serif);
-      font-size: 26px;
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--text);
+    .brand-logo-img {
+      height: 27px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      display: block;
     }
 
-    .step-header-desc {
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.4;
-      margin-top: 3px;
-    }
-
-    /* STEP 1: HERBS GRID */
-    .herbs-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .herb-chip {
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 14px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    }
-
-    .herb-chip .name {
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .herb-chip .action {
-      font-size: 9px;
-      color: var(--bronze);
-      font-weight: 500;
-    }
-
-    .herb-chip .botanical {
-      font-size: 8px;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .dosha-row {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .dosha-pill {
-      flex: 1;
-      text-align: center;
-      padding: 7px 4px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid var(--hairline);
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .dosha-pill .dosha-name {
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .dosha-pill .dosha-state {
-      font-size: 8.5px;
-      color: var(--herbal-green);
-      font-weight: 600;
-    }
-
-    /* STEP 2: BENEFITS */
-    .pointers-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .benefit-item {
-      background: rgba(255, 255, 255, 0.76);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 14px;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
-    }
-
-    .benefit-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: rgba(142, 113, 70, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--bronze);
-    }
-
-    .benefit-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .benefit-text-wrap { flex: 1; }
-    .benefit-title { font-size: 11px; font-weight: 700; color: var(--text); }
-    .benefit-desc { font-size: 9.5px; color: var(--muted); line-height: 1.35; }
-
-    /* STEP 3: RITUAL + INGREDIENTS */
-    .step3-stack-container {
-      width: 100%;
-      margin-top: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      z-index: 25;
-    }
-
-    .ritual-card {
-      background: linear-gradient(135deg, #2a251e 0%, #151412 100%);
-      border-radius: 16px;
-      padding: 10px 13px 8px;
-      color: #ffffff;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .ritual-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      padding-bottom: 4px;
-      margin-bottom: 6px;
-    }
-
-    .ritual-top span {
-      font-size: 7.5px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #dfba86;
-      font-weight: 600;
-    }
-
-    .ritual-steps-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5px 10px;
-    }
-
-    .ritual-step-cell {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .ritual-num {
-      font-family: var(--font-serif);
-      font-size: 12.5px;
-      color: #dfba86;
-      line-height: 1;
-    }
-
-    .ritual-title {
-      font-size: 9px;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .ritual-sub {
-      font-size: 7.5px;
-      color: rgba(255, 255, 255, 0.62);
-      line-height: 1.25;
-    }
-
-    .herbarium-card {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 16px;
-      padding: 8px 12px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    .icon-circle-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       border: 1px solid rgba(255, 255, 255, 0.95);
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .herbarium-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      margin-bottom: 6px;
-    }
-
-    .herbarium-tag {
-      font-size: 7.5px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--bronze);
-      font-weight: 700;
-    }
-
-    .herbarium-title-compact {
-      font-family: var(--font-serif);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .herbarium-scroll-tray {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      overflow-x: auto;
-      padding: 1px 1px 3px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .herbarium-scroll-tray::-webkit-scrollbar {
-      display: none;
-    }
-
-    .ingredient-slot {
-      flex: 0 0 38px;
-      height: 38px;
-      background: #fbfaf8;
-      border-radius: 10px;
-      display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.9);
-      position: relative;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
       cursor: pointer;
-      transition: transform 0.2s ease;
-      overflow: hidden;
+      color: var(--primary-dark);
+      transition: transform 0.15s;
     }
 
-    .ingredient-slot:active {
+    .icon-circle-btn:active {
       transform: scale(0.92);
     }
 
-    .ingredient-avatar {
-      width: 28px;
-      height: 28px;
+    .lang-pill-btn {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 20px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      cursor: pointer;
+    }
+
+    .lang-pill-btn span {
+      padding: 2px 7px;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+
+    .lang-pill-btn span.active {
+      background: var(--primary-dark);
+      color: #FFFFFF;
+    }
+
+    /* AUDIO CONTROLLER */
+    .audio-wrapper-group {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .audio-reminder-pill {
+      position: absolute;
+      right: 44px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--accent-green);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      white-space: nowrap;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.85) translateX(6px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 10;
+    }
+
+    .audio-reminder-pill.active {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+      pointer-events: auto;
+      animation: gentlePillPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes gentlePillPulse {
+      0%, 100% { box-shadow: 0 6px 18px rgba(27, 94, 59, 0.15); transform: translateY(0); }
+      50% { box-shadow: 0 8px 24px rgba(27, 94, 59, 0.28); transform: translateY(-2px); }
+    }
+
+    .header-audio-btn {
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      background: #ffffff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      color: var(--primary-dark);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      transition: box-shadow 0.25s, transform 0.15s;
     }
 
-    .ingredient-avatar svg,
-    .ingredient-avatar img {
+    .header-audio-btn.attention {
+      box-shadow: 0 0 0 3px rgba(27, 94, 59, 0.3), 0 4px 14px rgba(0,0,0,0.08);
+      animation: btnGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes btnGlow {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(27, 94, 59, 0.25), 0 4px 14px rgba(0,0,0,0.08); }
+      50% { box-shadow: 0 0 0 5px rgba(27, 94, 59, 0.45), 0 6px 18px rgba(27, 94, 59, 0.2); }
+    }
+
+    .audio-progress-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      transform: rotate(-90deg);
+      pointer-events: none;
     }
 
-    /* ====================================================================
-       STEP 4: FULL-PAGE BUY NOW (PROMINENT LARGE PRODUCT DISPLAY)
-       ==================================================================== */
-    .checkout-view {
-      padding: 6px 16px 14px !important;
+    .audio-progress-bg {
+      fill: none;
+      stroke: #EAE5D8;
+      stroke-width: 2.2;
+    }
+
+    .audio-progress-bar {
+      fill: none;
+      stroke: var(--accent-green);
+      stroke-width: 2.2;
+      stroke-dasharray: 106.8;
+      stroke-dashoffset: 106.8;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.1s linear;
+    }
+
+    .audio-state-icon {
+      font-size: 12px;
+      margin-left: 1.5px;
+    }
+
+    .header-audio-btn.playing .audio-state-icon {
+      margin-left: 0;
+    }
+
+    /* PRODUCT HERO STAGE */
+    .product-fixed-viewport {
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      max-width: 440px;
+      height: 52vh;
+      min-height: 370px;
+      background: radial-gradient(circle at 60% 40%, #FFFFFF 0%, #EDE8DC 85%);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-slider-track {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .hero-slide-item {
+      width: 33.333%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    .hero-slide-item img {
+      max-height: 85%;
+      max-width: 230px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.16));
+    }
+
+    .floating-features-overlay {
+      position: absolute;
+      top: 75px;
+      left: 16px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 4px;
-      overflow: hidden;
+      gap: 14px;
+      z-index: 25;
+      pointer-events: none;
     }
 
-    .dispatch-header {
-      text-align: center;
+    .badge-icon-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      flex-shrink: 0;
-      margin-top: 2px;
+      text-align: center;
+      width: 52px;
     }
 
-    .dispatch-eyebrow {
-      font-size: 8px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--bronze);
+    .badge-icon-item .badge-symbol {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .badge-icon-item span {
+      font-size: 8.5px;
       font-weight: 700;
+      color: #3B443F;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .bottom-slider-indicator-capsule {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      z-index: 28;
+    }
+
+    .slider-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.25);
+      transition: all 0.25s;
+    }
+
+    .slider-dot.active {
+      width: 18px;
+      border-radius: 8px;
+      background: var(--primary-dark);
+    }
+
+    /* SCROLLING CONTENT LAYER */
+    .scrolling-content-layer {
+      position: relative;
+      z-index: 10;
+      margin-top: 48vh;
+      background: linear-gradient(180deg, 
+        rgba(247, 245, 240, 0) 0%, 
+        rgba(247, 245, 240, 0.5) 28px, 
+        rgba(247, 245, 240, 0.94) 60px, 
+        #F7F5F0 90px, 
+        #F7F5F0 100%
+      );
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding-top: 36px;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .product-details-container {
+      padding: 0 20px 10px;
+    }
+
+    .product-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .product-title-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .product-heading-title {
+      font-size: 26px;
+      color: var(--primary-dark);
+      line-height: 1.18;
+      margin-bottom: 4px;
+    }
+
+    .product-subtitle-tag {
+      font-size: 13.5px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--accent-gold);
+    }
+
+    .rating-box-right {
+      flex-shrink: 0;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 16px;
+      padding: 7px 12px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--glass-shadow);
+      transition: transform 0.15s;
+    }
+
+    .rating-box-right:active {
+      transform: scale(0.95);
+    }
+
+    .rating-score-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      line-height: 1.1;
+    }
+
+    .rating-score-row .score {
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--primary-dark);
+    }
+
+    .rating-score-row .star {
+      color: #DDA221;
+      font-size: 13px;
+    }
+
+    .rating-reviews-sub {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .property-spec-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 18px;
+      padding: 12px 6px;
+      margin: 14px 0 14px;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 2px;
+    }
+
+    .spec-item:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    .spec-icon-wrap {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-dark);
+      margin-bottom: 5px;
+    }
+
+    .spec-item span {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .product-bestseller-badge {
+      display: inline-block;
+      background: rgba(224, 239, 230, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      color: var(--accent-green);
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .product-summary-text {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .product-summary-text span {
+      color: var(--accent-green);
+      font-weight: 700;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* STICKY TABS */
+    .tabs-sticky-bar {
+      position: sticky;
+      top: 58px;
+      background: rgba(247, 245, 240, 0.82);
+      z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+      display: flex;
+      overflow-x: auto;
+      padding: 0 16px;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+    }
+
+    .tabs-sticky-bar::-webkit-scrollbar { display: none; }
+
+    .tab-btn-item {
+      flex: 1;
+      min-width: 72px;
+      text-align: center;
+      padding: 13px 4px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .tab-btn-item.active {
+      color: var(--primary-dark);
+      font-weight: 800;
+    }
+
+    .tab-btn-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 12%;
+      right: 12%;
+      height: 3px;
+      background: var(--primary-dark);
+      border-radius: 3px;
+    }
+
+    .tab-content-area {
+      padding: 18px 18px 140px;
+    }
+
+    .buynow-card-container {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 26px;
+      padding: 20px 18px;
+      box-shadow: var(--glass-shadow);
+      border: var(--glass-border);
+    }
+
+    .buynow-eyebrow {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #7D8480;
+      margin-bottom: 12px;
+    }
+
+    .sacred-volume-pill {
+      background: #111714;
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .sacred-volume-pill .vol-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .vol-row-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vol-row-title strong {
+      font-size: 13.5px;
+    }
+
+    .save-tag-gold {
+      background: #C29B38;
+      color: #000;
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .vol-sub {
+      font-size: 10.5px;
+      color: #A6B2AC;
+    }
+
+    .vol-price-col {
+      text-align: right;
+    }
+
+    .vol-price-col .current {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .vol-price-col .cut {
+      font-size: 11px;
+      color: #7A847F;
+      text-decoration: line-through;
+    }
+
+    .buynow-usps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      text-align: center;
+      padding-bottom: 16px;
+    }
+
+    .usp-col {
+      padding: 0 4px;
+    }
+
+    .usp-col:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    .usp-col strong {
+      font-size: 11px;
+      color: var(--primary-dark);
+      display: block;
       margin-bottom: 2px;
     }
 
-    .dispatch-title {
-      font-family: var(--font-serif);
-      font-size: 24px;
+    .usp-col span {
+      font-size: 9.5px;
+      color: #7C837F;
+    }
+
+    .vedic-guarantee-note {
+      text-align: center;
+      font-size: 9.5px;
+      color: #7F8682;
+      margin-top: 14px;
+    }
+
+    /* FLOATING BOTTOM BAR */
+    .floating-bottom-action-bar {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 408px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.65) 100%);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 36px;
+      padding: 8px 10px 8px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.95), 0 16px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: var(--glass-border);
+      z-index: 100;
+    }
+
+    .float-left-dock {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 76px;
+    }
+
+    .float-price-label {
+      font-size: 10px;
+      color: var(--text-muted);
       font-weight: 600;
       line-height: 1.1;
-      color: var(--text);
+      margin-bottom: 2px;
+      letter-spacing: 0.01em;
     }
 
-    .dispatch-desc {
-      font-size: 9px;
-      color: var(--muted);
-      line-height: 1.35;
-      max-width: 300px;
-      margin-top: 3px;
-    }
-
-    /* ENLARGED FULL CONTAINER FOR BUY NOW PRODUCT */
-    .checkout-visual-container {
-      flex: 1;
-      width: 100%;
-      min-height: 210px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 4px 0 8px;
-    }
-
-    .checkout-product-img-wrap {
-      width: 100%;
-      height: 100%;
-      max-width: 300px;
-      border-radius: 20px;
-      background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(238, 235, 227, 0.25) 75%);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.04);
-      border: 1px solid rgba(255,255,255,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 4px;
-    }
-
-    .checkout-product-img {
-      width: 100%;
-      height: 100%;
-      max-height: 230px;
-      object-fit: contain;
-      transform: scale(1.22);
-      filter: drop-shadow(0 16px 22px rgba(26, 40, 20, 0.20));
-      transition: transform 0.3s ease;
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    .checkout-dose-badge {
-      position: absolute;
-      bottom: -10px;
-      background: #171614;
-      color: #ffffff;
-      font-size: 7.5px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      padding: 4px 14px;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-      z-index: 5;
-    }
-
-    /* BOTTOM DETAILS CARD */
-    .checkout-card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 11px 14px 9px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .card-label {
-      font-size: 7.5px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--muted);
-    }
-
-    .volume-selector-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .volume-box {
-      border: 1.5px solid rgba(23, 22, 20, 0.08);
-      background: #f8f7f4;
-      border-radius: 12px;
-      padding: 8px 10px;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .volume-box.selected {
-      background: #171614;
-      border-color: #171614;
-      color: #ffffff;
-      box-shadow: 0 6px 18px rgba(23, 22, 20, 0.16);
-    }
-
-    .volume-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .vol-name {
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .volume-box.selected .vol-name {
-      color: #ffffff;
-    }
-
-    .vol-badge {
-      font-size: 7px;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      padding: 2px 5px;
-      border-radius: 4px;
-      background: #e8a74e;
-      color: #171614;
-      text-transform: uppercase;
-    }
-
-    .volume-box:not(.selected) .vol-badge {
-      background: rgba(23, 22, 20, 0.08);
-      color: var(--muted);
-    }
-
-    .vol-cycle {
-      font-size: 8.5px;
-      color: var(--muted);
-      margin-top: 1px;
-    }
-
-    .volume-box.selected .vol-cycle {
-      color: rgba(255, 255, 255, 0.65);
-    }
-
-    .vol-price-wrap {
+    .float-price-row {
       display: flex;
       align-items: baseline;
-      gap: 4px;
-      margin-top: 2px;
+      gap: 5px;
+      line-height: 1.1;
     }
 
-    .vol-price {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--text);
+    .float-price-curr {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.02em;
     }
 
-    .volume-box.selected .vol-price {
-      color: #ffffff;
-    }
-
-    .vol-original-price {
-      font-size: 8.5px;
+    .float-price-cut {
+      font-size: 10.5px;
+      color: #9AA09C;
       text-decoration: line-through;
-      color: var(--muted);
+      font-weight: 500;
     }
 
-    .volume-box.selected .vol-original-price {
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .perks-row {
+    .float-qty-capsule {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 6px 0;
-      border-top: 1px solid var(--hairline);
-      border-bottom: 1px solid var(--hairline);
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 4px 8px;
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.95);
+    }
+
+    .float-qty-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--primary-dark);
+      width: 18px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .float-qty-btn:active {
+      transform: scale(0.9);
+    }
+
+    .float-qty-val {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      min-width: 16px;
       text-align: center;
     }
 
-    .perk-item {
-      flex: 1;
+    .float-basket-pill-btn {
+      background: #000000;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 40px;
+      padding: 4px 5px 4px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.45), 0 4px 10px rgba(0, 0, 0, 0.22);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .float-basket-pill-btn:active {
+      transform: translateY(2px) scale(0.97);
+    }
+
+    .float-basket-pill-btn span.btn-txt {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .float-basket-icon-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* UNIVERSAL SCRIM DRAWER */
+    .scrim-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 12, 0.45);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+      display: flex;
+      justify-content: center;
+    }
+
+    .scrim-drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .scrim-drawer-sheet {
+      position: fixed;
+      bottom: 0;
+      width: 100vw;
+      max-width: 440px;
+      height: 92vh;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(247, 245, 240, 0.95) 100%);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-top: var(--glass-border);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+      z-index: 210;
+      transform: translateY(100%);
+      transition: transform 0.38s cubic-bezier(0.18, 0.9, 0.28, 1);
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      overflow: hidden;
+      border-radius: 28px 28px 0 0;
     }
 
-    .perk-item:not(:last-child) {
-      border-right: 1px solid var(--hairline);
+    .scrim-drawer-overlay.active .scrim-drawer-sheet {
+      transform: translateY(0);
     }
 
-    .perk-title {
-      font-size: 8.5px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .perk-sub {
-      font-size: 7.5px;
-      color: var(--muted);
-    }
-
-    /* Qty & Dispatch Button */
-    .action-checkout-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .qty-counter {
+    .scrim-drawer-header {
+      padding: 34px 20px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #f1efe8;
-      border-radius: 24px;
-      padding: 4px 6px;
-      width: 76px;
-      height: 38px;
+      position: relative;
+      background: transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.75);
       flex-shrink: 0;
     }
 
-    .qty-btn {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      border: none;
-      background: none;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-    }
-
-    .qty-btn:active {
-      background: rgba(0, 0, 0, 0.08);
-    }
-
-    .qty-num {
-      font-size: 11.5px;
-      font-weight: 700;
-    }
-
-    .dispatch-submit-btn {
-      flex: 1;
-      height: 38px;
-      background: #171614;
-      color: #ffffff;
-      border: none;
-      border-radius: 24px;
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(23, 22, 20, 0.22);
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .dispatch-submit-btn:active {
-      transform: scale(0.96);
-      background: var(--bronze);
-    }
-
-    .guarantee-note {
-      text-align: center;
-      font-size: 7.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-    }
-
-    .guarantee-note svg {
-      width: 10px;
-      height: 10px;
-      fill: var(--herbal-green);
-    }
-
-    /* FLOATING BOTTOM DOCK */
-    .dock-wrapper {
+    .scrim-handle {
       position: absolute;
-      bottom: 20px;
-      left: 0;
-      right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 0 20px;
-      z-index: 70;
-      pointer-events: none;
-    }
-
-    .pill-action-capsule {
-      background: #ffffff;
-      border-radius: 40px;
-      padding: 5px 6px 5px 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      pointer-events: auto;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .pill-action-capsule.hidden-capsule {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(18px) scale(0.9);
-    }
-
-    .dock-icon-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      padding: 4px;
-      transition: transform 0.2s ease;
-    }
-
-    .dock-icon-btn:active {
-      transform: scale(0.88);
-    }
-
-    .dock-icon-btn svg {
-      width: 17px;
-      height: 17px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .dock-divider {
-      width: 1px;
-      height: 16px;
-      background: rgba(23, 22, 20, 0.12);
-    }
-
-    .buy-now-btn {
-      background: #171614;
-      color: #ffffff;
-      border: none;
-      border-radius: 30px;
-      padding: 9px 16px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(23, 22, 20, 0.2);
-      transition: all 0.2s ease;
-    }
-
-    .buy-now-btn:active {
-      transform: scale(0.94);
-      background: var(--bronze);
-    }
-
-    .buy-now-btn svg {
-      width: 13px;
-      height: 13px;
-      stroke: #ffffff;
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .dock-circle-play {
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
       width: 44px;
-      height: 44px;
+      height: 5px;
+      background: rgba(185, 177, 163, 0.85);
+      border-radius: 3px;
+    }
+
+    .scrim-title {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.01em;
+    }
+
+    .scrim-close-btn {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      font-size: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.05);
       cursor: pointer;
-      pointer-events: auto;
-      color: var(--text);
-      transition: transform 0.2s ease, background 0.2s ease;
+      color: var(--primary-dark);
+      transition: transform 0.15s;
     }
 
-    .dock-circle-play:active {
+    .scrim-close-btn:active {
       transform: scale(0.9);
-      background: var(--bg);
     }
 
-    .dock-circle-play svg {
-      width: 15px;
-      height: 15px;
-      fill: currentColor;
-      margin-left: 2px;
+    .scrim-drawer-body {
+      padding: 14px 18px 60px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      flex: 1;
     }
 
-    /* RIGHT DOTS */
-    .step-dots {
+    .seo-semantic-vault {
+      display: none;
+    }
+
+    .drawer-card-box {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 20px;
+      padding: 18px 16px;
+      border: var(--glass-border);
+      margin-bottom: 14px;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .drawer-eyebrow-tag {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-rust);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .drawer-card-title {
+      font-size: 19px;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .signals-swipe-deck {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin: 10px -16px 0;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .signals-swipe-deck::-webkit-scrollbar { display: none; }
+
+    .signal-chip {
+      flex: 0 0 135px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    }
+
+    .signal-chip strong {
+      font-size: 11.5px;
+      display: block;
+      color: var(--primary-dark);
+      margin: 4px 0 2px;
+    }
+
+    .signal-chip span {
+      font-size: 9.5px;
+      color: var(--text-muted);
+    }
+
+    .principles-deck-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .principle-sub-box {
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 12px 10px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    }
+
+    .principle-sub-box h4 {
+      font-size: 12.5px;
+      color: var(--primary-dark);
+      margin-bottom: 3px;
+    }
+
+    .principle-sub-box p {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .timeline-vertical-path {
+      position: relative;
+      padding-left: 22px;
+      margin-top: 14px;
+    }
+
+    .timeline-vertical-path::before {
+      content: '';
       position: absolute;
+      top: 6px; bottom: 6px; left: 6px;
+      width: 2px; background: rgba(223, 215, 199, 0.6);
+    }
+
+    .timeline-step-node {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .timeline-step-node::before {
+      content: '';
+      position: absolute;
+      left: -22px; top: 4px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 3px solid var(--accent-green);
+    }
+
+    .timeline-step-node.rust-highlight::before {
+      border-color: var(--accent-rust);
+    }
+
+    .timeline-step-node strong {
+      font-size: 13px;
+      display: block;
+      color: var(--primary-dark);
+    }
+
+    .timeline-step-node p {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .dosha-row-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .dosha-pill-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      padding: 8px 4px;
+      text-align: center;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    }
+
+    .dosha-pill-card strong {
+      font-size: 11px;
+      color: var(--primary-dark);
+      display: block;
+    }
+
+    .dosha-pill-card span {
+      font-size: 9.5px;
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    /* CHECKOUT STYLES */
+    .urgency-badge-box {
+      background: rgba(253, 243, 231, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(246, 214, 176, 0.95);
+      color: #9C5712;
+      font-size: 11px;
+      padding: 9px 12px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    .chk-step-pill {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--accent-rust);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chk-step-heading {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .pack-select-item {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 16px;
+      padding: 13px 12px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .pack-select-item.selected {
+      border-color: var(--accent-green);
+      background: rgba(248, 252, 249, 0.9);
+    }
+
+    .pack-badge-tag {
+      position: absolute;
+      top: -9px;
       right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
+      background: #D9822B;
+      color: #FFFFFF;
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .pack-select-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chk-radio-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #C4BDAD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .pack-select-item.selected .chk-radio-circle {
+      border-color: var(--accent-green);
+    }
+
+    .pack-select-item.selected .chk-radio-circle::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+    }
+
+    .pack-title-text {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--primary-dark);
+    }
+
+    .pack-sub-text {
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+
+    .pack-price-block {
+      text-align: right;
+    }
+
+    .pack-price-block .now {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .pack-price-block .mrp {
+      font-size: 11px;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .form-field-group {
+      margin-bottom: 12px;
+    }
+
+    .form-field-label {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5F6461;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .form-field-input {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 0 14px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--primary-dark);
+      outline: none;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .form-grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .payment-option-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      cursor: pointer;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .payment-option-card.selected {
+      border-color: var(--accent-green);
+      background: rgba(248, 252, 249, 0.9);
+    }
+
+    .payment-option-card.selected .chk-radio-circle {
+      border-color: var(--accent-green);
+    }
+
+    .payment-option-card.selected .chk-radio-circle::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+    }
+
+    .discount-extra-badge {
+      background: #E0F2E9;
+      color: var(--accent-green);
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .checkout-bill-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 16px;
+      padding: 14px;
+      border: var(--glass-border);
+      margin: 18px 0;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .bill-item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .bill-item-row.green {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .bill-total-row {
+      border-top: 1px dashed rgba(224, 217, 200, 0.8);
+      padding-top: 8px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    /* REVIEWS VAULT */
+    .rev-drawer-top-gallery-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7A807C;
+      margin-bottom: 8px;
+    }
+
+    .rev-drawer-photos-carousel {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+
+    .rev-drawer-photos-carousel::-webkit-scrollbar { display: none; }
+
+    .rev-drawer-photo-thumb {
+      flex: 0 0 76px;
+      height: 82px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      z-index: 50;
-    }
-
-    .step-dot {
-      width: 3px;
-      height: 3px;
-      background: rgba(23, 22, 20, 0.2);
-      border-radius: 3px;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      transition: all 0.3s ease;
+      box-shadow: var(--glass-shadow);
     }
 
-    .step-dot.active {
-      height: 18px;
-      background: var(--bronze);
+    .rev-thumb-graphic-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(244, 239, 230, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 4px;
     }
+
+    .rev-drawer-photo-thumb span {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #555D58;
+    }
+
+    .community-review-post-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .comm-rev-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .comm-rev-author {
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--primary-dark);
+    }
+
+    .comm-rev-time {
+      font-size: 10px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .comm-rev-body {
+      font-size: 12px;
+      color: #444;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .comm-rev-attached-thumbs {
+      display: flex;
+      gap: 6px;
+    }
+
+    .comm-rev-thumb-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(244, 239, 230, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* INGREDIENTS BURST HERO */
+    .ingredients-full-burst-container {
+      background: #0A0F0D;
+      color: #FFFFFF;
+      border-radius: 26px;
+      overflow: hidden;
+      padding-bottom: 24px;
+      margin-bottom: 20px;
+    }
+
+    .burst-hero-banner {
+      width: 100%;
+      height: 340px;
+      overflow: hidden;
+      position: relative;
+      background: #151C18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .burst-hero-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .burst-content-details {
+      padding: 0 18px;
+      margin-top: -30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .burst-eyebrow {
+      color: #79D19E;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .burst-title {
+      font-size: 24px;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .burst-desc {
+      font-size: 12px;
+      color: #A7B3AD;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .ingredients-tiles-slider {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .ingredients-tiles-slider::-webkit-scrollbar { display: none; }
+
+    .ingredient-tile-box {
+      flex: 0 0 68px;
+      height: 68px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .ingredient-tile-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* FAQ ACCORDION */
+    .faq-unit-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 14px;
+      margin-bottom: 8px;
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .faq-unit-head {
+      padding: 14px;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: var(--primary-dark);
+    }
+
+    .faq-unit-body {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      transition: max-height 0.3s ease, padding 0.25s ease;
+    }
+
+    .faq-unit-card.open .faq-unit-body {
+      max-height: 380px;
+      padding-bottom: 14px;
+    }
+
+    .faq-toggle-icon {
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+
+    .faq-unit-card.open .faq-toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    /* LIGHTBOX MODAL */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-top {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      color: #FFF;
+    }
+
+    .lightbox-content-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox-card-inner {
+      width: 90%;
+      max-width: 320px;
+      height: 340px;
+      background: #18221D;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ORDER SUCCESS MODAL */
+    .order-success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 12, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .order-success-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .order-success-card {
+      width: 100%;
+      max-width: 360px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      padding: 32px 22px 26px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .order-success-overlay.active .order-success-card {
+      transform: scale(1);
+    }
+
+    /* VEDIC WELCOME DIALOG */
+    .welcome-dialog-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 12, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .welcome-dialog-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .welcome-dialog-card {
+      width: 100%;
+      max-width: 360px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.85));
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 24px;
+      padding: 28px 22px 24px;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .welcome-dialog-overlay.active .welcome-dialog-card {
+      transform: scale(1);
+    }
+
+    .welcome-om-badge {
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .welcome-title {
+      font-size: 20px;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .welcome-sub {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .welcome-action-btn-primary {
+      width: 100%;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--primary-dark);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+      margin-bottom: 10px;
+      transition: transform 0.15s;
+    }
+
+    .welcome-action-btn-primary:active { transform: scale(0.98); }
+
+    .welcome-action-btn-secondary {
+      width: 100%;
+      height: 40px;
+      border-radius: 14px;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .welcome-action-btn-secondary:active { background: rgba(255, 255, 255, 0.4); }
   </style>
 </head>
 <body>
 
-  <div class="paper-grain"></div>
+  <!-- AMBIENT AUDIO -->
+  <audio id="ambientAudio" loop preload="auto">
+    <source src="https://actions.google.com/sounds/v1/ambiences/meditation_bell_soundbath.ogg" type="audio/ogg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=meditation-flute-112195.mp3" type="audio/mpeg">
+  </audio>
 
-  <div class="showcase-frame">
-    <!-- HEADER -->
-    <header>
-      <div class="header-left">
-        <button class="header-btn" id="menuBtn" aria-label="Open Menu">
-          <div class="menu-icon-bars">
-            <span></span>
-            <span></span>
-          </div>
-        </button>
-        <div class="brand-mark">Dharatatva</div>
-      </div>
+  <!-- VEDIC WELCOME DIALOG -->
+  <div class="welcome-dialog-overlay" id="welcomeDialogOverlay">
+    <div class="welcome-dialog-card">
+      <div class="welcome-om-badge">🌿</div>
+      <h2 class="welcome-title serif-font">Sacred Vedic Ritual</h2>
+      <p class="welcome-sub">
+        Enable peaceful background flute ambience for a sensory Ayurvedic wellness experience, while we cache ingredients and laboratory formulations for lightning-fast browsing.
+      </p>
 
-      <div class="header-right">
-        <button class="header-btn" id="cartBtn" aria-label="Cart">
-          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          <div class="cart-indicator"></div>
-        </button>
-
-        <button class="header-btn" id="userBtn" aria-label="Account">
-          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </button>
-      </div>
-    </header>
-
-    <!-- VIRTUAL ZERO-SCROLL STAGE -->
-    <main class="stage-canvas" id="interactiveStage">
-
-      <!-- SCROLLING BOTTLE (LARGE & CRISP ON STEP 3 WITH img/16.png) -->
-      <div class="product-visual-anchor" id="bottleAnchor">
-        <img class="product-bottle-img" id="stageProductImg" alt="Dharatatva Herb-O-Care Churan" src="15.jpg" />
-      </div>
-
-      <!-- STEP 0: HERO VIEW -->
-      <section class="step-view hero-view active-step" id="step0">
-        <div class="hero-title-wrap">
-          <h1 class="hero-main-title">Night</h1>
-          <div class="hero-sub-italic">rasāyana</div>
-          <p class="hero-subtitle-caps">Sacred Copper Distillate</p>
-        </div>
-
-        <div class="scroll-guide">
-          <span class="scroll-label">Scroll to Explore</span>
-          <div class="scroll-line"></div>
-        </div>
-      </section>
-
-      <!-- STEP 1: HERBS & TRIDOSHA -->
-      <section class="step-view" id="step1">
-        <div>
-          <span class="step-pill-badge">Vedic Botanical Blend</span>
-          <h2 class="step-header-title">Six-Fold Gut Alchemy</h2>
-          <p class="step-header-desc">Formulated with micro-pulverized wild roots for optimum nutrient assimilation.</p>
-        </div>
-
-        <div class="herbs-grid">
-          <div class="herb-chip">
-            <span class="name">Haritaki</span>
-            <span class="action">Deep Cleanse</span>
-            <span class="botanical">Terminalia chebula</span>
-          </div>
-          <div class="herb-chip">
-            <span class="name">Bibhitaki</span>
-            <span class="action">Kapha Pacifier</span>
-            <span class="botanical">Terminalia bellirica</span>
-          </div>
-          <div class="herb-chip">
-            <span class="name">Amalaki</span>
-            <span class="action">Pitta Balance</span>
-            <span class="botanical">Phyllanthus emblica</span>
-          </div>
-          <div class="herb-chip">
-            <span class="name">Saunf & Ajwain</span>
-            <span class="action">Vata Soothing</span>
-            <span class="botanical">Carminative Distillate</span>
-          </div>
-        </div>
-
-        <div class="dosha-row">
-          <div class="dosha-pill">
-            <span class="dosha-name">Vata</span>
-            <span class="dosha-state">Calmed ↓</span>
-          </div>
-          <div class="dosha-pill">
-            <span class="dosha-name">Pitta</span>
-            <span class="dosha-state">Balanced ⚖</span>
-          </div>
-          <div class="dosha-pill">
-            <span class="dosha-name">Kapha</span>
-            <span class="dosha-state">Lightened ✦</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- STEP 2: RESTORATIVE BENEFITS -->
-      <section class="step-view" id="step2">
-        <div>
-          <span class="step-pill-badge">Therapeutic Action</span>
-          <h2 class="step-header-title">Daily Restorative Benefits</h2>
-          <p class="step-header-desc">Zero habit-forming ingredients. 100% pure sun-dried Himalayan herbs.</p>
-        </div>
-
-        <div class="pointers-list">
-          <div class="benefit-item">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <div class="benefit-text-wrap">
-              <div class="benefit-title">Relieves Morning Sluggishness</div>
-              <div class="benefit-desc">Enhances gut transit time naturally without irritating mucosal wall.</div>
-            </div>
-          </div>
-
-          <div class="benefit-item">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            </div>
-            <div class="benefit-text-wrap">
-              <div class="benefit-title">Nocturnal Digest Reset</div>
-              <div class="benefit-desc">Ignites Agni (digestive fire) during cellular rest phases.</div>
-            </div>
-          </div>
-
-          <div class="benefit-item">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="benefit-text-wrap">
-              <div class="benefit-title">Microbiome Shield</div>
-              <div class="benefit-desc">Inhibits endotoxin buildup & supports beneficial flora growth.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- STEP 3: RITUAL BLUEPRINT + SACRED HERBARIUM -->
-      <section class="step-view" id="step3">
-        <div>
-          <span class="step-pill-badge">Dosage & Forest Alchemy</span>
-          <h2 class="step-header-title">The Sandhya Ritual</h2>
-          <p class="step-header-desc">Consume 30 minutes before sleep for optimal rasāyana assimilation.</p>
-        </div>
-
-        <div class="step3-stack-container">
-          <!-- RITUAL CARD -->
-          <div class="ritual-card">
-            <div class="ritual-top">
-              <span>Ritual Blueprint</span>
-              <span style="color: #ffffff; font-size: 8.5px;">Batch #HC-26</span>
-            </div>
-            <div class="ritual-steps-grid">
-              <div class="ritual-step-cell">
-                <span class="ritual-num">01</span>
-                <span class="ritual-title">3-5 Grams</span>
-                <span class="ritual-sub">Half teaspoon in warm water or cow's ghee.</span>
-              </div>
-              <div class="ritual-step-cell">
-                <span class="ritual-num">02</span>
-                <span class="ritual-title">Lukewarm Water</span>
-                <span class="ritual-sub">Stir well and sip slowly in mindful state.</span>
-              </div>
-              <div class="ritual-step-cell">
-                <span class="ritual-num">03</span>
-                <span class="ritual-title">Zero Sugar</span>
-                <span class="ritual-sub">Free of sodium, additives and preservatives.</span>
-              </div>
-              <div class="ritual-step-cell">
-                <span class="ritual-num">04</span>
-                <span class="ritual-title">Consistent Rhythm</span>
-                <span class="ritual-sub">Recommended 21-day continuous cycle.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 28 RARE FOREST INGREDIENTS CARD -->
-          <div class="herbarium-card">
-            <div class="herbarium-header-row">
-              <span class="herbarium-tag">SACRED HERBARIUM</span>
-              <span class="herbarium-title-compact">28 Rare Forest Ingredients</span>
-            </div>
-
-            <!-- Interactive Ingredient Visual Tray -->
-            <div class="herbarium-scroll-tray">
-              <div class="ingredient-slot" title="Terminalia chebula (Haritaki)">
-                <div class="ingredient-avatar">
-                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#e2dcce"/><path d="M14 26C16 20 24 16 26 14C24 20 18 24 14 26Z" fill="#586844"/><circle cx="21" cy="20" r="4" fill="#3b482d"/></svg>
-                </div>
-              </div>
-
-              <div class="ingredient-slot" title="Micro-pulverized Guggulu & Sunthi">
-                <div class="ingredient-avatar">
-                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#ebd9be"/><circle cx="18" cy="18" r="6" fill="#c49a62"/><circle cx="24" cy="22" r="5" fill="#a77a45"/><circle cx="16" cy="24" r="4" fill="#b98a51"/></svg>
-                </div>
-              </div>
-
-              <div class="ingredient-slot" title="Wild Amala & Rasayana Resin">
-                <div class="ingredient-avatar">
-                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#d9c2b0"/><circle cx="16" cy="17" r="5" fill="#8c4320"/><circle cx="23" cy="16" r="6" fill="#6d2e13"/><circle cx="20" cy="23" r="5.5" fill="#a24f26"/></svg>
-                </div>
-              </div>
-
-              <div class="ingredient-slot" title="Sun-dried Heartwood Bark">
-                <div class="ingredient-avatar">
-                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#dfd1c2"/><rect x="13" y="16" width="14" height="4" rx="2" fill="#824c28" transform="rotate(-15 20 18)"/><rect x="15" y="20" width="13" height="4" rx="2" fill="#5d351a" transform="rotate(10 21 22)"/></svg>
-                </div>
-              </div>
-
-              <div class="ingredient-slot" title="Vedic Cinnamon & Twak">
-                <div class="ingredient-avatar">
-                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#e6d5c3"/><rect x="12" y="14" width="16" height="3" rx="1.5" fill="#7a4124" transform="rotate(28 20 15)"/><rect x="11" y="22" width="17" height="3" rx="1.5" fill="#98532f" transform="rotate(-25 19 23)"/></svg>
-                </div>
-              </div>
-
-              <div class="ingredient-slot" title="Carminative Ajwain & Saunf Seeds">
-                <div class="ingredient-avatar">
-                  <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" fill="#dcd2bf"/><circle cx="15" cy="16" r="2" fill="#674f32"/><circle cx="20" cy="15" r="2" fill="#8b6c47"/><circle cx="24" cy="18" r="2" fill="#674f32"/><circle cx="17" cy="22" r="2" fill="#8b6c47"/><circle cx="23" cy="23" r="2" fill="#533d25"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- STEP 4: FULL-PAGE BUY NOW (ENLARGED & PERFECT PROPORTIONS) -->
-      <section class="step-view checkout-view" id="step4">
-        <!-- Top Header -->
-        <div class="dispatch-header">
-          <span class="dispatch-eyebrow">Sacred Apothecary Dispatch</span>
-          <h2 class="dispatch-title">Claim Your Night Rasāyana</h2>
-          <p class="dispatch-desc">Fresh small-batch copper extraction shipped directly from our certified herbal laboratory.</p>
-        </div>
-
-        <!-- Upper Dedicated Image Container (Enlarged & Sharp) -->
-        <div class="checkout-visual-container">
-          <div class="checkout-product-img-wrap">
-            <img id="buyNowProductImg" class="checkout-product-img" alt="Herb-O-Care Churan Bottle" src="15.jpg" />
-          </div>
-          <div class="checkout-dose-badge" id="selectedDoseBadge">100G MICRO-DOSE SELECTED</div>
-        </div>
-
-        <!-- Bottom Details & Pricing Card -->
-        <div class="checkout-card">
-          <div class="card-label">Select Sacred Volume</div>
-          
-          <div class="volume-selector-grid">
-            <div class="volume-box selected" id="volOption1" data-price="949" data-name="100g Micro-Dose" data-badge="100G MICRO-DOSE SELECTED">
-              <div class="volume-header">
-                <span class="vol-name">100g Micro-Dose</span>
-                <span class="vol-badge">SAVE 25%</span>
-              </div>
-              <div class="vol-cycle">30-Day Cycle</div>
-              <div class="vol-price-wrap">
-                <span class="vol-price">₹949</span>
-                <span class="vol-original-price">₹1,260</span>
-              </div>
-            </div>
-
-            <div class="volume-box" id="volOption2" data-price="1850" data-name="250g Sadhana Jar" data-badge="250G SADHANA JAR SELECTED">
-              <div class="volume-header">
-                <span class="vol-name">250g Sadhana Jar</span>
-                <span class="vol-badge">BEST VALUE</span>
-              </div>
-              <div class="vol-cycle">75-Day Deep Ritual</div>
-              <div class="vol-price-wrap">
-                <span class="vol-price">₹1,850</span>
-                <span class="vol-original-price">₹2,490</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Perks row -->
-          <div class="perks-row">
-            <div class="perk-item">
-              <span class="perk-title">Free Express</span>
-              <span class="perk-sub">Pan-India 48H</span>
-            </div>
-            <div class="perk-item">
-              <span class="perk-title">Cash on Delivery</span>
-              <span class="perk-sub">Verified Available</span>
-            </div>
-            <div class="perk-item">
-              <span class="perk-title">Fresh Batch</span>
-              <span class="perk-sub">Copper Infused</span>
-            </div>
-          </div>
-
-          <!-- Qty & Dispatch Button -->
-          <div class="action-checkout-row">
-            <div class="qty-counter">
-              <button class="qty-btn" id="qtyMinus" aria-label="Decrease quantity">−</button>
-              <span class="qty-num" id="qtyVal">1</span>
-              <button class="qty-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
-            </div>
-            <button class="dispatch-submit-btn" id="orderSubmitBtn">
-              <span id="submitBtnText">DISPATCH ORDER NOW (₹949)</span>
-            </button>
-          </div>
-
-          <div class="guarantee-note">
-            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            <span>100% Authentic Vedic Guarantee · 14-Day Returns</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- PROGRESS INDICATOR DOTS -->
-      <div class="step-dots" id="stepDots">
-        <div class="step-dot active" data-index="0"></div>
-        <div class="step-dot" data-index="1"></div>
-        <div class="step-dot" data-index="2"></div>
-        <div class="step-dot" data-index="3"></div>
-        <div class="step-dot" data-index="4"></div>
-      </div>
-
-    </main>
-
-    <!-- FLOATING DOCK -->
-    <div class="dock-wrapper" id="floatingDock">
-      <div class="pill-action-capsule" id="pillActionCapsule">
-        <button class="dock-icon-btn" id="dockHomeBtn" aria-label="Reset to Hero">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </button>
-
-        <div class="dock-divider"></div>
-
-        <button class="dock-icon-btn" id="dockShareBtn" aria-label="Share Ritual">
-          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-        </button>
-
-        <button class="buy-now-btn" id="dockBuyBtn">
-          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          <span>BUY NOW</span>
-        </button>
-      </div>
-
-      <button class="dock-circle-play" id="dockPlayBtn" aria-label="Next Step">
-        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <button class="welcome-action-btn-primary" onclick="acceptVedicExperience(true)">
+        <span>🎵 Begin Vedic Experience</span>
+        <span>→</span>
       </button>
+
+      <button class="welcome-action-btn-secondary" onclick="acceptVedicExperience(false)">
+        Enter Silently
+      </button>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS MODAL -->
+  <div class="order-success-overlay" id="orderSuccessModal">
+    <div class="order-success-card">
+      <div style="font-size: 42px; margin-bottom: 10px;">✨</div>
+      <h3 class="serif-font" style="font-size: 22px; color: var(--primary-dark); margin-bottom: 6px;">Order Registered!</h3>
+      <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">
+        Dhanyawaad! Your Ayurvedic formulation is successfully registered for 48-hour priority dispatch.
+      </p>
+      <button onclick="closeOrderSuccess()" class="welcome-action-btn-primary">
+        Return to Sanctuary
+      </button>
+    </div>
+  </div>
+
+  <!-- VIEWPORT SHELL -->
+  <div class="app-viewport-wrapper">
+    <div class="app-viewport-shell">
+
+      <!-- Top Floating Bar -->
+      <div class="top-floating-bar">
+        <div class="header-left-actions">
+          <button class="icon-circle-btn" onclick="scrollToTop(); haptic(6);" title="Back to top">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+
+          <a href="#" class="brand-logo-wrap">
+            <img src="img/logo_dharatatva.avif" alt="Dharatatva" class="brand-logo-img">
+          </a>
+
+          <div class="lang-pill-btn" onclick="toggleLanguage(); haptic(6);">
+            <span id="lang-en" class="active">EN</span>
+            <span id="lang-hi">हिन्दी</span>
+          </div>
+        </div>
+
+        <div class="header-right-actions">
+          <button class="icon-circle-btn" onclick="shareProduct(); haptic(6);" title="Share Herb-O-Care">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
+
+          <div class="audio-wrapper-group">
+            <div class="audio-reminder-pill" id="audioReminderPill" onclick="toggleAudio(); haptic(6);">
+              <span>Tap for Sound</span>
+              <span>🎵</span>
+            </div>
+
+            <div class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio(); haptic(6);" title="Play / Pause Ambient Sound">
+              <svg class="audio-progress-svg" viewBox="0 0 38 38">
+                <circle class="audio-progress-bg" cx="19" cy="19" r="17"/>
+                <circle class="audio-progress-bar" id="audioProgressCircle" cx="19" cy="19" r="17"/>
+              </svg>
+              <div class="audio-state-icon" id="audioStateIcon">▶</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCT HERO STAGE -->
+      <div class="product-fixed-viewport" id="productFixedStage">
+        <div class="floating-features-overlay">
+          <div class="badge-icon-item">
+            <div class="badge-symbol">🌿</div>
+            <span>23+ Pure Herbs</span>
+          </div>
+          <div class="badge-icon-item">
+            <div class="badge-symbol">💧</div>
+            <span>100% Chemical Free</span>
+          </div>
+          <div class="badge-icon-item">
+            <div class="badge-symbol">🗡️</div>
+            <span>Lekhana Karma</span>
+          </div>
+        </div>
+
+        <div class="hero-slider-track" id="heroSliderTrack">
+          <div class="hero-slide-item">
+            <img src="img/15.png" alt="Herb-O-Care Churan 100g Bottle" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80';" />
+          </div>
+          <div class="hero-slide-item">
+            <img src="img/16.png" alt="Herb-O-Care Secondary Angle" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=800&q=80';" />
+          </div>
+          <div class="hero-slide-item">
+            <img src="img/15.png" style="filter: drop-shadow(0 20px 30px rgba(0,0,0,0.16)) hue-rotate(10deg);" alt="Herb-O-Care Ritual Pack" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80';" />
+          </div>
+        </div>
+
+        <div class="bottom-slider-indicator-capsule">
+          <div class="slider-dot active" id="dot0"></div>
+          <div class="slider-dot" id="dot1"></div>
+          <div class="slider-dot" id="dot2"></div>
+        </div>
+      </div>
+
+      <!-- SCROLLING CONTENT LAYER -->
+      <div class="scrolling-content-layer">
+
+        <div class="product-details-container">
+          <div class="product-title-row">
+            <div class="product-title-left">
+              <h1 class="product-heading-title">Herb-O-Care Churan</h1>
+              <div class="product-subtitle-tag" data-i18n="tagline">Ayurvedic Metabolic & Detox Ritual</div>
+            </div>
+            
+            <div class="rating-box-right" onclick="openDrawer('reviews'); haptic(8);">
+              <div class="rating-score-row">
+                <span class="score">4.94</span>
+                <span class="star">★</span>
+              </div>
+              <div class="rating-reviews-sub">(42 reviews)</div>
+            </div>
+          </div>
+
+          <!-- SPECIFICATION ICONS BAR -->
+          <div class="property-spec-bar">
+            <div class="spec-item">
+              <div class="spec-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <span>23+ Herbs</span>
+            </div>
+            <div class="spec-item">
+              <div class="spec-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <span>100% Shastra</span>
+            </div>
+            <div class="spec-item">
+              <div class="spec-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <span>Non-GMO</span>
+            </div>
+            <div class="spec-item">
+              <div class="spec-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </div>
+              <span>48H Dispatch</span>
+            </div>
+          </div>
+
+          <div class="product-bestseller-badge">Most Popular · Agni Awakening</div>
+
+          <p class="product-summary-text" data-i18n="summary">
+            Crafted with 23+ powerful Ayurvedic herbs to reset internal Agni, dissolve stubborn metabolic debris, clear blocked srotas, and restore natural lightness. <span onclick="openDrawer('details'); haptic(8);">read more</span>
+          </p>
+        </div>
+
+        <!-- STICKY TABS -->
+        <div class="tabs-sticky-bar">
+          <div class="tab-btn-item active" id="tab-buynow" onclick="switchMainTab('buynow'); haptic(6);">Buy Now</div>
+          <div class="tab-btn-item" id="tab-details" onclick="switchMainTab('details'); haptic(6);">Details</div>
+          <div class="tab-btn-item" id="tab-ingredients" onclick="switchMainTab('ingredients'); haptic(6);">Ingredients</div>
+          <div class="tab-btn-item" id="tab-reviews" onclick="switchMainTab('reviews'); haptic(6);">Review</div>
+          <div class="tab-btn-item" id="tab-faq" onclick="switchMainTab('faq'); haptic(6);">F&Q</div>
+        </div>
+
+        <!-- TAB 1: BUY NOW CARD (REDUNDANT QUANTITY/DISPATCH BUTTON REMOVED CLEANLY) -->
+        <div class="tab-content-area" id="mainTabArea">
+          <div class="buynow-card-container">
+            <div class="buynow-eyebrow">SELECT SACRED VOLUME</div>
+
+            <div class="sacred-volume-pill">
+              <div class="vol-info">
+                <div class="vol-row-title">
+                  <strong>100g Micro-Dose</strong>
+                  <span class="save-tag-gold">SAVE 25%</span>
+                </div>
+                <div class="vol-sub">30-Day Metabolic & Detox Cycle</div>
+              </div>
+              <div class="vol-price-col">
+                <div class="current" id="pillPrice">₹949</div>
+                <div class="cut" id="pillMrp">₹1,260</div>
+              </div>
+            </div>
+
+            <div class="buynow-usps-grid">
+              <div class="usp-col">
+                <strong>Free Express</strong>
+                <span>Pan-India 48H</span>
+              </div>
+              <div class="usp-col">
+                <strong>Cash on Delivery</strong>
+                <span>Verified Available</span>
+              </div>
+              <div class="usp-col">
+                <strong>23+ Pure Herbs</strong>
+                <span>100% Chemical Free</span>
+              </div>
+            </div>
+
+            <div class="vedic-guarantee-note">
+              ✓ 100% AUTHENTIC VEDIC GUARANTEE · 14-DAY RETURNS
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FLOATING BOTTOM BAR -->
+      <div class="floating-bottom-action-bar">
+        <div class="float-left-dock">
+          <span class="float-price-label">Total Price</span>
+          <div class="float-price-row">
+            <span class="float-price-curr" id="floatPriceNow">₹949</span>
+            <span class="float-price-cut" id="floatPriceCut">₹1,260</span>
+          </div>
+        </div>
+
+        <div class="float-qty-capsule">
+          <button type="button" class="float-qty-btn" onclick="updateMainQty(-1); haptic(6);">−</button>
+          <span class="float-qty-val" id="floatQtyVal">01</span>
+          <button type="button" class="float-qty-btn" onclick="updateMainQty(1); haptic(6);">+</button>
+        </div>
+
+        <button class="float-basket-pill-btn" onclick="openCheckoutDrawer('starter'); haptic(12);">
+          <span class="btn-txt">Add to Basket</span>
+          <span class="float-basket-icon-circle">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#121815" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 11 20 11 18 21 6 21 4 11"></polyline>
+              <path d="M9 11V6a3 3 0 0 1 6 0v5"></path>
+              <line x1="9" y1="15" x2="9" y2="17"></line>
+              <line x1="12" y1="15" x2="12" y2="17"></line>
+              <line x1="15" y1="15" x2="15" y2="17"></line>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UNIVERSAL SCRIM DRAWER -->
+  <div class="scrim-drawer-overlay" id="scrimOverlay" onclick="closeDrawer()">
+    <div class="scrim-drawer-sheet" onclick="event.stopPropagation()">
+      <div class="scrim-drawer-header">
+        <div class="scrim-handle" onclick="closeDrawer()"></div>
+        <div class="scrim-title" id="scrimDrawerTitle">Product Details</div>
+        <button class="scrim-close-btn" onclick="closeDrawer(); haptic(6);">✕</button>
+      </div>
+
+      <div class="scrim-drawer-body" id="scrimDrawerBody">
+        <!-- Dynamically injected from SEO Vault -->
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <div class="lightbox-top">
+      <span id="lbCounter">1 / 6</span>
+      <button class="icon-circle-btn" style="background:rgba(255,255,255,0.2); color:#FFF;" onclick="closeLightbox(); haptic(6);">✕</button>
+    </div>
+    <div class="lightbox-content-box" onclick="closeLightbox()">
+      <div class="lightbox-card-inner" onclick="event.stopPropagation()">
+        <div style="font-size: 70px; margin-bottom: 12px;" id="lbIcon">🏺</div>
+        <h3 style="font-size: 16px; margin-bottom: 6px;" id="lbTitle">Ritual Texture</h3>
+        <p style="font-size: 12px; color: #AAA;" id="lbDesc">Pure sun-dried churan texture without chemical binders.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEO RAW SEMANTIC VAULT -->
+  <div class="seo-semantic-vault" id="seoVault">
+    
+    <!-- DETAILS VAULT -->
+    <div id="vault-details">
+      <div class="drawer-card-box">
+        <span class="drawer-eyebrow-tag">Recognize The Signals · 10 Indicators</span>
+        <h3 class="drawer-card-title serif-font">When Your Body Starts Giving You Signals…</h3>
+        <p style="font-size:12px; color:#555; line-height:1.55;">
+          We live in a world where purity is becoming harder to find. The air we breathe, the water we drink, and the food we consume can place an increasing burden on the body. And your body rarely changes overnight. It gives signals:
+        </p>
+        <div class="signals-swipe-deck">
+          <div class="signal-chip">⚖️<strong>Unwanted Weight</strong><span>Gradual buildup</span></div>
+          <div class="signal-chip">⏳<strong>Heaviness & Swelling</strong><span>Water retention</span></div>
+          <div class="signal-chip">⚡<strong>Low Energy</strong><span>Sluggish fire</span></div>
+          <div class="signal-chip">🔥<strong>Sluggish Digestion</strong><span>Weak Agni</span></div>
+          <div class="signal-chip">🚶<strong>Reduced Activity</strong><span>Morning fatigue</span></div>
+          <div class="signal-chip">🔄<strong>Metabolic Imbalance</strong><span>Sticky Ama</span></div>
+          <div class="signal-chip">📏<strong>Growing Waistline</strong><span>Deep tissue fat</span></div>
+          <div class="signal-chip">🦴<strong>Physical Stiffness</strong><span>Blocked srotas</span></div>
+          <div class="signal-chip">🌿<strong>Joint Discomfort</strong><span>Mobility strain</span></div>
+          <div class="signal-chip">✨<strong>Hair Fall & Dullness</strong><span>Low nutrient flow</span></div>
+        </div>
+        <div style="margin-top:14px; padding:12px 14px; background:#1C2621; border-radius:14px; color:#FFFFFF; text-align:center;">
+          <p style="font-family:'Playfair Display', serif; font-style:italic; font-size:14px; color:#F7EEDB;">
+            “What if the answer was not outside… but within nature?”
+          </p>
+        </div>
+      </div>
+
+      <div class="drawer-card-box">
+        <span class="drawer-eyebrow-tag">The Root Cause</span>
+        <h3 class="drawer-card-title serif-font">An Ayurvedic Perspective</h3>
+        <p style="font-size:12px; color:#555; line-height:1.55;">
+          In Ayurveda, health begins with Agni—the digestive fire. When Agni becomes sluggish (Mandagni), digestion and metabolism become less efficient, while Ama accumulates and Tridosha loses its natural balance.
+        </p>
+        <span class="drawer-eyebrow-tag" style="margin-top:14px;">The 4 Key Principles</span>
+        <div class="principles-deck-2x2">
+          <div class="principle-sub-box">
+            <div style="font-size:9px; font-weight:800; color:var(--accent-rust); margin-bottom:2px;">STEP 01 · 🔥</div>
+            <h4>Awaken Agni</h4>
+            <p>Kindles digestive fire for peak nutrient breakdown.</p>
+          </div>
+          <div class="principle-sub-box">
+            <div style="font-size:9px; font-weight:800; color:var(--accent-rust); margin-bottom:2px;">STEP 02 · 💧</div>
+            <h4>Clear Ama</h4>
+            <p>Flushes toxic metabolic sludge clogging micro-channels.</p>
+          </div>
+          <div class="principle-sub-box">
+            <div style="font-size:9px; font-weight:800; color:var(--accent-rust); margin-bottom:2px;">STEP 03 · ⚖️</div>
+            <h4>Balance Kapha</h4>
+            <p>Pacifies internal heaviness, fluid retention and lethargy.</p>
+          </div>
+          <div class="principle-sub-box">
+            <div style="font-size:9px; font-weight:800; color:var(--accent-rust); margin-bottom:2px;">STEP 04 · 🗡️</div>
+            <h4>Lekhana Karma</h4>
+            <p>Ancient Ayurvedic scraping action melts stubborn fat deposits.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-card-box">
+        <span class="drawer-eyebrow-tag">The Ayurvedic Pathway to Lightness</span>
+        <h3 class="drawer-card-title serif-font">7 Phase Complete Roadmap</h3>
+        <div class="timeline-vertical-path">
+          <div class="timeline-step-node">
+            <strong>Phase 01: Mandagni Identified</strong>
+            <p>Targets the sluggish digestive fire that traps stubborn metabolic debris.</p>
+          </div>
+          <div class="timeline-step-node">
+            <strong>Phase 02: Awaken Agni</strong>
+            <p>23+ potent botanicals stimulate natural digestive enzymes and gastric juices.</p>
+          </div>
+          <div class="timeline-step-node">
+            <strong>Phase 03: Clear Ama (Toxins)</strong>
+            <p>Systematically flushes trapped metabolic toxins from blocked pathways.</p>
+          </div>
+          <div class="timeline-step-node">
+            <strong>Phase 04: Balance Kapha Dosha</strong>
+            <p>Relieves excessive internal heaviness, fluid retention, and sluggish lethargy.</p>
+          </div>
+          <div class="timeline-step-node rust-highlight">
+            <strong>Phase 05: Lekhana Karma</strong>
+            <p>Ancient Ayurvedic 'scraping' action breaks down deeply packed visceral fat deposits.</p>
+          </div>
+          <div class="timeline-step-node rust-highlight">
+            <strong>Phase 06 & 07: Healthy Fat Metabolism → Feel Lighter</strong>
+            <p>Sustainable daytime stamina, unburdened organs, and a visibly balanced silhouette.</p>
+          </div>
+        </div>
+
+        <div class="dosha-row-grid">
+          <div class="dosha-pill-card"><strong>VATA</strong><span>Calmed ↓</span></div>
+          <div class="dosha-pill-card"><strong>PITTA</strong><span>Balanced ⚖️</span></div>
+          <div class="dosha-pill-card"><strong>KAPHA</strong><span>Lightened ✦</span></div>
+        </div>
+      </div>
+      <!-- Section D: Shastra Certification & USPs -->
+      <div class="drawer-card-box" style="background:#FAF8F5;">
+        <span class="drawer-eyebrow-tag">More Than an Ordinary Fat Burner</span>
+        <p style="font-size:12px; color:#555; line-height:1.6;">
+          True transformation doesn't begin on the weighing scale. It begins within. A carefully crafted Ayurvedic herbal churna created for the modern body—supporting your journey from excess heaviness toward greater lightness, balance and well-being.
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px;">
+          <div style="background:#FFF; padding:8px 10px; border-radius:10px; border:1px solid #ECE7DD; font-size:11px;">
+            <strong>100% Herbal Purity</strong><div style="color:#777; font-size:9.5px;">No synthetic caffeine</div>
+          </div>
+          <div style="background:#FFF; padding:8px 10px; border-radius:10px; border:1px solid #ECE7DD; font-size:11px;">
+            <strong>Non-Habit Forming</strong><div style="color:#777; font-size:9.5px;">Zero jitters or crashes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INGREDIENTS VAULT (IMAGES INSTEAD OF TEXT NAMES) -->
+    <div id="vault-ingredients">
+      <div class="ingredients-full-burst-container">
+        <div class="burst-hero-banner">
+          <img src="img/18.png" alt="28 Rare Forest Ingredients" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80';"/>
+        </div>
+        <div class="burst-content-details">
+          <div class="burst-eyebrow">23+ Pure Synergy</div>
+          <h3 class="burst-title serif-font">28 Rare Forest Ingredients</h3>
+          <p class="burst-desc">Cold-infused roots, sun-dried heartwood, and wild seed extracts blended strictly by Shastra ratios. Working together as one powerful synergy to awaken Agni, balance Kapha, and stimulate healthy fat metabolism.</p>
+          <div class="ingredients-tiles-slider">
+            <div class="ingredient-tile-box"><img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=200&q=80" alt="Herb 1" /></div>
+            <div class="ingredient-tile-box"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=200&q=80" alt="Herb 2" /></div>
+            <div class="ingredient-tile-box"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=200&q=80" alt="Herb 3" /></div>
+            <div class="ingredient-tile-box"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=200&q=80" alt="Herb 4" /></div>
+            <div class="ingredient-tile-box"><img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=200&q=80" alt="Herb 5" /></div>
+            <div class="ingredient-tile-box"><img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ VAULT (EXCLUSIVE ACCORDION - ONE OPEN AT A TIME) -->
+    <div id="vault-faq">
+      <div class="faq-unit-card open" onclick="toggleFaqUnit(this); haptic(4);">
+        <div class="faq-unit-head"><span>1. Difference from regular fat burners?</span><span class="faq-toggle-icon">+</span></div>
+        <div class="faq-unit-body">Regular fat burners rely on synthetic stimulants or high caffeine that only target water weight. Herb-O-Care addresses the root cause: awakening your digestive fire (Agni), clearing toxic residue (Ama), balancing Kapha Dosha, and activating Lekhana Karma.</div>
+      </div>
+      <div class="faq-unit-card" onclick="toggleFaqUnit(this); haptic(4);">
+        <div class="faq-unit-head"><span>2. How does it work according to Ayurveda?</span><span class="faq-toggle-icon">+</span></div>
+        <div class="faq-unit-body">It follows a traditional pathway: Mandagni → Awaken Agni → Clear Ama → Balance Kapha → Lekhana Karma → Healthy Fat Metabolism → Feel Lighter.</div>
+      </div>
+      <div class="faq-unit-card" onclick="toggleFaqUnit(this); haptic(4);">
+        <div class="faq-unit-head"><span>3. Is it 100% natural herbs?</span><span class="faq-toggle-icon">+</span></div>
+        <div class="faq-unit-body">Yes, absolutely. 100% chemical-free formula combining 23+ selected botanicals, roots, and herbs in synergy.</div>
+      </div>
+      <div class="faq-unit-card" onclick="toggleFaqUnit(this); haptic(4);">
+        <div class="faq-unit-head"><span>4. Any chemicals or side effects?</span><span class="faq-toggle-icon">+</span></div>
+        <div class="faq-unit-body">Zero chemicals, zero synthetic additives, and zero harsh stimulants. Non-habit forming and gentle on the gut.</div>
+      </div>
+      <div class="faq-unit-card" onclick="toggleFaqUnit(this); haptic(4);">
+        <div class="faq-unit-head"><span>5. Do I need strict workout routines?</span><span class="faq-toggle-icon">+</span></div>
+        <div class="faq-unit-body">No exhausting gym routines required. Everyday moderate movement like a 20-minute daily walk paired with balanced eating helps you feel lighter faster.</div>
+      </div>
+    </div>
+
+    <!-- REVIEWS VAULT -->
+    <div id="vault-reviews">
+      <div class="rev-drawer-top-gallery-label">Customer Photos (Tap to Zoom)</div>
+      <div class="rev-drawer-photos-carousel">
+        <div class="rev-drawer-photo-thumb" onclick="openPhoto(0); haptic(6);">
+          <div class="rev-thumb-graphic-box">🏺</div>
+          <span>Texture 1</span>
+        </div>
+        <div class="rev-drawer-photo-thumb" onclick="openPhoto(1); haptic(6);">
+          <div class="rev-thumb-graphic-box">🌿</div>
+          <span>Herbal Mix</span>
+        </div>
+        <div class="rev-drawer-photo-thumb" onclick="openPhoto(2); haptic(6);">
+          <div class="rev-thumb-graphic-box">🍯</div>
+          <span>Decoction</span>
+        </div>
+        <div class="rev-drawer-photo-thumb" onclick="openPhoto(3); haptic(6);">
+          <div class="rev-thumb-graphic-box">📦</div>
+          <span>Unboxing</span>
+        </div>
+      </div>
+
+      <div class="community-review-post-card">
+        <div class="comm-rev-head">
+          <div class="comm-rev-author">Aarya Sharma (Rishikesh)</div>
+          <div style="color:#DDA221; font-size:12px;">★★★★★</div>
+        </div>
+        <div class="comm-rev-time">Verified Sadhaka · 2 weeks ago</div>
+        <div class="comm-rev-body">“The earthy aroma of authentic herbs and roots is grounding. In just two weeks, the persistent morning bloating and post-meal sluggishness vanished. Truly feel 3 kgs lighter.”</div>
+        <div class="comm-rev-attached-thumbs">
+          <div class="comm-rev-thumb-box" onclick="openPhoto(0)">🏺</div>
+          <div class="comm-rev-thumb-box" onclick="openPhoto(1)">🌿</div>
+          <div class="comm-rev-thumb-box" onclick="openPhoto(2)">🍯</div>
+        </div>
+      </div>
+
+      <div class="community-review-post-card">
+        <div class="comm-rev-head">
+          <div class="comm-rev-author">Dr. Neil Varma (Kerala)</div>
+          <div style="color:#DDA221; font-size:12px;">★★★★★</div>
+        </div>
+        <div class="comm-rev-time">Ayurvedic Physician · 3 weeks ago</div>
+        <div class="comm-rev-body">“Rare to see classical Lekhana Karma herbs formulated without synthetic caffeine adulteration. The scraping action is noticeable without abdominal griping or dehydration.”</div>
+        <div class="comm-rev-attached-thumbs">
+          <div class="comm-rev-thumb-box" onclick="openPhoto(1)">🌿</div>
+          <div class="comm-rev-thumb-box" onclick="openPhoto(4)">🌱</div>
+        </div>
+      </div>
     </div>
 
   </div>
 
   <script>
-    // ==========================================================
-    // IMAGE ASSETS CONFIGURATION
-    // ==========================================================
-    const DEFAULT_PRODUCT_IMG = 'https://dharatatva.github.io/web/img/15.png';
-    const SECTION3_PRODUCT_IMG = 'https://dharatatva.github.io/web/img/17.png'; // Step 3 image
-
-    const stageProductImg = document.getElementById('stageProductImg');
-    const buyNowProductImg = document.getElementById('buyNowProductImg');
-
-    // Initialize defaults
-    stageProductImg.src = DEFAULT_PRODUCT_IMG;
-    buyNowProductImg.src = DEFAULT_PRODUCT_IMG;
-
     function haptic(ms = 8) {
       if (typeof navigator.vibrate === 'function') {
         try { navigator.vibrate(ms); } catch (e) {}
       }
     }
 
-    const totalSteps = 5;
-    let currentStep = 0;
-    let isTransitioning = false;
+    let currentSlide = 0;
+    const totalSlides = 3;
+    let currentQty = 1;
+    let currentLang = 'en';
 
-    // Elements
-    const views = [
-      document.getElementById('step0'),
-      document.getElementById('step1'),
-      document.getElementById('step2'),
-      document.getElementById('step3'),
-      document.getElementById('step4')
-    ];
-    const bottle = document.getElementById('bottleAnchor');
-    const dots = document.querySelectorAll('.step-dot');
-    const stage = document.getElementById('interactiveStage');
-    const pillActionCapsule = document.getElementById('pillActionCapsule');
+    const track = document.getElementById('heroSliderTrack');
+    const heroStage = document.getElementById('productFixedStage');
+    let startX = 0, endX = 0;
 
-    // Coordinates for steps 0 to 4
-    const bottleStates = [
-      { top: '36%', left: '50%', scale: 0.88, opacity: 1, filter: 'drop-shadow(0 20px 25px rgba(26, 40, 20, 0.24))' },
-      { top: '24%', left: '78%', scale: 0.65, opacity: 1, filter: 'drop-shadow(0 14px 18px rgba(26, 40, 20, 0.18))' },
-      { top: '24%', left: '78%', scale: 0.62, opacity: 1, filter: 'drop-shadow(0 12px 16px rgba(26, 40, 20, 0.16))' },
-      // Step 3 (HERBARIUM + RITUAL): Large prominent image nicely filling the mid-stage
-      { top: '33%', left: '50%', scale: 1.08, opacity: 1, filter: 'drop-shadow(0 18px 24px rgba(26, 40, 20, 0.25))' },
-      // Step 4: Hidden (Replaced by dedicated enlarged buy-now card container)
-      { top: '33%', left: '50%', scale: 0.5, opacity: 0, filter: 'none' }
-    ];
+    heroStage.addEventListener('touchstart', e => {
+      startX = e.changedTouches[0].screenX;
+    }, { passive: true });
 
-    function goToStep(nextIndex, direction = 1) {
-      if (nextIndex < 0 || nextIndex >= totalSteps || isTransitioning || nextIndex === currentStep) return;
-      isTransitioning = true;
-      haptic(10);
+    heroStage.addEventListener('touchend', e => {
+      endX = e.changedTouches[0].screenX;
+      if (endX < startX - 35) {
+        if (currentSlide < totalSlides - 1) { goToSlide(currentSlide + 1); haptic(6); }
+      }
+      if (endX > startX + 35) {
+        if (currentSlide > 0) { goToSlide(currentSlide - 1); haptic(6); }
+      }
+    }, { passive: true });
 
-      const currentView = views[currentStep];
-      const nextView = views[nextIndex];
+    function goToSlide(idx) {
+      currentSlide = idx;
+      track.style.transform = `translateX(-${idx * 33.333}%)`;
+      document.getElementById('dot0').classList.toggle('active', idx === 0);
+      document.getElementById('dot1').classList.toggle('active', idx === 1);
+      document.getElementById('dot2').classList.toggle('active', idx === 2);
+    }
 
-      // Update dots
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === nextIndex));
+    function updateMainQty(delta) {
+      currentQty += delta;
+      if (currentQty < 1) currentQty = 1;
+      if (currentQty > 5) currentQty = 5;
 
-      // Hide/Show floating pill capsule on checkout
-      if (nextIndex === 4) {
-        pillActionCapsule.classList.add('hidden-capsule');
+      const calcPrice = 949 * currentQty;
+      const calcMrp = 1260 * currentQty;
+
+      document.getElementById('pillPrice').innerText = '₹' + calcPrice.toLocaleString('en-IN');
+      document.getElementById('pillMrp').innerText = '₹' + calcMrp.toLocaleString('en-IN');
+
+      const floatQty = document.getElementById('floatQtyVal');
+      if (floatQty) floatQty.innerText = (currentQty < 10 ? '0' : '') + currentQty;
+
+      const floatNow = document.getElementById('floatPriceNow');
+      if (floatNow) floatNow.innerText = '₹' + calcPrice.toLocaleString('en-IN');
+
+      const floatCut = document.getElementById('floatPriceCut');
+      if (floatCut) floatCut.innerText = '₹' + calcMrp.toLocaleString('en-IN');
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'hi' : 'en';
+      document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+      document.getElementById('lang-hi').classList.toggle('active', currentLang === 'hi');
+
+      if (currentLang === 'hi') {
+        document.querySelector('.product-heading-title').innerText = "हर्ब-ओ-केयर चूर्ण";
+        document.querySelector('[data-i18n="tagline"]').innerText = "आयुर्वेदिक मेटाबॉलिज्म एवं डिटॉक्स रिचुअल";
+        document.querySelector('[data-i18n="summary"]').innerHTML = "23+ शक्तिशाली आयुर्वेदिक जड़ी-बूटियों से निर्मित जो अग्नि को प्रज्वलित कर, जिद्दी चर्बी पिघलाने और प्राकृतिक हल्कापन लाने में सहायक है। <span onclick=\"openDrawer('details'); haptic(8);\">और पढ़ें</span>";
       } else {
-        pillActionCapsule.classList.remove('hidden-capsule');
+        document.querySelector('.product-heading-title').innerText = "Herb-O-Care Churan";
+        document.querySelector('[data-i18n="tagline"]').innerText = "Ayurvedic Metabolic & Detox Ritual";
+        document.querySelector('[data-i18n="summary"]').innerHTML = "Crafted with 23+ powerful Ayurvedic herbs to reset internal Agni, dissolve stubborn metabolic debris, clear blocked srotas, and restore natural lightness. <span onclick=\"openDrawer('details'); haptic(8);\">read more</span>";
+      }
+    }
+
+    function switchMainTab(tabKey) {
+      if (tabKey === 'buynow') {
+        resetTabsToBuyNow();
+        document.getElementById('mainTabArea').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        document.querySelectorAll('.tab-btn-item').forEach(t => t.classList.remove('active'));
+        const activeTabEl = document.getElementById('tab-' + tabKey);
+        if (activeTabEl) activeTabEl.classList.add('active');
+        openDrawer(tabKey);
+      }
+    }
+
+    function resetTabsToBuyNow() {
+      document.querySelectorAll('.tab-btn-item').forEach(t => t.classList.remove('active'));
+      const buyNowTab = document.getElementById('tab-buynow');
+      if (buyNowTab) buyNowTab.classList.add('active');
+    }
+
+    function openDrawer(tabKey) {
+      const overlay = document.getElementById('scrimOverlay');
+      const titleEl = document.getElementById('scrimDrawerTitle');
+      const bodyEl = document.getElementById('scrimDrawerBody');
+
+      if (tabKey === 'details') {
+        titleEl.innerText = "Ayurvedic Details & Pathway";
+        bodyEl.innerHTML = document.getElementById('vault-details').innerHTML;
+      } else if (tabKey === 'ingredients') {
+        titleEl.innerText = "Sacred Herbarium";
+        bodyEl.innerHTML = document.getElementById('vault-ingredients').innerHTML;
+      } else if (tabKey === 'faq') {
+        titleEl.innerText = "Frequently Asked Questions";
+        bodyEl.innerHTML = document.getElementById('vault-faq').innerHTML;
+      } else if (tabKey === 'reviews') {
+        titleEl.innerText = "Community Reviews (42)";
+        bodyEl.innerHTML = document.getElementById('vault-reviews').innerHTML;
       }
 
-      // Smooth Crossfade Image replacement for Step 3 (img/16.png)
-      const targetImageSrc = (nextIndex === 3) ? SECTION3_PRODUCT_IMG : DEFAULT_PRODUCT_IMG;
-      if (stageProductImg.getAttribute('src') !== targetImageSrc) {
-        gsap.to(stageProductImg, {
-          opacity: 0.15,
-          duration: 0.16,
-          ease: 'power1.out',
-          onComplete: () => {
-            stageProductImg.src = targetImageSrc;
-            gsap.to(stageProductImg, {
-              opacity: 1,
-              duration: 0.24,
-              ease: 'power2.inOut'
-            });
-          }
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      document.getElementById('scrimOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      resetTabsToBuyNow();
+    }
+
+    // Exclusive Accordion: Closes others when one opens
+    function toggleFaqUnit(unit) {
+      const wasOpen = unit.classList.contains('open');
+      document.querySelectorAll('#scrimDrawerBody .faq-unit-card, #vault-faq .faq-unit-card').forEach(card => {
+        card.classList.remove('open');
+      });
+      if (!wasOpen) {
+        unit.classList.add('open');
+      }
+    }
+
+    let selectedChkPrice = 1499;
+    let selectedChkMrp = 2999;
+    let selectedChkPackTitle = "Complete Detox Pack (2 Jars)";
+    let selectedPayMode = 'upi';
+
+    function openCheckoutDrawer(packMode) {
+      const overlay = document.getElementById('scrimOverlay');
+      const titleEl = document.getElementById('scrimDrawerTitle');
+      const bodyEl = document.getElementById('scrimDrawerBody');
+
+      titleEl.innerText = "EXPRESS AYURVEDIC CHECKOUT";
+
+      bodyEl.innerHTML = `
+        <div class="urgency-badge-box">
+          <span>🔥</span>
+          <span>High Demand: <strong>Only 19 Jars</strong> left in current batch for today's dispatch!</span>
+        </div>
+
+        <div class="chk-step-pill">
+          <span>STEP 1 OF 3</span>
+          <span style="color:var(--accent-green);">Money-Back Guarantee</span>
+        </div>
+        <div class="chk-step-heading">Select Your Ayurvedic Treatment Pack</div>
+
+        <div class="pack-select-item selected" id="chk-pack-detox" onclick="pickCheckoutPack('detox', 1499, 2999, 'Complete Detox Pack (2 Jars)'); haptic(6);">
+          <div class="pack-badge-tag">MOST POPULAR · FULL RESET</div>
+          <div class="pack-select-left">
+            <div class="chk-radio-circle"></div>
+            <div>
+              <div class="pack-title-text">Complete Detox Pack (2 Jars)</div>
+              <div class="pack-sub-text">Full 60-Day Lekhana Scraping Cycle</div>
+            </div>
+          </div>
+          <div class="pack-price-block">
+            <div class="now">₹1,499</div>
+            <div class="mrp">₹2,999</div>
+          </div>
+        </div>
+
+        <div class="pack-select-item" id="chk-pack-starter" onclick="pickCheckoutPack('starter', 899, 1499, 'Starter Pack (1 Jar)'); haptic(6);">
+          <div class="pack-select-left">
+            <div class="chk-radio-circle"></div>
+            <div>
+              <div class="pack-title-text">Starter Pack (1 Jar)</div>
+              <div class="pack-sub-text">30-Day Agni Awakening Trial</div>
+            </div>
+          </div>
+          <div class="pack-price-block">
+            <div class="now">₹899</div>
+            <div class="mrp">₹1,499</div>
+          </div>
+        </div>
+
+        <div class="pack-select-item" id="chk-pack-family" onclick="pickCheckoutPack('family', 1999, 4499, 'Family Rebalance (3 Jars)'); haptic(6);">
+          <div class="pack-select-left">
+            <div class="chk-radio-circle"></div>
+            <div>
+              <div class="pack-title-text">Family Rebalance (3 Jars)</div>
+              <div class="pack-sub-text">90-Day Cellular Reset + Free Brass Spoon</div>
+            </div>
+          </div>
+          <div class="pack-price-block">
+            <div class="now">₹1,999</div>
+            <div class="mrp">₹4,499</div>
+          </div>
+        </div>
+
+        <div style="margin-top:22px;">
+          <div class="chk-step-pill">STEP 2 OF 3</div>
+          <div class="chk-step-heading">Delivery Information</div>
+
+          <div class="form-field-group">
+            <label class="form-field-label">FULL NAME</label>
+            <input type="text" id="chkNameInput" class="form-field-input" placeholder="e.g. Rajesh Sharma" />
+          </div>
+
+          <div class="form-field-group">
+            <label class="form-field-label">MOBILE NUMBER</label>
+            <div style="display:flex; gap:8px;">
+              <input type="text" value="+91" readonly style="width:50px; text-align:center;" class="form-field-input" />
+              <input type="tel" id="chkPhoneInput" class="form-field-input" placeholder="9876543210" maxlength="10" />
+            </div>
+          </div>
+
+          <div class="form-grid-row">
+            <div class="form-field-group">
+              <label class="form-field-label">PINCODE</label>
+              <input type="number" class="form-field-input" placeholder="400001" oninput="detectPincodeCity(this.value)" />
+            </div>
+            <div class="form-field-group">
+              <label class="form-field-label">CITY / STATE</label>
+              <input type="text" id="chkCityInput" class="form-field-input" placeholder="Auto-detected" />
+            </div>
+          </div>
+
+          <div class="form-field-group">
+            <label class="form-field-label">STREET ADDRESS</label>
+            <input type="text" class="form-field-input" placeholder="House number, apartment name, street area" />
+          </div>
+        </div>
+
+        <div style="margin-top:22px;">
+          <div class="chk-step-pill">STEP 3 OF 3</div>
+          <div class="chk-step-heading">Select Payment Mode</div>
+
+          <div class="payment-option-card selected" id="chk-pay-upi" onclick="pickPaymentMode('upi'); haptic(6);">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="chk-radio-circle"></div>
+              <div>
+                <strong style="font-size:13px;">UPI / GPay / PhonePe / Cards</strong>
+                <span class="discount-extra-badge">EXTRA ₹100 OFF</span>
+                <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">Fastest dispatch + Instant discount</div>
+              </div>
+            </div>
+            <div style="font-size:14px; font-weight:800;" id="chkUpiPriceTag">₹1,399</div>
+          </div>
+
+          <div class="payment-option-card" id="chk-pay-cod" onclick="pickPaymentMode('cod'); haptic(6);">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="chk-radio-circle"></div>
+              <div>
+                <strong style="font-size:13px;">Cash on Delivery (COD)</strong>
+                <div style="font-size:10px; color:#888;">Pay cash or UPI at your doorstep</div>
+              </div>
+            </div>
+            <div style="font-size:14px; font-weight:800;" id="chkCodPriceTag">₹1,499</div>
+          </div>
+        </div>
+
+        <div class="checkout-bill-card">
+          <div class="bill-item-row">
+            <span id="chkBillPackTitle">Selected: 2 Jars (60 Days Detox Cycle)</span>
+            <span id="chkBillMrp">₹2,999</span>
+          </div>
+          <div class="bill-item-row green">
+            <span>Special Ayurvedic Discount</span>
+            <span id="chkBillDiscount">-₹1,500</span>
+          </div>
+          <div class="bill-item-row green" id="chkUpiDiscountRow">
+            <span>Prepaid Extra Offer</span>
+            <span>-₹100</span>
+          </div>
+          <div class="bill-item-row">
+            <span>Delivery Charges</span>
+            <span style="color:var(--accent-green); font-weight:700;">FREE</span>
+          </div>
+          <div class="bill-total-row">
+            <span>Grand Total</span>
+            <span id="chkBillGrandTotal">₹1,399</span>
+          </div>
+        </div>
+
+        <button onclick="submitCheckoutOrder(); haptic(20);" style="width:100%; height:50px; border-radius:16px; background:var(--primary-dark); color:#FFF; font-size:14.5px; font-weight:800; border:none; cursor:pointer;">
+          PLACE CONFIRMED ORDER
+        </button>
+
+        <div style="text-align:center; font-size:10px; color:#999; margin-top:10px;">
+          🔒 256-Bit SSL Encryption · 100% Ayurvedic · Tamper-Proof Packaging
+        </div>
+      `;
+
+      if (packMode === 'starter') {
+        pickCheckoutPack('starter', 899, 1499, 'Starter Pack (1 Jar)');
+      } else if (packMode === 'family') {
+        pickCheckoutPack('family', 1999, 4499, 'Family Rebalance (3 Jars)');
+      } else {
+        pickCheckoutPack('detox', 1499, 2999, 'Complete Detox Pack (2 Jars)');
+      }
+
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function pickCheckoutPack(packKey, price, mrp, title) {
+      selectedChkPrice = price;
+      selectedChkMrp = mrp;
+      selectedChkPackTitle = title;
+
+      document.querySelectorAll('.pack-select-item').forEach(p => p.classList.remove('selected'));
+      const activeEl = document.getElementById('chk-pack-' + packKey);
+      if (activeEl) activeEl.classList.add('selected');
+
+      recalcCheckoutTotals();
+    }
+
+    function pickPaymentMode(mode) {
+      selectedPayMode = mode;
+      document.getElementById('chk-pay-upi').classList.toggle('selected', mode === 'upi');
+      document.getElementById('chk-pay-cod').classList.toggle('selected', mode === 'cod');
+      recalcCheckoutTotals();
+    }
+
+    function recalcCheckoutTotals() {
+      const upiExtraOff = (selectedPayMode === 'upi') ? 100 : 0;
+      const finalPrice = selectedChkPrice - upiExtraOff;
+      const baseDiscount = selectedChkMrp - selectedChkPrice;
+
+      document.getElementById('chkBillPackTitle').innerText = 'Selected: ' + selectedChkPackTitle;
+      document.getElementById('chkBillMrp').innerText = '₹' + selectedChkMrp.toLocaleString('en-IN');
+      document.getElementById('chkBillDiscount').innerText = '-₹' + baseDiscount.toLocaleString('en-IN');
+      
+      const upiRow = document.getElementById('chkUpiDiscountRow');
+      if (upiRow) upiRow.style.display = (selectedPayMode === 'upi') ? 'flex' : 'none';
+
+      document.getElementById('chkBillGrandTotal').innerText = '₹' + finalPrice.toLocaleString('en-IN');
+      document.getElementById('chkUpiPriceTag').innerText = '₹' + (selectedChkPrice - 100).toLocaleString('en-IN');
+      document.getElementById('chkCodPriceTag').innerText = '₹' + selectedChkPrice.toLocaleString('en-IN');
+    }
+
+    function detectPincodeCity(val) {
+      const cityEl = document.getElementById('chkCityInput');
+      if (val.length === 6) {
+        if (val.startsWith('11')) cityEl.value = "New Delhi, DL";
+        else if (val.startsWith('40')) cityEl.value = "Mumbai, MH";
+        else if (val.startsWith('56')) cityEl.value = "Bengaluru, KA";
+        else cityEl.value = "Zone Verified, IN";
+      }
+    }
+
+    function submitCheckoutOrder() {
+      const name = document.getElementById('chkNameInput').value.trim();
+      const phone = document.getElementById('chkPhoneInput').value.trim();
+      if (!name || phone.length < 10) {
+        alert("Kripya apna naam aur valid 10-digit mobile number enter karein.");
+        return;
+      }
+      closeDrawer();
+      document.getElementById('orderSuccessModal').classList.add('active');
+    }
+
+    function closeOrderSuccess() {
+      document.getElementById('orderSuccessModal').classList.remove('active');
+    }
+
+    const lbPhotos = [
+      { icon: '🏺', title: 'Customer Photo: Texture 1', desc: 'Unadulterated herbal churan grain ground to exact Shastric grain.' },
+      { icon: '🌿', title: 'Customer Photo: Herbal Mix', desc: 'Raw Triphala, Guggulu, and Shunthi extract granules.' },
+      { icon: '🍯', title: 'Customer Photo: Decoction', desc: 'Effortless warm water dissolution 30 mins before bedtime.' },
+      { icon: '📦', title: 'Customer Photo: Unboxing', desc: 'Tamper-proof gold seal packaging with laboratory QC verification.' },
+      { icon: '🌱', title: 'Customer Photo: Daily Scoop', desc: 'Accurate 3g dosage measuring scoop.' }
+    ];
+
+    function openPhoto(idx) {
+      const item = lbPhotos[idx] || lbPhotos[0];
+      document.getElementById('lbIcon').innerText = item.icon;
+      document.getElementById('lbTitle').innerText = item.title;
+      document.getElementById('lbDesc').innerText = item.desc;
+      document.getElementById('lbCounter').innerText = `${idx + 1} / ${lbPhotos.length}`;
+      document.getElementById('lightboxModal').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('active');
+    }
+
+    function shareProduct() {
+      const shareData = {
+        title: 'Herb-O-Care | Ayurvedic Metabolic Churan',
+        text: 'Crafted with 23+ powerful Ayurvedic herbs to reset internal Agni, dissolve stubborn fat, and clear blocked pathways.',
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(err => console.log('Share dismissed', err));
+      } else {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          alert('Link Copied to Clipboard!');
         });
       }
-
-      // Outgoing View Animation
-      gsap.to(currentView, {
-        opacity: 0,
-        y: direction * -24,
-        duration: 0.3,
-        ease: 'power2.in',
-        onComplete: () => {
-          currentView.classList.remove('active-step');
-        }
-      });
-
-      // Bottle smooth choreograph
-      const bState = bottleStates[nextIndex];
-      gsap.to(bottle, {
-        top: bState.top,
-        left: bState.left,
-        scale: bState.scale,
-        opacity: bState.opacity,
-        filter: bState.filter,
-        duration: 0.48,
-        ease: 'power3.out'
-      });
-
-      // Incoming View Animation
-      nextView.classList.add('active-step');
-      gsap.fromTo(nextView, 
-        { opacity: 0, y: direction * 24 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.4, 
-          delay: 0.1, 
-          ease: 'power3.out',
-          onComplete: () => {
-            currentStep = nextIndex;
-            isTransitioning = false;
-          }
-        }
-      );
     }
 
-    // Direct dot click navigation
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        if (idx !== currentStep) {
-          goToStep(idx, idx > currentStep ? 1 : -1);
-        }
+    /* AUDIO ENGINE */
+    const audioEl = document.getElementById('ambientAudio');
+    const audioBtn = document.getElementById('headerAudioBtn');
+    const audioIcon = document.getElementById('audioStateIcon');
+    const audioReminderPill = document.getElementById('audioReminderPill');
+    const progressCircle = document.getElementById('audioProgressCircle');
+    const circumference = 2 * Math.PI * 17;
+
+    let isAudioPlaying = false;
+
+    function dismissReminderPill() {
+      if (audioReminderPill) audioReminderPill.classList.remove('active');
+      if (audioBtn) audioBtn.classList.remove('attention');
+    }
+
+    function playAudio() {
+      return audioEl.play().then(() => {
+        isAudioPlaying = true;
+        audioBtn.classList.add('playing');
+        audioIcon.innerText = '❚❚';
+        dismissReminderPill();
+      }).catch(err => {
+        if (audioReminderPill) audioReminderPill.classList.add('active');
+        if (audioBtn) audioBtn.classList.add('attention');
+        throw err;
       });
-    });
+    }
 
-    // Virtual Scroll / Wheel handling
-    let wheelAccumulator = 0;
-    window.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      if (isTransitioning) return;
-      wheelAccumulator += e.deltaY;
-      if (wheelAccumulator > 35) {
-        goToStep(currentStep + 1, 1);
-        wheelAccumulator = 0;
-      } else if (wheelAccumulator < -35) {
-        goToStep(currentStep - 1, -1);
-        wheelAccumulator = 0;
-      }
-    }, { passive: false });
+    function pauseAudio() {
+      audioEl.pause();
+      isAudioPlaying = false;
+      audioBtn.classList.remove('playing');
+      audioIcon.innerText = '▶';
+    }
 
-    // Touch gesture swipe handling
-    let touchStartY = 0;
-    stage.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
-    }, { passive: true });
+    function toggleAudio() {
+      dismissReminderPill();
+      if (isAudioPlaying) pauseAudio();
+      else playAudio();
+    }
 
-    stage.addEventListener('touchend', (e) => {
-      if (isTransitioning) return;
-      const touchEndY = e.changedTouches[0].clientY;
-      const diffY = touchStartY - touchEndY;
-
-      if (diffY > 38) {
-        goToStep(currentStep + 1, 1);
-      } else if (diffY < -38) {
-        goToStep(currentStep - 1, -1);
-      }
-    }, { passive: true });
-
-    // Bottom Action Buttons
-    document.getElementById('dockPlayBtn').addEventListener('click', () => {
-      const next = (currentStep + 1) % totalSteps;
-      goToStep(next, next > currentStep ? 1 : -1);
-    });
-
-    document.getElementById('dockHomeBtn').addEventListener('click', () => {
-      goToStep(0, -1);
-    });
-
-    document.getElementById('dockBuyBtn').addEventListener('click', () => {
-      haptic(15);
-      if (currentStep !== 4) {
-        goToStep(4, 1);
+    audioEl.addEventListener('timeupdate', () => {
+      if (audioEl.duration) {
+        const percent = audioEl.currentTime / audioEl.duration;
+        const offset = circumference - (percent * circumference);
+        progressCircle.style.strokeDashoffset = offset;
       }
     });
 
-    document.getElementById('dockShareBtn').addEventListener('click', () => {
-      haptic(15);
-      if (navigator.share) {
-        navigator.share({
-          title: "Dharatatva — Herb-O-Care Churan",
-          text: "Discover the nocturnal Ayurvedic Rasāyana ritual.",
-          url: window.location.href
-        }).catch(() => {});
+    const CACHE_KEY = "dharatatva_welcome_accepted";
+    const welcomeModal = document.getElementById('welcomeDialogOverlay');
+
+    function preloadAllSiteAssets() {
+      const assetUrls = ['img/15.png', 'img/16.png', 'img/18.png'];
+      assetUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+      });
+    }
+
+    function acceptVedicExperience(withAudio) {
+      localStorage.setItem(CACHE_KEY, "true");
+      welcomeModal.classList.remove('active');
+      preloadAllSiteAssets();
+      if (withAudio) playAudio();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const alreadyAccepted = localStorage.getItem(CACHE_KEY);
+
+      if (!alreadyAccepted) {
+        setTimeout(() => welcomeModal.classList.add('active'), 2700);
       } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert("Link copied to clipboard!");
+        preloadAllSiteAssets();
+        setTimeout(() => {
+          playAudio().catch(() => {
+            const handleFirstUserTouch = () => {
+              playAudio().then(() => dismissReminderPill()).catch(() => {});
+            };
+            window.addEventListener('touchstart', handleFirstUserTouch, { once: true, passive: true });
+            window.addEventListener('click', handleFirstUserTouch, { once: true });
+          });
+        }, 800);
       }
-    });
-
-    // ==========================================
-    // CHECKOUT PRICING & LOGIC (STEP 4)
-    // ==========================================
-    let unitPrice = 949;
-    let quantity = 1;
-    const vol1 = document.getElementById('volOption1');
-    const vol2 = document.getElementById('volOption2');
-    const doseBadge = document.getElementById('selectedDoseBadge');
-    const qtyVal = document.getElementById('qtyVal');
-    const submitBtnText = document.getElementById('submitBtnText');
-
-    function updateTotalPrice() {
-      const total = unitPrice * quantity;
-      submitBtnText.textContent = `DISPATCH ORDER NOW (₹${total.toLocaleString('en-IN')})`;
-    }
-
-    vol1.addEventListener('click', () => {
-      haptic(10);
-      vol1.classList.add('selected');
-      vol2.classList.remove('selected');
-      unitPrice = parseInt(vol1.getAttribute('data-price'), 10);
-      doseBadge.textContent = vol1.getAttribute('data-badge');
-      updateTotalPrice();
-    });
-
-    vol2.addEventListener('click', () => {
-      haptic(10);
-      vol2.classList.add('selected');
-      vol1.classList.remove('selected');
-      unitPrice = parseInt(vol2.getAttribute('data-price'), 10);
-      doseBadge.textContent = vol2.getAttribute('data-badge');
-      updateTotalPrice();
-    });
-
-    document.getElementById('qtyPlus').addEventListener('click', () => {
-      haptic(10);
-      if (quantity < 10) {
-        quantity++;
-        qtyVal.textContent = quantity;
-        updateTotalPrice();
-      }
-    });
-
-    document.getElementById('qtyMinus').addEventListener('click', () => {
-      haptic(10);
-      if (quantity > 1) {
-        quantity--;
-        qtyVal.textContent = quantity;
-        updateTotalPrice();
-      }
-    });
-
-    document.getElementById('orderSubmitBtn').addEventListener('click', () => {
-      haptic(25);
-      const selectedProduct = vol1.classList.contains('selected') ? "100g Micro-Dose" : "250g Sadhana Jar";
-      alert(`Order Confirmed!\n\nProduct: Dharatatva Herb-O-Care (${selectedProduct})\nQty: ${quantity}\nTotal: ₹${(unitPrice * quantity).toLocaleString('en-IN')}\nPayment: Cash on Delivery / UPI`);
     });
   </script>
 </body>
