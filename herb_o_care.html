@@ -128,14 +128,15 @@
       letter-spacing: -0.01em;
     }
 
-    /* TOP NAVIGATION */
+    /* TOP NAVIGATION (FIXED: Full Width & Clean 16px Padding) */
     .top-floating-bar {
       position: fixed;
       top: 14px;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 28px);
-      max-width: 408px;
+      width: 100%;
+      max-width: 440px;
+      padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -473,7 +474,7 @@
       transform: scale(0.92);
     }
 
-    /* SCROLLING CONTENT LAYER */
+    /* SCROLLING CONTENT LAYER (FIXED: min-height removed to eliminate bottom blank gap) */
     .scrolling-content-layer {
       position: relative;
       z-index: 10;
@@ -488,7 +489,7 @@
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       padding-top: 36px;
-      min-height: 100vh;
+      min-height: auto;
       width: 100%;
     }
 
@@ -686,8 +687,9 @@
       border-radius: 3px;
     }
 
+    /* TAB CONTENT (FIXED: Reduced padding-bottom to 88px to fit above bottom bar cleanly) */
     .tab-content-area {
-      padding: 18px 18px 140px;
+      padding: 18px 18px 88px;
     }
 
     .buynow-card-container {
@@ -1898,7 +1900,7 @@
   <div class="app-viewport-wrapper">
     <div class="app-viewport-shell">
 
-      <!-- Top Floating Bar -->
+      <!-- Top Floating Bar (Edge-to-Edge aligned) -->
       <div class="top-floating-bar">
         <div class="header-left-actions">
           <a href="https://dharatatva.github.io/web/" class="icon-circle-btn" onclick="scrollToTop(); haptic(6); return false;" title="Back to top">
@@ -2117,7 +2119,7 @@
         </button>
       </div>
 
-      <!-- GLOBAL BACKDROP & MODAL SHEET (STRICTLY CONFINED TO APP VIEWPORT SHELL) -->
+      <!-- GLOBAL BACKDROP & MODAL SHEET (CONFINED STRICTLY TO APP VIEWPORT SHELL) -->
       <div class="global-backdrop" id="globalBackdrop" onclick="closeDrawer()"></div>
 
       <div class="modal-sheet" id="productDetailSheet">
