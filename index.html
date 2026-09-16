@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>Dharatatva — Elements of Earth</title>
+  <title>Dharatatva — Sanctuary of Pure Earth Elements</title>
 
-  <!-- Google Fonts -->
+  <!-- Classical Typography: Rozha One, Cinzel Decorative, Cormorant & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
@@ -14,22 +14,31 @@
 
   <style>
     :root {
-      --bg-cream: #F7F5F0;
-      --bg: #eceae3;
-      --surface: #ffffff;
-      --text: #161513;
-      --primary-dark: #121815;
-      --muted: #797771;
-      --bronze: #8e7146;
-      --accent-green: #1B5E3B;
-      --accent-gold: #C29B38;
-      --accent-rust: #B8532F;
-      --hairline: rgba(22, 21, 19, 0.09);
-      --card-tint: rgba(255, 255, 255, 0.55);
+      /* Ancient Vedic Parchment & Forest Palette */
+      --bg-parchment: #F4EFE6;
+      --bg-outer: #EAE3D5;
+      --surface-cream: #FCFAF6;
+      
+      /* Botanical Pigments */
+      --ink-dark: #141A16;          /* Deep Ayurvedic Charcoal */
+      --ink-subtle: #4D5750;        /* Forest Muted */
+      --ayur-green: #1B4D36;        /* Haritaki Green */
+      --ayur-forest: #0F281C;       /* Gahan Van */
+      --tamra-bronze: #8D6B3C;      /* Sacred Bronze */
+      --swarna-gold: #C5A059;       /* 24K Gold Leaf Accent */
+      --swarna-glow: rgba(197, 160, 89, 0.16);
+      --hairline-gold: rgba(197, 160, 89, 0.28);
+      
+      /* Glass & Texture */
+      --card-glass: rgba(255, 255, 255, 0.65);
+      --border-parchment: rgba(20, 26, 22, 0.08);
+      --glass-blur: blur(24px) saturate(160%);
+      
+      /* Typography */
+      --font-vedic: 'Rozha One', serif;
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-playfair: 'Playfair Display', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --glass-blur: blur(28px) saturate(180%);
     }
 
     *, *::before, *::after {
@@ -43,21 +52,22 @@
     html, body {
       width: 100%;
       height: 100%;
-      background-color: var(--bg);
-      color: var(--text);
+      background-color: var(--bg-outer);
+      color: var(--ink-dark);
       font-family: var(--font-sans);
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
+    /* Handcrafted Vedic Handmade Paper Texture */
     .paper-grain {
       position: fixed;
       inset: 0;
-      opacity: 0.035;
+      opacity: 0.045;
       pointer-events: none;
       z-index: 999;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
     .app-viewport-wrapper {
@@ -67,7 +77,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--bg);
+      background-color: var(--bg-outer);
       overflow: hidden;
       position: relative;
     }
@@ -77,7 +87,7 @@
       max-width: 100%;
       height: 100%;
       position: relative;
-      background: var(--bg);
+      background: radial-gradient(circle at 50% 10%, #FAF8F2 0%, var(--bg-parchment) 100%);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -89,28 +99,29 @@
       }
       .app-viewport-shell {
         max-width: 440px;
-        box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
-        border-left: 1px solid var(--hairline);
-        border-right: 1px solid var(--hairline);
+        box-shadow: 0 0 70px rgba(15, 40, 28, 0.16);
+        border-left: 1px solid var(--hairline-gold);
+        border-right: 1px solid var(--hairline-gold);
       }
     }
 
+    /* Sacred Herb Glow (Chauhan Agni & Botanical Aura) */
     .ambient-glow {
       position: absolute;
-      top: 44%;
+      top: 42%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 360px;
+      width: 380px;
       height: 480px;
-      background: radial-gradient(ellipse, rgba(168, 200, 160, 0.35) 0%, transparent 68%);
-      filter: blur(60px);
+      background: radial-gradient(ellipse, rgba(168, 195, 160, 0.32) 0%, transparent 68%);
+      filter: blur(64px);
       pointer-events: none;
       z-index: 1;
       will-change: background;
-      transition: background 0.6s ease;
+      transition: background 0.8s ease;
     }
 
-    /* HEADER */
+    /* VINTAGE HERBAL HEADER */
     header {
       width: 100%;
       padding: 12px 18px;
@@ -119,9 +130,10 @@
       align-items: center;
       z-index: 60;
       flex-shrink: 0;
-      background: rgba(236, 234, 227, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(244, 239, 230, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(197, 160, 89, 0.15);
     }
 
     .header-left {
@@ -144,24 +156,20 @@
     .menu-toggle-btn span {
       display: block;
       width: 20px;
-      height: 2px;
-      background: var(--text);
+      height: 1.8px;
+      background: var(--ink-dark);
       border-radius: 2px;
     }
 
     .menu-toggle-btn span:last-child {
       width: 13px;
+      background: var(--tamra-bronze);
     }
 
     .brand-logo-wrap {
       display: flex;
       align-items: center;
       text-decoration: none;
-      font-family: var(--font-playfair);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.05em;
     }
 
     .brand-logo-img {
@@ -170,6 +178,7 @@
       max-width: 140px;
       object-fit: contain;
       display: block;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.06));
     }
 
     .header-right-actions {
@@ -183,30 +192,31 @@
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.92);
+      background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(248,244,235,0.92) 100%);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(197, 160, 89, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      box-shadow: 0 3px 10px rgba(20, 26, 22, 0.05);
       cursor: pointer;
-      color: var(--text);
+      color: var(--ink-dark);
       position: relative;
-      transition: transform 0.15s;
+      transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .icon-circle-btn:active {
       transform: scale(0.92);
+      background: #EFE8DC;
     }
 
     .icon-circle-btn svg {
       width: 17px;
       height: 17px;
-      stroke: var(--text);
+      stroke: var(--ink-dark);
       fill: none;
-      stroke-width: 2;
+      stroke-width: 1.8;
     }
 
     .notify-badge {
@@ -216,11 +226,11 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #20201d;
-      border: 1.5px solid var(--bg);
+      background: var(--tamra-bronze);
+      border: 1.5px solid var(--bg-parchment);
     }
 
-    /* AUDIO COMPONENT */
+    /* VEDIC FLUTE AUDIO CONTROLLER */
     .audio-wrapper-group {
       display: flex;
       align-items: center;
@@ -230,16 +240,16 @@
     .audio-reminder-pill {
       position: absolute;
       right: 44px;
-      background: rgba(255, 255, 255, 0.95);
+      background: linear-gradient(135deg, #FFFFFF 0%, #F9F5EC 100%);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--hairline-gold);
       border-radius: 20px;
       padding: 4px 10px;
       font-size: 10px;
-      font-weight: 800;
-      color: var(--accent-green);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+      color: var(--ayur-green);
+      box-shadow: 0 4px 14px rgba(27, 77, 54, 0.12);
       white-space: nowrap;
       cursor: pointer;
       opacity: 0;
@@ -256,45 +266,35 @@
       opacity: 1;
       transform: scale(1) translateX(0);
       pointer-events: auto;
-      animation: gentlePillPulse 2s infinite ease-in-out;
+      animation: gentlePillPulse 2.4s infinite ease-in-out;
     }
 
     @keyframes gentlePillPulse {
-      0%, 100% { box-shadow: 0 6px 18px rgba(27, 94, 59, 0.15); transform: translateY(0); }
-      50% { box-shadow: 0 8px 24px rgba(27, 94, 59, 0.28); transform: translateY(-2px); }
+      0%, 100% { box-shadow: 0 4px 12px rgba(27, 77, 54, 0.12); transform: translateY(0); }
+      50% { box-shadow: 0 6px 18px rgba(197, 160, 89, 0.35); transform: translateY(-1.5px); }
     }
 
     .header-audio-btn {
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.82);
+      background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(248,244,235,0.92) 100%);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(197, 160, 89, 0.3);
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      color: var(--primary-dark);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      color: var(--ink-dark);
+      box-shadow: 0 3px 10px rgba(20, 26, 22, 0.05);
       transition: box-shadow 0.25s, transform 0.15s;
       z-index: 6;
     }
 
     .header-audio-btn:active {
       transform: scale(0.92);
-    }
-
-    .header-audio-btn.attention {
-      box-shadow: 0 0 0 3px rgba(27, 94, 59, 0.3), 0 4px 14px rgba(0,0,0,0.08);
-      animation: btnGlow 2s infinite ease-in-out;
-    }
-
-    @keyframes btnGlow {
-      0%, 100% { box-shadow: 0 0 0 2px rgba(27, 94, 59, 0.25), 0 4px 14px rgba(0,0,0,0.08); }
-      50% { box-shadow: 0 0 0 5px rgba(27, 94, 59, 0.45), 0 6px 18px rgba(27, 94, 59, 0.2); }
     }
 
     .audio-progress-svg {
@@ -309,13 +309,13 @@
 
     .audio-progress-bg {
       fill: none;
-      stroke: #EAE5D8;
+      stroke: #EAE1CF;
       stroke-width: 2.2;
     }
 
     .audio-progress-bar {
       fill: none;
-      stroke: var(--accent-green);
+      stroke: var(--ayur-green);
       stroke-width: 2.2;
       stroke-dasharray: 106.8;
       stroke-dashoffset: 106.8;
@@ -324,20 +324,22 @@
     }
 
     .audio-state-icon {
-      font-size: 12px;
+      font-size: 11px;
       margin-left: 1.5px;
       line-height: 1;
       font-weight: 700;
+      color: var(--tamra-bronze);
     }
 
     .header-audio-btn.playing .audio-state-icon {
       margin-left: 0;
+      color: var(--ayur-green);
     }
 
-    /* GREETING */
+    /* SACRED GREETING SECTION */
     .greeting-section {
       width: 100%;
-      padding: 10px 18px;
+      padding: 10px 18px 6px;
       flex-shrink: 0;
       z-index: 50;
     }
@@ -349,36 +351,37 @@
     }
 
     .greeting-user-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink-dark);
       letter-spacing: -0.01em;
       line-height: 1.2;
     }
 
     .namaste-badge-btn {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 241, 230, 0.95) 100%);
-      border: 1px solid rgba(194, 155, 56, 0.38);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, #F5EDE0 100%);
+      border: 1px solid rgba(197, 160, 89, 0.45);
       border-radius: 20px;
-      padding: 3px 8px 3px 6px;
+      padding: 3px 9px 3px 7px;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(142, 113, 70, 0.08);
+      box-shadow: 0 2px 8px rgba(141, 107, 60, 0.1);
       transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .namaste-badge-btn:active {
       transform: scale(0.93);
-      background: #f4eee1;
+      background: #ECE1CF;
     }
 
     .namaste-hands {
       font-size: 13px;
       line-height: 1;
       display: inline-block;
-      animation: subtleFold 3s infinite ease-in-out;
+      animation: subtleFold 3.5s infinite ease-in-out;
     }
 
     @keyframes subtleFold {
@@ -387,27 +390,29 @@
     }
 
     .namaste-text {
-      font-family: 'Rozha One', 'Cinzel', serif;
-      font-size: 10px;
-      color: #835c24;
+      font-family: var(--font-vedic);
+      font-size: 10.5px;
+      color: #78521F;
       font-weight: 500;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
       line-height: 1;
     }
 
     .greeting-subtext {
+      font-family: var(--font-playfair);
       font-size: 18px;
-      font-weight: 700;
-      color: #24221e;
-      letter-spacing: -0.02em;
-      margin-top: 4px;
-      line-height: 1.2;
+      font-style: italic;
+      font-weight: 500;
+      color: #2D3630;
+      letter-spacing: -0.01em;
+      margin-top: 3px;
+      line-height: 1.25;
     }
 
-    /* CATEGORY & VIEW */
+    /* BOTANICAL CATEGORY PILL RAIL */
     .unified-category-bar {
       width: 100%;
-      padding: 0 16px 6px 18px;
+      padding: 2px 16px 6px 18px;
       display: flex;
       align-items: flex-end;
       gap: 10px;
@@ -424,11 +429,11 @@
 
     .zone-label {
       font-size: 7.5px;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--bronze);
-      font-weight: 700;
-      margin-bottom: 7px;
+      color: var(--tamra-bronze);
+      font-weight: 800;
+      margin-bottom: 6px;
       line-height: 1;
     }
 
@@ -456,22 +461,34 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      width: 62px;
-      height: 60px;
+      gap: 4px;
+      width: 66px;
+      height: 62px;
       border-radius: 16px;
-      background: var(--card-tint);
-      border: 1px solid rgba(22, 21, 19, 0.08);
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(197, 160, 89, 0.22);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      color: #3b3935;
-      font-size: 9.5px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      color: #48443E;
       cursor: pointer;
       flex-shrink: 0;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
-      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 2px 6px rgba(20, 26, 22, 0.03);
+      transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .cat-btn .cat-en {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+
+    .cat-btn .cat-hi {
+      font-family: var(--font-vedic);
+      font-size: 8px;
+      color: var(--tamra-bronze);
+      opacity: 0.85;
+      line-height: 1;
     }
 
     .cat-btn svg {
@@ -485,14 +502,15 @@
     }
 
     .cat-btn.active {
-      background: #1f1e1a;
-      color: #ffffff;
-      border-color: #1f1e1a;
-      box-shadow: 0 6px 16px rgba(22, 21, 19, 0.16);
+      background: linear-gradient(145deg, #18241E 0%, #0E1813 100%);
+      color: #FAF6ED;
+      border-color: rgba(197, 160, 89, 0.5);
+      box-shadow: 0 6px 18px rgba(15, 36, 26, 0.25);
       transform: translateY(-1px);
     }
 
-    .cat-btn.active svg { stroke: #ffffff; }
+    .cat-btn.active svg { stroke: #D4AF37; }
+    .cat-btn.active .cat-hi { color: #E5C384; opacity: 1; }
 
     .view-zone {
       flex-shrink: 0;
@@ -504,20 +522,20 @@
 
     .view-zone .zone-label {
       text-align: center;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
 
     .view-control-container {
       display: flex;
       align-items: center;
-      height: 60px;
+      height: 62px;
       padding-left: 2px;
     }
 
     .view-divider-line {
       width: 1px;
       height: 38px;
-      background: rgba(22, 21, 19, 0.18);
+      background: rgba(197, 160, 89, 0.25);
       margin-right: 12px;
       border-radius: 1px;
     }
@@ -526,19 +544,19 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: #e5e2d8;
-      border: 1px solid rgba(22, 21, 19, 0.08);
+      background: #E8E0D2;
+      border: 1px solid rgba(197, 160, 89, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 6px rgba(0, 0, 0, 0.04);
-      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s;
     }
 
     .view-toggle-btn:active {
       transform: scale(0.92);
-      background: #dad6ca;
+      background: #DED5C5;
     }
 
     .view-grid-icon {
@@ -556,18 +574,18 @@
       display: block;
       width: 6.5px;
       height: 6.5px;
-      border: 1.4px solid #272522;
+      border: 1.4px solid #36322C;
       border-radius: 2px;
       box-sizing: border-box;
       background: transparent;
     }
 
-    /* STAGE */
+    /* SACRED STAGE & FILIGREE CARD */
     .stage-wrapper {
       flex: 1;
       position: relative;
       width: 100%;
-      padding: 2px 16px 6px;
+      padding: 2px 18px 6px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -584,15 +602,41 @@
       position: relative;
       width: 100%;
       height: 100%;
-      border-radius: 28px;
+      border-radius: 26px;
       overflow: hidden;
-      background: #1a1a1a;
-      box-shadow: 0 20px 50px rgba(22, 21, 19, 0.12), 0 4px 14px rgba(0, 0, 0, 0.05);
+      background: #121915;
+      box-shadow: 0 22px 55px rgba(18, 25, 21, 0.18), 0 4px 14px rgba(0, 0, 0, 0.06);
       display: flex;
       flex-direction: column;
       transform: translate3d(0, 0, 0);
       will-change: transform;
+      border: 1px solid rgba(197, 160, 89, 0.35);
     }
+
+    /* Classical Filigree Inset Gold Line */
+    .card-filigree-border {
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(197, 160, 89, 0.32);
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: 30;
+    }
+
+    .card-corner-motif {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      font-size: 8px;
+      color: var(--swarna-gold);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .motif-tl { top: 3px; left: 4px; }
+    .motif-tr { top: 3px; right: 4px; }
 
     .product-media-zone {
       position: relative;
@@ -602,7 +646,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #ffffff;
+      background: #FFFFFF;
     }
 
     .product-img {
@@ -617,11 +661,11 @@
       position: absolute;
       top: 42%;
       transform: translateY(-50%);
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(197, 160, 89, 0.4);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       display: flex;
@@ -629,7 +673,7 @@
       justify-content: center;
       cursor: pointer;
       z-index: 35;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease, transform 0.2s ease, background 0.2s ease;
@@ -642,17 +686,17 @@
 
     .arrow-btn:active {
       transform: translateY(-50%) scale(0.9);
-      background: #ffffff;
+      background: #FFFFFF;
     }
     .arrow-btn.prev { left: 8px; }
     .arrow-btn.next { right: 8px; }
 
     .arrow-btn svg {
-      width: 13px;
-      height: 13px;
-      stroke: var(--text);
+      width: 14px;
+      height: 14px;
+      stroke: var(--ink-dark);
       fill: none;
-      stroke-width: 2;
+      stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -665,14 +709,14 @@
       width: 100%;
       background: linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.22) 20%,
-        rgba(0, 0, 0, 0.58) 50%,
-        rgba(0, 0, 0, 0.82) 80%,
-        rgba(0, 0, 0, 0.94) 100%
+        rgba(10, 15, 12, 0) 0%,
+        rgba(10, 15, 12, 0.45) 18%,
+        rgba(10, 15, 12, 0.82) 48%,
+        rgba(10, 15, 12, 0.96) 82%,
+        #0C130F 100%
       );
-      padding: 55px 16px 14px;
-      color: #ffffff;
+      padding: 55px 18px 16px;
+      color: #FFFFFF;
       display: flex;
       flex-direction: column;
       gap: 3px;
@@ -686,40 +730,51 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
+    }
+
+    .card-shastra-tag {
+      font-size: 8.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #E2C288;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .card-rating-row {
       display: flex;
       align-items: center;
-      gap: 5px;
-      font-size: 13px;
+      gap: 4px;
+      font-size: 12.5px;
       font-weight: 600;
-      color: #ffffff;
+      color: #FFFFFF;
       line-height: 1;
     }
 
     .card-star {
-      color: #f59e0b;
+      color: #F1B638;
       font-size: 13px;
       line-height: 1;
     }
 
     .card-reviews {
-      color: rgba(255, 255, 255, 0.75);
+      color: rgba(255, 255, 255, 0.72);
       font-weight: 400;
-      font-size: 12px;
+      font-size: 11.5px;
     }
 
     .card-share-btn-top {
-      width: 32px;
-      height: 32px;
+      width: 33px;
+      height: 33px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(197, 160, 89, 0.4);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      color: #ffffff;
+      color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -729,8 +784,8 @@
 
     .card-share-btn-top:active {
       transform: scale(0.9);
-      background: #ffffff;
-      color: #161513;
+      background: var(--swarna-gold);
+      color: #121815;
     }
 
     .card-share-btn-top svg {
@@ -738,27 +793,28 @@
       height: 13px;
       stroke: currentColor;
       fill: none;
-      stroke-width: 2.1;
+      stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
       margin-left: -1px;
     }
 
     .card-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      color: #ffffff;
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
       line-height: 1.15;
     }
 
     .card-desc {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.85);
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.84);
       font-weight: 400;
-      line-height: 1.35;
+      line-height: 1.4;
       margin-top: 2px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .card-price-row {
@@ -771,58 +827,58 @@
     .card-price-group {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
 
     .card-price {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #ffffff;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #FFFFFF;
       line-height: 1;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.02em;
     }
 
     .card-mrp {
       font-size: 12px;
-      color: #f87171;
+      color: #E58686;
       text-decoration: line-through;
       font-weight: 500;
       opacity: 0.95;
     }
 
     .card-discount-pill {
-      background: #000000;
-      color: #ffffff;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      padding: 3.5px 7.5px;
-      border-radius: 12px;
+      background: rgba(197, 160, 89, 0.2);
+      color: #F8E5BA;
+      border: 1px solid rgba(197, 160, 89, 0.45);
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 3px 7px;
+      border-radius: 8px;
       line-height: 1;
-      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .card-explore-btn {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 7px 15px;
+      gap: 6px;
+      padding: 8px 16px;
       border-radius: 20px;
-      background: #ffffff;
-      border: 1px solid #ffffff;
-      color: #161513;
+      background: linear-gradient(135deg, #FAF7EE 0%, #E6DAC4 100%);
+      border: 1px solid #D8C3A0;
+      color: var(--ink-dark);
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
+      font-weight: 700;
+      letter-spacing: 0.02em;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
       transition: all 0.2s ease;
     }
 
     .card-explore-btn:active {
       transform: scale(0.94);
-      background: #eceae3;
+      background: #D9CEBA;
     }
 
     .card-explore-btn svg {
@@ -846,21 +902,21 @@
     .dot {
       width: 6px;
       height: 3px;
-      background: rgba(22, 21, 19, 0.18);
+      background: rgba(141, 107, 60, 0.25);
       border-radius: 3px;
       transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .dot.active {
       width: 24px;
-      background: var(--text);
+      background: var(--tamra-bronze);
     }
 
     /* GLOBAL BACKDROP */
     .global-backdrop {
       position: absolute;
       inset: 0;
-      background: rgba(10, 15, 12, 0.55);
+      background: rgba(12, 18, 14, 0.6);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       z-index: 100;
@@ -874,7 +930,7 @@
       pointer-events: auto;
     }
 
-    /* FLOATING CURVED LUXURY DRAWER */
+    /* FLOATING CURVED LUXURY APOTHECARY DRAWER */
     .curved-warm-drawer {
       position: absolute;
       top: 14px;
@@ -882,7 +938,7 @@
       left: 0;
       width: 78%;
       max-width: 325px;
-      background: #846d54;
+      background: #735D45;
       border-top-right-radius: 36px;
       border-bottom-right-radius: 36px;
       z-index: 180;
@@ -1100,7 +1156,7 @@
       display: flex;
       flex-direction: column;
       gap: 3px;
-      background: #7d674f;
+      background: #6a543e;
       flex-shrink: 0;
     }
 
@@ -1129,12 +1185,13 @@
       left: 0;
       right: 0;
       width: 100%;
-      background: #ffffff;
+      background: #FCFAF6;
       border-top-left-radius: 26px;
       border-top-right-radius: 26px;
       padding: 14px 22px 32px;
       z-index: 185;
       box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.2);
+      border-top: 1px solid var(--hairline-gold);
       transform: translateY(105%);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       max-height: 80vh;
@@ -1146,7 +1203,7 @@
     .sheet-drag-pill {
       width: 42px;
       height: 4px;
-      background: rgba(22, 21, 19, 0.15);
+      background: rgba(141, 107, 60, 0.25);
       border-radius: 3px;
       margin: 0 auto 12px;
       flex-shrink: 0;
@@ -1168,14 +1225,15 @@
       font-size: 1.9rem;
       font-weight: 400;
       line-height: 1.1;
+      color: var(--ink-dark);
     }
 
     .namaste-sub {
       font-size: 8.5px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--bronze);
-      font-weight: 600;
+      color: var(--tamra-bronze);
+      font-weight: 700;
       margin-top: 4px;
       display: block;
     }
@@ -1189,9 +1247,9 @@
     .input-field-group {
       display: flex;
       align-items: center;
-      background: var(--bg);
-      border: 1px solid var(--hairline);
-      border-radius: 6px;
+      background: #F4EFE6;
+      border: 1px solid rgba(141, 107, 60, 0.25);
+      border-radius: 8px;
       padding: 0 14px;
       height: 48px;
     }
@@ -1200,8 +1258,9 @@
       font-size: 12px;
       font-weight: 600;
       padding-right: 10px;
-      border-right: 1px solid var(--hairline);
+      border-right: 1px solid rgba(141, 107, 60, 0.2);
       margin-right: 10px;
+      color: var(--tamra-bronze);
     }
 
     .mobile-input {
@@ -1211,7 +1270,7 @@
       width: 100%;
       font-size: 13px;
       letter-spacing: 0.08em;
-      color: var(--text);
+      color: var(--ink-dark);
     }
 
     .otp-digit-boxes {
@@ -1224,30 +1283,30 @@
     .otp-box {
       width: 50px;
       height: 50px;
-      border: 1px solid var(--hairline);
-      border-radius: 6px;
+      border: 1px solid rgba(141, 107, 60, 0.3);
+      border-radius: 8px;
       text-align: center;
       font-size: 18px;
       font-family: var(--font-serif);
       font-weight: 600;
-      background: var(--bg);
+      background: #F4EFE6;
       outline: none;
-      color: var(--text);
+      color: var(--ink-dark);
     }
 
-    .otp-box:focus { border-color: var(--text); }
+    .otp-box:focus { border-color: var(--tamra-bronze); background: #FFFFFF; }
 
     .auth-submit-btn {
       width: 100%;
       height: 48px;
-      background: var(--text);
-      color: #ffffff;
-      border: none;
-      border-radius: 4px;
+      background: linear-gradient(135deg, #18241E 0%, #0E1813 100%);
+      color: #F7F3EB;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      border-radius: 6px;
       font-size: 9.5px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: background 0.2s ease;
     }
@@ -1256,13 +1315,13 @@
     .policy-content-body {
       font-size: 12.5px;
       line-height: 1.6;
-      color: var(--muted);
+      color: var(--ink-subtle);
       padding: 10px 0 20px;
     }
 
     .policy-content-body h4 {
       font-size: 14px;
-      color: var(--text);
+      color: var(--ink-dark);
       margin-top: 12px;
       margin-bottom: 4px;
     }
@@ -1271,7 +1330,7 @@
     .welcome-dialog-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(10, 15, 12, 0.65);
+      background: rgba(12, 18, 14, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       z-index: 500;
@@ -1292,12 +1351,12 @@
     .welcome-dialog-card {
       width: 100%;
       max-width: 360px;
-      background: #FFFFFF;
+      background: #FAF7EE;
       border-radius: 24px;
       padding: 28px 22px 24px;
       text-align: center;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(232, 227, 215, 0.85);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--hairline-gold);
       transform: scale(0.92);
       transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
     }
@@ -1317,13 +1376,13 @@
       font-family: var(--font-playfair);
       font-size: 20px;
       font-weight: 600;
-      color: var(--text);
+      color: var(--ink-dark);
       margin-bottom: 10px;
     }
 
     .welcome-sub {
       font-size: 12.5px;
-      color: var(--muted);
+      color: var(--ink-subtle);
       line-height: 1.6;
       margin-bottom: 22px;
     }
@@ -1332,17 +1391,17 @@
       width: 100%;
       height: 46px;
       border-radius: 14px;
-      background: var(--text);
-      color: #FFFFFF;
+      background: linear-gradient(135deg, #18241E 0%, #0E1813 100%);
+      color: #FAF7EE;
+      border: 1px solid rgba(197, 160, 89, 0.4);
       font-size: 13px;
       font-weight: 700;
-      border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.14);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
       margin-bottom: 10px;
       transition: transform 0.15s;
     }
@@ -1354,15 +1413,15 @@
       height: 40px;
       border-radius: 14px;
       background: transparent;
-      color: var(--muted);
+      color: var(--tamra-bronze);
       font-size: 12px;
       font-weight: 600;
-      border: 1px solid rgba(22, 21, 19, 0.15);
+      border: 1px solid rgba(141, 107, 60, 0.3);
       cursor: pointer;
       transition: background 0.15s;
     }
 
-    .welcome-action-btn-secondary:active { background: #F4EFE6; }
+    .welcome-action-btn-secondary:active { background: #EFE8DC; }
 
     /* TOAST */
     .toast-alert {
@@ -1370,18 +1429,19 @@
       top: 24px;
       left: 50%;
       transform: translate(-50%, -40px);
-      background: var(--text);
-      color: #ffffff;
+      background: var(--ink-dark);
+      color: #FAF6ED;
+      border: 1px solid var(--swarna-gold);
       padding: 10px 22px;
       border-radius: 30px;
-      font-size: 9px;
-      letter-spacing: 0.2em;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
       z-index: 600;
       pointer-events: none;
       opacity: 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -1412,7 +1472,7 @@
           <div class="welcome-om-badge">🌿</div>
           <h2 class="welcome-title">Sacred Vedic Ritual</h2>
           <p class="welcome-sub">
-            Enable peaceful background flute ambience for a sensory Ayurvedic wellness experience, while we cache ingredients and laboratory formulations for lightning-fast browsing.
+            Enable peaceful background flute ambience for a sensory Ayurvedic wellness experience, while we cache sacred formulations for lightning-fast browsing.
           </p>
 
           <button class="welcome-action-btn-primary" onclick="acceptVedicExperience(true)">
@@ -1449,11 +1509,11 @@
 
           <div class="audio-wrapper-group">
             <div class="audio-reminder-pill" id="audioReminderPill" onclick="toggleAudio()">
-              <span>Tap for Sound</span>
-              <span style="font-size:11px; color:#725bb7;">🎵</span>
+              <span>Tap for Flute</span>
+              <span style="font-size:11px; color:#C5A059;">🎵</span>
             </div>
 
-            <div class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio()" title="Play / Pause Ambient Sound">
+            <div class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio()" title="Play / Pause Ambient Flute">
               <svg class="audio-progress-svg" viewBox="0 0 38 38">
                 <circle class="audio-progress-bg" cx="19" cy="19" r="17"/>
                 <circle class="audio-progress-bar" id="audioProgressCircle" cx="19" cy="19" r="17"/>
@@ -1467,7 +1527,7 @@
       <!-- GREETING -->
       <div class="greeting-section">
         <div class="greeting-user-row">
-          <span class="greeting-user-title">Hi, Honoured Guest</span>
+          <span class="greeting-user-title">Honoured Sadhaka</span>
           
           <button class="namaste-badge-btn" id="namasteTrigger" title="Open Namasté Vault">
             <span class="namaste-hands">🙏</span>
@@ -1477,22 +1537,24 @@
         <div class="greeting-subtext">Discover pure botanical harmony</div>
       </div>
 
-      <!-- CATEGORY & VIEW BAR (HEALTH, WOMEN, MEN, KIDS) -->
+      <!-- BOTANICAL CATEGORY RAIL (HEALTH, WOMEN, MEN, KIDS) -->
       <div class="unified-category-bar">
         <div class="category-zone">
-          <span class="zone-label">Explore by Category</span>
+          <span class="zone-label">Explore Sacred Formulary</span>
           <div class="category-scroll-container">
             <nav class="category-rail" id="categoryRail">
-              <!-- Health: Arogya / Botanical Healing -->
+              
+              <!-- Health: Arogya / Botanical Synergy -->
               <button class="cat-btn active" data-cat="health">
                 <svg viewBox="0 0 24 24">
                   <path d="M12 2v20M2 12h20"/>
                   <circle cx="12" cy="12" r="9"/>
                 </svg>
-                <span>Health</span>
+                <span class="cat-en">Health</span>
+                <span class="cat-hi">आरोग्य</span>
               </button>
 
-              <!-- Women: Stree Shakti / Sacred Lotus -->
+              <!-- Women: Stree Shakti / Lotus Elegance -->
               <button class="cat-btn" data-cat="women">
                 <svg viewBox="0 0 24 24">
                   <path d="M12 22c4.5 0 9-4.5 9-9 0-5-4.5-9.5-9-11-4.5 1.5-9 6-9 11 0 4.5 4.5 9 9 9z"/>
@@ -1500,17 +1562,19 @@
                   <path d="M12 13c-2.5-2-4-5-4-8"/>
                   <path d="M12 13c2.5-2 4-5 4-8"/>
                 </svg>
-                <span>Women</span>
+                <span class="cat-en">Women</span>
+                <span class="cat-hi">सौन्दर्य</span>
               </button>
 
-              <!-- Men: Pourush / Vitality Spear -->
+              <!-- Men: Pourush / Vitality & Vigor -->
               <button class="cat-btn" data-cat="men">
                 <svg viewBox="0 0 24 24">
                   <circle cx="10" cy="14" r="6"/>
                   <line x1="14.5" y1="9.5" x2="21" y2="3"/>
                   <polyline points="15 3 21 3 21 9"/>
                 </svg>
-                <span>Men</span>
+                <span class="cat-en">Men</span>
+                <span class="cat-hi">पौरुष</span>
               </button>
 
               <!-- Kids: Balya / Sprout Growth -->
@@ -1521,8 +1585,10 @@
                   <path d="M12 9c0-5 5-7 5-7s-1 5-5 7"/>
                   <path d="M5 22h14"/>
                 </svg>
-                <span>Kids</span>
+                <span class="cat-en">Kids</span>
+                <span class="cat-hi">बाल्य</span>
               </button>
+
             </nav>
           </div>
         </div>
@@ -1545,11 +1611,16 @@
 
       <!-- MAIN PRODUCT STAGE -->
       <div class="stage-wrapper" id="swipeArea">
-        <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
+        <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Formulation">
           <svg viewBox="0 0 24 24"><polyline points="14 18 8 12 14 6"/></svg>
         </button>
 
         <div class="product-unified-card" id="productCanvas">
+          <!-- Classical Inset Filigree Border -->
+          <div class="card-filigree-border"></div>
+          <div class="card-corner-motif motif-tl">✦</div>
+          <div class="card-corner-motif motif-tr">✦</div>
+
           <div class="product-media-zone">
             <img class="product-img" id="productDisplay" 
                  src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90" 
@@ -1558,26 +1629,30 @@
 
           <div class="product-details-overlay" id="detailsCard">
             <div class="card-top-row">
-              <div class="card-rating-row">
-                <span class="card-star">★</span>
-                <span id="prodRating">4.9</span>
-                <span class="card-reviews" id="prodReviews">(182)</span>
-              </div>
+              <span class="card-shastra-tag">🌿 शास्त्रीय योग · Pure Forest Harvest</span>
 
-              <!-- High Conversion Product Share Button -->
-              <button class="card-share-btn-top" id="shareBtn" aria-label="Share Product" onclick="handleProductShare(event)">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="18" cy="5" r="3"></circle>
-                  <circle cx="6" cy="12" r="3"></circle>
-                  <circle cx="18" cy="19" r="3"></circle>
-                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                </svg>
-              </button>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div class="card-rating-row">
+                  <span class="card-star">★</span>
+                  <span id="prodRating">4.9</span>
+                  <span class="card-reviews" id="prodReviews">(182)</span>
+                </div>
+
+                <!-- High Conversion Product Share Button -->
+                <button class="card-share-btn-top" id="shareBtn" aria-label="Share Formulation" onclick="handleProductShare(event)">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div class="card-title" id="prodName">Herb-O-Care</div>
-            <div class="card-desc" id="prodNotes">Immunity booster formulated with raw botanical forest extracts</div>
+            <div class="card-desc" id="prodNotes">Immunity & digestive metabolic booster formulated with 23+ raw botanicals</div>
 
             <div class="card-price-row">
               <div class="card-price-group">
@@ -1587,7 +1662,7 @@
               </div>
 
               <button class="card-explore-btn" id="exploreBtn" onclick="openProductDetailModal()">
-                <span>Explore</span>
+                <span>Explore Shastra</span>
                 <svg viewBox="0 0 24 24">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -1597,7 +1672,7 @@
           </div>
         </div>
 
-        <button class="arrow-btn next" id="nextBtn" aria-label="Next Product">
+        <button class="arrow-btn next" id="nextBtn" aria-label="Next Formulation">
           <svg viewBox="0 0 24 24"><polyline points="10 6 16 12 10 18"/></svg>
         </button>
       </div>
@@ -1607,7 +1682,7 @@
         <div class="dot"></div>
       </div>
 
-      <!-- WARM FLOATING CURVED LUXURY DRAWER WITH FOOTER -->
+      <!-- WARM FLOATING APOTHECARY DRAWER -->
       <div class="curved-warm-drawer" id="editorialMenuDrawer">
         <div class="warm-drawer-top">
           <button class="warm-drawer-close" id="closeMenuBtn" aria-label="Close Navigation">
@@ -1621,7 +1696,7 @@
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3"/></svg>
               </div>
-              <span class="warm-item-title">About Dharatatva</span>
+              <span class="warm-item-title">About Dharatatva (धरातत्व)</span>
             </div>
           </div>
 
@@ -1631,7 +1706,7 @@
           <div class="warm-menu-group">
             <div class="warm-menu-item" onclick="openPolicyModal('shipping')">
               <div class="warm-item-icon">
-                <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
               </div>
               <span class="warm-item-title">Shipping Policy</span>
             </div>
@@ -1675,7 +1750,7 @@
           <span class="drawer-section-heading">Direct Concierge</span>
           <div class="concierge-glass-card">
             <div class="concierge-card-head">
-              <span class="concierge-card-title">Customer Service</span>
+              <span class="concierge-card-title">Ayurvedic Physician Desk</span>
               <div class="concierge-live-badge">
                 <div class="live-dot"></div>
                 <span>Live Assistance</span>
@@ -1687,11 +1762,11 @@
               <p><strong>Care Desk:</strong> care@dharatatva.com</p>
             </div>
 
-            <a href="https://wa.me/919876543210?text=Namaste%20Dharatatva%2C%20I%20need%20assistance%20with%20my%20order." target="_blank" rel="noopener" class="whatsapp-action-pill">
+            <a href="https://wa.me/919876543210?text=Namaste%20Dharatatva%2C%20I%20seek%20guidance%20with%20my%20formulation." target="_blank" rel="noopener" class="whatsapp-action-pill">
               <svg viewBox="0 0 24 24">
                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
               </svg>
-              <span>Chat on WhatsApp</span>
+              <span>Consult on WhatsApp</span>
             </a>
           </div>
 
@@ -1715,7 +1790,7 @@
 
         <div class="namaste-header">
           <div class="namaste-dialog-icon">🙏</div>
-          <h3 class="namaste-title">Namasté, Honoured Guest</h3>
+          <h3 class="namaste-title">Namasté, Honoured Sadhaka</h3>
           <span class="namaste-sub">Dharatatva Vault</span>
         </div>
 
@@ -1730,7 +1805,7 @@
         </div>
 
         <div class="auth-form-step" id="authStepOtp" style="display: none;">
-          <p style="font-size: 11px; text-align: center; color: var(--muted);">
+          <p style="font-size: 11.5px; text-align: center; color: var(--ink-subtle);">
             Enter 4-digit verification key sent to <strong id="userPhoneDisplay">+91 98765 43210</strong>
           </p>
           <div class="otp-digit-boxes" id="otpContainer">
@@ -1742,7 +1817,7 @@
           <button class="auth-submit-btn" onclick="verifyOtp()">
             Verify & Enter Vault
           </button>
-          <button onclick="backToPhone()" style="background: none; border: none; font-size: 10px; color: var(--bronze); margin-top: 6px; cursor: pointer; text-transform: uppercase;">
+          <button onclick="backToPhone()" style="background: none; border: none; font-size: 10px; color: var(--tamra-bronze); margin-top: 6px; cursor: pointer; text-transform: uppercase;">
             ← Change Number
           </button>
         </div>
@@ -1752,7 +1827,7 @@
       <div class="modal-sheet" id="policyModalSheet">
         <div class="sheet-drag-pill"></div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <h3 id="policyModalTitle" style="font-family:var(--font-serif); font-size:1.4rem;">Information</h3>
+          <h3 id="policyModalTitle" style="font-family:var(--font-serif); font-size:1.45rem; color:var(--ink-dark);">Information</h3>
           <button class="icon-circle-btn" style="width:32px; height:32px;" onclick="closeAllModals()">
             <svg viewBox="0 0 24 24" style="width:14px; height:14px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
@@ -1766,7 +1841,7 @@
       <div class="modal-sheet" id="productDetailSheet">
         <div class="sheet-drag-pill"></div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <h3 id="detailSheetTitle" style="font-family:var(--font-serif); font-size:1.4rem;">Product Formulation</h3>
+          <h3 id="detailSheetTitle" style="font-family:var(--font-serif); font-size:1.45rem; color:var(--ink-dark);">Product Formulation</h3>
           <button class="icon-circle-btn" style="width:32px; height:32px;" onclick="closeAllModals()">
             <svg viewBox="0 0 24 24" style="width:14px; height:14px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
@@ -1782,13 +1857,13 @@
   <script>
     const collections = {
       health: {
-        glow: "rgba(168, 200, 160, 0.35)",
+        glow: "rgba(168, 195, 160, 0.35)",
         items: [
           { 
             rating: "4.9", 
             reviews: "182", 
-            name: "Herb-O-Care", 
-            notes: "Immunity & digestive metabolic booster formulated with 23+ raw botanicals", 
+            name: "Herb-O-Care Churna", 
+            notes: "Immunity & metabolic digestive fire (Agni) awakening with 23+ wild botanicals", 
             price: "₹383", 
             mrp: "₹437", 
             discount: "-12%", 
@@ -1800,8 +1875,8 @@
           { 
             rating: "4.8", 
             reviews: "94", 
-            name: "Pet-O-Care", 
-            notes: "Natural digestive & intestinal vitality supplement with raw herbs", 
+            name: "Pet-O-Care Churan", 
+            notes: "Natural digestive & intestinal vitality supplement with raw forest fibers", 
             price: "₹449", 
             mrp: "₹650", 
             discount: "-30%", 
@@ -1813,13 +1888,13 @@
         ]
       },
       women: {
-        glow: "rgba(224, 165, 175, 0.34)",
+        glow: "rgba(224, 165, 175, 0.32)",
         items: [
           { 
             rating: "4.9", 
             reviews: "210", 
             name: "Nari Sanjeevani Ras", 
-            notes: "Hormonal equilibrium, glowing complexion & natural vitality elixir for women", 
+            notes: "Hormonal equilibrium, inner radiance & reproductive vitality elixir", 
             price: "₹549", 
             mrp: "₹799", 
             discount: "-31%", 
@@ -1844,12 +1919,12 @@
         ]
       },
       men: {
-        glow: "rgba(180, 145, 95, 0.35)",
+        glow: "rgba(180, 145, 95, 0.34)",
         items: [
           { 
             rating: "5.0", 
             reviews: "342", 
-            name: "Urja Rasayan (Shilajit Blend)", 
+            name: "Urja Rasayan (Shilajit)", 
             notes: "Gold-standard stamina, physical vigor, and natural testosterone booster", 
             price: "₹899", 
             mrp: "₹1,299", 
@@ -1862,26 +1937,26 @@
           { 
             rating: "4.8", 
             reviews: "115", 
-            name: "Botanical Depilatory Blend", 
-            notes: "Gentle herbal powder for full-body grooming, polishing, and clean skin", 
+            name: "Botanical Body Powder", 
+            notes: "Gentle herbal powder for body polishing, hair clearing & skin soothing", 
             price: "₹399", 
             mrp: "₹599", 
             discount: "-33%", 
             img: "https://dharatatva.github.io/web/img/men_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
             url: "https://dharatatva.com/depilatory-blend",
             ingredients: "Papain enzyme extract, pure Zinc Oxide, and fine Multani Mitti.",
-            usage: "Mix with water or rose water into paste, apply smoothly, and wipe off after 8 minutes."
+            usage: "Mix with water into smooth paste, apply, and wipe off after 8 minutes."
           }
         ]
       },
       kids: {
-        glow: "rgba(225, 195, 120, 0.35)",
+        glow: "rgba(225, 195, 120, 0.34)",
         items: [
           { 
             rating: "4.9", 
             reviews: "164", 
             name: "Bal Swasthya Prash", 
-            notes: "Gentle immunity, brain memory (Medhya Rasayana), and natural growth syrup", 
+            notes: "Gentle immunity, brain memory (Medhya Rasayana), and natural growth tonic", 
             price: "₹349", 
             mrp: "₹499", 
             discount: "-30%", 
@@ -2108,21 +2183,19 @@
       const product = collections[currentCategory].items[currentIndex];
       const siteUrl = product.url || window.location.href;
 
-      // High-conversion sales copy for WhatsApp/Telegram/Socials
-      const shareTitle = `${product.name} — Sacred Ayurvedic Formulation`;
+      const shareTitle = `${product.name} — Sacred Ayurvedic Formulation | Dharatatva`;
       const shareText = 
         `🌿 *${product.name.toUpperCase()}* | Dharatatva (धरातत्व)\n` +
-        `⭐ *Customer Rating:* ${product.rating}/5.0 ${product.reviews ? `(${product.reviews} Sadhakas Verified)` : ''}\n\n` +
-        `📝 *Formulation Benefit:* ${product.notes}\n\n` +
-        `💰 *Special Ritual Offer:* ${product.price} (MRP: ~${product.mrp}~ | Save ${product.discount.replace('-','')})\n` +
-        `🚚 *Free Pan-India Delivery | 100% Ayurvedic Guaranteed*\n\n` +
-        `👉 *Order Direct Formulation Here:* ${siteUrl}`;
+        `⭐ *Verified Rating:* ${product.rating}/5.0 ${product.reviews ? `(${product.reviews} Sadhakas Reviewed)` : ''}\n\n` +
+        `📖 *Classical Note:* ${product.notes}\n\n` +
+        `💰 *Sacred Offer:* ${product.price} (MRP: ~${product.mrp}~ | Save ${product.discount.replace('-','')})\n` +
+        `🚚 *Free Pan-India Delivery | 100% Shastra Guaranteed*\n\n` +
+        `👉 *Discover Formulation Here:* ${siteUrl}`;
 
       showToast("Preparing sacred share...");
 
       let imageFile = null;
       try {
-        // Fetch product image to send as an actual file attachment in WhatsApp/Messenger
         const response = await fetch(product.img, { mode: 'cors' });
         if (response.ok) {
           const blob = await response.blob();
@@ -2130,11 +2203,9 @@
           imageFile = new File([blob], `${product.name.toLowerCase().replace(/\s+/g, '_')}.${ext}`, { type: blob.type });
         }
       } catch (err) {
-        // Fallback gracefully if CORS prevents direct blob creation
         imageFile = null;
       }
 
-      // Check if browser supports Web Share Level 2 (files sharing)
       if (navigator.canShare && imageFile && navigator.canShare({ files: [imageFile] })) {
         try {
           await navigator.share({
@@ -2149,7 +2220,6 @@
         }
       }
 
-      // Standard Web Share API (Links & Rich Text)
       if (navigator.share) {
         try {
           await navigator.share({
@@ -2164,10 +2234,9 @@
         }
       }
 
-      // Universal Fallback: Copy to Clipboard with Full Details
       try {
         await navigator.clipboard.writeText(`${shareText}\n\n${product.img}`);
-        showToast("Full product info & link copied ✓");
+        showToast("Formulation info copied to clipboard ✓");
       } catch (clipErr) {
         showToast("Unable to share automatically");
       }
@@ -2311,13 +2380,13 @@
       document.getElementById('detailSheetTitle').textContent = product.name;
       document.getElementById('detailSheetBody').innerHTML = `
         <p style="margin-bottom:10px;"><strong>Botanical Notes:</strong> ${product.notes}</p>
-        <h4>Active Ingredients</h4>
+        <h4>Active Ingredients (घटक द्रव्य)</h4>
         <p>${product.ingredients}</p>
-        <h4 style="margin-top:10px;">Ritual Application / Dosage</h4>
+        <h4 style="margin-top:10px;">Ritual Application / Dosage (विधि)</h4>
         <p>${product.usage}</p>
         <div style="margin-top:20px;">
-          <a href="${product.url}" onclick="event.preventDefault(); showToast('Order placed successfully ✓'); closeAllModals();" class="welcome-action-btn-primary" style="text-decoration:none;">
-            Secure Formulation (${product.price})
+          <a href="${product.url}" onclick="event.preventDefault(); showToast('Formulation requested ✓'); closeAllModals();" class="welcome-action-btn-primary" style="text-decoration:none;">
+            Acquire Formulation (${product.price})
           </a>
         </div>
       `;
