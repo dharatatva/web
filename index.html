@@ -1477,27 +1477,51 @@
         <div class="greeting-subtext">Discover pure botanical harmony</div>
       </div>
 
-      <!-- CATEGORY & VIEW BAR -->
+      <!-- CATEGORY & VIEW BAR (HEALTH, WOMEN, MEN, KIDS) -->
       <div class="unified-category-bar">
         <div class="category-zone">
           <span class="zone-label">Explore by Category</span>
           <div class="category-scroll-container">
             <nav class="category-rail" id="categoryRail">
+              <!-- Health: Arogya / Botanical Healing -->
               <button class="cat-btn active" data-cat="health">
-                <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2v20M2 12h20"/>
+                  <circle cx="12" cy="12" r="9"/>
+                </svg>
                 <span>Health</span>
               </button>
-              <button class="cat-btn" data-cat="body">
-                <svg viewBox="0 0 24 24"><path d="M12 3a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/><path d="M5.5 21v-2.5a5.5 5.5 0 0 1 11 0V21"/><path d="M7 14h10"/></svg>
-                <span>Body</span>
+
+              <!-- Women: Stree Shakti / Sacred Lotus -->
+              <button class="cat-btn" data-cat="women">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 22c4.5 0 9-4.5 9-9 0-5-4.5-9.5-9-11-4.5 1.5-9 6-9 11 0 4.5 4.5 9 9 9z"/>
+                  <path d="M12 2v20"/>
+                  <path d="M12 13c-2.5-2-4-5-4-8"/>
+                  <path d="M12 13c2.5-2 4-5 4-8"/>
+                </svg>
+                <span>Women</span>
               </button>
-              <button class="cat-btn" data-cat="face">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M9.5 15a4 4 0 0 0 5 0"/></svg>
-                <span>Face</span>
+
+              <!-- Men: Pourush / Vitality Spear -->
+              <button class="cat-btn" data-cat="men">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="10" cy="14" r="6"/>
+                  <line x1="14.5" y1="9.5" x2="21" y2="3"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                </svg>
+                <span>Men</span>
               </button>
-              <button class="cat-btn" data-cat="hair">
-                <svg viewBox="0 0 24 24"><path d="M4 18c2-3 4-5 8-5s6 2 8 5"/><path d="M12 2a5 5 0 0 0-5 5c0 3 2 5 5 9 3-4 5-6 5-9a5 5 0 0 0-5-5z"/></svg>
-                <span>Hair</span>
+
+              <!-- Kids: Balya / Sprout Growth -->
+              <button class="cat-btn" data-cat="kids">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 22V12"/>
+                  <path d="M12 12C12 7 7 5 7 5s1 5 5 7"/>
+                  <path d="M12 9c0-5 5-7 5-7s-1 5-5 7"/>
+                  <path d="M5 22h14"/>
+                </svg>
+                <span>Kids</span>
               </button>
             </nav>
           </div>
@@ -1540,6 +1564,7 @@
                 <span class="card-reviews" id="prodReviews">(182)</span>
               </div>
 
+              <!-- High Conversion Product Share Button -->
               <button class="card-share-btn-top" id="shareBtn" aria-label="Share Product" onclick="handleProductShare(event)">
                 <svg viewBox="0 0 24 24">
                   <circle cx="18" cy="5" r="3"></circle>
@@ -1763,11 +1788,12 @@
             rating: "4.9", 
             reviews: "182", 
             name: "Herb-O-Care", 
-            notes: "Immunity booster formulated with raw botanical forest extracts", 
+            notes: "Immunity & digestive metabolic booster formulated with 23+ raw botanicals", 
             price: "₹383", 
             mrp: "₹437", 
             discount: "-12%", 
             img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90",
+            url: "https://dharatatva.com/herb-o-care",
             ingredients: "Triphala, Trikatu, Ashwagandha, and pure Himalayan Honey extract.",
             usage: "Take 1 teaspoon twice daily with lukewarm water before meals."
           },
@@ -1775,88 +1801,94 @@
             rating: "4.8", 
             reviews: "94", 
             name: "Pet-O-Care", 
-            notes: "Natural digestive & vitality supplement with raw herbs", 
+            notes: "Natural digestive & intestinal vitality supplement with raw herbs", 
             price: "₹449", 
             mrp: "₹650", 
             discount: "-30%", 
             img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=90",
+            url: "https://dharatatva.com/pet-o-care",
             ingredients: "Isabgol husk, Amaltas fruit pulp, and soothing botanical fibers.",
-            usage: "Mix recommended proportion into feed or warm water as directed."
+            usage: "Mix recommended proportion into warm water before retiring at night."
           }
         ]
       },
-      body: {
-        glow: "rgba(224, 175, 120, 0.32)",
-        items: [
-          { 
-            rating: "4.8", 
-            reviews: "115", 
-            name: "Botanical Depilatory Blend", 
-            notes: "Gentle herbal powder for body polishing and hair removal", 
-            price: "₹399", 
-            mrp: "₹599", 
-            discount: "-33%", 
-            img: "https://dharatatva.github.io/web/img/men_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Papain enzyme extract, pure Zinc Oxide, and fine Multani Mitti.",
-            usage: "Mix with rose water into a paste, apply smoothly, and rinse after 8 minutes."
-          }
-        ]
-      },
-      face: {
-        glow: "rgba(218, 194, 160, 0.32)",
+      women: {
+        glow: "rgba(224, 165, 175, 0.34)",
         items: [
           { 
             rating: "4.9", 
-            reviews: "154", 
-            name: "Nectar d'Orris Glow Oil", 
-            notes: "Concentrated botanical iris root lipid complex for instant radiance", 
-            price: "₹749", 
-            mrp: "₹999", 
-            discount: "-25%", 
+            reviews: "210", 
+            name: "Nari Sanjeevani Ras", 
+            notes: "Hormonal equilibrium, glowing complexion & natural vitality elixir for women", 
+            price: "₹549", 
+            mrp: "₹799", 
+            discount: "-31%", 
             img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Cold-pressed Almond oil, Saffron stigma infusion, and Orris root extract.",
-            usage: "Gently massage 3 drops onto damp facial skin every evening."
+            url: "https://dharatatva.com/nari-sanjeevani",
+            ingredients: "Shatavari root, Lodhra, Ashoka bark, Manjistha, and pure Saffron stigmas.",
+            usage: "Consume 15ml with an equal measure of water twice daily after food."
           },
           { 
-            rating: "4.7", 
-            reviews: "88", 
+            rating: "4.8", 
+            reviews: "138", 
             name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
+            notes: "Steam-distilled indigenous Kannauj rose petals with cooling hydrosol mist", 
             price: "₹299", 
             mrp: "₹399", 
             discount: "-25%", 
             img: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1000&q=90",
+            url: "https://dharatatva.com/gulab-jal",
             ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
+            usage: "Spritz generously onto face and neck whenever skin desires pure hydration."
           }
         ]
       },
-      hair: {
-        glow: "rgba(205, 155, 90, 0.34)",
+      men: {
+        glow: "rgba(180, 145, 95, 0.35)",
         items: [
           { 
             rating: "5.0", 
-            reviews: "320", 
-            name: "Root Revival Kesh Oil", 
-            notes: "Pure Bhringraj, Brahmi, and cold-pressed black sesame oil infusion", 
-            price: "₹499", 
-            mrp: "₹699", 
-            discount: "-28%", 
+            reviews: "342", 
+            name: "Urja Rasayan (Shilajit Blend)", 
+            notes: "Gold-standard stamina, physical vigor, and natural testosterone booster", 
+            price: "₹899", 
+            mrp: "₹1,299", 
+            discount: "-30%", 
             img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Bhringraj whole plant, Brahmi leaves, Amla, and Black Sesame oil.",
-            usage: "Warm gently and massage into scalp overnight before washing."
+            url: "https://dharatatva.com/urja-rasayan",
+            ingredients: "Purified Himalayan Shilajit (75%+ Fulvic Acid), Gokshura, Safed Musli, and Kaunch Beej.",
+            usage: "Take a pea-sized dose in warm milk or water each morning."
           },
           { 
+            rating: "4.8", 
+            reviews: "115", 
+            name: "Botanical Depilatory Blend", 
+            notes: "Gentle herbal powder for full-body grooming, polishing, and clean skin", 
+            price: "₹399", 
+            mrp: "₹599", 
+            discount: "-33%", 
+            img: "https://dharatatva.github.io/web/img/men_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
+            url: "https://dharatatva.com/depilatory-blend",
+            ingredients: "Papain enzyme extract, pure Zinc Oxide, and fine Multani Mitti.",
+            usage: "Mix with water or rose water into paste, apply smoothly, and wipe off after 8 minutes."
+          }
+        ]
+      },
+      kids: {
+        glow: "rgba(225, 195, 120, 0.35)",
+        items: [
+          { 
             rating: "4.9", 
-            reviews: "140", 
-            name: "Herb-O-Care Hair Pack", 
-            notes: "Micro-fine powder of Amla, Shikakai, Reetha, and Hibiscus leaves", 
+            reviews: "164", 
+            name: "Bal Swasthya Prash", 
+            notes: "Gentle immunity, brain memory (Medhya Rasayana), and natural growth syrup", 
             price: "₹349", 
             mrp: "₹499", 
             discount: "-30%", 
             img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Shikakai, Reetha, Amla fruit powder, and Hibiscus flower petals.",
-            usage: "Blend with curd or water, apply to scalp, leave for 30 minutes, and rinse."
+            url: "https://dharatatva.com/bal-swasthya-prash",
+            ingredients: "Brahmi, Shankhpushpi, Fresh Wild Amla, Yashtimadhu, and Organic Forest Honey.",
+            usage: "1 teaspoonful once daily morning with warm milk for children above 3 years."
           }
         ]
       }
@@ -1874,7 +1906,7 @@
       toast.textContent = text;
       toast.classList.add('show');
       if (toastTimer) clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
     /* AUDIO CONTROLLER */
@@ -2067,28 +2099,77 @@
     nextBtn.addEventListener('click', nextProduct);
     prevBtn.addEventListener('click', prevProduct);
 
+    /* =========================================================================
+       100/100 HIGH-CONVERSION SHARING ENGINE (ATTACH PRODUCT IMAGE + METADATA)
+    ========================================================================= */
     async function handleProductShare(e) {
       e.stopPropagation();
       haptic(16);
       const product = collections[currentCategory].items[currentIndex];
-      const shareText = `✨ *${product.name}* — Dharatatva\n` +
-                        `⭐ Rating: ${product.rating} (${product.reviews})\n` +
-                        `💰 Price: ${product.price} (MRP: ${product.mrp}, ${product.discount})\n` +
-                        `🌿 Details: ${product.notes}`;
+      const siteUrl = product.url || window.location.href;
 
+      // High-conversion sales copy for WhatsApp/Telegram/Socials
+      const shareTitle = `${product.name} — Sacred Ayurvedic Formulation`;
+      const shareText = 
+        `🌿 *${product.name.toUpperCase()}* | Dharatatva (धरातत्व)\n` +
+        `⭐ *Customer Rating:* ${product.rating}/5.0 ${product.reviews ? `(${product.reviews} Sadhakas Verified)` : ''}\n\n` +
+        `📝 *Formulation Benefit:* ${product.notes}\n\n` +
+        `💰 *Special Ritual Offer:* ${product.price} (MRP: ~${product.mrp}~ | Save ${product.discount.replace('-','')})\n` +
+        `🚚 *Free Pan-India Delivery | 100% Ayurvedic Guaranteed*\n\n` +
+        `👉 *Order Direct Formulation Here:* ${siteUrl}`;
+
+      showToast("Preparing sacred share...");
+
+      let imageFile = null;
+      try {
+        // Fetch product image to send as an actual file attachment in WhatsApp/Messenger
+        const response = await fetch(product.img, { mode: 'cors' });
+        if (response.ok) {
+          const blob = await response.blob();
+          const ext = blob.type.split('/')[1] || 'jpg';
+          imageFile = new File([blob], `${product.name.toLowerCase().replace(/\s+/g, '_')}.${ext}`, { type: blob.type });
+        }
+      } catch (err) {
+        // Fallback gracefully if CORS prevents direct blob creation
+        imageFile = null;
+      }
+
+      // Check if browser supports Web Share Level 2 (files sharing)
+      if (navigator.canShare && imageFile && navigator.canShare({ files: [imageFile] })) {
+        try {
+          await navigator.share({
+            files: [imageFile],
+            title: shareTitle,
+            text: shareText
+          });
+          showToast("Shared formulation successfully ✓");
+          return;
+        } catch (shareErr) {
+          if (shareErr.name === 'AbortError') return;
+        }
+      }
+
+      // Standard Web Share API (Links & Rich Text)
       if (navigator.share) {
         try {
-          await navigator.share({ title: `${product.name} — Dharatatva`, text: shareText });
-          showToast("Shared Successfully ✓");
+          await navigator.share({
+            title: shareTitle,
+            text: shareText,
+            url: siteUrl
+          });
+          showToast("Shared successfully ✓");
+          return;
         } catch (err) {
-          if (err.name !== 'AbortError') {
-            await navigator.clipboard.writeText(shareText);
-            showToast("Copied to Clipboard ✓");
-          }
+          if (err.name === 'AbortError') return;
         }
-      } else {
-        await navigator.clipboard.writeText(shareText);
-        showToast("Info Copied to Clipboard ✓");
+      }
+
+      // Universal Fallback: Copy to Clipboard with Full Details
+      try {
+        await navigator.clipboard.writeText(`${shareText}\n\n${product.img}`);
+        showToast("Full product info & link copied ✓");
+      } catch (clipErr) {
+        showToast("Unable to share automatically");
       }
     }
 
