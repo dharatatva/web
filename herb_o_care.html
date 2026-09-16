@@ -910,50 +910,58 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* UNIVERSAL SCRIM DRAWER */
+    /* UNIVERSAL SCRIM DRAWER - FIXED SELECTORS & TRANSITIONS */
     .scrim-drawer-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(10, 15, 12, 0.45);
+      background: rgba(10, 15, 12, 0.55);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      z-index: 200;
+      z-index: 500;
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+      transition: opacity 0.35s ease, visibility 0.35s ease;
       display: flex;
       justify-content: center;
     }
 
     .scrim-drawer-overlay.active {
       opacity: 1;
+      visibility: visible;
       pointer-events: auto;
     }
 
     .scrim-drawer-sheet {
       position: fixed;
       bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 105%);
       width: 100vw;
       max-width: 100%;
       height: 92vh;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(247, 245, 240, 0.95) 100%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(247, 245, 240, 0.98) 100%);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
       border-top: var(--glass-border);
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
-      z-index: 210;
-      transform: translateY(100%);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+      z-index: 510;
       transition: transform 0.38s cubic-bezier(0.18, 0.9, 0.28, 1);
       display: flex;
       flex-direction: column;
       overflow: hidden;
       border-radius: 28px 28px 0 0;
+      pointer-events: auto;
     }
 
     @media (min-width: 769px) {
       .scrim-drawer-sheet {
         max-width: 440px;
       }
+    }
+
+    .scrim-drawer-overlay.active .scrim-drawer-sheet {
+      transform: translate(-50%, 0%);
     }
 
     .scrim-drawer-header {
@@ -1669,7 +1677,7 @@
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.95);
-      z-index: 300;
+      z-index: 600;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1721,7 +1729,7 @@
       background: rgba(10, 15, 12, 0.75);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      z-index: 400;
+      z-index: 700;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1759,7 +1767,7 @@
       background: rgba(10, 15, 12, 0.65);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      z-index: 500;
+      z-index: 800;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.35s ease;
@@ -2042,7 +2050,7 @@
           <div class="tab-btn-item" id="tab-faq" onclick="switchMainTab('faq'); haptic(6);">F&Q</div>
         </div>
 
-        <!-- TAB 1: BUY NOW CARD (REDUNDANT QUANTITY/DISPATCH BUTTON REMOVED CLEANLY) -->
+        <!-- TAB 1: BUY NOW CARD -->
         <div class="tab-content-area" id="mainTabArea">
           <div class="buynow-card-container">
             <div class="buynow-eyebrow">SELECT SACRED VOLUME</div>
@@ -2244,7 +2252,7 @@
           <div class="dosha-pill-card"><strong>KAPHA</strong><span>Lightened ✦</span></div>
         </div>
       </div>
-      <!-- Section D: Shastra Certification & USPs -->
+
       <div class="drawer-card-box" style="background:#FAF8F5;">
         <span class="drawer-eyebrow-tag">More Than an Ordinary Fat Burner</span>
         <p style="font-size:12px; color:#555; line-height:1.6;">
@@ -2261,7 +2269,7 @@
       </div>
     </div>
 
-    <!-- INGREDIENTS VAULT (IMAGES INSTEAD OF TEXT NAMES) -->
+    <!-- INGREDIENTS VAULT -->
     <div id="vault-ingredients">
       <div class="ingredients-full-burst-container">
         <div class="burst-hero-banner">
@@ -2283,7 +2291,7 @@
       </div>
     </div>
 
-    <!-- FAQ VAULT (EXCLUSIVE ACCORDION - ONE OPEN AT A TIME) -->
+    <!-- FAQ VAULT -->
     <div id="vault-faq">
       <div class="faq-unit-card open" onclick="toggleFaqUnit(this); haptic(4);">
         <div class="faq-unit-head"><span>1. Difference from regular fat burners?</span><span class="faq-toggle-icon">+</span></div>
@@ -2485,7 +2493,6 @@
       resetTabsToBuyNow();
     }
 
-    // Exclusive Accordion: Closes others when one opens
     function toggleFaqUnit(unit) {
       const wasOpen = unit.classList.contains('open');
       document.querySelectorAll('#scrimDrawerBody .faq-unit-card, #vault-faq .faq-unit-card').forEach(card => {
