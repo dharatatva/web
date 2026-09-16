@@ -633,7 +633,7 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.2s ease, background 0.2s ease;
+      transition: opacity 0.4s ease, transform 0.2s ease, background 0.2s ease;
     }
 
     .arrow-btn.visible {
@@ -853,6 +853,14 @@
       padding: 4px 0 8px;
       flex-shrink: 0;
       min-height: 16px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .dots-track.visible {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .dot {
@@ -894,7 +902,7 @@
       left: 0;
       width: 78%;
       max-width: 325px;
-      background: #ffffff5c;
+      background: #121815;
       border-top-right-radius: 36px;
       border-bottom-right-radius: 36px;
       z-index: 180;
@@ -982,6 +990,7 @@
       cursor: pointer;
       transition: transform 0.18s ease, color 0.18s ease;
       padding: 2px 0;
+      text-decoration: none;
     }
 
     .warm-menu-item:active {
@@ -1112,7 +1121,7 @@
       display: flex;
       flex-direction: column;
       gap: 3px;
-      background: #ffffff5c;
+      background: rgba(0, 0, 0, 0.2);
       flex-shrink: 0;
     }
 
@@ -1135,7 +1144,7 @@
     }
 
     /* AUTH SHEET & MODALS */
-    .user-auth-sheet, .modal-sheet {
+    .user-auth-sheet {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -1153,7 +1162,7 @@
       overflow-y: auto;
     }
 
-    .user-auth-sheet.open, .modal-sheet.open { transform: translateY(0%); }
+    .user-auth-sheet.open { transform: translateY(0%); }
 
     .sheet-drag-pill {
       width: 42px;
@@ -1262,21 +1271,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s ease;
-    }
-
-    /* POLICY / INFO MODAL CONTENT */
-    .policy-content-body {
-      font-size: 12.5px;
-      line-height: 1.6;
-      color: var(--muted);
-      padding: 10px 0 20px;
-    }
-
-    .policy-content-body h4 {
-      font-size: 14px;
-      color: var(--text);
-      margin-top: 12px;
-      margin-bottom: 4px;
     }
 
     /* VEDIC WELCOME DIALOG */
@@ -1448,7 +1442,7 @@
             <span></span>
           </button>
 
-          <a href="#" class="brand-logo-wrap">
+          <a href="https://dharatatva.github.io/web/" class="brand-logo-wrap">
             <img src="https://dharatatva.github.io/web/img/logo_dharatatva.avif" alt="Dharatatva" class="brand-logo-img">
           </a>
         </div>
@@ -1489,13 +1483,12 @@
         <div class="greeting-subtext">Discover pure botanical harmony</div>
       </div>
 
-      <!-- CATEGORY & VIEW BAR (PROPERLY ALIGNED WITH PROPER GENDER/AGE ICONS) -->
+      <!-- CATEGORY & VIEW BAR -->
       <div class="unified-category-bar">
         <div class="category-zone">
           <span class="zone-label">Explore by Category</span>
           <div class="category-scroll-container">
             <nav class="category-rail" id="categoryRail">
-              <!-- Health Icon (Pulse / Medical Cross) -->
               <button class="cat-btn active" data-cat="health">
                 <svg viewBox="0 0 24 24">
                   <path d="M12 2v20M2 12h20"/>
@@ -1504,7 +1497,6 @@
                 <span>Health</span>
               </button>
 
-              <!-- Women Icon (♀) -->
               <button class="cat-btn" data-cat="women">
                 <svg viewBox="0 0 24 24">
                   <circle cx="12" cy="10" r="6"/>
@@ -1514,7 +1506,6 @@
                 <span>Women</span>
               </button>
 
-              <!-- Men Icon (♂) -->
               <button class="cat-btn" data-cat="men">
                 <svg viewBox="0 0 24 24">
                   <circle cx="10" cy="14" r="6"/>
@@ -1524,7 +1515,6 @@
                 <span>Men</span>
               </button>
 
-              <!-- Kids Icon (Family / Child Care) -->
               <button class="cat-btn" data-cat="kids">
                 <svg viewBox="0 0 24 24">
                   <circle cx="12" cy="7" r="4"/>
@@ -1597,13 +1587,13 @@
                 <span class="card-discount-pill" id="prodDiscount">-12%</span>
               </div>
 
-              <button class="card-explore-btn" id="exploreBtn" onclick="openProductDetailModal()">
+              <a href="https://dharatatva.github.io/web/" class="card-explore-btn" id="exploreBtn">
                 <span>Explore Shastra</span>
                 <svg viewBox="0 0 24 24">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -1628,57 +1618,57 @@
 
         <div class="warm-drawer-menu-list">
           <div class="warm-menu-group">
-            <div class="warm-menu-item" onclick="openPolicyModal('about')">
+            <a href="https://dharatatva.github.io/web/about_dharatatva" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3"/></svg>
               </div>
               <span class="warm-item-title">About Dharatatva</span>
-            </div>
+            </a>
           </div>
 
           <div class="warm-divider-subtle"></div>
 
           <span class="drawer-section-heading">Orders & Fulfillment</span>
           <div class="warm-menu-group">
-            <div class="warm-menu-item" onclick="openPolicyModal('shipping')">
+            <a href="https://dharatatva.github.io/web/Shipping_Policy" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
               </div>
               <span class="warm-item-title">Shipping Policy</span>
-            </div>
+            </a>
 
-            <div class="warm-menu-item" onclick="openPolicyModal('returns')">
+            <a href="https://dharatatva.github.io/web/Returns_and_Refunds_policy" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
               </div>
               <span class="warm-item-title">Returns and Refunds</span>
-            </div>
+            </a>
 
-            <div class="warm-menu-item" onclick="openPolicyModal('cancellation')">
+            <a href="https://dharatatva.github.io/web/Cancellation_Policy" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
               </div>
               <span class="warm-item-title">Cancellation Policy</span>
-            </div>
+            </a>
           </div>
 
           <div class="warm-divider-subtle"></div>
 
           <span class="drawer-section-heading">Governance</span>
           <div class="warm-menu-group">
-            <div class="warm-menu-item" onclick="openPolicyModal('privacy')">
+            <a href="https://dharatatva.github.io/web/Privacy_Policy" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
               <span class="warm-item-title">Privacy Policy</span>
-            </div>
+            </a>
 
-            <div class="warm-menu-item" onclick="openPolicyModal('terms')">
+            <a href="https://dharatatva.github.io/web/Terms_and_Conditions" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               </div>
               <span class="warm-item-title">Terms and Conditions</span>
-            </div>
+            </a>
           </div>
 
           <div class="warm-divider-subtle"></div>
@@ -1705,7 +1695,6 @@
               <span>Chat on WhatsApp</span>
             </a>
           </div>
-
         </div>
 
         <div class="warm-drawer-footer-brand">
@@ -1759,34 +1748,6 @@
         </div>
       </div>
 
-      <!-- POLICY & INFO SHEET -->
-      <div class="modal-sheet" id="policyModalSheet">
-        <div class="sheet-drag-pill"></div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <h3 id="policyModalTitle" style="font-family:var(--font-serif); font-size:1.4rem;">Information</h3>
-          <button class="icon-circle-btn" style="width:32px; height:32px;" onclick="closeAllModals()">
-            <svg viewBox="0 0 24 24" style="width:14px; height:14px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <div class="policy-content-body" id="policyModalBody">
-          <!-- Populated via JS -->
-        </div>
-      </div>
-
-      <!-- PRODUCT DETAIL BOTTOM SHEET -->
-      <div class="modal-sheet" id="productDetailSheet">
-        <div class="sheet-drag-pill"></div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <h3 id="detailSheetTitle" style="font-family:var(--font-serif); font-size:1.4rem;">Product Formulation</h3>
-          <button class="icon-circle-btn" style="width:32px; height:32px;" onclick="closeAllModals()">
-            <svg viewBox="0 0 24 24" style="width:14px; height:14px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <div class="policy-content-body" id="detailSheetBody">
-          <!-- Populated via JS -->
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1804,8 +1765,7 @@
             mrp: "₹437", 
             discount: "-12%", 
             img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Triphala, Trikatu, Ashwagandha, and pure Himalayan Honey extract.",
-            usage: "Take 1 teaspoon twice daily with lukewarm water before meals."
+            url: "https://dharatatva.github.io/web/"
           },
           { 
             rating: "4.8", 
@@ -1816,8 +1776,7 @@
             mrp: "₹650", 
             discount: "-30%", 
             img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Isabgol husk, Amaltas fruit pulp, and soothing botanical fibers.",
-            usage: "Mix recommended proportion into feed or warm water as directed."
+            url: "https://dharatatva.github.io/web/"
           }
         ]
       },
@@ -1833,8 +1792,7 @@
             mrp: "₹799", 
             discount: "-31%", 
             img: "https://dharatatva.github.io/web/img/women_face_wash.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Shatavari root, Lodhra, Ashoka bark, Manjistha, and pure Saffron stigmas.",
-            usage: "Consume 15ml with an equal measure of water twice daily after food."
+            url: "https://dharatatva.github.io/web/"
           },
           { 
             rating: "4.8", 
@@ -1845,92 +1803,7 @@
             mrp: "₹399", 
             discount: "-25%", 
             img: "https://dharatatva.github.io/web/img/women_face_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_face_night_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_hair_shampoo.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_hair_styler.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_hair_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_body_wash.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_body_hair_remover_powder.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
+            url: "https://dharatatva.github.io/web/"
           }
         ]
       },
@@ -1946,104 +1819,7 @@
             mrp: "₹799", 
             discount: "-31%", 
             img: "https://dharatatva.github.io/web/img/men_face_wash.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Shatavari root, Lodhra, Ashoka bark, Manjistha, and pure Saffron stigmas.",
-            usage: "Consume 15ml with an equal measure of water twice daily after food."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_face_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_face_night_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_hair_shampoo.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_hair_styler.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_hair_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_body_wash.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_body_hair_remover_powder.avif?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "100% steam-distilled Rosa damascena (Kannauj Rose) floral water.",
-            usage: "Spritz directly onto face whenever skin needs instant hydration."
+            url: "https://dharatatva.github.io/web/"
           }
         ]
       },
@@ -2059,8 +1835,7 @@
             mrp: "₹499", 
             discount: "-30%", 
             img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1000&q=90",
-            ingredients: "Brahmi, Shankhpushpi, Fresh Wild Amla, Yashtimadhu, and Organic Forest Honey.",
-            usage: "1 teaspoonful once daily morning with warm milk for children above 3 years."
+            url: "https://dharatatva.github.io/web/"
           }
         ]
       }
@@ -2165,6 +1940,7 @@
           });
         }, 800);
       }
+      showNavControls();
     });
 
     function handleViewChange() {
@@ -2175,6 +1951,7 @@
     let currentCategory = 'health';
     let currentIndex = 0;
     let isAnimating = false;
+    let navHideTimer = null;
 
     const prodImg = document.getElementById('productDisplay');
     const prodCanvas = document.getElementById('productCanvas');
@@ -2185,11 +1962,32 @@
     const prodPrice = document.getElementById('prodPrice');
     const prodMrp = document.getElementById('prodMrp');
     const prodDiscount = document.getElementById('prodDiscount');
+    const exploreBtn = document.getElementById('exploreBtn');
     const dotsTrack = document.getElementById('dotsTrack');
     const detailsCard = document.getElementById('detailsCard');
     const ambientGlow = document.getElementById('ambientGlow');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+
+    function showNavControls() {
+      const total = collections[currentCategory].items.length;
+      if (total > 1) {
+        if (currentIndex > 0) prevBtn.classList.add('visible');
+        else prevBtn.classList.remove('visible');
+
+        if (currentIndex < total - 1) nextBtn.classList.add('visible');
+        else nextBtn.classList.remove('visible');
+
+        dotsTrack.classList.add('visible');
+      }
+
+      if (navHideTimer) clearTimeout(navHideTimer);
+      navHideTimer = setTimeout(() => {
+        prevBtn.classList.remove('visible');
+        nextBtn.classList.remove('visible');
+        dotsTrack.classList.remove('visible');
+      }, 2000);
+    }
 
     function updateNavigationState() {
       const total = collections[currentCategory].items.length;
@@ -2206,11 +2004,7 @@
         dot.className = `dot ${i === currentIndex ? 'active' : ''}`;
         dotsTrack.appendChild(dot);
       }
-      if (currentIndex > 0) prevBtn.classList.add('visible');
-      else prevBtn.classList.remove('visible');
-
-      if (currentIndex < total - 1) nextBtn.classList.add('visible');
-      else nextBtn.classList.remove('visible');
+      showNavControls();
     }
 
     function renderProduct(direction = 1) {
@@ -2237,6 +2031,7 @@
           prodPrice.textContent = product.price;
           prodMrp.textContent = product.mrp;
           prodDiscount.textContent = product.discount;
+          if(product.url) exploreBtn.href = product.url;
 
           updateNavigationState();
 
@@ -2304,6 +2099,7 @@
       if (isAnimating || e.touches.length > 1) return;
       startX = e.touches[0].clientX;
       isDragging = true;
+      showNavControls();
     }, { passive: true });
 
     swipeArea.addEventListener('touchmove', (e) => {
@@ -2357,15 +2153,11 @@
     const globalBackdrop = document.getElementById('globalBackdrop');
     const editorialMenuDrawer = document.getElementById('editorialMenuDrawer');
     const userAuthSheet = document.getElementById('userAuthSheet');
-    const policyModalSheet = document.getElementById('policyModalSheet');
-    const productDetailSheet = document.getElementById('productDetailSheet');
 
     function closeAllModals() {
       if (welcomeModal.classList.contains('active')) return;
       editorialMenuDrawer.classList.remove('open');
       userAuthSheet.classList.remove('open');
-      policyModalSheet.classList.remove('open');
-      productDetailSheet.classList.remove('open');
       globalBackdrop.classList.remove('active');
     }
 
@@ -2388,65 +2180,6 @@
     });
 
     document.getElementById('closeUserBtn').addEventListener('click', closeAllModals);
-
-    /* POLICY & INFO MODAL */
-    const policyData = {
-      about: {
-        title: "About Dharatatva (धरातत्व)",
-        html: "<p>Dharatatva is founded on the deep reverence for earth's ancient botanical elements. Every formulation is meticulously crafted combining indigenous Ayurvedic wisdom with modern rigorous laboratory safety standards to ensure pure, unadulterated wellness.</p>"
-      },
-      shipping: {
-        title: "Shipping Policy",
-        html: "<p>We dispatch all orders within 24 to 48 hours using secure temperature-controlled courier partners. Standard delivery across India takes 3–5 business days.</p>"
-      },
-      returns: {
-        title: "Returns & Refunds",
-        html: "<p>Due to the sensitive nature of organic wellness formulations, unsealed or opened items cannot be returned. Damaged packages during transit are eligible for immediate replacement within 48 hours of delivery.</p>"
-      },
-      cancellation: {
-        title: "Cancellation Policy",
-        html: "<p>Orders can be cancelled prior to dispatch directly from your customer vault or by contacting our concierge desk on WhatsApp.</p>"
-      },
-      privacy: {
-        title: "Privacy Policy",
-        html: "<p>Your personal details, birth data, and formulation inquiries are held under strict confidentiality. We never share or monetize user data with third-party networks.</p>"
-      },
-      terms: {
-        title: "Terms and Conditions",
-        html: "<p>By entering Dharatatva's digital sanctum, you agree to abide by our governance and ethical botanical guidelines.</p>"
-      }
-    };
-
-    function openPolicyModal(key) {
-      haptic(12);
-      closeAllModals();
-      const policy = policyData[key];
-      document.getElementById('policyModalTitle').textContent = policy.title;
-      document.getElementById('policyModalBody').innerHTML = policy.html;
-      globalBackdrop.classList.add('active');
-      policyModalSheet.classList.add('open');
-    }
-
-    /* PRODUCT DETAIL BOTTOM SHEET */
-    function openProductDetailModal() {
-      haptic(14);
-      const product = collections[currentCategory].items[currentIndex];
-      document.getElementById('detailSheetTitle').textContent = product.name;
-      document.getElementById('detailSheetBody').innerHTML = `
-        <p style="margin-bottom:10px;"><strong>Botanical Notes:</strong> ${product.notes}</p>
-        <h4>Active Ingredients</h4>
-        <p>${product.ingredients}</p>
-        <h4 style="margin-top:10px;">Ritual Application / Dosage</h4>
-        <p>${product.usage}</p>
-        <div style="margin-top:20px;">
-          <a href="${product.url}" onclick="event.preventDefault(); showToast('Order placed successfully ✓'); closeAllModals();" class="welcome-action-btn-primary" style="text-decoration:none;">
-            Secure Formulation (${product.price})
-          </a>
-        </div>
-      `;
-      globalBackdrop.classList.add('active');
-      productDetailSheet.classList.add('open');
-    }
 
     function requestOtp() {
       const phone = document.getElementById('phoneInput').value.trim();
