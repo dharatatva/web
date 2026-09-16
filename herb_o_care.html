@@ -101,8 +101,8 @@
     }
 
     .app-viewport-shell {
-      width: 100vw;
-      max-width: 440px;
+      width: 100%;
+      max-width: 100%;
       background-color: var(--bg-cream);
       min-height: 100vh;
       position: relative;
@@ -110,12 +110,15 @@
       margin: 0 auto;
     }
 
-    @media (min-width: 481px) {
+    @media (min-width: 769px) {
       .app-viewport-wrapper {
         background-color: #dfdcd3;
       }
       .app-viewport-shell {
+        max-width: 440px;
         box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
+        border-left: 1px solid rgba(22, 21, 19, 0.09);
+        border-right: 1px solid rgba(22, 21, 19, 0.09);
       }
     }
 
@@ -131,7 +134,7 @@
       top: 14px;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 32px);
+      width: calc(100% - 28px);
       max-width: 408px;
       display: flex;
       align-items: center;
@@ -325,13 +328,21 @@
     .product-fixed-viewport {
       position: fixed;
       top: 0;
-      width: 100vw;
-      max-width: 440px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 100%;
       height: 52vh;
       min-height: 370px;
       background: radial-gradient(circle at 60% 40%, #FFFFFF 0%, #EDE8DC 85%);
       overflow: hidden;
       z-index: 1;
+    }
+
+    @media (min-width: 769px) {
+      .product-fixed-viewport {
+        max-width: 440px;
+      }
     }
 
     .hero-slider-track {
@@ -923,7 +934,7 @@
       position: fixed;
       bottom: 0;
       width: 100vw;
-      max-width: 440px;
+      max-width: 100%;
       height: 92vh;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(247, 245, 240, 0.95) 100%);
       backdrop-filter: var(--glass-blur);
@@ -939,8 +950,10 @@
       border-radius: 28px 28px 0 0;
     }
 
-    .scrim-drawer-overlay.active .scrim-drawer-sheet {
-      transform: translateY(0);
+    @media (min-width: 769px) {
+      .scrim-drawer-sheet {
+        max-width: 440px;
+      }
     }
 
     .scrim-drawer-header {
