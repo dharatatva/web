@@ -128,20 +128,26 @@
       letter-spacing: -0.01em;
     }
 
-    /* TOP NAVIGATION (FIXED: Full Width & Clean 16px Padding) */
+    /* TOP NAVIGATION (FIXED: Shell-Aware Full Width with Clean Padding) */
     .top-floating-bar {
       position: fixed;
-      top: 14px;
+      top: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
-      max-width: 440px;
-      padding: 0 16px;
+      max-width: 100%;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       z-index: 100;
       pointer-events: none;
+    }
+
+    @media (min-width: 769px) {
+      .top-floating-bar {
+        max-width: 440px;
+      }
     }
 
     .header-left-actions, .header-right-actions {
@@ -474,18 +480,12 @@
       transform: scale(0.92);
     }
 
-    /* SCROLLING CONTENT LAYER (FIXED: min-height removed to eliminate bottom blank gap) */
+    /* SCROLLING CONTENT LAYER (FIXED: min-height: auto to remove huge bottom blank space) */
     .scrolling-content-layer {
       position: relative;
       z-index: 10;
-      margin-top: 48vh;
-      background: linear-gradient(180deg, 
-        rgba(247, 245, 240, 0) 0%, 
-        rgba(247, 245, 240, 0.5) 28px, 
-        rgba(247, 245, 240, 0.94) 60px, 
-        #F7F5F0 90px, 
-        #F7F5F0 100%
-      );
+      margin-top: 51vh;
+      background: linear-gradient(180deg, rgb(237 232 220 / 78%) 0%, rgb(240 235 225) 28px, rgba(247, 245, 240, 0.94) 60px, #F7F5F0 90px, #F7F5F0 100%);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       padding-top: 36px;
@@ -687,9 +687,9 @@
       border-radius: 3px;
     }
 
-    /* TAB CONTENT (FIXED: Reduced padding-bottom to 88px to fit above bottom bar cleanly) */
+    /* TAB CONTENT (FIXED: Compact 84px bottom padding to perfectly clear floating bar without excess space) */
     .tab-content-area {
-      padding: 18px 18px 88px;
+      padding: 18px 18px 84px;
     }
 
     .buynow-card-container {
@@ -940,7 +940,7 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* GLOBAL BACKDROP & MODAL SHEET (CONFINED STRICTLY TO SCREEN SHELL) */
+    /* GLOBAL BACKDROP & MODAL SHEET (FIXED: Full width on mobile, shell-confined on desktop) */
     .global-backdrop {
       position: fixed;
       top: 0;
@@ -948,7 +948,7 @@
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
-      max-width: 440px;
+      max-width: 100%;
       background: rgba(10, 15, 12, 0.55);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -969,7 +969,7 @@
       left: 50%;
       transform: translate(-50%, 105%);
       width: 100%;
-      max-width: 440px;
+      max-width: 100%;
       background: #ffffff;
       border-top-left-radius: 26px;
       border-top-right-radius: 26px;
@@ -981,6 +981,13 @@
       overflow-y: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+    }
+
+    @media (min-width: 769px) {
+      .global-backdrop,
+      .modal-sheet {
+        max-width: 440px;
+      }
     }
 
     .modal-sheet::-webkit-scrollbar {
@@ -1900,7 +1907,7 @@
   <div class="app-viewport-wrapper">
     <div class="app-viewport-shell">
 
-      <!-- Top Floating Bar (Edge-to-Edge aligned) -->
+      <!-- Top Floating Bar (Full-Width Within Shell, Clean 18px Padding) -->
       <div class="top-floating-bar">
         <div class="header-left-actions">
           <a href="https://dharatatva.github.io/web/" class="icon-circle-btn" onclick="scrollToTop(); haptic(6); return false;" title="Back to top">
