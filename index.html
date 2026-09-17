@@ -15,7 +15,8 @@
   <style>
     :root {
       --bg-cream: #F7F5F0;
-      --bg: #eceae3;
+      /* Default Dynamic Gradient Theme */
+      --bg: linear-gradient(165deg, #F0F5EE 0%, #f1ffefbd 100%);
       --surface: #ffffff;
       --text: #161513;
       --primary-dark: #121815;
@@ -52,12 +53,13 @@
     html, body {
       width: 100%;
       height: 100%;
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
       font-family: var(--font-sans);
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      transition: background 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .paper-grain {
@@ -76,9 +78,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--bg);
+      background: var(--bg);
       overflow: hidden;
       position: relative;
+      transition: background 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .app-viewport-shell {
@@ -90,11 +93,12 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      transition: background 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     @media (min-width: 769px) {
       .app-viewport-wrapper {
-        background-color: #dfdcd3;
+        background-color: #d6d3c8;
       }
       .app-viewport-shell {
         max-width: 440px;
@@ -116,10 +120,10 @@
       pointer-events: none;
       z-index: 1;
       will-change: background;
-      transition: background 0.6s ease;
+      transition: background 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* HEADER */
+    /* HEADER (TRANSPARENT) */
     header {
       width: 100%;
       padding: 12px 18px 3px 18px;
@@ -128,9 +132,9 @@
       align-items: center;
       z-index: 60;
       flex-shrink: 0;
-      background: rgba(236, 234, 227, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
     }
 
     .header-left {
@@ -226,7 +230,7 @@
       height: 6px;
       border-radius: 50%;
       background: #20201d;
-      border: 1.5px solid var(--bg);
+      border: 1.5px solid #ffffff;
     }
 
     /* AUDIO COMPONENT */
@@ -469,7 +473,7 @@
       width: 65px;
       height: 65px;
       border-radius: 23%;
-      background: rgb(255 255 255 / 18%);
+      background: rgb(255 255 255 / 26%);
       border: 1px solid rgba(22, 21, 19, 0.08);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -536,7 +540,7 @@
       width: 50px;
       height: 50px;
       border-radius: 23%;
-      background: #ebece4;
+      background: rgba(255, 255, 255, 0.45);
       border: 1px solid rgba(22, 21, 19, 0.08);
       display: flex;
       align-items: center;
@@ -548,7 +552,7 @@
 
     .view-toggle-btn:active {
       transform: scale(0.92);
-      background: #dad6ca;
+      background: rgba(255, 255, 255, 0.7);
     }
 
     .view-grid-icon {
@@ -572,7 +576,7 @@
       background: transparent;
     }
 
-    /* STAGE (UPDATED: Flush to Left, Right, Bottom) */
+    /* STAGE */
     .stage-wrapper {
       flex: 1;
       position: relative;
@@ -596,7 +600,7 @@
       height: 100%;
       border-radius: 28px 28px 0 0;
       overflow: hidden;
-      background: #1a1a1a;
+      background: #ffffff;
       box-shadow: 0 -4px 24px rgba(22, 21, 19, 0.06);
       display: flex;
       flex-direction: column;
@@ -623,26 +627,27 @@
       transform-origin: center center;
     }
 
+    /* ARROW BUTTONS */
     .arrow-btn {
       position: absolute;
       top: 42%;
       transform: translateY(-50%);
-      width: 34px;
-      height: 34px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: none;
+      border: none;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 35;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.2s ease, background 0.2s ease;
+      transition: opacity 0.28s ease, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, box-shadow 0.2s ease;
     }
 
     .arrow-btn.visible {
@@ -650,46 +655,90 @@
       pointer-events: auto;
     }
 
-    .arrow-btn:active {
-      transform: translateY(-50%) scale(0.9);
+    .arrow-btn:hover {
       background: #ffffff;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
     }
-    .arrow-btn.prev { left: 10px; }
-    .arrow-btn.next { right: 10px; }
+
+    .arrow-btn.prev { left: 12px; }
+    .arrow-btn.next { right: 12px; }
+
+    .arrow-btn.prev:active {
+      transform: translateY(-50%) translateX(-3px) scale(0.92);
+    }
+
+    .arrow-btn.next:active {
+      transform: translateY(-50%) translateX(3px) scale(0.92);
+    }
 
     .arrow-btn svg {
-      width: 13px;
-      height: 13px;
-      stroke: var(--text);
+      width: 16px;
+      height: 16px;
+      stroke: #000;
       fill: none;
-      stroke-width: 2;
+      stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    /* PRODUCT DETAILS OVERLAY */
+    /* =========================================================
+       DYNAMIC FROSTED BLUR OVERLAY (NO RGB REQUIRED!)
+       Directly uses var(--bg) with mask-image alpha feathering
+       ========================================================= */
     .product-details-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       width: 100%;
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.32) 18%,
-        rgba(0, 0, 0, 0.74) 48%,
-        rgba(0, 0, 0, 0.92) 80%,
-        rgba(0, 0, 0, 0.98) 100%
-      );
-      padding: 50px 18px 22px;
-      color: #ffffff;
+      padding: 95px 18px 22px;
+      color: var(--text);
       display: flex;
       flex-direction: column;
       gap: 3px;
       z-index: 25;
       pointer-events: auto;
       will-change: transform, opacity;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    /* Seamless Feathered Frosted Glass Layer adopting var(--bg) directly */
+    .product-details-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      
+      /* Directly uses the current background (Hex or Gradient) */
+      background: var(--bg);
+
+      /* Frosted blur */
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+
+      /* Alpha gradient mask: seamlessly dissolves blur & background over the image */
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.06) 14%,
+        rgba(0, 0, 0, 0.28) 32%,
+        rgba(0, 0, 0, 0.65) 52%,
+        rgba(0, 0, 0, 0.9) 72%,
+        black 88%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.06) 14%,
+        rgba(0, 0, 0, 0.28) 32%,
+        rgba(0, 0, 0, 0.65) 52%,
+        rgba(0, 0, 0, 0.9) 72%,
+        black 88%
+      );
+
+      transition: background 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .card-title-action-row {
@@ -698,16 +747,17 @@
       justify-content: space-between;
       width: 100%;
       gap: 10px;
+      position: relative;
+      z-index: 2;
     }
 
     .card-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.82rem;
-      font-weight: 600;
+      font-size: 1.84rem;
+      font-weight: 700;
       letter-spacing: -0.01em;
-      color: #ffffff;
+      color: var(--text);
       line-height: 1.15;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .card-header-actions-group {
@@ -722,20 +772,20 @@
       align-items: center;
       gap: 4px;
       font-size: 13px;
-      font-weight: 600;
-      color: #ffffff;
+      font-weight: 700;
+      color: var(--text);
       line-height: 1;
     }
 
     .card-star {
-      color: #f59e0b;
+      color: #d97706;
       font-size: 13.5px;
       line-height: 1;
     }
 
     .card-reviews {
-      color: rgba(255, 255, 255, 0.78);
-      font-weight: 400;
+      color: var(--muted);
+      font-weight: 500;
       font-size: 12px;
     }
 
@@ -743,17 +793,17 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(22, 21, 19, 0.08);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      color: #ffffff;
+      color: var(--text);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
     .card-action-circle-btn:active {
@@ -774,12 +824,14 @@
 
     .card-desc {
       font-size: 11.5px;
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 400;
+      color: #4a4742;
+      font-weight: 500;
       line-height: 1.45;
       margin-top: 3px;
       margin-bottom: 12px;
       max-width: 95%;
+      position: relative;
+      z-index: 2;
     }
 
     .card-price-row {
@@ -787,6 +839,8 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      position: relative;
+      z-index: 2;
     }
 
     .card-price-group {
@@ -797,30 +851,30 @@
 
     .card-price {
       font-size: 1.4rem;
-      font-weight: 700;
-      color: #ffffff;
+      font-weight: 800;
+      color: var(--text);
       line-height: 1;
       letter-spacing: -0.015em;
     }
 
     .card-mrp {
       font-size: 12px;
-      color: #f87171;
+      color: #b91c1c;
       text-decoration: line-through;
-      font-weight: 500;
-      opacity: 0.95;
+      font-weight: 600;
+      opacity: 0.85;
     }
 
     .card-discount-pill {
-      background: rgba(0, 0, 0, 0.65);
-      color: #ffffff;
+      background: rgba(27, 94, 59, 0.12);
+      color: var(--accent-green);
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.02em;
       padding: 3.5px 7.5px;
       border-radius: 12px;
       line-height: 1;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(27, 94, 59, 0.22);
     }
 
     .card-explore-btn {
@@ -829,21 +883,21 @@
       gap: 6px;
       padding: 8px 17px;
       border-radius: 20px;
-      background: #ffffff;
-      border: 1px solid #ffffff;
-      color: #161513;
+      background: var(--text);
+      border: 1px solid var(--text);
+      color: #ffffff;
       font-size: 11.5px;
       font-weight: 600;
       letter-spacing: 0.01em;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
       transition: all 0.2s ease;
     }
 
     .card-explore-btn:active {
       transform: scale(0.94);
-      background: #eceae3;
+      background: #33312c;
     }
 
     .card-explore-btn svg {
@@ -854,7 +908,7 @@
       stroke-width: 2.3;
     }
 
-    /* DOTS (UPDATED: Clean Floating Overlay Above Bottom Edge) */
+    /* DOTS */
     .dots-track {
       position: absolute;
       bottom: 7px;
@@ -873,21 +927,21 @@
     .dot {
       width: 6px;
       height: 3px;
-      background: rgba(255, 255, 255, 0.36);
+      background: rgba(22, 21, 19, 0.22);
       border-radius: 3px;
       transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .dot.active {
       width: 22px;
-      background: #ffffff;
+      background: var(--text);
     }
 
     /* GLOBAL BACKDROP */
     .global-backdrop {
       position: absolute;
       inset: 0;
-      background: rgb(141 141 141 / 39%);
+      background: rgb(151 150 150 / 74%);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       z-index: 100;
@@ -909,7 +963,7 @@
       left: 0;
       width: 78%;
       max-width: 325px;
-      background: #a3a3a378;
+      background: #3f3d3dd1;
       backdrop-filter: blur(9px);
       -webkit-backdrop-filter: blur(14px);
       border-top-right-radius: 36px;
@@ -938,9 +992,11 @@
     }
 
     .warm-drawer-close {
-      background: none;
+      background: #ffffff7d;
+      backdrop-filter: blur(12px);
+      border-radius: 50%;
       border: none;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgb(255 255 255 / 85%);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -1134,7 +1190,7 @@
       font-family: var(--font-playfair);
       font-size: 18px;
       font-weight: 500;
-      color: #ffffff;
+      color: #fff;
       letter-spacing: -0.01em;
       line-height: 1.2;
     }
@@ -1143,7 +1199,7 @@
       font-size: 9px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.72);
+      color: rgb(255 255 255 / 72%);
       font-weight: 600;
       line-height: 1;
     }
@@ -1439,7 +1495,7 @@
 
       <div class="ambient-glow" id="ambientGlow"></div>
 
-      <!-- HEADER -->
+      <!-- HEADER (TRANSPARENT) -->
       <header>
         <div class="header-left">
           <button class="menu-toggle-btn" id="menuBtn" aria-label="Open Navigation Menu">
@@ -1547,10 +1603,13 @@
         </div>
       </div>
 
-      <!-- MAIN PRODUCT STAGE (TOUCHES LEFT, RIGHT & BOTTOM) -->
+      <!-- MAIN PRODUCT STAGE -->
       <div class="stage-wrapper" id="swipeArea">
         <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
-          <svg viewBox="0 0 24 24"><polyline points="14 18 8 12 14 6"/></svg>
+          <svg viewBox="0 0 24 24">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="11 6 5 12 11 18"></polyline>
+          </svg>
         </button>
 
         <div class="product-unified-card" id="productCanvas">
@@ -1560,6 +1619,7 @@
                  alt="Dharatatva Botanical Formulation">
           </div>
 
+          <!-- SEAMLESS MELTING DETAILS OVERLAY -->
           <div class="product-details-overlay" id="detailsCard">
             <div class="card-title-action-row">
               <div class="card-title" id="prodName">Herb-O-Care Churna</div>
@@ -1604,11 +1664,14 @@
         </div>
 
         <button class="arrow-btn next" id="nextBtn" aria-label="Next Product">
-          <svg viewBox="0 0 24 24"><polyline points="10 6 16 12 10 18"/></svg>
+          <svg viewBox="0 0 24 24">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="13 6 19 12 13 18"></polyline>
+          </svg>
         </button>
       </div>
 
-      <!-- ARRANGE DOTS (FLOATING OVER BOTTOM OF CARD) -->
+      <!-- ARRANGE DOTS -->
       <div class="dots-track" id="dotsTrack">
         <div class="dot active"></div>
         <div class="dot"></div>
@@ -1758,9 +1821,18 @@
   </div>
 
   <script>
+    /* 
+      COLLECTIONS CONFIGURATION:
+      Aap yahan 'bg' me direct:
+      1. Normal Hex Code: "#E6EDE3"
+      YA
+      2. Linear Gradient: "linear-gradient(165deg, #F0F5EE 0%, #f1ffefbd 100%)"
+      bina kisi RGB number ke aasani se daal sakte hain!
+    */
     const collections = {
       health: {
-        glow: "rgba(168, 200, 160, 0.35)",
+        bg: "linear-gradient(165deg, #F0F5EE 0%, #f1ffefbd 100%)",
+        glow: "rgba(142, 194, 150, 0.42)",
         items: [
           { 
             rating: "4.9", 
@@ -1787,7 +1859,8 @@
         ]
       },
       women: {
-        glow: "rgba(224, 165, 175, 0.34)",
+        bg: "linear-gradient(165deg, #FBF0EC 0%, #eedad461 100%)",
+        glow: "rgba(228, 155, 168, 0.42)",
         items: [
           { 
             rating: "4.9", 
@@ -1891,7 +1964,8 @@
         ]
       },
       men: {
-        glow: "rgba(180, 145, 95, 0.35)",
+        bg: "linear-gradient(165deg, #c3d9fd 0%, #e7eef9a3 100%)",
+        glow: "rgba(195, 155, 105, 0.42)",
         items: [
           { 
             rating: "4.9", 
@@ -1995,7 +2069,8 @@
         ]
       },
       kids: {
-        glow: "rgba(225, 195, 120, 0.35)",
+        bg: "linear-gradient(165deg, #FAF4E5 0%, #ede1c79c 100%)",
+        glow: "rgba(238, 198, 110, 0.42)",
         items: [
           { 
             rating: "4.9", 
@@ -2096,6 +2171,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      applyCategoryTheme(currentCategory);
       const alreadyAccepted = localStorage.getItem(CACHE_KEY);
       if (!alreadyAccepted) {
         setTimeout(() => welcomeModal.classList.add('active'), 2700);
@@ -2138,6 +2214,16 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
 
+    /* DYNAMIC THEME APPLICATION (DIRECT HEX OR GRADIENT) */
+    function applyCategoryTheme(catKey) {
+      const cat = collections[catKey];
+      if (!cat) return;
+      document.documentElement.style.setProperty('--bg', cat.bg);
+      if (ambientGlow) {
+        ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 68%)`;
+      }
+    }
+
     function updateNavigationState() {
       const total = collections[currentCategory].items.length;
       const product = collections[currentCategory].items[currentIndex];
@@ -2171,7 +2257,6 @@
       haptic(10);
 
       const product = collections[currentCategory].items[currentIndex];
-      ambientGlow.style.background = `radial-gradient(ellipse, ${collections[currentCategory].glow} 0%, transparent 68%)`;
 
       gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.18, ease: 'power2.in' });
       gsap.to(prodImg, {
@@ -2302,6 +2387,8 @@
         
         currentCategory = selectedCat;
         currentIndex = 0;
+        
+        applyCategoryTheme(currentCategory);
         renderProduct(1);
       });
     });
