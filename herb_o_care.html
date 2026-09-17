@@ -183,7 +183,7 @@
       background: rgba(255, 255, 255, 0.75);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid rgba(255, 255, 255, 0.95);
+      border: 1px solid rgb(0 0 0 / 95%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -332,7 +332,7 @@
       margin-left: 0;
     }
 
-    /* PRODUCT HERO STAGE (UPDATED: Edge-to-Edge Top, Left & Right) */
+    /* PRODUCT HERO STAGE */
     .product-fixed-viewport {
       position: fixed;
       top: 0;
@@ -381,8 +381,7 @@
       object-position: center top;
       display: block;
     }
-	
-	/* SEAMLESS FROSTED BLUR & DIFFUSED GRADIENT MIST OVERLAY (REPLICATING REFERENCE UI) */
+
     .hero-stage-fade-overlay {
       position: absolute;
       bottom: 0;
@@ -450,7 +449,6 @@
       text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
-    /* SLIDER DOTS CAPSULE (Clean Floating Placement on Photo) */
     .bottom-slider-indicator-capsule {
       position: absolute;
       bottom: 42px;
@@ -476,7 +474,6 @@
       background: var(--primary-dark);
     }
 
-    /* HERO STAGE CORNER SHARE BUTTON */
     .hero-share-corner-btn {
       position: absolute;
       bottom: 50px;
@@ -596,48 +593,6 @@
       white-space: nowrap;
     }
 
-    .property-spec-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      border-radius: 18px;
-      padding: 12px 6px;
-      margin: 14px 0 14px;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .spec-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 2px;
-    }
-
-    .spec-item:not(:last-child) {
-      border-right: 1px solid rgba(255, 255, 255, 0.75);
-    }
-
-    .spec-icon-wrap {
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary-dark);
-      margin-bottom: 5px;
-    }
-
-    .spec-item span {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.2;
-    }
-
     .product-bestseller-badge {
       display: inline-block;
       background: rgba(224, 239, 230, 0.85);
@@ -668,50 +623,107 @@
       cursor: pointer;
     }
 
-    /* STICKY TABS */
+    /* ENHANCED ATTRACTIVE FLOATING PILL TABS */
     .tabs-sticky-bar {
       position: sticky;
-      top: 58px;
-      background: rgba(247, 245, 240, 0.82);
+      top: 56px;
       z-index: 50;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-      display: flex;
-      overflow-x: auto;
-      padding: 0 16px;
+      padding: 8px 14px 10px;
+      background: rgba(247, 245, 240, 0.92);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
 
-    .tabs-sticky-bar::-webkit-scrollbar { display: none; }
+    .tabs-pill-track {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      border-radius: 999px;
+      padding: 4px;
+      height: 42px;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .tab-slider-indicator {
+      position: absolute;
+      top: 4px;
+      height: 34px;
+      left: 0;
+      background: #B6F09C;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 1;
+      width: 0;
+      transform: translateX(0);
+      transition: transform 0.35s cubic-bezier(0.34, 1.25, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.15, 0.64, 1);
+      box-shadow: 0 2px 10px rgba(182, 240, 156, 0.45);
+    }
 
     .tab-btn-item {
-      flex: 1;
-      min-width: 72px;
-      text-align: center;
-      padding: 13px 4px;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--text-muted);
-      cursor: pointer;
       position: relative;
+      z-index: 2;
+      flex: 1;
+      height: 34px;
+      min-width: max-content;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 9px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #69726E;
+      border-radius: 999px;
+      cursor: pointer;
+      user-select: none;
       white-space: nowrap;
-      transition: color 0.2s;
+      transition: color 0.25s ease, transform 0.15s ease;
+    }
+
+    .tab-btn-item:active {
+      transform: scale(0.96);
     }
 
     .tab-btn-item.active {
-      color: var(--primary-dark);
+      color: #0E1410;
       font-weight: 800;
     }
 
-    .tab-btn-item.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 12%;
-      right: 12%;
-      height: 3px;
-      background: var(--primary-dark);
-      border-radius: 3px;
+    .tab-icon-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 0;
+      height: 18px;
+      border-radius: 50%;
+      background: #111714;
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 800;
+      line-height: 1;
+      opacity: 0;
+      transform: scale(0.2);
+      margin-left: 0;
+      overflow: hidden;
+      pointer-events: none;
+      flex-shrink: 0;
+      transition: width 0.28s cubic-bezier(0.34, 1.4, 0.64, 1),
+                  opacity 0.22s ease,
+                  transform 0.28s cubic-bezier(0.34, 1.4, 0.64, 1),
+                  margin-left 0.28s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+
+    .tab-btn-item.active .tab-icon-badge {
+      width: 18px;
+      opacity: 1;
+      transform: scale(1);
+      margin-left: 5px;
     }
 
     /* TAB CONTENT */
@@ -738,62 +750,173 @@
       margin-bottom: 12px;
     }
 
-    .sacred-volume-pill {
-      background: #111714;
-      border-radius: 18px;
-      padding: 14px 16px;
+    /* BENEFIT POINTERS WITH TICKS */
+    .benefit-pointers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      margin-bottom: 18px;
+      padding: 4px 2px;
+    }
+
+    .benefit-pointer-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .benefit-tick-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-green);
       color: #FFFFFF;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 900;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(27, 94, 59, 0.25);
     }
 
-    .sacred-volume-pill .vol-info {
+    .benefit-pointer-item span {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.25;
+    }
+
+    /* 3-CARD TREATMENT PACK SELECTION (UPDATED WITH REAL IMAGES) */
+    .volume-packs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 18px;
+      align-items: stretch;
+    }
+
+    .volume-pack-card {
+      position: relative;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(22, 21, 19, 0.08);
+      border-radius: 16px;
+      padding: 14px 6px 12px;
+      text-align: center;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
     }
 
-    .vol-row-title {
+    .volume-pack-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .volume-pack-card.selected {
+      border: 2px solid var(--accent-green);
+      background: #F9FCFA;
+      box-shadow: 0 8px 24px rgba(27, 94, 59, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .vol-card-top-tag {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent-green);
+      color: #FFFFFF;
+      font-size: 7.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 2.5px 7px;
+      border-radius: 6px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .vol-card-top-tag.gold-tag {
+      background: #C29B38;
+      color: #000000;
+    }
+
+    .vol-card-head strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-top: 2px;
+    }
+
+    .vol-card-head span {
+      display: block;
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    /* IMAGE CONTAINER FOR PACK CARDS */
+    .vol-card-visual {
+      margin: 8px 0;
+      height: 56px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    .vol-row-title strong {
-      font-size: 13.5px;
+    .vol-pack-img {
+      max-height: 100%;
+      max-width: 100%;
+      width: auto;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 6px;
+      display: block;
+      transition: transform 0.2s;
     }
 
-    .save-tag-gold {
-      background: #C29B38;
-      color: #000;
-      font-size: 8.5px;
+    .volume-pack-card:hover .vol-pack-img {
+      transform: scale(1.04);
+    }
+
+    .vol-card-price-block {
+      margin-bottom: 6px;
+    }
+
+    .vol-card-now {
+      font-size: 15px;
       font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 4px;
+      color: var(--primary-dark);
+      line-height: 1.1;
     }
 
-    .vol-sub {
-      font-size: 10.5px;
-      color: #A6B2AC;
+    .vol-card-perjar {
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
     }
 
-    .vol-price-col {
-      text-align: right;
-    }
-
-    .vol-price-col .current {
-      font-size: 18px;
+    .vol-card-save-pill {
+      background: rgba(27, 94, 59, 0.1);
+      color: var(--accent-green);
+      font-size: 8px;
       font-weight: 800;
+      padding: 3.5px 4px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .volume-pack-card.selected .vol-card-save-pill {
+      background: var(--accent-green);
       color: #FFFFFF;
-    }
-
-    .vol-price-col .cut {
-      font-size: 11px;
-      color: #7A847F;
-      text-decoration: line-through;
     }
 
     .buynow-usps-grid {
@@ -967,7 +1090,7 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
-    /* GLOBAL BACKDROP & MODAL SHEET */
+    /* GLOBAL BACKDROP & MODAL SHEET (CLICK-OUTSIDE DISABLED) */
     .global-backdrop {
       position: fixed;
       top: 0;
@@ -1067,6 +1190,283 @@
       display: none;
     }
 
+    /* EXACT CHECKOUT PREVIEW CARD STYLING (FIXED: NEVER BREAKS "SAVE 50%") */
+    .chk-selected-preview-card-wrap {
+      position: relative;
+      margin-top: 14px;
+      margin-bottom: 20px;
+    }
+
+    .chk-selected-top-badge {
+      position: absolute;
+      top: -10px;
+      left: 18px;
+      background: #000000;
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 3px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+      z-index: 2;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .chk-selected-preview-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(22, 21, 19, 0.09);
+      border-radius: 22px;
+      padding: 16px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .chk-preview-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .chk-preview-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #F4EFE6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .chk-preview-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .chk-preview-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .chk-preview-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap; /* Allows healthy flow without breaking tag text */
+    }
+
+    .chk-preview-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.2;
+    }
+
+    /* FIXED: SAVE BADGE NEVER DEFORMS OR WRAPS VERTICALLY */
+    .chk-preview-save-tag {
+      background: #000000;
+      color: #FFFFFF;
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 2.5px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+      white-space: nowrap !important; /* PREVENTS 'SAVE' & '50%' SPLITTING */
+      flex-shrink: 0 !important;      /* NEVER SQUEEZES */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chk-preview-sub {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chk-preview-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .chk-preview-price {
+      font-size: 17.5px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1;
+    }
+
+    .chk-preview-added-qty {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--accent-green);
+      background: #E8F5EE;
+      padding: 2px 8px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .chk-step-pill {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--accent-rust);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chk-step-heading {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .form-field-group {
+      margin-bottom: 12px;
+    }
+
+    .form-field-label {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5F6461;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .form-field-input {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      border: none;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      padding: 0 14px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--primary-dark);
+      outline: none;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .form-grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .payment-option-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      cursor: pointer;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .payment-option-card.selected {
+      border-color: var(--accent-green);
+      background: rgba(248, 252, 249, 0.9);
+    }
+
+    .chk-radio-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #C4BDAD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .payment-option-card.selected .chk-radio-circle {
+      border-color: var(--accent-green);
+    }
+
+    .payment-option-card.selected .chk-radio-circle::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+    }
+
+    .discount-extra-badge {
+      background: #E0F2E9;
+      color: var(--accent-green);
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .checkout-bill-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 16px;
+      padding: 14px;
+      border: var(--glass-border);
+      margin: 18px 0;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .bill-item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .bill-item-row.green {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .bill-total-row {
+      border-top: 1px dashed rgba(224, 217, 200, 0.8);
+      padding-top: 8px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    /* VAULTS */
     .drawer-card-box {
       border-radius: 27px;
       padding: 18px 16px;
@@ -1215,242 +1615,6 @@
       font-size: 9.5px;
       color: var(--accent-green);
       font-weight: 700;
-    }
-
-    /* CHECKOUT STYLES */
-    .urgency-badge-box {
-      background: rgba(253, 243, 231, 0.9);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(246, 214, 176, 0.95);
-      color: #9C5712;
-      font-size: 11px;
-      padding: 9px 12px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 600;
-    }
-
-    .chk-step-pill {
-      font-size: 9.5px;
-      font-weight: 800;
-      color: var(--accent-rust);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 4px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .chk-step-heading {
-      font-size: 14.5px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 12px;
-    }
-
-    .pack-select-item {
-      border-radius: 18px;
-      padding: 12px 12px;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.2s;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .pack-select-item.selected {
-      border-color: var(--accent-green);
-      background: rgba(248, 252, 249, 0.9);
-    }
-
-    .pack-badge-tag {
-      position: absolute;
-      top: -9px;
-      right: 14px;
-      background: #D9822B;
-      color: #FFFFFF;
-      font-size: 8.5px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 20px;
-      text-transform: uppercase;
-    }
-
-    .pack-select-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .chk-radio-circle {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid #C4BDAD;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.85);
-    }
-
-    .pack-select-item.selected .chk-radio-circle {
-      border-color: var(--accent-green);
-    }
-
-    .pack-select-item.selected .chk-radio-circle::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-green);
-    }
-
-    .pack-title-text {
-      font-weight: 700;
-      font-size: 13.5px;
-      color: var(--primary-dark);
-    }
-
-    .pack-sub-text {
-      font-size: 10.5px;
-      color: var(--text-muted);
-    }
-
-    .pack-price-block {
-      text-align: right;
-    }
-
-    .pack-price-block .now {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--primary-dark);
-    }
-
-    .pack-price-block .mrp {
-      font-size: 11px;
-      color: #999;
-      text-decoration: line-through;
-    }
-
-    .form-field-group {
-      margin-bottom: 12px;
-    }
-
-    .form-field-label {
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #5F6461;
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    .form-field-input {
-      width: 100%;
-      height: 44px;
-      border-radius: 12px;
-      border: none;
-      background: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      padding: 0 14px;
-      font-size: 13px;
-      font-family: inherit;
-      color: var(--primary-dark);
-      outline: none;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .form-grid-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .payment-option-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      border-radius: 14px;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      cursor: pointer;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .payment-option-card.selected {
-      border-color: var(--accent-green);
-      background: rgba(248, 252, 249, 0.9);
-    }
-
-    .payment-option-card.selected .chk-radio-circle {
-      border-color: var(--accent-green);
-    }
-
-    .payment-option-card.selected .chk-radio-circle::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-green);
-    }
-
-    .discount-extra-badge {
-      background: #E0F2E9;
-      color: var(--accent-green);
-      font-size: 9px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: 800;
-      margin-left: 4px;
-    }
-
-    .checkout-bill-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border-radius: 16px;
-      padding: 14px;
-      border: var(--glass-border);
-      margin: 18px 0;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .bill-item-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .bill-item-row.green {
-      color: var(--accent-green);
-      font-weight: 600;
-    }
-
-    .bill-total-row {
-      border-top: 1px dashed rgba(224, 217, 200, 0.8);
-      padding-top: 8px;
-      margin-top: 6px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--primary-dark);
     }
 
     /* REVIEWS VAULT */
@@ -2019,6 +2183,12 @@
             <div class="badge-symbol">🗡️</div>
             <span>Lekhana Karma</span>
           </div>
+          <div class="badge-icon-item">
+            <div class="spec-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <span>Non-GMO</span>
+          </div>
         </div>
 
         <div class="hero-slider-track" id="heroSliderTrack">
@@ -2032,8 +2202,8 @@
             <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1000&q=85" alt="Ayurvedic Wellness Pack" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=85';" />
           </div>
         </div>
-		
-		<!-- SEAMLESS FROSTED BLUR & DIFFUSED GRADIENT MIST OVERLAY -->
+        
+        <!-- SEAMLESS FROSTED BLUR OVERLAY -->
         <div class="hero-stage-fade-overlay"></div>
 
         <!-- REFINED FLOATING DOTS CAPSULE -->
@@ -2074,34 +2244,6 @@
             </div>
           </div>
 
-          <!-- SPECIFICATION ICONS BAR -->
-          <div class="property-spec-bar">
-            <div class="spec-item">
-              <div class="spec-icon-wrap">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </div>
-              <span>23+ Herbs</span>
-            </div>
-            <div class="spec-item">
-              <div class="spec-icon-wrap">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <span>100% Shastra</span>
-            </div>
-            <div class="spec-item">
-              <div class="spec-icon-wrap">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-              </div>
-              <span>Non-GMO</span>
-            </div>
-            <div class="spec-item">
-              <div class="spec-icon-wrap">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              </div>
-              <span>48H Dispatch</span>
-            </div>
-          </div>
-
           <div class="product-bestseller-badge">Most Popular · Agni Awakening</div>
 
           <p class="product-summary-text" data-i18n="summary">
@@ -2109,32 +2251,117 @@
           </p>
         </div>
 
-        <!-- STICKY TABS -->
+        <!-- STICKY MODERN FLOATING CAPSULE TABS -->
         <div class="tabs-sticky-bar">
-          <div class="tab-btn-item active" id="tab-buynow" onclick="switchMainTab('buynow'); haptic(6);">Buy Now</div>
-          <div class="tab-btn-item" id="tab-details" onclick="switchMainTab('details'); haptic(6);">Details</div>
-          <div class="tab-btn-item" id="tab-ingredients" onclick="switchMainTab('ingredients'); haptic(6);">Ingredients</div>
-          <div class="tab-btn-item" id="tab-reviews" onclick="switchMainTab('reviews'); haptic(6);">Review</div>
-          <div class="tab-btn-item" id="tab-faq" onclick="switchMainTab('faq'); haptic(6);">F&Q</div>
+          <div class="tabs-pill-track" id="tabsPillTrack">
+            <!-- Smooth Sliding Indicator Capsule -->
+            <div class="tab-slider-indicator" id="tabSliderIndicator"></div>
+
+            <div class="tab-btn-item active" id="tab-buynow" onclick="switchMainTab('buynow'); haptic(6);">
+              <span>Buy Now</span>
+              <span class="tab-icon-badge">⚡</span>
+            </div>
+            <div class="tab-btn-item" id="tab-details" onclick="switchMainTab('details'); haptic(6);">
+              <span>Details</span>
+              <span class="tab-icon-badge">✦</span>
+            </div>
+            <div class="tab-btn-item" id="tab-ingredients" onclick="switchMainTab('ingredients'); haptic(6);">
+              <span>Ingredients</span>
+              <span class="tab-icon-badge">🌿</span>
+            </div>
+            <div class="tab-btn-item" id="tab-reviews" onclick="switchMainTab('reviews'); haptic(6);">
+              <span>Review</span>
+              <span class="tab-icon-badge">★</span>
+            </div>
+            <div class="tab-btn-item" id="tab-faq" onclick="switchMainTab('faq'); haptic(6);">
+              <span>F&Q</span>
+              <span class="tab-icon-badge">?</span>
+            </div>
+          </div>
         </div>
 
         <!-- TAB 1: BUY NOW CARD -->
         <div class="tab-content-area" id="mainTabArea">
           <div class="buynow-card-container">
+            
+            <!-- BENEFIT POINTERS WITH TICKS -->
+            <div class="benefit-pointers-grid">
+              <div class="benefit-pointer-item">
+                <div class="benefit-tick-circle">✓</div>
+                <span>Awakens Sluggish Agni</span>
+              </div>
+              <div class="benefit-pointer-item">
+                <div class="benefit-tick-circle">✓</div>
+                <span>Flushes Trapped Ama Toxins</span>
+              </div>
+              <div class="benefit-pointer-item">
+                <div class="benefit-tick-circle">✓</div>
+                <span>23+ Sacred Pure Herbs</span>
+              </div>
+              <div class="benefit-pointer-item">
+                <div class="benefit-tick-circle">✓</div>
+                <span>Active Lekhana Scraping</span>
+              </div>
+            </div>
+
             <div class="buynow-eyebrow">SELECT SACRED VOLUME</div>
 
-            <div class="sacred-volume-pill">
-              <div class="vol-info">
-                <div class="vol-row-title">
-                  <strong>100g Micro-Dose</strong>
-                  <span class="save-tag-gold">SAVE 25%</span>
+            <!-- 3 TREATMENT PACK CARDS (UPDATED WITH IMAGE PATHS) -->
+            <div class="volume-packs-grid">
+              
+              <!-- 1 JAR -->
+              <div class="volume-pack-card" id="vol-card-starter" onclick="selectVolumePack('starter')">
+                <div class="vol-card-head">
+                  <strong>1 JAR</strong>
+                  <span>30 Day Supply</span>
                 </div>
-                <div class="vol-sub">30-Day Metabolic & Detox Cycle</div>
+                <!-- IMAGE CONTAINER 1 -->
+                <div class="vol-card-visual">
+                  <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=200&q=80" alt="1 Jar Pack" class="vol-pack-img" />
+                </div>
+                <div class="vol-card-price-block">
+                  <div class="vol-card-now">₹899</div>
+                  <div class="vol-card-perjar">₹899 / Jar</div>
+                </div>
+                <div class="vol-card-save-pill">SAVE ₹600</div>
               </div>
-              <div class="vol-price-col">
-                <div class="current" id="pillPrice">₹949</div>
-                <div class="cut" id="pillMrp">₹1,260</div>
+
+              <!-- 2 JARS (SELECTED / MOST POPULAR) -->
+              <div class="volume-pack-card selected" id="vol-card-detox" onclick="selectVolumePack('detox')">
+                <div class="vol-card-top-tag">MOST POPULAR</div>
+                <div class="vol-card-head">
+                  <strong>2 JARS</strong>
+                  <span>60 Day Supply</span>
+                </div>
+                <!-- IMAGE CONTAINER 2 -->
+                <div class="vol-card-visual">
+                  <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=200&q=80" alt="2 Jars Pack" class="vol-pack-img" />
+                </div>
+                <div class="vol-card-price-block">
+                  <div class="vol-card-now">₹1,499</div>
+                  <div class="vol-card-perjar">₹749 / Jar</div>
+                </div>
+                <div class="vol-card-save-pill">SAVE ₹1,500</div>
               </div>
+
+              <!-- 3 JARS (BEST VALUE) -->
+              <div class="volume-pack-card" id="vol-card-family" onclick="selectVolumePack('family')">
+                <div class="vol-card-top-tag gold-tag">BEST VALUE</div>
+                <div class="vol-card-head">
+                  <strong>3 JARS</strong>
+                  <span>90 Day Supply</span>
+                </div>
+                <!-- IMAGE CONTAINER 3 -->
+                <div class="vol-card-visual">
+                  <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=200&q=80" alt="3 Jars Pack" class="vol-pack-img" />
+                </div>
+                <div class="vol-card-price-block">
+                  <div class="vol-card-now">₹1,999</div>
+                  <div class="vol-card-perjar">₹666 / Jar</div>
+                </div>
+                <div class="vol-card-save-pill">SAVE ₹2,500</div>
+              </div>
+
             </div>
 
             <div class="buynow-usps-grid">
@@ -2165,8 +2392,8 @@
         <div class="float-left-dock">
           <span class="float-price-label">Total Price</span>
           <div class="float-price-row">
-            <span class="float-price-curr" id="floatPriceNow">₹949</span>
-            <span class="float-price-cut" id="floatPriceCut">₹1,260</span>
+            <span class="float-price-curr" id="floatPriceNow">₹1,499</span>
+            <span class="float-price-cut" id="floatPriceCut">₹2,999</span>
           </div>
         </div>
 
@@ -2176,7 +2403,7 @@
           <button type="button" class="float-qty-btn" onclick="updateMainQty(1); haptic(6);">+</button>
         </div>
 
-        <button class="float-basket-pill-btn" onclick="openCheckoutDrawer('starter'); haptic(12);">
+        <button class="float-basket-pill-btn" onclick="openCheckoutDrawer(); haptic(12);">
           <span class="btn-txt">Add to Basket</span>
           <span class="float-basket-icon-circle">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#121815" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -2190,7 +2417,7 @@
         </button>
       </div>
 
-      <!-- GLOBAL BACKDROP & MODAL SHEET -->
+      <!-- GLOBAL BACKDROP (CLICK OUTSIDE IS DISABLED - ONLY CLOSES ON CROSS BUTTON) -->
       <div class="global-backdrop" id="globalBackdrop"></div>
 
       <div class="modal-sheet" id="productDetailSheet">
@@ -2198,6 +2425,7 @@
           <div class="sheet-drag-pill"></div>
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <h3 id="detailSheetTitle" style="font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--primary-dark);">Product Details</h3>
+            <!-- ONLY CLOSING TRIGGER: CROSS (X) BUTTON -->
             <button class="icon-circle-btn" style="width:32px; height:32px; flex-shrink: 0;" onclick="closeDrawer(); haptic(6);" aria-label="Close Drawer">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"/>
@@ -2207,7 +2435,7 @@
           </div>
         </div>
         <div class="policy-content-body" id="detailSheetBody">
-          <!-- Dynamically injected from SEO Vault -->
+          <!-- Dynamically injected from SEO Vault or Checkout -->
         </div>
       </div>
 
@@ -2377,6 +2605,22 @@
             <div class="ingredient-tile-box"><img src="ingredients/10.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
             <div class="ingredient-tile-box"><img src="ingredients/11.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
             <div class="ingredient-tile-box"><img src="ingredients/12.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/13.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/14.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/15.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/16.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/17.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/18.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/19.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/20.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/21.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/22.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/23.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/24.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/25.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/26.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/27.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
+            <div class="ingredient-tile-box"><img src="ingredients/28.avif?auto=format&fit=crop&w=200&q=80" alt="Herb 6" /></div>
           </div>
         </div>
       </div>
@@ -2484,6 +2728,39 @@
     let currentQty = 1;
     let currentLang = 'en';
 
+    /* DEFINED TREATMENT PACKS WITH IMAGE PATHS (REPLACE WITH YOUR OWN PATHS) */
+    const PACKS = {
+      starter: {
+        id: 'starter',
+        title: 'Starter Pack (1 Jar)',
+        price: 899,
+        mrp: 1499,
+        discountTag: 'SAVE 40%',
+        sub: '30-Day Agni Awakening Trial',
+        img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=200&q=80' /* replace: img/starter-pack.png */
+      },
+      detox: {
+        id: 'detox',
+        title: 'Complete Detox Pack (2 Jars)',
+        price: 1499,
+        mrp: 2999,
+        discountTag: 'SAVE 50%',
+        sub: 'Full 60-Day Lekhana Scraping Cycle',
+        img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=200&q=80' /* replace: img/detox-pack.png */
+      },
+      family: {
+        id: 'family',
+        title: 'Family Rebalance (3 Jars)',
+        price: 1999,
+        mrp: 4499,
+        discountTag: 'SAVE 55%',
+        sub: '90-Day Cellular Reset + Free Brass Spoon',
+        img: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=200&q=80' /* replace: img/family-pack.png */
+      }
+    };
+
+    let currentPackKey = 'detox'; // Default: 2 Jars (Most Popular)
+
     const track = document.getElementById('heroSliderTrack');
     const heroStage = document.getElementById('productFixedStage');
     let startX = 0, endX = 0;
@@ -2510,16 +2787,29 @@
       document.getElementById('dot2').classList.toggle('active', idx === 2);
     }
 
+    /* MAIN PAGE VOLUME SELECTION */
+    function selectVolumePack(packKey) {
+      currentPackKey = packKey;
+      document.querySelectorAll('.volume-pack-card').forEach(card => card.classList.remove('selected'));
+      const activeCard = document.getElementById('vol-card-' + packKey);
+      if (activeCard) activeCard.classList.add('selected');
+
+      recalcVolumePrices();
+      haptic(8);
+    }
+
     function updateMainQty(delta) {
       currentQty += delta;
       if (currentQty < 1) currentQty = 1;
       if (currentQty > 5) currentQty = 5;
 
-      const calcPrice = 949 * currentQty;
-      const calcMrp = 1260 * currentQty;
+      recalcVolumePrices();
+    }
 
-      document.getElementById('pillPrice').innerText = '₹' + calcPrice.toLocaleString('en-IN');
-      document.getElementById('pillMrp').innerText = '₹' + calcMrp.toLocaleString('en-IN');
+    function recalcVolumePrices() {
+      const pack = PACKS[currentPackKey];
+      const calcPrice = pack.price * currentQty;
+      const calcMrp = pack.mrp * currentQty;
 
       const floatQty = document.getElementById('floatQtyVal');
       if (floatQty) floatQty.innerText = (currentQty < 10 ? '0' : '') + currentQty;
@@ -2551,14 +2841,35 @@
       }
     }
 
+    /* PRECISE TAB INDICATOR POSITIONING */
+    function updateTabIndicator(activeEl) {
+      const indicator = document.getElementById('tabSliderIndicator');
+      const track = document.getElementById('tabsPillTrack');
+      if (!indicator || !track) return;
+      
+      if (!activeEl) {
+        activeEl = track.querySelector('.tab-btn-item.active');
+      }
+      if (!activeEl) return;
+
+      indicator.style.width = `${activeEl.offsetWidth}px`;
+      indicator.style.height = `${activeEl.offsetHeight}px`;
+      indicator.style.top = `${activeEl.offsetTop}px`;
+      indicator.style.transform = `translateX(${activeEl.offsetLeft}px)`;
+    }
+
     function switchMainTab(tabKey) {
+      document.querySelectorAll('.tab-btn-item').forEach(t => t.classList.remove('active'));
+      const activeTabEl = document.getElementById('tab-' + tabKey);
+      if (activeTabEl) {
+        activeTabEl.classList.add('active');
+        updateTabIndicator(activeTabEl);
+        setTimeout(() => updateTabIndicator(activeTabEl), 50);
+      }
+
       if (tabKey === 'buynow') {
-        resetTabsToBuyNow();
         document.getElementById('mainTabArea').scrollIntoView({ behavior: 'smooth' });
       } else {
-        document.querySelectorAll('.tab-btn-item').forEach(t => t.classList.remove('active'));
-        const activeTabEl = document.getElementById('tab-' + tabKey);
-        if (activeTabEl) activeTabEl.classList.add('active');
         openDrawer(tabKey);
       }
     }
@@ -2566,7 +2877,11 @@
     function resetTabsToBuyNow() {
       document.querySelectorAll('.tab-btn-item').forEach(t => t.classList.remove('active'));
       const buyNowTab = document.getElementById('tab-buynow');
-      if (buyNowTab) buyNowTab.classList.add('active');
+      if (buyNowTab) {
+        buyNowTab.classList.add('active');
+        updateTabIndicator(buyNowTab);
+        setTimeout(() => updateTabIndicator(buyNowTab), 50);
+      }
     }
 
     function openDrawer(tabKey) {
@@ -2574,6 +2889,14 @@
       const sheet = document.getElementById('productDetailSheet');
       const titleEl = document.getElementById('detailSheetTitle');
       const bodyEl = document.getElementById('detailSheetBody');
+
+      document.querySelectorAll('.tab-btn-item').forEach(t => t.classList.remove('active'));
+      const activeTabEl = document.getElementById('tab-' + tabKey);
+      if (activeTabEl) {
+        activeTabEl.classList.add('active');
+        updateTabIndicator(activeTabEl);
+        setTimeout(() => updateTabIndicator(activeTabEl), 50);
+      }
 
       if (tabKey === 'details') {
         titleEl.innerText = "Ayurvedic Details & Pathway";
@@ -2594,13 +2917,17 @@
       document.body.style.overflow = 'hidden';
     }
 
+    /* DRAWER ONLY CLOSES WHEN THE CROSS (X) BUTTON IS PRESSED */
     function closeDrawer() {
       const backdrop = document.getElementById('globalBackdrop');
       const sheet = document.getElementById('productDetailSheet');
       if (backdrop) backdrop.classList.remove('active');
       if (sheet) sheet.classList.remove('open');
       document.body.style.overflow = '';
-      resetTabsToBuyNow();
+
+      setTimeout(() => {
+        resetTabsToBuyNow();
+      }, 220);
     }
 
     function toggleFaqUnit(unit) {
@@ -2613,75 +2940,54 @@
       }
     }
 
-    let selectedChkPrice = 1499;
-    let selectedChkMrp = 2999;
-    let selectedChkPackTitle = "Complete Detox Pack (2 Jars)";
     let selectedPayMode = 'upi';
 
-    function openCheckoutDrawer(packMode) {
+    /* CHECKOUT DRAWER: EXACT PREVIEW CARD WITH THUMBNAIL & STABLE SAVE BADGE */
+    function openCheckoutDrawer() {
       const backdrop = document.getElementById('globalBackdrop');
       const sheet = document.getElementById('productDetailSheet');
       const titleEl = document.getElementById('detailSheetTitle');
       const bodyEl = document.getElementById('detailSheetBody');
 
+      const pack = PACKS[currentPackKey];
+      const totalPrice = pack.price * currentQty;
+      const totalMrp = pack.mrp * currentQty;
+      const formattedQty = (currentQty < 10 ? '0' : '') + currentQty;
+
       titleEl.innerText = "EXPRESS AYURVEDIC CHECKOUT";
 
       bodyEl.innerHTML = `
-        <div class="urgency-badge-box">
-          <span>🔥</span>
-          <span>High Demand: <strong>Only 19 Jars</strong> left in current batch for today's dispatch!</span>
-        </div>
-
+        <!-- STEP 1 HEADER -->
         <div class="chk-step-pill">
           <span>STEP 1 OF 3</span>
-          <span style="color:var(--accent-green);">Money-Back Guarantee</span>
+          <span style="color:var(--accent-green);">100% MONEY-BACK GUARANTEE</span>
         </div>
-        <div class="chk-step-heading">Select Your Ayurvedic Treatment Pack</div>
+        <div class="chk-step-heading">Review Your Selected Order</div>
 
-        <div class="pack-select-item selected" id="chk-pack-detox" onclick="pickCheckoutPack('detox', 1499, 2999, 'Complete Detox Pack (2 Jars)'); haptic(6);">
-          <div class="pack-badge-tag">MOST POPULAR · FULL RESET</div>
-          <div class="pack-select-left">
-            <div class="chk-radio-circle"></div>
-            <div>
-              <div class="pack-title-text">Complete Detox Pack (2 Jars)</div>
-              <div class="pack-sub-text">Full 60-Day Lekhana Scraping Cycle</div>
+        <!-- SELECTED PACK PREVIEW WITH THUMBNAIL AND FIXED SAVE TAG -->
+        <div class="chk-selected-preview-card-wrap">
+          <div class="chk-selected-top-badge">Selected Ayurvedic Pack</div>
+          <div class="chk-selected-preview-card">
+            <div class="chk-preview-left">
+              <div class="chk-preview-thumb">
+                <img src="${pack.img}" alt="${pack.title}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=200&q=80';" />
+              </div>
+              <div class="chk-preview-info">
+                <div class="chk-preview-title-row">
+                  <span class="chk-preview-title">${pack.title}</span>
+                  <span class="chk-preview-save-tag">${pack.discountTag}</span>
+                </div>
+                <div class="chk-preview-sub">${pack.sub}</div>
+              </div>
+            </div>
+            <div class="chk-preview-right">
+              <div class="chk-preview-price">₹${totalPrice.toLocaleString('en-IN')}</div>
+              <div class="chk-preview-added-qty">Qty: ${formattedQty}</div>
             </div>
           </div>
-          <div class="pack-price-block">
-            <div class="now">₹1,499</div>
-            <div class="mrp">₹2,999</div>
-          </div>
         </div>
 
-        <div class="pack-select-item" id="chk-pack-starter" onclick="pickCheckoutPack('starter', 899, 1499, 'Starter Pack (1 Jar)'); haptic(6);">
-          <div class="pack-select-left">
-            <div class="chk-radio-circle"></div>
-            <div>
-              <div class="pack-title-text">Starter Pack (1 Jar)</div>
-              <div class="pack-sub-text">30-Day Agni Awakening Trial</div>
-            </div>
-          </div>
-          <div class="pack-price-block">
-            <div class="now">₹899</div>
-            <div class="mrp">₹1,499</div>
-          </div>
-        </div>
-
-        <div class="pack-select-item" id="chk-pack-family" onclick="pickCheckoutPack('family', 1999, 4499, 'Family Rebalance (3 Jars)'); haptic(6);">
-          <div class="pack-select-left">
-            <div class="chk-radio-circle"></div>
-            <div>
-              <div class="pack-title-text">Family Rebalance (3 Jars)</div>
-              <div class="pack-sub-text">90-Day Cellular Reset + Free Brass Spoon</div>
-            </div>
-          </div>
-          <div class="pack-price-block">
-            <div class="now">₹1,999</div>
-            <div class="mrp">₹4,499</div>
-          </div>
-        </div>
-
-        <div style="margin-top:22px;">
+        <div style="margin-top:20px;">
           <div class="chk-step-pill">STEP 2 OF 3</div>
           <div class="chk-step-heading">Delivery Information</div>
 
@@ -2715,7 +3021,7 @@
           </div>
         </div>
 
-        <div style="margin-top:22px;">
+        <div style="margin-top:20px;">
           <div class="chk-step-pill">STEP 3 OF 3</div>
           <div class="chk-step-heading">Select Payment Mode</div>
 
@@ -2728,7 +3034,7 @@
                 <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">Fastest dispatch + Instant discount</div>
               </div>
             </div>
-            <div style="font-size:14px; font-weight:800;" id="chkUpiPriceTag">₹1,399</div>
+            <div style="font-size:14px; font-weight:800;" id="chkUpiPriceTag">₹${(totalPrice - 100).toLocaleString('en-IN')}</div>
           </div>
 
           <div class="payment-option-card" id="chk-pay-cod" onclick="pickPaymentMode('cod'); haptic(6);">
@@ -2739,18 +3045,18 @@
                 <div style="font-size:10px; color:#888;">Pay cash or UPI at your doorstep</div>
               </div>
             </div>
-            <div style="font-size:14px; font-weight:800;" id="chkCodPriceTag">₹1,499</div>
+            <div style="font-size:14px; font-weight:800;" id="chkCodPriceTag">₹${totalPrice.toLocaleString('en-IN')}</div>
           </div>
         </div>
 
         <div class="checkout-bill-card">
           <div class="bill-item-row">
-            <span id="chkBillPackTitle">Selected: 2 Jars (60 Days Detox Cycle)</span>
-            <span id="chkBillMrp">₹2,999</span>
+            <span id="chkBillPackTitle">Selected: ${pack.title} (Qty: ${formattedQty})</span>
+            <span id="chkBillMrp">₹${totalMrp.toLocaleString('en-IN')}</span>
           </div>
           <div class="bill-item-row green">
             <span>Special Ayurvedic Discount</span>
-            <span id="chkBillDiscount">-₹1,500</span>
+            <span id="chkBillDiscount">-₹${(totalMrp - totalPrice).toLocaleString('en-IN')}</span>
           </div>
           <div class="bill-item-row green" id="chkUpiDiscountRow">
             <span>Prepaid Extra Offer</span>
@@ -2762,7 +3068,7 @@
           </div>
           <div class="bill-total-row">
             <span>Grand Total</span>
-            <span id="chkBillGrandTotal">₹1,399</span>
+            <span id="chkBillGrandTotal">₹${(totalPrice - (selectedPayMode === 'upi' ? 100 : 0)).toLocaleString('en-IN')}</span>
           </div>
         </div>
 
@@ -2775,29 +3081,9 @@
         </div>
       `;
 
-      if (packMode === 'starter') {
-        pickCheckoutPack('starter', 899, 1499, 'Starter Pack (1 Jar)');
-      } else if (packMode === 'family') {
-        pickCheckoutPack('family', 1999, 4499, 'Family Rebalance (3 Jars)');
-      } else {
-        pickCheckoutPack('detox', 1499, 2999, 'Complete Detox Pack (2 Jars)');
-      }
-
       backdrop.classList.add('active');
       sheet.classList.add('open');
       document.body.style.overflow = 'hidden';
-    }
-
-    function pickCheckoutPack(packKey, price, mrp, title) {
-      selectedChkPrice = price;
-      selectedChkMrp = mrp;
-      selectedChkPackTitle = title;
-
-      document.querySelectorAll('.pack-select-item').forEach(p => p.classList.remove('selected'));
-      const activeEl = document.getElementById('chk-pack-' + packKey);
-      if (activeEl) activeEl.classList.add('selected');
-
-      recalcCheckoutTotals();
     }
 
     function pickPaymentMode(mode) {
@@ -2808,20 +3094,18 @@
     }
 
     function recalcCheckoutTotals() {
+      const pack = PACKS[currentPackKey];
+      const totalPrice = pack.price * currentQty;
+      const totalMrp = pack.mrp * currentQty;
       const upiExtraOff = (selectedPayMode === 'upi') ? 100 : 0;
-      const finalPrice = selectedChkPrice - upiExtraOff;
-      const baseDiscount = selectedChkMrp - selectedChkPrice;
+      const finalPrice = totalPrice - upiExtraOff;
+      const baseDiscount = totalMrp - totalPrice;
 
-      document.getElementById('chkBillPackTitle').innerText = 'Selected: ' + selectedChkPackTitle;
-      document.getElementById('chkBillMrp').innerText = '₹' + selectedChkMrp.toLocaleString('en-IN');
-      document.getElementById('chkBillDiscount').innerText = '-₹' + baseDiscount.toLocaleString('en-IN');
-      
       const upiRow = document.getElementById('chkUpiDiscountRow');
       if (upiRow) upiRow.style.display = (selectedPayMode === 'upi') ? 'flex' : 'none';
 
-      document.getElementById('chkBillGrandTotal').innerText = '₹' + finalPrice.toLocaleString('en-IN');
-      document.getElementById('chkUpiPriceTag').innerText = '₹' + (selectedChkPrice - 100).toLocaleString('en-IN');
-      document.getElementById('chkCodPriceTag').innerText = '₹' + selectedChkPrice.toLocaleString('en-IN');
+      const billTotal = document.getElementById('chkBillGrandTotal');
+      if (billTotal) billTotal.innerText = '₹' + finalPrice.toLocaleString('en-IN');
     }
 
     function detectPincodeCity(val) {
@@ -2849,7 +3133,7 @@
       document.getElementById('orderSuccessModal').classList.remove('active');
     }
 
-    /* LIGHTBOX DATA WITH SAMPLE HIGH-QUALITY IMAGE LINKS */
+    /* LIGHTBOX DATA */
     const lbPhotos = [
       { img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80', title: 'Customer Photo: Texture 1', desc: 'Unadulterated herbal churan grain ground to exact Shastric grain.' },
       { img: 'https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=800&q=80', title: 'Customer Photo: Herbal Mix', desc: 'Raw Triphala, Guggulu, and Shunthi extract granules.' },
@@ -2933,7 +3217,7 @@
       document.getElementById('lightboxModal').classList.remove('active');
     }
 
-    /* SALES-OPTIMIZED PROFESSIONAL SHARE FUNCTION */
+    /* SHARE FUNCTION */
     function shareProduct() {
       const shareUrl = window.location.href;
       const shareTitle = 'Herb-O-Care™ Ayurvedic Churan | Dharatatva';
@@ -3036,6 +3320,16 @@ ${shareUrl}`;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const activeTab = document.querySelector('.tab-btn-item.active');
+        if (activeTab) updateTabIndicator(activeTab);
+      }, 100);
+
+      window.addEventListener('resize', () => {
+        const activeTab = document.querySelector('.tab-btn-item.active');
+        if (activeTab) updateTabIndicator(activeTab);
+      });
+
       const alreadyAccepted = localStorage.getItem(CACHE_KEY);
 
       if (!alreadyAccepted) {
