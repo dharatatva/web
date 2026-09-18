@@ -10,1455 +10,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
 
+  <!-- GSAP Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-  <style>
-    :root {
-      --bg-cream: #F7F5F0;
-      /* Default Dynamic Gradient Theme */
-      --bg: linear-gradient(165deg, #F0F5EE 0%, #f1ffefbd 100%);
-      --surface: #ffffff;
-      --text: #161513;
-      --primary-dark: #121815;
-      --muted: #797771;
-      --bronze: #8e7146;
-      --accent-green: #1B5E3B;
-      --accent-gold: #C29B38;
-      --accent-rust: #B8532F;
-      --hairline: rgba(22, 21, 19, 0.09);
-      --card-tint: rgba(255, 255, 255, 0.55);
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-playfair: 'Playfair Display', Georgia, serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --glass-blur: blur(28px) saturate(180%);
-      --bg-card: #FFFFFF;
-      --text-main: #1D2320;
-      --text-muted: #666E69;
-      --border-subtle: #E8E3D7;
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
-      --shadow-float: 0 14px 34px rgba(0, 0, 0, 0.16);
-      --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.52) 100%);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.92);
-      --glass-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.95), 0 12px 32px rgba(0, 0, 0, 0.06);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
-      overflow: hidden;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      transition: background 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .paper-grain {
-      position: fixed;
-      inset: 0;
-      opacity: 0.035;
-      pointer-events: none;
-      z-index: 999;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-
-    .app-viewport-wrapper {
-      width: 100%;
-      height: 100vh;
-      height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg);
-      overflow: hidden;
-      position: relative;
-      transition: background 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .app-viewport-shell {
-      width: 100%;
-      max-width: 100%;
-      height: 100%;
-      position: relative;
-      background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: background 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @media (min-width: 769px) {
-      .app-viewport-wrapper {
-        background-color: #d6d3c8;
-      }
-      .app-viewport-shell {
-        max-width: 440px;
-        box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
-        border-left: 1px solid var(--hairline);
-        border-right: 1px solid var(--hairline);
-      }
-    }
-
-    .ambient-glow {
-      position: absolute;
-      top: 44%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 360px;
-      height: 480px;
-      background: radial-gradient(ellipse, rgba(168, 200, 160, 0.35) 0%, transparent 68%);
-      filter: blur(60px);
-      pointer-events: none;
-      z-index: 1;
-      will-change: background;
-      transition: background 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* HEADER (TRANSPARENT) */
-    header {
-      width: 100%;
-      padding: 12px 18px 3px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 60;
-      flex-shrink: 0;
-      background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .menu-toggle-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      padding: 6px 2px;
-    }
-
-    .menu-toggle-btn span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-    }
-
-    .menu-toggle-btn span:last-child {
-      width: 13px;
-    }
-
-    .brand-logo-wrap {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      font-family: var(--font-playfair);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.05em;
-    }
-
-    .brand-logo-img {
-      height: 27px;
-      width: auto;
-      max-width: 140px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .header-right-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      position: relative;
-    }
-
-    .icon-circle-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-      cursor: pointer;
-      color: var(--text);
-      position: relative;
-      transition: transform 0.15s;
-    }
-
-    .icon-circle-btn:active {
-      transform: scale(0.92);
-    }
-
-    .icon-circle-btn svg {
-      width: 17px;
-      height: 17px;
-      stroke: var(--text);
-      fill: none;
-      stroke-width: 2;
-    }
-
-    .notify-badge {
-      position: absolute;
-      top: 6px;
-      right: 7px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #20201d;
-      border: 1.5px solid #ffffff;
-    }
-
-    /* AUDIO COMPONENT */
-    .audio-wrapper-group {
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
-
-    .audio-reminder-pill {
-      position: absolute;
-      right: 44px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 4px 10px;
-      font-size: 10px;
-      font-weight: 800;
-      color: var(--accent-green);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      white-space: nowrap;
-      cursor: pointer;
-      opacity: 0;
-      transform: scale(0.85) translateX(6px);
-      pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      z-index: 10;
-    }
-
-    .audio-reminder-pill.active {
-      opacity: 1;
-      transform: scale(1) translateX(0);
-      pointer-events: auto;
-      animation: gentlePillPulse 2s infinite ease-in-out;
-    }
-
-    @keyframes gentlePillPulse {
-      0%, 100% { box-shadow: 0 6px 18px rgba(27, 94, 59, 0.15); transform: translateY(0); }
-      50% { box-shadow: 0 8px 24px rgba(27, 94, 59, 0.28); transform: translateY(-2px); }
-    }
-
-    .header-audio-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--primary-dark);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-      transition: box-shadow 0.25s, transform 0.15s;
-      z-index: 6;
-    }
-
-    .header-audio-btn:active {
-      transform: scale(0.92);
-    }
-
-    .header-audio-btn.attention {
-      box-shadow: 0 0 0 3px rgba(27, 94, 59, 0.3), 0 4px 14px rgba(0,0,0,0.08);
-      animation: btnGlow 2s infinite ease-in-out;
-    }
-
-    @keyframes btnGlow {
-      0%, 100% { box-shadow: 0 0 0 2px rgba(27, 94, 59, 0.25), 0 4px 14px rgba(0,0,0,0.08); }
-      50% { box-shadow: 0 0 0 5px rgba(27, 94, 59, 0.45), 0 6px 18px rgba(27, 94, 59, 0.2); }
-    }
-
-    .audio-progress-svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      transform: rotate(-90deg);
-      pointer-events: none;
-    }
-
-    .audio-progress-bg {
-      fill: none;
-      stroke: #EAE5D8;
-      stroke-width: 2.2;
-    }
-
-    .audio-progress-bar {
-      fill: none;
-      stroke: var(--accent-green);
-      stroke-width: 2.2;
-      stroke-dasharray: 106.8;
-      stroke-dashoffset: 106.8;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 0.1s linear;
-    }
-
-    .audio-state-icon {
-      font-size: 12px;
-      margin-left: 1.5px;
-      line-height: 1;
-      font-weight: 700;
-    }
-
-    .header-audio-btn.playing .audio-state-icon {
-      margin-left: 0;
-    }
-
-    /* GREETING */
-    .greeting-section {
-      width: 100%;
-      padding: 19px 18px 14px;
-      flex-shrink: 0;
-      z-index: 50;
-    }
-
-    .greeting-user-row {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .greeting-user-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-    }
-
-    .namaste-badge-btn {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 241, 230, 0.95) 100%);
-      border: 1px solid rgba(194, 155, 56, 0.38);
-      border-radius: 20px;
-      padding: 3px 8px 3px 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(142, 113, 70, 0.08);
-      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .namaste-badge-btn:active {
-      transform: scale(0.93);
-      background: #f4eee1;
-    }
-
-    .namaste-hands {
-      font-size: 13px;
-      line-height: 1;
-      display: inline-block;
-      animation: subtleFold 3s infinite ease-in-out;
-    }
-
-    @keyframes subtleFold {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.12); }
-    }
-
-    .namaste-text {
-      font-family: 'Rozha One', 'Cinzel', serif;
-      font-size: 10px;
-      color: #835c24;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      line-height: 1;
-    }
-
-    .greeting-subtext {
-      font-size: 18px;
-      font-weight: 700;
-      color: #24221e;
-      letter-spacing: -0.02em;
-      margin-top: 4px;
-      line-height: 1.2;
-    }
-
-    /* CATEGORY & VIEW BAR */
-    .unified-category-bar {
-      width: 100%;
-      padding: 0 16px 6px 18px;
-      display: flex;
-      align-items: flex-end;
-      gap: 10px;
-      z-index: 45;
-      flex-shrink: 0;
-    }
-
-    .category-zone {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .zone-label {
-      font-size: 7.5px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--bronze);
-      font-weight: 700;
-      margin-bottom: 7px;
-      line-height: 1;
-    }
-
-    .category-scroll-container {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      -webkit-mask-image: linear-gradient(to right, black calc(100% - 18px), transparent 100%);
-      mask-image: linear-gradient(to right, black calc(100% - 18px), transparent 100%);
-    }
-
-    .category-rail {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      padding: 2px 18px 4px 0;
-    }
-
-    .category-rail::-webkit-scrollbar { display: none; }
-
-    .cat-btn {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      width: 65px;
-      height: 65px;
-      border-radius: 23%;
-      background: rgb(255 255 255 / 26%);
-      border: 1px solid rgba(22, 21, 19, 0.08);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: #3b3935;
-      font-size: 9.5px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      flex-shrink: 0;
-      box-shadow: var(--glass-shadow);
-      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .cat-btn svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .cat-btn.active {
-      background: #1f1e1a;
-      color: #ffffff;
-      border-color: #1f1e1a;
-      box-shadow: 0 6px 16px rgba(22, 21, 19, 0.16);
-      transform: translateY(-1px);
-    }
-
-    .cat-btn.active svg { stroke: #ffffff; }
-
-    /* VIEW ZONE */
-    .view-zone {
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .view-zone .zone-label {
-      text-align: center;
-      margin-bottom: 7px;
-    }
-
-    .view-control-container {
-      display: flex;
-      align-items: center;
-      height: 60px;
-      padding-left: 2px;
-    }
-
-    .view-divider-line {
-      width: 1px;
-      height: 38px;
-      background: rgba(22, 21, 19, 0.18);
-      margin-right: 19px;
-      border-radius: 1px;
-    }
-
-    .view-toggle-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 23%;
-      background: rgba(255, 255, 255, 0.45);
-      border: 1px solid rgba(22, 21, 19, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: var(--glass-shadow);
-      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .view-toggle-btn:active {
-      transform: scale(0.92);
-      background: rgba(255, 255, 255, 0.7);
-    }
-
-    .view-grid-icon {
-      width: 17px;
-      height: 17px;
-      display: grid;
-      grid-template-columns: repeat(2, 6.5px);
-      grid-template-rows: repeat(2, 6.5px);
-      gap: 3.5px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .view-grid-icon span {
-      display: block;
-      width: 6.5px;
-      height: 6.5px;
-      border: 1.4px solid #272522;
-      border-radius: 2px;
-      box-sizing: border-box;
-      background: transparent;
-    }
-
-    /* STAGE */
-    .stage-wrapper {
-      flex: 1;
-      position: relative;
-      width: 100%;
-      padding: 2px 0 0 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      touch-action: pan-y;
-      cursor: grab;
-      min-height: 0;
-    }
-
-    .stage-wrapper:active { cursor: grabbing; }
-
-    .product-unified-card {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 28px 28px 0 0;
-      overflow: hidden;
-      background: #ffffff;
-      box-shadow: 0 -4px 24px rgba(22, 21, 19, 0.06);
-      display: flex;
-      flex-direction: column;
-      transform: translate3d(0, 0, 0);
-      will-change: transform;
-    }
-
-    .product-media-zone {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff;
-    }
-
-    .product-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      will-change: transform, opacity;
-      transform-origin: center center;
-    }
-
-    /* ARROW BUTTONS */
-    .arrow-btn {
-      position: absolute;
-      top: 42%;
-      transform: translateY(-50%);
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: none;
-      border: none;
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 35;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.28s ease, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .arrow-btn.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .arrow-btn:hover {
-      background: #ffffff;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
-    }
-
-    .arrow-btn.prev { left: 12px; }
-    .arrow-btn.next { right: 12px; }
-
-    .arrow-btn.prev:active {
-      transform: translateY(-50%) translateX(-3px) scale(0.92);
-    }
-
-    .arrow-btn.next:active {
-      transform: translateY(-50%) translateX(3px) scale(0.92);
-    }
-
-    .arrow-btn svg {
-      width: 16px;
-      height: 16px;
-      stroke: #000;
-      fill: none;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* =========================================================
-       DYNAMIC FROSTED BLUR OVERLAY (NO RGB REQUIRED!)
-       Directly uses var(--bg) with mask-image alpha feathering
-       ========================================================= */
-    .product-details-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      padding: 95px 18px 22px;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      z-index: 25;
-      pointer-events: auto;
-      will-change: transform, opacity;
-      background: transparent;
-      overflow: hidden;
-    }
-
-    /* Seamless Feathered Frosted Glass Layer adopting var(--bg) directly */
-    .product-details-overlay::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      
-      /* Directly uses the current background (Hex or Gradient) */
-      background: var(--bg);
-
-      /* Frosted blur */
-      backdrop-filter: blur(22px) saturate(180%);
-      -webkit-backdrop-filter: blur(22px) saturate(180%);
-
-      /* Alpha gradient mask: seamlessly dissolves blur & background over the image */
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(0, 0, 0, 0.06) 14%,
-        rgba(0, 0, 0, 0.28) 32%,
-        rgba(0, 0, 0, 0.65) 52%,
-        rgba(0, 0, 0, 0.9) 72%,
-        black 88%
-      );
-      mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(0, 0, 0, 0.06) 14%,
-        rgba(0, 0, 0, 0.28) 32%,
-        rgba(0, 0, 0, 0.65) 52%,
-        rgba(0, 0, 0, 0.9) 72%,
-        black 88%
-      );
-
-      transition: background 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .card-title-action-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      gap: 10px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.84rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      line-height: 1.15;
-    }
-
-    .card-header-actions-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .card-rating-row {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-    }
-
-    .card-star {
-      color: #d97706;
-      font-size: 13.5px;
-      line-height: 1;
-    }
-
-    .card-reviews {
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 12px;
-    }
-
-    .card-action-circle-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(22, 21, 19, 0.08);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .card-action-circle-btn:active {
-      transform: scale(0.9);
-      background: #ffffff;
-      color: #161513;
-    }
-
-    .card-action-circle-btn svg {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2.1;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .card-desc {
-      font-size: 11.5px;
-      color: #4a4742;
-      font-weight: 500;
-      line-height: 1.45;
-      margin-top: 3px;
-      margin-bottom: 12px;
-      max-width: 95%;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card-price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card-price-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card-price {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--text);
-      line-height: 1;
-      letter-spacing: -0.015em;
-    }
-
-    .card-mrp {
-      font-size: 12px;
-      color: #b91c1c;
-      text-decoration: line-through;
-      font-weight: 600;
-      opacity: 0.85;
-    }
-
-    .card-discount-pill {
-      background: rgba(27, 94, 59, 0.12);
-      color: var(--accent-green);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      padding: 3.5px 7.5px;
-      border-radius: 12px;
-      line-height: 1;
-      border: 1px solid rgba(27, 94, 59, 0.22);
-    }
-
-    .card-explore-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 17px;
-      border-radius: 20px;
-      background: var(--text);
-      border: 1px solid var(--text);
-      color: #ffffff;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
-      transition: all 0.2s ease;
-    }
-
-    .card-explore-btn:active {
-      transform: scale(0.94);
-      background: #33312c;
-    }
-
-    .card-explore-btn svg {
-      width: 12px;
-      height: 12px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2.3;
-    }
-
-    /* DOTS */
-    .dots-track {
-      position: absolute;
-      bottom: 7px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      z-index: 30;
-      pointer-events: none;
-      min-height: auto;
-      padding: 0;
-    }
-
-    .dot {
-      width: 6px;
-      height: 3px;
-      background: rgba(22, 21, 19, 0.22);
-      border-radius: 3px;
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .dot.active {
-      width: 22px;
-      background: var(--text);
-    }
-
-    /* GLOBAL BACKDROP */
-    .global-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgb(151 150 150 / 74%);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      z-index: 100;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
-    }
-
-    .global-backdrop.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* FLOATING CURVED LUXURY DRAWER */
-    .curved-warm-drawer {
-      position: absolute;
-      top: 23px;
-      bottom: 23px;
-      left: 0;
-      width: 78%;
-      max-width: 325px;
-      background: #3f3d3dd1;
-      backdrop-filter: blur(9px);
-      -webkit-backdrop-filter: blur(14px);
-      border-top-right-radius: 36px;
-      border-bottom-right-radius: 36px;
-      z-index: 180;
-      display: flex;
-      flex-direction: column;
-      transform: translateX(-105%);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: var(--glass-shadow);
-      color: #ffffff;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .curved-warm-drawer.open {
-      transform: translateX(0);
-      pointer-events: auto;
-    }
-
-    .warm-drawer-top {
-      padding: 20px 20px 0px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .warm-drawer-close {
-      background: #ffffff7d;
-      backdrop-filter: blur(12px);
-      border-radius: 50%;
-      border: none;
-      color: rgb(255 255 255 / 85%);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      transition: transform 0.2s, color 0.2s;
-    }
-
-    .warm-drawer-close:active {
-      transform: scale(0.9);
-      color: #ffffff;
-    }
-
-    .warm-drawer-close svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      stroke-width: 2.2;
-    }
-
-    .warm-drawer-menu-list {
-      padding: 2px 18px 18px;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex: 1;
-    }
-
-    .warm-drawer-menu-list::-webkit-scrollbar { display: none; }
-
-    .drawer-section-heading {
-      font-size: 8px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: #e5d3ba;
-      padding-left: 2px;
-      margin-top: 6px;
-      margin-bottom: 2px;
-      display: block;
-    }
-
-    .warm-menu-group {
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-    }
-
-    .warm-menu-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: rgba(255, 255, 255, 0.94);
-      cursor: pointer;
-      transition: transform 0.18s ease, color 0.18s ease;
-      padding: 2px 0;
-      text-decoration: none;
-    }
-
-    .warm-menu-item:active {
-      transform: translateX(4px);
-      color: #ffffff;
-    }
-
-    .warm-item-icon {
-      width: 22px;
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.85);
-      flex-shrink: 0;
-    }
-
-    .warm-item-icon svg {
-      width: 19px;
-      height: 19px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.9;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .warm-item-title {
-      font-size: 13.5px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-    }
-
-    .warm-divider-subtle {
-      width: 100%;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.14);
-      margin: 4px 0;
-    }
-
-    .concierge-glass-card {
-      border-radius: 18px;
-      padding: 13px 14px;
-      margin-top: 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .concierge-card-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .concierge-card-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.01em;
-    }
-
-    .concierge-live-badge {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #a7f3d0;
-    }
-
-    .live-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #34d399;
-      box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.25);
-    }
-
-    .concierge-card-meta {
-      font-size: 10.5px;
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.4;
-    }
-
-    .whatsapp-action-pill {
-      background: #25d366;
-      color: #ffffff;
-      border: none;
-      border-radius: 14px;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
-      transition: transform 0.15s ease, background 0.15s ease;
-      margin-top: 2px;
-    }
-
-    .whatsapp-action-pill:active {
-      transform: scale(0.96);
-      background: #1eb956;
-    }
-
-    .whatsapp-action-pill svg {
-      width: 14px;
-      height: 14px;
-      fill: currentColor;
-    }
-
-    .warm-drawer-footer-brand {
-      padding: 16px 20px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.16);
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      background: #ffffff5c;
-      flex-shrink: 0;
-    }
-
-    .footer-brand-title {
-      font-family: var(--font-playfair);
-      font-size: 18px;
-      font-weight: 500;
-      color: #fff;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-    }
-
-    .footer-brand-tagline {
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgb(255 255 255 / 72%);
-      font-weight: 600;
-      line-height: 1;
-    }
-
-    /* AUTH SHEET */
-    .user-auth-sheet {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      background: #ffffff;
-      border-top-left-radius: 26px;
-      border-top-right-radius: 26px;
-      padding: 14px 22px 32px;
-      z-index: 185;
-      box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.2);
-      transform: translateY(105%);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    .user-auth-sheet.open { transform: translateY(0%); }
-
-    .sheet-drag-pill {
-      width: 42px;
-      height: 4px;
-      background: rgba(22, 21, 19, 0.15);
-      border-radius: 3px;
-      margin: 0 auto 12px;
-      flex-shrink: 0;
-    }
-
-    .namaste-header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .namaste-dialog-icon {
-      font-size: 2.3rem;
-      margin-bottom: 4px;
-      display: inline-block;
-    }
-
-    .namaste-title {
-      font-family: var(--font-serif);
-      font-size: 1.9rem;
-      font-weight: 400;
-      line-height: 1.1;
-    }
-
-    .namaste-sub {
-      font-size: 8.5px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--bronze);
-      font-weight: 600;
-      margin-top: 4px;
-      display: block;
-    }
-
-    .auth-form-step {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .input-field-group {
-      display: flex;
-      align-items: center;
-      background: var(--bg);
-      border: 1px solid var(--hairline);
-      border-radius: 6px;
-      padding: 0 14px;
-      height: 48px;
-    }
-
-    .country-code {
-      font-size: 12px;
-      font-weight: 600;
-      padding-right: 10px;
-      border-right: 1px solid var(--hairline);
-      margin-right: 10px;
-    }
-
-    .mobile-input {
-      border: none;
-      background: transparent;
-      outline: none;
-      width: 100%;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      color: var(--text);
-    }
-
-    .otp-digit-boxes {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin: 8px 0;
-    }
-
-    .otp-box {
-      width: 50px;
-      height: 50px;
-      border: 1px solid var(--hairline);
-      border-radius: 6px;
-      text-align: center;
-      font-size: 18px;
-      font-family: var(--font-serif);
-      font-weight: 600;
-      background: var(--bg);
-      outline: none;
-      color: var(--text);
-    }
-
-    .otp-box:focus { border-color: var(--text); }
-
-    .auth-submit-btn {
-      width: 100%;
-      height: 48px;
-      background: var(--text);
-      color: #ffffff;
-      border: none;
-      border-radius: 4px;
-      font-size: 9.5px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    /* VEDIC WELCOME DIALOG */
-    .welcome-dialog-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 15, 12, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 500;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .welcome-dialog-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .welcome-dialog-card {
-      width: 100%;
-      max-width: 360px;
-      background: #FFFFFF;
-      border-radius: 24px;
-      padding: 28px 22px 24px;
-      text-align: center;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(232, 227, 215, 0.85);
-      transform: scale(0.92);
-      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
-    }
-
-    .welcome-dialog-overlay.active .welcome-dialog-card {
-      transform: scale(1);
-    }
-
-    .welcome-om-badge {
-      font-size: 32px;
-      line-height: 1;
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-
-    .welcome-title {
-      font-family: var(--font-playfair);
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-
-    .welcome-sub {
-      font-size: 12.5px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 22px;
-    }
-
-    .welcome-action-btn-primary {
-      width: 100%;
-      height: 46px;
-      border-radius: 14px;
-      background: var(--text);
-      color: #FFFFFF;
-      font-size: 13px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.14);
-      margin-bottom: 10px;
-      transition: transform 0.15s;
-    }
-
-    .welcome-action-btn-primary:active { transform: scale(0.98); }
-
-    .welcome-action-btn-secondary {
-      width: 100%;
-      height: 40px;
-      border-radius: 14px;
-      background: transparent;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid rgba(22, 21, 19, 0.15);
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-
-    .welcome-action-btn-secondary:active { background: #F4EFE6; }
-
-    /* TOAST */
-    .toast-alert {
-      position: absolute;
-      top: 24px;
-      left: 50%;
-      transform: translate(-50%, -40px);
-      background: var(--text);
-      color: #ffffff;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 500;
-      z-index: 600;
-      pointer-events: none;
-      opacity: 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .toast-alert.show {
-      transform: translate(-50%, 0);
-      opacity: 1;
-    }
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="css/home_style.css"/>
+    <style>
+  :root {
+    --bg-cream: #F7F5F0;
+    --bg: linear-gradient(165deg, #F0F5EE 0%, #DEE8DC 100%);
+  }
   </style>
 </head>
-<body>
+<body class="page-home">
 
   <!-- AMBIENT AUDIO -->
   <audio id="ambientAudio" loop preload="auto">
@@ -1587,23 +151,30 @@
           </div>
         </div>
 
+        <!-- VIEW TOGGLE ZONE -->
         <div class="view-zone">
           <span class="zone-label">View</span>
           <div class="view-control-container">
             <div class="view-divider-line"></div>
-            <button class="view-toggle-btn" id="viewToggleBtn" aria-label="Toggle View" onclick="handleViewChange()">
-              <div class="view-grid-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="view-toggle-btn" id="viewToggleBtn" aria-label="Toggle Grid / Single View" onclick="handleViewChange()">
+              <div class="view-icon-flipper">
+                <div class="view-grid-icon" id="viewGridIcon">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="view-single-icon" id="viewSingleIcon">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="5" y="4" width="14" height="16" rx="3"></rect>
+                    <line x1="8" y1="14" x2="16" y2="14" stroke-linecap="round"></line>
+                    <line x1="8" y1="17" x2="13" y2="17" stroke-linecap="round"></line>
+                  </svg>
+                </div>
               </div>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- MAIN PRODUCT STAGE -->
+      <!-- MAIN STAGE (HOLDS BOTH SINGLE SWIPE CARD & GRID STAGE) -->
       <div class="stage-wrapper" id="swipeArea">
         <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
           <svg viewBox="0 0 24 24">
@@ -1612,6 +183,7 @@
           </svg>
         </button>
 
+        <!-- SINGLE PRODUCT CARD -->
         <div class="product-unified-card" id="productCanvas">
           <div class="product-media-zone">
             <img class="product-img" id="productDisplay" 
@@ -1619,7 +191,6 @@
                  alt="Dharatatva Botanical Formulation">
           </div>
 
-          <!-- SEAMLESS MELTING DETAILS OVERLAY -->
           <div class="product-details-overlay" id="detailsCard">
             <div class="card-title-action-row">
               <div class="card-title" id="prodName">Herb-O-Care Churna</div>
@@ -1669,6 +240,9 @@
             <polyline points="13 6 19 12 13 18"></polyline>
           </svg>
         </button>
+
+        <!-- LUXURY SEQUENCE GRID CONTAINER -->
+        <div class="product-grid-stage" id="gridStage"></div>
       </div>
 
       <!-- ARRANGE DOTS -->
@@ -1820,648 +394,909 @@
     </div>
   </div>
 
+  <!-- External Application Logic -->
   <script>
-    /* 
-      COLLECTIONS CONFIGURATION:
-      Aap yahan 'bg' me direct:
-      1. Normal Hex Code: "#E6EDE3"
-      YA
-      2. Linear Gradient: "linear-gradient(165deg, #F0F5EE 0%, #f1ffefbd 100%)"
-      bina kisi RGB number ke aasani se daal sakte hain!
-    */
-    const collections = {
-      health: {
-        bg: "linear-gradient(165deg, #F0F5EE 0%, #f1ffefbd 100%)",
-        glow: "rgba(142, 194, 150, 0.42)",
-        items: [
-          { 
-            rating: "4.9", 
-            reviews: "182", 
-            name: "Herb-O-Care", 
-            notes: "Immunity booster formulated with raw botanical forest extracts", 
-            price: "₹383", 
-            mrp: "₹437", 
-            discount: "-12%", 
-            img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/herb_o_care"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "94", 
-            name: "Pet-O-Care", 
-            notes: "Natural digestive & vitality supplement with raw herbs", 
-            price: "₹449", 
-            mrp: "₹650", 
-            discount: "-30%", 
-            img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          }
-        ]
-      },
-      women: {
-        bg: "linear-gradient(165deg, #FBF0EC 0%, #eedad461 100%)",
-        glow: "rgba(228, 155, 168, 0.42)",
-        items: [
-          { 
-            rating: "4.9", 
-            reviews: "210", 
-            name: "Nari Sanjeevani Ras", 
-            notes: "Hormonal equilibrium, glowing complexion & natural vitality elixir for women", 
-            price: "₹549", 
-            mrp: "₹799", 
-            discount: "-31%", 
-            img: "https://dharatatva.github.io/web/img/women_face_wash.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_face_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_face_night_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_hair_shampoo.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_hair_styler.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_hair_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_body_wash.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/women_body_hair_remover_powder.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          }
-        ]
-      },
-      men: {
-        bg: "linear-gradient(165deg, #c3d9fd 0%, #e7eef9a3 100%)",
-        glow: "rgba(195, 155, 105, 0.42)",
-        items: [
-          { 
-            rating: "4.9", 
-            reviews: "210", 
-            name: "Nari Sanjeevani Ras", 
-            notes: "Hormonal equilibrium, glowing complexion & natural vitality elixir for women", 
-            price: "₹549", 
-            mrp: "₹799", 
-            discount: "-31%", 
-            img: "https://dharatatva.github.io/web/img/men_face_wash.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_face_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_face_night_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_hair_shampoo.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_hair_styler.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_hair_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_body_wash.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          },
-          { 
-            rating: "4.8", 
-            reviews: "138", 
-            name: "Pure Gulab Jal Face Mist", 
-            notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
-            price: "₹299", 
-            mrp: "₹399", 
-            discount: "-25%", 
-            img: "https://dharatatva.github.io/web/img/men_body_hair_remover_powder.avif?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          }
-        ]
-      },
-      kids: {
-        bg: "linear-gradient(165deg, #FAF4E5 0%, #ede1c79c 100%)",
-        glow: "rgba(238, 198, 110, 0.42)",
-        items: [
-          { 
-            rating: "4.9", 
-            reviews: "164", 
-            name: "Bal Swasthya Prash", 
-            notes: "Gentle immunity, brain memory, and natural growth syrup", 
-            price: "₹349", 
-            mrp: "₹499", 
-            discount: "-30%", 
-            img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1000&q=90",
-            url: "https://dharatatva.github.io/web/"
-          }
-        ]
-      }
-    };
-
-    function haptic(ms = 8) {
-      if (typeof navigator.vibrate === 'function') {
-        try { navigator.vibrate(ms); } catch (e) {}
-      }
+  const collections = {
+    health: {
+      bg: "linear-gradient(165deg, #F0F5EE 0%, #DEE8DC 100%)",
+      glow: "rgba(142, 194, 150, 0.42)",
+      items: [
+        { 
+          rating: "4.9", 
+          reviews: "182", 
+          name: "Herb-O-Care", 
+          notes: "Immunity booster formulated with raw botanical forest extracts", 
+          price: "₹383", 
+          mrp: "₹437", 
+          discount: "-12%", 
+          img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/herb_o_care"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "94", 
+          name: "Pet-O-Care", 
+          notes: "Natural digestive & vitality supplement with raw herbs", 
+          price: "₹449", 
+          mrp: "₹650", 
+          discount: "-30%", 
+          img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        }
+      ]
+    },
+    women: {
+      bg: "linear-gradient(165deg, #FBF0EC 0%, #EEDAD4 100%)",
+      glow: "rgba(228, 155, 168, 0.42)",
+      items: [
+        { 
+          rating: "4.9", 
+          reviews: "210", 
+          name: "Nari Sanjeevani Ras", 
+          notes: "Hormonal equilibrium, glowing complexion & natural vitality elixir for women", 
+          price: "₹549", 
+          mrp: "₹799", 
+          discount: "-31%", 
+          img: "https://dharatatva.github.io/web/img/women_face_wash.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Pure Gulab Jal Face Mist", 
+          notes: "Steam-distilled indigenous Kannauj rose petals with cooling mist", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/women_face_cream.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Night Tailam Elixir", 
+          notes: "Skin restorative nocturnal infusion infused with botanical resins", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/women_face_night_tailam.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Botanical Hair Cleanser", 
+          notes: "Gentle lathering scalp therapy with reetha and shikakai", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/women_hair_shampoo.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Ayurvedic Hair Styler", 
+          notes: "Non-greasy nourishing styling potion with pure plant waxes", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/women_hair_styler.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Kesh Vardhan Tailam", 
+          notes: "Root strengthening traditional hair oil infused with bhringraj", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/women_hair_tailam.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Herbal Body Wash", 
+          notes: "Gentle aromatic body cleanser preserving natural lipid moisture", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/women_body_wash.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Silk Body Cream", 
+          notes: "Deep cell hydration crafted from whipped kokum & almond milk", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/women_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        }
+      ]
+    },
+    men: {
+      bg: "linear-gradient(165deg, #F3ECE2 0%, #E2D4C0 100%)",
+      glow: "rgba(195, 155, 105, 0.42)",
+      items: [
+        { 
+          rating: "4.9", 
+          reviews: "210", 
+          name: "Paurush Shakti Ras", 
+          notes: "Endurance, inner vigor & metabolic vitality formulated with pure shilajit", 
+          price: "₹549", 
+          mrp: "₹799", 
+          discount: "-31%", 
+          img: "https://dharatatva.github.io/web/img/men_face_wash.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Men Hydrating Cream", 
+          notes: "Deep barrier protection for outdoor resilience and rugged hydration", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/men_face_cream.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Men Night Tailam", 
+          notes: "Rejuvenating night serum healing sun-damage and razor irritation", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/men_face_night_tailam.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        },
+        { 
+          rating: "4.8", 
+          reviews: "138", 
+          name: "Clarifying Scalp Wash", 
+          notes: "Deep cleansing antidandruff shampoo enriched with wild neem leaves", 
+          price: "₹299", 
+          mrp: "₹399", 
+          discount: "-25%", 
+          img: "https://dharatatva.github.io/web/img/men_hair_shampoo.avif?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        }
+      ]
+    },
+    kids: {
+      bg: "linear-gradient(165deg, #FAF4E5 0%, #EDE1C7 100%)",
+      glow: "rgba(238, 198, 110, 0.42)",
+      items: [
+        { 
+          rating: "4.9", 
+          reviews: "164", 
+          name: "Bal Swasthya Prash", 
+          notes: "Gentle immunity, brain memory, and natural growth syrup", 
+          price: "₹349", 
+          mrp: "₹499", 
+          discount: "-30%", 
+          img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1000&q=90",
+          url: "https://dharatatva.github.io/web/"
+        }
+      ]
     }
+  };
 
-    let toastTimer = null;
-    function showToast(text) {
-      const toast = document.getElementById('toastAlert');
-      toast.textContent = text;
-      toast.classList.add('show');
-      if (toastTimer) clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+  function haptic(ms = 8) {
+    if (typeof navigator.vibrate === 'function') {
+      try { navigator.vibrate(ms); } catch (e) {}
     }
+  }
 
-    /* AUDIO CONTROLLER */
-    const audioEl = document.getElementById('ambientAudio');
-    const audioBtn = document.getElementById('headerAudioBtn');
-    const audioIcon = document.getElementById('audioStateIcon');
-    const audioReminderPill = document.getElementById('audioReminderPill');
-    const progressCircle = document.getElementById('audioProgressCircle');
-    const circumference = 2 * Math.PI * 17;
-    let isAudioPlaying = false;
+  let toastTimer = null;
+  function showToast(text) {
+    const toast = document.getElementById('toastAlert');
+    toast.textContent = text;
+    toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+  }
 
-    function dismissReminderPill() {
-      if (audioReminderPill) audioReminderPill.classList.remove('active');
-      if (audioBtn) audioBtn.classList.remove('attention');
-    }
+  /* AUDIO CONTROLLER */
+  const audioEl = document.getElementById('ambientAudio');
+  const audioBtn = document.getElementById('headerAudioBtn');
+  const audioIcon = document.getElementById('audioStateIcon');
+  const audioReminderPill = document.getElementById('audioReminderPill');
+  const progressCircle = document.getElementById('audioProgressCircle');
+  const circumference = 2 * Math.PI * 17;
+  let isAudioPlaying = false;
 
-    function playAudio() {
-      return audioEl.play().then(() => {
-        isAudioPlaying = true;
-        audioBtn.classList.add('playing');
-        audioIcon.innerText = '❚❚';
-        dismissReminderPill();
-      }).catch(err => {
-        if (audioReminderPill) audioReminderPill.classList.add('active');
-        if (audioBtn) audioBtn.classList.add('attention');
-        throw err;
-      });
-    }
+  function dismissReminderPill() {
+    if (audioReminderPill) audioReminderPill.classList.remove('active');
+    if (audioBtn) audioBtn.classList.remove('attention');
+  }
 
-    function pauseAudio() {
-      audioEl.pause();
-      isAudioPlaying = false;
-      audioBtn.classList.remove('playing');
-      audioIcon.innerText = '▶';
-    }
-
-    function toggleAudio() {
+  function playAudio() {
+    return audioEl.play().then(() => {
+      isAudioPlaying = true;
+      audioBtn.classList.add('playing');
+      audioIcon.innerText = '❚❚';
       dismissReminderPill();
-      if (isAudioPlaying) pauseAudio();
-      else playAudio();
-    }
-
-    audioEl.addEventListener('timeupdate', () => {
-      if (audioEl.duration) {
-        const percent = audioEl.currentTime / audioEl.duration;
-        const offset = circumference - (percent * circumference);
-        progressCircle.style.strokeDashoffset = offset;
-      }
+    }).catch(err => {
+      if (audioReminderPill) audioReminderPill.classList.add('active');
+      if (audioBtn) audioBtn.classList.add('attention');
+      throw err;
     });
+  }
 
-    const CACHE_KEY = "dharatatva_welcome_accepted";
-    const welcomeModal = document.getElementById('welcomeDialogOverlay');
+  function pauseAudio() {
+    audioEl.pause();
+    isAudioPlaying = false;
+    audioBtn.classList.remove('playing');
+    audioIcon.innerText = '▶';
+  }
 
-    function preloadAllSiteAssets() {
-      Object.values(collections).forEach(category => {
-        category.items.forEach(item => {
-          const img = new Image();
-          img.src = item.img;
-        });
+  function toggleAudio() {
+    dismissReminderPill();
+    if (isAudioPlaying) pauseAudio();
+    else playAudio();
+  }
+
+  audioEl.addEventListener('timeupdate', () => {
+    if (audioEl.duration) {
+      const percent = audioEl.currentTime / audioEl.duration;
+      const offset = circumference - (percent * circumference);
+      progressCircle.style.strokeDashoffset = offset;
+    }
+  });
+
+  const CACHE_KEY = "dharatatva_welcome_accepted";
+  const welcomeModal = document.getElementById('welcomeDialogOverlay');
+
+  function preloadAllSiteAssets() {
+    Object.values(collections).forEach(category => {
+      category.items.forEach(item => {
+        const img = new Image();
+        img.src = item.img;
       });
-    }
-
-    function acceptVedicExperience(withAudio) {
-      haptic(20);
-      localStorage.setItem(CACHE_KEY, "true");
-      welcomeModal.classList.remove('active');
-      preloadAllSiteAssets();
-      if (withAudio) playAudio();
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      applyCategoryTheme(currentCategory);
-      const alreadyAccepted = localStorage.getItem(CACHE_KEY);
-      if (!alreadyAccepted) {
-        setTimeout(() => welcomeModal.classList.add('active'), 2700);
-      } else {
-        preloadAllSiteAssets();
-        setTimeout(() => {
-          playAudio().catch(() => {
-            const handleFirstUserTouch = () => {
-              playAudio().then(() => dismissReminderPill()).catch(() => {});
-            };
-            window.addEventListener('touchstart', handleFirstUserTouch, { once: true, passive: true });
-            window.addEventListener('click', handleFirstUserTouch, { once: true });
-          });
-        }, 800);
-      }
     });
+  }
 
-    function handleViewChange() {
-      haptic(15);
-      showToast('Grid View: Coming Soon');
+  function acceptVedicExperience(withAudio) {
+    haptic(20);
+    localStorage.setItem(CACHE_KEY, "true");
+    welcomeModal.classList.remove('active');
+    preloadAllSiteAssets();
+    if (withAudio) playAudio();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    applyCategoryTheme(currentCategory);
+    ensureDesktopSideCards();
+    updateNavigationState();
+
+    const alreadyAccepted = localStorage.getItem(CACHE_KEY);
+    if (!alreadyAccepted) {
+      setTimeout(() => welcomeModal.classList.add('active'), 2700);
+    } else {
+      preloadAllSiteAssets();
+      setTimeout(() => {
+        playAudio().catch(() => {
+          const handleFirstUserTouch = () => {
+            playAudio().then(() => dismissReminderPill()).catch(() => {});
+          };
+          window.addEventListener('touchstart', handleFirstUserTouch, { once: true, passive: true });
+          window.addEventListener('click', handleFirstUserTouch, { once: true });
+        });
+      }, 800);
+    }
+  });
+
+  let currentCategory = 'health';
+  let currentIndex = 0;
+  let isAnimating = false;
+  let currentViewMode = 'single';
+
+  const swipeArea = document.getElementById('swipeArea');
+  const prodImg = document.getElementById('productDisplay');
+  const prodCanvas = document.getElementById('productCanvas');
+  const prodName = document.getElementById('prodName');
+  const prodRating = document.getElementById('prodRating');
+  const prodReviews = document.getElementById('prodReviews');
+  const prodNotes = document.getElementById('prodNotes');
+  const prodPrice = document.getElementById('prodPrice');
+  const prodMrp = document.getElementById('prodMrp');
+  const prodDiscount = document.getElementById('prodDiscount');
+  const exploreBtn = document.getElementById('exploreBtn');
+  const dotsTrack = document.getElementById('dotsTrack');
+  const detailsCard = document.getElementById('detailsCard');
+  const ambientGlow = document.getElementById('ambientGlow');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const gridStage = document.getElementById('gridStage');
+  const viewToggleBtn = document.getElementById('viewToggleBtn');
+
+  function applyCategoryTheme(catKey) {
+    const cat = collections[catKey];
+    if (!cat) return;
+    document.documentElement.style.setProperty('--bg', cat.bg);
+    if (ambientGlow) {
+      ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 68%)`;
+    }
+  }
+
+  /* DESKTOP SIDE PREVIEW CARDS INJECTION & DYNAMIC SYNC */
+  function ensureDesktopSideCards() {
+    let prevCard = document.getElementById('desktopSidePrev');
+    let nextCard = document.getElementById('desktopSideNext');
+
+    if (!prevCard) {
+      prevCard = document.createElement('div');
+      prevCard.id = 'desktopSidePrev';
+      prevCard.className = 'desktop-side-card side-prev';
+      prevCard.innerHTML = `
+        <img class="desktop-side-card-img" src="" alt="Previous Product">
+        <div class="desktop-side-card-scrim"><span></span></div>
+      `;
+      prevCard.addEventListener('click', () => {
+        if (currentIndex > 0) prevProduct();
+      });
+      swipeArea.insertBefore(prevCard, prodCanvas);
     }
 
-    let currentCategory = 'health';
-    let currentIndex = 0;
-    let isAnimating = false;
+    if (!nextCard) {
+      nextCard = document.createElement('div');
+      nextCard.id = 'desktopSideNext';
+      nextCard.className = 'desktop-side-card side-next';
+      nextCard.innerHTML = `
+        <img class="desktop-side-card-img" src="" alt="Next Product">
+        <div class="desktop-side-card-scrim"><span></span></div>
+      `;
+      nextCard.addEventListener('click', () => {
+        const total = collections[currentCategory].items.length;
+        if (currentIndex < total - 1) nextProduct();
+      });
+      swipeArea.appendChild(nextCard);
+    }
+  }
 
-    const prodImg = document.getElementById('productDisplay');
-    const prodCanvas = document.getElementById('productCanvas');
-    const prodName = document.getElementById('prodName');
-    const prodRating = document.getElementById('prodRating');
-    const prodReviews = document.getElementById('prodReviews');
-    const prodNotes = document.getElementById('prodNotes');
-    const prodPrice = document.getElementById('prodPrice');
-    const prodMrp = document.getElementById('prodMrp');
-    const prodDiscount = document.getElementById('prodDiscount');
-    const exploreBtn = document.getElementById('exploreBtn');
-    const dotsTrack = document.getElementById('dotsTrack');
-    const detailsCard = document.getElementById('detailsCard');
-    const ambientGlow = document.getElementById('ambientGlow');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+  function updateDesktopSideCards() {
+    const prevCard = document.getElementById('desktopSidePrev');
+    const nextCard = document.getElementById('desktopSideNext');
+    if (!prevCard || !nextCard) return;
 
-    /* DYNAMIC THEME APPLICATION (DIRECT HEX OR GRADIENT) */
-    function applyCategoryTheme(catKey) {
-      const cat = collections[catKey];
-      if (!cat) return;
-      document.documentElement.style.setProperty('--bg', cat.bg);
-      if (ambientGlow) {
-        ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 68%)`;
-      }
+    if (currentViewMode === 'grid' || window.innerWidth < 1024) {
+      prevCard.style.display = 'none';
+      nextCard.style.display = 'none';
+      return;
     }
 
-    function updateNavigationState() {
-      const total = collections[currentCategory].items.length;
-      const product = collections[currentCategory].items[currentIndex];
-      if (product && product.url) {
-        exploreBtn.href = product.url;
-      }
+    const items = collections[currentCategory].items;
+    const total = items.length;
 
-      if (total <= 1) {
-        prevBtn.classList.remove('visible');
-        nextBtn.classList.remove('visible');
-        dotsTrack.style.display = 'none';
-        return;
-      }
-      dotsTrack.style.display = 'flex';
-      dotsTrack.innerHTML = '';
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement('div');
-        dot.className = `dot ${i === currentIndex ? 'active' : ''}`;
-        dotsTrack.appendChild(dot);
-      }
-      if (currentIndex > 0) prevBtn.classList.add('visible');
-      else prevBtn.classList.remove('visible');
-
-      if (currentIndex < total - 1) nextBtn.classList.add('visible');
-      else nextBtn.classList.remove('visible');
+    // Previous Side Card (Left Blur)
+    if (currentIndex > 0) {
+      const prevItem = items[currentIndex - 1];
+      prevCard.querySelector('.desktop-side-card-img').src = prevItem.img;
+      prevCard.querySelector('.desktop-side-card-scrim span').textContent = prevItem.name;
+      prevCard.style.display = 'flex';
+      prevCard.style.opacity = '0.55';
+      prevCard.style.pointerEvents = 'auto';
+    } else {
+      prevCard.style.display = 'none';
     }
 
-    function renderProduct(direction = 1) {
-      if (isAnimating) return;
+    // Next Side Card (Right Blur)
+    if (currentIndex < total - 1) {
+      const nextItem = items[currentIndex + 1];
+      nextCard.querySelector('.desktop-side-card-img').src = nextItem.img;
+      nextCard.querySelector('.desktop-side-card-scrim span').textContent = nextItem.name;
+      nextCard.style.display = 'flex';
+      nextCard.style.opacity = '0.55';
+      nextCard.style.pointerEvents = 'auto';
+    } else {
+      nextCard.style.display = 'none';
+    }
+  }
+
+  /* RENDER GRID WITH AUTONOMOUS 4-COLUMN CENTERING */
+  function renderGridContent(catKey) {
+    const items = collections[catKey].items;
+    gridStage.innerHTML = '';
+    items.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'grid-card';
+      card.innerHTML = `
+        <div class="grid-card-img-wrap">
+          <img src="${item.img}" alt="${item.name}" class="grid-card-img" loading="lazy">
+        </div>
+
+        <button class="grid-card-share-btn" aria-label="Share ${item.name}" onclick="handleGridShare(event, ${idx})">
+          <svg viewBox="0 0 24 24">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+
+        <div class="grid-card-content">
+          <div class="grid-title-rating-row">
+            <h4 class="grid-card-title">${item.name}</h4>
+            <div class="grid-card-rating">
+              <span class="grid-star">★</span>
+              <span>${item.rating}</span>
+            </div>
+          </div>
+
+          <p class="grid-card-notes">${item.notes}</p>
+
+          <div class="grid-card-footer">
+            <div class="grid-card-pricing">
+              <span class="grid-price">${item.price}</span>
+              <span class="grid-mrp">${item.mrp}</span>
+              <span class="grid-discount-pill">${item.discount}</span>
+            </div>
+            <a href="${item.url || '#'}" class="grid-card-action-btn" title="Explore ${item.name}">
+              <svg viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.grid-card-action-btn') || e.target.closest('.grid-card-share-btn')) return;
+        selectProductFromGrid(idx);
+      });
+
+      gridStage.appendChild(card);
+    });
+  }
+
+  /* GRID SHARE HANDLER */
+  async function handleGridShare(e, idx) {
+    e.stopPropagation();
+    haptic(16);
+    const product = collections[currentCategory].items[idx];
+    const shareText = `✨ *${product.name}* — Dharatatva\n` +
+                      `⭐ Rating: ${product.rating} (${product.reviews})\n` +
+                      `💰 Price: ${product.price} (MRP: ${product.mrp}, ${product.discount})\n` +
+                      `🌿 Details: ${product.notes}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: `${product.name} — Dharatatva`, text: shareText });
+        showToast("Shared Successfully ✓");
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          await navigator.clipboard.writeText(shareText);
+          showToast("Copied to Clipboard ✓");
+        }
+      }
+    } else {
+      await navigator.clipboard.writeText(shareText);
+      showToast("Info Copied to Clipboard ✓");
+    }
+  }
+
+  /* VIEW SWITCH CONTROLLER */
+  function handleViewChange() {
+    if (isAnimating) return;
+    haptic(16);
+
+    if (currentViewMode === 'single') {
+      currentViewMode = 'grid';
+      viewToggleBtn.classList.add('is-grid');
+      swipeArea.classList.add('grid-mode');
       isAnimating = true;
-      haptic(10);
 
-      const product = collections[currentCategory].items[currentIndex];
+      prevBtn.classList.remove('visible');
+      nextBtn.classList.remove('visible');
+      gsap.to(dotsTrack, { opacity: 0, duration: 0.2 });
 
-      gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.18, ease: 'power2.in' });
-      gsap.to(prodImg, {
+      updateDesktopSideCards();
+
+      renderGridContent(currentCategory);
+      gridStage.style.display = 'grid';
+      gridStage.scrollTop = 0;
+
+      gsap.to(prodCanvas, {
         opacity: 0,
-        x: direction * -30,
-        scale: 0.97,
-        duration: 0.22,
+        scale: 0.94,
+        y: 16,
+        duration: 0.24,
         ease: 'power2.in',
         onComplete: () => {
-          prodImg.src = product.img;
-          prodRating.textContent = product.rating;
-          prodReviews.textContent = `(${product.reviews})`;
-          prodName.textContent = product.name;
-          prodNotes.textContent = product.notes;
-          prodPrice.textContent = product.price;
-          prodMrp.textContent = product.mrp;
-          prodDiscount.textContent = product.discount;
-          if (product.url) exploreBtn.href = product.url;
+          prodCanvas.style.display = 'none';
+        }
+      });
 
+      const cards = gridStage.querySelectorAll('.grid-card');
+      gsap.fromTo(cards, 
+        { opacity: 0, y: 32, scale: 0.94 }, 
+        { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1, 
+          duration: 0.38, 
+          stagger: 0.05, 
+          ease: 'power3.out', 
+          delay: 0.08, 
+          onComplete: () => { isAnimating = false; } 
+        }
+      );
+    } else {
+      switchToSingleView();
+    }
+  }
+
+  function switchToSingleView() {
+    if (isAnimating) return;
+    currentViewMode = 'single';
+    viewToggleBtn.classList.remove('is-grid');
+    swipeArea.classList.remove('grid-mode');
+    isAnimating = true;
+
+    const cards = gridStage.querySelectorAll('.grid-card');
+    gsap.to(cards, {
+      opacity: 0,
+      y: -16,
+      scale: 0.96,
+      duration: 0.18,
+      stagger: 0.025,
+      ease: 'power2.in',
+      onComplete: () => {
+        gridStage.style.display = 'none';
+        prodCanvas.style.display = 'flex';
+
+        renderProductDataOnly();
+
+        gsap.fromTo(prodCanvas,
+          { opacity: 0, scale: 0.95, y: 12 },
+          { 
+            opacity: 1, 
+            scale: 1, 
+            y: 0, 
+            duration: 0.32, 
+            ease: 'power3.out', 
+            onComplete: () => {
+              isAnimating = false;
+              updateNavigationState();
+              gsap.to(dotsTrack, { opacity: 1, duration: 0.2 });
+            }
+          }
+        );
+      }
+    });
+  }
+
+  function selectProductFromGrid(index) {
+    haptic(14);
+    currentIndex = index;
+    switchToSingleView();
+  }
+
+  function renderProductDataOnly() {
+    const product = collections[currentCategory].items[currentIndex];
+    prodImg.src = product.img;
+    prodRating.textContent = product.rating;
+    prodReviews.textContent = `(${product.reviews})`;
+    prodName.textContent = product.name;
+    prodNotes.textContent = product.notes;
+    prodPrice.textContent = product.price;
+    prodMrp.textContent = product.mrp;
+    prodDiscount.textContent = product.discount;
+    if (product.url) exploreBtn.href = product.url;
+  }
+
+  function updateNavigationState() {
+    if (currentViewMode === 'grid') return;
+    const total = collections[currentCategory].items.length;
+    const product = collections[currentCategory].items[currentIndex];
+    if (product && product.url) {
+      exploreBtn.href = product.url;
+    }
+
+    if (total <= 1) {
+      prevBtn.classList.remove('visible');
+      nextBtn.classList.remove('visible');
+      dotsTrack.style.display = 'none';
+      updateDesktopSideCards();
+      return;
+    }
+
+    dotsTrack.style.display = 'flex';
+    dotsTrack.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('div');
+      dot.className = `dot ${i === currentIndex ? 'active' : ''}`;
+      dotsTrack.appendChild(dot);
+    }
+
+    if (currentIndex > 0) prevBtn.classList.add('visible');
+    else prevBtn.classList.remove('visible');
+
+    if (currentIndex < total - 1) nextBtn.classList.add('visible');
+    else nextBtn.classList.remove('visible');
+
+    updateDesktopSideCards();
+  }
+
+  /* OPTIMIZED INSTANT RENDER (NO LAG ON RAPID CLICKS) */
+  function renderProduct(direction = 1) {
+    if (isAnimating) {
+      gsap.killTweensOf([prodCanvas, detailsCard, prodImg]);
+      isAnimating = false;
+    }
+    isAnimating = true;
+    haptic(10);
+
+    // Desktop Carousel Glide Effect (Snappy & Responsive)
+    if (window.innerWidth >= 1024) {
+      gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.12, ease: 'power2.in' });
+      gsap.to(prodCanvas, {
+        x: direction * -35,
+        scale: 0.96,
+        opacity: 0.6,
+        duration: 0.14,
+        ease: 'power2.in',
+        onComplete: () => {
+          renderProductDataOnly();
           updateNavigationState();
 
-          gsap.set(prodImg, { x: direction * 30, scale: 0.97, opacity: 0 });
-          gsap.to(prodImg, { x: 0, scale: 1, opacity: 1, duration: 0.38, ease: 'power3.out' });
+          gsap.fromTo(prodCanvas,
+            { x: direction * 40, scale: 0.96, opacity: 0.6 },
+            { x: 0, scale: 1, opacity: 1, duration: 0.26, ease: 'power3.out' }
+          );
           gsap.to(detailsCard, { 
             y: 0, 
             opacity: 1, 
-            duration: 0.32, 
-            ease: 'power2.out',
+            duration: 0.22, 
+            ease: 'power2.out', 
             onComplete: () => { isAnimating = false; }
           });
         }
       });
+      return;
     }
 
-    function nextProduct() {
-      const total = collections[currentCategory].items.length;
-      if (currentIndex < total - 1 && !isAnimating) {
-        currentIndex++;
-        renderProduct(1);
+    // Mobile Swipe Fallback (100% UNTOUCHED)
+    gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.18, ease: 'power2.in' });
+    gsap.to(prodImg, {
+      opacity: 0,
+      x: direction * -30,
+      scale: 0.97,
+      duration: 0.22,
+      ease: 'power2.in',
+      onComplete: () => {
+        renderProductDataOnly();
+        updateNavigationState();
+
+        gsap.set(prodImg, { x: direction * 30, scale: 0.97, opacity: 0 });
+        gsap.to(prodImg, { x: 0, scale: 1, opacity: 1, duration: 0.38, ease: 'power3.out' });
+        gsap.to(detailsCard, { 
+          y: 0, 
+          opacity: 1, 
+          duration: 0.32, 
+          ease: 'power2.out', 
+          onComplete: () => { isAnimating = false; }
+        });
       }
+    });
+  }
+
+  function nextProduct() {
+    const total = collections[currentCategory].items.length;
+    if (currentIndex < total - 1) {
+      currentIndex++;
+      renderProduct(1);
     }
+  }
 
-    function prevProduct() {
-      if (currentIndex > 0 && !isAnimating) {
-        currentIndex--;
-        renderProduct(-1);
-      }
+  function prevProduct() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderProduct(-1);
     }
+  }
 
-    nextBtn.addEventListener('click', nextProduct);
-    prevBtn.addEventListener('click', prevProduct);
+  nextBtn.addEventListener('click', nextProduct);
+  prevBtn.addEventListener('click', prevProduct);
 
-    async function handleProductShare(e) {
-      e.stopPropagation();
-      haptic(16);
-      const product = collections[currentCategory].items[currentIndex];
-      const shareText = `✨ *${product.name}* — Dharatatva\n` +
-                        `⭐ Rating: ${product.rating} (${product.reviews})\n` +
-                        `💰 Price: ${product.price} (MRP: ${product.mrp}, ${product.discount})\n` +
-                        `🌿 Details: ${product.notes}`;
+  async function handleProductShare(e) {
+    e.stopPropagation();
+    haptic(16);
+    const product = collections[currentCategory].items[currentIndex];
+    const shareText = `✨ *${product.name}* — Dharatatva\n` +
+                      `⭐ Rating: ${product.rating} (${product.reviews})\n` +
+                      `💰 Price: ${product.price} (MRP: ${product.mrp}, ${product.discount})\n` +
+                      `🌿 Details: ${product.notes}`;
 
-      if (navigator.share) {
-        try {
-          await navigator.share({ title: `${product.name} — Dharatatva`, text: shareText });
-          showToast("Shared Successfully ✓");
-        } catch (err) {
-          if (err.name !== 'AbortError') {
-            await navigator.clipboard.writeText(shareText);
-            showToast("Copied to Clipboard ✓");
-          }
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: `${product.name} — Dharatatva`, text: shareText });
+        showToast("Shared Successfully ✓");
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          await navigator.clipboard.writeText(shareText);
+          showToast("Copied to Clipboard ✓");
         }
-      } else {
-        await navigator.clipboard.writeText(shareText);
-        showToast("Info Copied to Clipboard ✓");
       }
+    } else {
+      await navigator.clipboard.writeText(shareText);
+      showToast("Info Copied to Clipboard ✓");
     }
+  }
 
-    /* DRAG & SWIPE */
-    let startX = 0, currentDragX = 0, isDragging = false;
-    const swipeArea = document.getElementById('swipeArea');
+  /* DRAG & SWIPE (MOBILE FRIENDLY) */
+  let startX = 0, currentDragX = 0, isDragging = false;
 
-    swipeArea.addEventListener('touchstart', (e) => {
-      if (isAnimating || e.touches.length > 1) return;
-      startX = e.touches[0].clientX;
-      isDragging = true;
-    }, { passive: true });
+  swipeArea.addEventListener('touchstart', (e) => {
+    if (isAnimating || currentViewMode === 'grid' || e.touches.length > 1) return;
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  }, { passive: true });
 
-    swipeArea.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      currentDragX = e.touches[0].clientX - startX;
-      const total = collections[currentCategory].items.length;
-      let resistance = 0.32;
-      if (total <= 1 || (currentIndex === 0 && currentDragX > 0) || (currentIndex === total - 1 && currentDragX < 0)) {
-        resistance = 0.08;
-      }
-      const resistanceX = currentDragX * resistance;
-      gsap.set(prodCanvas, { x: resistanceX, rotation: resistanceX * 0.015 });
-    }, { passive: true });
-
-    function finalizeDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      const total = collections[currentCategory].items.length;
-      if (currentDragX < -45 && currentIndex < total - 1) {
-        gsap.to(prodCanvas, { x: 0, rotation: 0, duration: 0.2 });
-        nextProduct();
-      } else if (currentDragX > 45 && currentIndex > 0) {
-        gsap.to(prodCanvas, { x: 0, rotation: 0, duration: 0.2 });
-        prevProduct();
-      } else {
-        gsap.to(prodCanvas, { x: 0, rotation: 0, duration: 0.3, ease: 'power2.out' });
-      }
-      currentDragX = 0;
+  swipeArea.addEventListener('touchmove', (e) => {
+    if (!isDragging || currentViewMode === 'grid') return;
+    currentDragX = e.touches[0].clientX - startX;
+    const total = collections[currentCategory].items.length;
+    let resistance = 0.32;
+    if (total <= 1 || (currentIndex === 0 && currentDragX > 0) || (currentIndex === total - 1 && currentDragX < 0)) {
+      resistance = 0.08;
     }
+    const resistanceX = currentDragX * resistance;
+    gsap.set(prodCanvas, { x: resistanceX, rotation: resistanceX * 0.015 });
+  }, { passive: true });
 
-    swipeArea.addEventListener('touchend', finalizeDrag);
-    swipeArea.addEventListener('touchcancel', finalizeDrag);
+  function finalizeDrag() {
+    if (!isDragging || currentViewMode === 'grid') return;
+    isDragging = false;
+    const total = collections[currentCategory].items.length;
+    if (currentDragX < -45 && currentIndex < total - 1) {
+      gsap.to(prodCanvas, { x: 0, rotation: 0, duration: 0.2 });
+      nextProduct();
+    } else if (currentDragX > 45 && currentIndex > 0) {
+      gsap.to(prodCanvas, { x: 0, rotation: 0, duration: 0.2 });
+      prevProduct();
+    } else {
+      gsap.to(prodCanvas, { x: 0, rotation: 0, duration: 0.3, ease: 'power2.out' });
+    }
+    currentDragX = 0;
+  }
 
-    /* CATEGORY SELECT */
-    document.querySelectorAll('.cat-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const selectedCat = btn.dataset.cat;
-        if (selectedCat === currentCategory || isAnimating) return;
-        haptic(12);
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        
-        currentCategory = selectedCat;
-        currentIndex = 0;
-        
-        applyCategoryTheme(currentCategory);
+  swipeArea.addEventListener('touchend', finalizeDrag);
+  swipeArea.addEventListener('touchcancel', finalizeDrag);
+
+  /* CATEGORY SELECTION WITH VIBRANT ICON ANIMATION */
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedCat = btn.dataset.cat;
+      if (selectedCat === currentCategory || isAnimating) return;
+      haptic(12);
+
+      // Micro-animation on category icon
+      const svgIcon = btn.querySelector('svg');
+      if (svgIcon) {
+        gsap.fromTo(svgIcon, 
+          { rotate: -25, scale: 0.72 }, 
+          { rotate: 0, scale: 1.15, duration: 0.32, ease: "back.out(2.2)", onComplete: () => {
+            gsap.to(svgIcon, { scale: 1, duration: 0.18 });
+          }}
+        );
+      }
+
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      
+      currentCategory = selectedCat;
+      currentIndex = 0;
+      
+      applyCategoryTheme(currentCategory);
+
+      if (currentViewMode === 'grid') {
+        isAnimating = true;
+        const currentCards = gridStage.querySelectorAll('.grid-card');
+        gsap.to(currentCards, {
+          opacity: 0,
+          y: 10,
+          duration: 0.16,
+          onComplete: () => {
+            renderGridContent(currentCategory);
+            gridStage.scrollTop = 0;
+            const newCards = gridStage.querySelectorAll('.grid-card');
+            gsap.fromTo(newCards,
+              { opacity: 0, y: 24, scale: 0.94 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.32, stagger: 0.04, ease: 'power3.out', onComplete: () => { isAnimating = false; } }
+            );
+          }
+        });
+      } else {
         renderProduct(1);
-      });
-    });
-
-    /* MODAL MANAGEMENT */
-    const globalBackdrop = document.getElementById('globalBackdrop');
-    const editorialMenuDrawer = document.getElementById('editorialMenuDrawer');
-    const userAuthSheet = document.getElementById('userAuthSheet');
-
-    function closeAllModals() {
-      if (welcomeModal.classList.contains('active')) return;
-      editorialMenuDrawer.classList.remove('open');
-      userAuthSheet.classList.remove('open');
-      globalBackdrop.classList.remove('active');
-    }
-
-    globalBackdrop.addEventListener('click', closeAllModals);
-
-    document.getElementById('menuBtn').addEventListener('click', () => {
-      haptic(14);
-      closeAllModals();
-      globalBackdrop.classList.add('active');
-      editorialMenuDrawer.classList.add('open');
-    });
-
-    document.getElementById('closeMenuBtn').addEventListener('click', closeAllModals);
-
-    document.getElementById('namasteTrigger').addEventListener('click', () => {
-      haptic(15);
-      closeAllModals();
-      globalBackdrop.classList.add('active');
-      userAuthSheet.classList.add('open');
-    });
-
-    document.getElementById('closeUserBtn').addEventListener('click', closeAllModals);
-
-    function requestOtp() {
-      const phone = document.getElementById('phoneInput').value.trim();
-      if (phone.length < 10) {
-        showToast("Enter a valid 10-digit number");
-        return;
       }
-      haptic(15);
-      document.getElementById('userPhoneDisplay').textContent = `+91 ${phone}`;
-      document.getElementById('authStepPhone').style.display = 'none';
-      document.getElementById('authStepOtp').style.display = 'flex';
-      const firstOtp = document.querySelector('#otpContainer .otp-box');
-      if (firstOtp) firstOtp.focus();
-    }
-
-    function backToPhone() {
-      document.getElementById('authStepOtp').style.display = 'none';
-      document.getElementById('authStepPhone').style.display = 'flex';
-    }
-
-    const otpBoxes = document.querySelectorAll('#otpContainer .otp-box');
-    otpBoxes.forEach((box, idx) => {
-      box.addEventListener('input', (e) => {
-        const val = e.target.value;
-        if (val.length === 1 && idx < otpBoxes.length - 1) otpBoxes[idx + 1].focus();
-      });
-      box.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && !box.value && idx > 0) otpBoxes[idx - 1].focus();
-      });
     });
+  });
 
-    function verifyOtp() {
-      haptic(25);
-      showToast("Namasté! Welcome ✓");
-      setTimeout(closeAllModals, 1200);
+  /* RESIZE LISTENER FOR SEAMLESS RESPONSIVENESS */
+  window.addEventListener('resize', () => {
+    if (currentViewMode === 'single') {
+      updateNavigationState();
     }
+  });
 
-    updateNavigationState();
-  </script>
+  /* MODAL MANAGEMENT */
+  const globalBackdrop = document.getElementById('globalBackdrop');
+  const editorialMenuDrawer = document.getElementById('editorialMenuDrawer');
+  const userAuthSheet = document.getElementById('userAuthSheet');
+
+  function closeAllModals() {
+    if (welcomeModal.classList.contains('active')) return;
+    editorialMenuDrawer.classList.remove('open');
+    userAuthSheet.classList.remove('open');
+    globalBackdrop.classList.remove('active');
+  }
+
+  globalBackdrop.addEventListener('click', closeAllModals);
+
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    haptic(14);
+    closeAllModals();
+    globalBackdrop.classList.add('active');
+    editorialMenuDrawer.classList.add('open');
+  });
+
+  document.getElementById('closeMenuBtn').addEventListener('click', closeAllModals);
+
+  document.getElementById('namasteTrigger').addEventListener('click', () => {
+    haptic(15);
+    closeAllModals();
+    globalBackdrop.classList.add('active');
+    userAuthSheet.classList.add('open');
+  });
+
+  document.getElementById('closeUserBtn').addEventListener('click', closeAllModals);
+
+  function requestOtp() {
+    const phone = document.getElementById('phoneInput').value.trim();
+    if (phone.length < 10) {
+      showToast("Enter a valid 10-digit number");
+      return;
+    }
+    haptic(15);
+    document.getElementById('userPhoneDisplay').textContent = `+91 ${phone}`;
+    document.getElementById('authStepPhone').style.display = 'none';
+    document.getElementById('authStepOtp').style.display = 'flex';
+    const firstOtp = document.querySelector('#otpContainer .otp-box');
+    if (firstOtp) firstOtp.focus();
+  }
+
+  function backToPhone() {
+    document.getElementById('authStepOtp').style.display = 'none';
+    document.getElementById('authStepPhone').style.display = 'flex';
+  }
+
+  const otpBoxes = document.querySelectorAll('#otpContainer .otp-box');
+  otpBoxes.forEach((box, idx) => {
+    box.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (val.length === 1 && idx < otpBoxes.length - 1) otpBoxes[idx + 1].focus();
+    });
+    box.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !box.value && idx > 0) otpBoxes[idx - 1].focus();
+    });
+  });
+
+  function verifyOtp() {
+    haptic(25);
+    showToast("Namasté! Welcome ✓");
+    setTimeout(closeAllModals, 1200);
+  }
+</script>
 </body>
 </html>
