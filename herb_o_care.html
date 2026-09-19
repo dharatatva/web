@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   
   <title>Herb-O-Care | Ayurvedic Churan for Digestion, Agni & Natural Fat Metabolism</title>
+  <!-- WhatsApp & Social Rich Link Preview Cards -->
+  <meta property="og:type" content="product" />
+  <meta property="og:site_name" content="Dharatatva" />
+  <meta property="og:title" content="Herb-O-Care™ Ayurvedic Churna — Agni & Metabolism Ritual" />
+  <meta property="og:description" content="23+ Sacred Himalayan Botanicals. Awakens sluggish Agni, clears toxic Ama, and activates Lekhana Karma. Flat 50% OFF + Free Pan-India Delivery." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=85" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="900" />
+  <meta property="og:url" content="https://dharatatva.github.io/web/herb_o_care" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="description" content="Herb-O-Care Ayurvedic Churan crafted with 23+ sacred herbs to awaken Agni, clear Ama toxins, balance Kapha dosha, and activate Lekhana Karma fat metabolism." />
   <meta name="keywords" content="Herb-O-Care, Ayurvedic Churan, Agni awakening, Lekhana Karma, Kapha balance, herbal fat burner, Dharatatva" />
   <link rel="canonical" href="https://dharatatva.com/herb-o-care" />
@@ -1184,33 +1194,70 @@
       document.getElementById('lightboxModal').classList.remove('active');
     }
 
-    /* SHARE FUNCTION */
-    function shareProduct() {
+    /* HIGH-CONVERTING SMART SHARE FUNCTION */
+    async function shareProduct() {
+      haptic(14);
       const shareUrl = window.location.href;
-      const shareTitle = 'Herb-O-Care™ Ayurvedic Churan | Dharatatva';
+      const pack = PACKS[currentPackKey] || PACKS['detox'];
+      const currentPrice = (pack.price * currentQty).toLocaleString('en-IN');
+      const mrpPrice = (pack.mrp * currentQty).toLocaleString('en-IN');
+
+      const shareTitle = 'Herb-O-Care™ Ayurvedic Churna | Dharatatva';
       const shareText = 
-`🌿 *Dharatatva Herb-O-Care™ Ayurvedic Churan*
-Ancient Vedic formulation for digestive Agni awakening & healthy fat metabolism.
+`🌿 *Dharatatva Herb-O-Care™ Churna*
+Sacred Vedic formulation — Awaken internal Agni, flush stubborn Ama toxins & restore natural lightness.
 
-⭐ *4.94/5 Rating* (42+ Verified Reviews)
-🍃 23+ Sacred Forest Botanicals · 100% Chemical Free
-🔥 Clears Ama Toxins · Balances Kapha · Activates Lekhana Karma
+⭐ *4.94 / 5 Rating* (42+ Verified Ayurvedic Sadhakas)
+🍃 23+ Rare Pure Forest Herbs · 100% Chemical & Preservative Free
+🗡️ Active Lekhana Karma · Zero Synthetic Stimulants
 
-🏷️ *Limited Time Offer:* Flat 25% OFF (Now ₹949)
-🚚 Free Express Delivery (48H Dispatch) + Cash on Delivery (COD) Available
+🏷️ *Exclusive Offer:* Only ₹${currentPrice} (MRP: ~₹${mrpPrice}~) · ${pack.discountTag}
+⚡ *Prepaid Privilege:* Extra ₹100 OFF on UPI
+🚚 Free Priority Pan-India Delivery + Cash on Delivery (COD) Available
 
-👉 Tap here to see details & order:
+👇 *Tap here to discover ingredients & claim offer:*
 ${shareUrl}`;
 
+      // 1. Try Native Share with Image File (Android & iOS Chrome/Safari support)
       if (navigator.share) {
-        navigator.share({
-          title: shareTitle,
-          text: shareText,
-          url: shareUrl
-        }).catch(err => console.log('Share dismissed', err));
-      } else {
+        try {
+          // Photo blob fetch karke share sheet me image file pass karna
+          const response = await fetch(pack.img);
+          const blob = await response.blob();
+          const file = new File([blob], 'Herb-O-Care.jpg', { type: blob.type });
+
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: shareTitle,
+              text: shareText
+            });
+            return;
+          }
+        } catch (e) {
+          // Agar file sharing fail ho to text + URL fallback chalega
+        }
+
+        try {
+          await navigator.share({
+            title: shareTitle,
+            text: shareText,
+            url: shareUrl
+          });
+          return;
+        } catch (err) {
+          if (err.name === 'AbortError') return;
+        }
+      }
+
+      // 2. Fallback: Direct WhatsApp Web / App share
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+      const opened = window.open(waUrl, '_blank');
+      
+      // 3. Fallback: Clipboard Copy
+      if (!opened) {
         navigator.clipboard.writeText(shareText).then(() => {
-          alert('🌿 Product offer details copied! Share it on WhatsApp, Telegram or SMS to your friends & family.');
+          alert('🌿 Ayurvedic Offer details copied! Paste it in WhatsApp to share with family & friends.');
         });
       }
     }
