@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Dharatatva — Elements of Earth</title>
+  <!-- Social & WhatsApp Rich Link Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Dharatatva" />
+  <meta property="og:title" content="Dharatatva — Elements of Earth | Sacred Ayurveda & Modern Science" />
+  <meta property="og:description" content="Discover pure botanical harmony crafted strictly from traditional Ayurvedic texts. 100% natural, lab-tested herbal formulations." />
+  <meta property="og:image" content="https://dharatatva.github.io/web/img/logo_dharatatva.avif" />
+  <meta property="og:url" content="https://dharatatva.github.io/web/" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -187,7 +195,7 @@
         <div class="product-unified-card" id="productCanvas">
           <div class="product-media-zone">
             <img class="product-img" id="productDisplay" 
-                 src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90" 
+                 src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=1000&q=90" 
                  alt="Dharatatva Botanical Formulation">
           </div>
 
@@ -407,7 +415,7 @@
   <script>
   const collections = {
     health: {
-	  bg: "linear-gradient(165deg, #F0F5EE 20%, #bdf5e052 50%)",
+      bg: "linear-gradient(165deg, #F0F5EE 20%, #bdf5e052 50%)",
       glow: "rgba(142, 194, 150, 0.42)",
       items: [
         { 
@@ -418,7 +426,7 @@
           price: "₹383", 
           mrp: "₹437", 
           discount: "-12%", 
-          img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1000&q=90",
+          img: "https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=1000&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
         },
         { 
@@ -809,7 +817,7 @@
     }
   }
 
-  /* RENDER GRID WITH AUTONOMOUS 4-COLUMN CENTERING */
+  /* RENDER GRID WITH BALANCED RATIO & AUTONOMOUS CENTERING */
   function renderGridContent(catKey) {
     const items = collections[catKey].items;
     gridStage.innerHTML = '';
@@ -867,30 +875,86 @@
     });
   }
 
-  /* GRID SHARE HANDLER */
-  async function handleGridShare(e, idx) {
-    e.stopPropagation();
-    haptic(16);
-    const product = collections[currentCategory].items[idx];
-    const shareText = `✨ *${product.name}* — Dharatatva\n` +
-                      `⭐ Rating: ${product.rating} (${product.reviews})\n` +
-                      `💰 Price: ${product.price} (MRP: ${product.mrp}, ${product.discount})\n` +
-                      `🌿 Details: ${product.notes}`;
+  /* HIGH-CONVERTING SHARE ENGINE (SINGLE VIEW & GRID VIEW) */
+  async function generateSharePayload(product) {
+    const prodUrl = product.url && product.url !== '#' ? product.url : window.location.href;
+    const shareTitle = `${product.name} — Dharatatva`;
+    const shareText = 
+`✨ *${product.name}* — Dharatatva Sanctuary
+${product.notes}
 
+⭐ *${product.rating} / 5 Rating* (${product.reviews} Verified Reviews)
+💰 *Special Price:* ${product.price} (MRP: ~${product.mrp}~ · Save ${product.discount})
+🌿 100% Pure Botanical Formula · Chemical-Free Guarantee
+🚚 Free Express Delivery + Cash on Delivery (COD) Available
+
+👇 *Tap here to view Shastra details & claim offer:*
+${prodUrl}`;
+
+    return { shareTitle, shareText, prodUrl, imgUrl: product.img };
+  }
+
+  async function executeSmartShare(payload) {
+    haptic(16);
+
+    // 1. Mobile Native Share With Actual Image File
     if (navigator.share) {
       try {
-        await navigator.share({ title: `${product.name} — Dharatatva`, text: shareText });
-        showToast("Shared Successfully ✓");
-      } catch (err) {
-        if (err.name !== 'AbortError') {
-          await navigator.clipboard.writeText(shareText);
-          showToast("Copied to Clipboard ✓");
+        const response = await fetch(payload.imgUrl);
+        const blob = await response.blob();
+        const file = new File([blob], 'dharatatva-product.jpg', { type: blob.type });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: payload.shareTitle,
+            text: payload.shareText
+          });
+          showToast("Shared Successfully ✓");
+          return;
         }
+      } catch (e) {
+        // Fallback agar file sharing allow na ho
       }
-    } else {
-      await navigator.clipboard.writeText(shareText);
-      showToast("Info Copied to Clipboard ✓");
+
+      try {
+        await navigator.share({
+          title: payload.shareTitle,
+          text: payload.shareText,
+          url: payload.prodUrl
+        });
+        showToast("Shared Successfully ✓");
+        return;
+      } catch (err) {
+        if (err.name === 'AbortError') return;
+      }
     }
+
+    // 2. Fallback: Direct WhatsApp App / Web Redirect
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(payload.shareText)}`;
+    const opened = window.open(waUrl, '_blank');
+
+    // 3. Fallback: Clipboard Copy
+    if (!opened) {
+      await navigator.clipboard.writeText(payload.shareText);
+      showToast("Offer Details Copied ✓");
+    }
+  }
+
+  /* Single View Share Handler */
+  async function handleProductShare(e) {
+    e.stopPropagation();
+    const product = collections[currentCategory].items[currentIndex];
+    const payload = await generateSharePayload(product);
+    await executeSmartShare(payload);
+  }
+
+  /* Grid View Share Handler */
+  async function handleGridShare(e, idx) {
+    e.stopPropagation();
+    const product = collections[currentCategory].items[idx];
+    const payload = await generateSharePayload(product);
+    await executeSmartShare(payload);
   }
 
   /* VIEW SWITCH CONTROLLER */
@@ -1045,7 +1109,7 @@
     isAnimating = true;
     haptic(10);
 
-    // Desktop Carousel Glide Effect (Snappy & Responsive)
+    // Desktop Carousel Glide Effect
     if (window.innerWidth >= 1024) {
       gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.12, ease: 'power2.in' });
       gsap.to(prodCanvas, {
@@ -1074,7 +1138,7 @@
       return;
     }
 
-    // Mobile Swipe Fallback (100% UNTOUCHED)
+    // Mobile Swipe Fallback
     gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.18, ease: 'power2.in' });
     gsap.to(prodImg, {
       opacity: 0,
@@ -1116,31 +1180,6 @@
 
   nextBtn.addEventListener('click', nextProduct);
   prevBtn.addEventListener('click', prevProduct);
-
-  async function handleProductShare(e) {
-    e.stopPropagation();
-    haptic(16);
-    const product = collections[currentCategory].items[currentIndex];
-    const shareText = `✨ *${product.name}* — Dharatatva\n` +
-                      `⭐ Rating: ${product.rating} (${product.reviews})\n` +
-                      `💰 Price: ${product.price} (MRP: ${product.mrp}, ${product.discount})\n` +
-                      `🌿 Details: ${product.notes}`;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: `${product.name} — Dharatatva`, text: shareText });
-        showToast("Shared Successfully ✓");
-      } catch (err) {
-        if (err.name !== 'AbortError') {
-          await navigator.clipboard.writeText(shareText);
-          showToast("Copied to Clipboard ✓");
-        }
-      }
-    } else {
-      await navigator.clipboard.writeText(shareText);
-      showToast("Info Copied to Clipboard ✓");
-    }
-  }
 
   /* DRAG & SWIPE (MOBILE FRIENDLY) */
   let startX = 0, currentDragX = 0, isDragging = false;
@@ -1189,7 +1228,6 @@
       if (selectedCat === currentCategory || isAnimating) return;
       haptic(12);
 
-      // Micro-animation on category icon
       const svgIcon = btn.querySelector('svg');
       if (svgIcon) {
         gsap.fromTo(svgIcon, 
@@ -1232,7 +1270,7 @@
     });
   });
 
-  /* RESIZE LISTENER FOR SEAMLESS RESPONSIVENESS */
+  /* RESIZE LISTENER */
   window.addEventListener('resize', () => {
     if (currentViewMode === 'single') {
       updateNavigationState();
