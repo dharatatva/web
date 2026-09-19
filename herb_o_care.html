@@ -388,15 +388,17 @@
   <div class="lightbox-modal" id="lightboxModal">
     <div class="lightbox-top">
       <span id="lbCounter" style="font-weight: 800; font-size: 12px; letter-spacing: 0.06em; background: rgba(255,255,255,0.16); padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">1 / 6</span>
-      <button class="icon-circle-btn" style="background:rgba(255,255,255,0.2); color:#FFF; border-color:rgba(255,255,255,0.3); width:34px; height:34px;" onclick="closeLightbox(); haptic(6);" aria-label="Close Gallery">✕</button>
+      <!-- Sirf yeh cross button dabane par hi lightbox close hoga -->
+      <button type="button" class="icon-circle-btn" style="background:rgba(255,255,255,0.2); color:#FFF; border-color:rgba(255,255,255,0.3); width:34px; height:34px;" onclick="closeLightbox(); haptic(6);" aria-label="Close Gallery">✕</button>
     </div>
     
-    <div class="lightbox-content-box" id="lightboxContentBox" onclick="closeLightbox()">
-      <button type="button" class="lb-nav-btn lb-prev-btn" onclick="event.stopPropagation(); prevPhoto(); haptic(6);" aria-label="Previous Photo">‹</button>
+    <!-- Outer div se onclick="closeLightbox()" hata diya gaya hai -->
+    <div class="lightbox-content-box" id="lightboxContentBox">
+      <button type="button" class="lb-nav-btn lb-prev-btn" onclick="prevPhoto(); haptic(6);" aria-label="Previous Photo">‹</button>
       
-      <div class="lightbox-card-inner" id="lightboxCardInner" onclick="event.stopPropagation()">
-        <div style="width: 100%; height: 180px; border-radius: 14px; overflow: hidden; margin-bottom: 12px; background: rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center;">
-          <img id="lbImg" src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Customer review photo" style="width:100%; height:100%; object-fit:cover; display:block;" />
+      <div class="lightbox-card-inner" id="lightboxCardInner">
+        <div class="lb-img-wrap">
+          <img id="lbImg" src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Customer review photo" />
         </div>
         <h3 style="font-size: 16px; margin-bottom: 5px; font-weight: 700; color: #FFFFFF;" id="lbTitle">Ritual Texture</h3>
         <p style="font-size: 11.5px; color: #BBB; line-height: 1.5;" id="lbDesc">Pure sun-dried churan texture without chemical binders.</p>
@@ -406,7 +408,7 @@
         </div>
       </div>
       
-      <button type="button" class="lb-nav-btn lb-next-btn" onclick="event.stopPropagation(); nextPhoto(); haptic(6);" aria-label="Next Photo">›</button>
+      <button type="button" class="lb-nav-btn lb-next-btn" onclick="nextPhoto(); haptic(6);" aria-label="Next Photo">›</button>
     </div>
   </div>
 
@@ -812,10 +814,12 @@
       }
       if (!activeEl) return;
 
-      indicator.style.width = `${activeEl.offsetWidth}px`;
-      indicator.style.height = `${activeEl.offsetHeight}px`;
-      indicator.style.top = `${activeEl.offsetTop}px`;
-      indicator.style.transform = `translateX(${activeEl.offsetLeft}px)`;
+      requestAnimationFrame(() => {
+        indicator.style.width = `${activeEl.offsetWidth}px`;
+        indicator.style.height = `${activeEl.offsetHeight}px`;
+        indicator.style.top = `${activeEl.offsetTop}px`;
+        indicator.style.transform = `translateX(${activeEl.offsetLeft}px)`;
+      });
     }
 
     function switchMainTab(tabKey) {
@@ -840,7 +844,7 @@
       if (buyNowTab) {
         buyNowTab.classList.add('active');
         updateTabIndicator(buyNowTab);
-        setTimeout(() => updateTabIndicator(buyNowTab), 50);
+        setTimeout(() => updateTabIndicator(buyNowTab), 60);
       }
     }
 
