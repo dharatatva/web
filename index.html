@@ -876,19 +876,36 @@
   }
 
   /* HIGH-CONVERTING SHARE ENGINE (SINGLE VIEW & GRID VIEW) */
+  /* 10/10 HIGH-CONVERTING SHARE ENGINE (new_home.html) */
   async function generateSharePayload(product) {
     const prodUrl = product.url && product.url !== '#' ? product.url : window.location.href;
-    const shareTitle = `${product.name} — Dharatatva`;
+    const shareTitle = `${product.name} | Dharatatva`;
+
+    // Price formatting & discount clean-up
+    const cleanPrice = product.price.replace(/[^\d]/g, '');
+    const cleanMrp = product.mrp.replace(/[^\d]/g, '');
+    const savings = cleanMrp && cleanPrice ? parseInt(cleanMrp) - parseInt(cleanPrice) : 0;
+    const discountClean = product.discount ? product.discount.replace('-', '') : '';
+
+    const priceLine = savings > 0 
+      ? `🏷️ *Special Price:* *${product.price}* ~${product.mrp}~ (Save ₹${savings} · ${discountClean} OFF)`
+      : `🏷️ *Price:* *${product.price}*`;
+
+    // High curiosity headline hook based on product
+    const hookLine = product.name.includes("Herb-O-Care")
+      ? "Awaken sluggish Agni, clear morning bloating & flush trapped Ama toxins naturally."
+      : product.notes;
+
     const shareText = 
-`✨ *${product.name}* — Dharatatva Sanctuary
-${product.notes}
+`🌿 *${product.name}* | Dharatatva
+${hookLine}
 
 ⭐ *${product.rating} / 5 Rating* (${product.reviews} Verified Reviews)
-💰 *Special Price:* ${product.price} (MRP: ~${product.mrp}~ · Save ${product.discount})
-🌿 100% Pure Botanical Formula · Chemical-Free Guarantee
-🚚 Free Express Delivery + Cash on Delivery (COD) Available
+${priceLine}
+🍃 100% Pure Botanical Synergy · Zero Chemicals
+🚚 Free Express Pan-India Delivery + COD Available
 
-👇 *Tap here to view Shastra details & claim offer:*
+👉 *Tap here to discover Shastra & claim offer:*
 ${prodUrl}`;
 
     return { shareTitle, shareText, prodUrl, imgUrl: product.img };
