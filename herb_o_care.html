@@ -1201,30 +1201,29 @@
       const pack = PACKS[currentPackKey] || PACKS['detox'];
       const currentPrice = (pack.price * currentQty).toLocaleString('en-IN');
       const mrpPrice = (pack.mrp * currentQty).toLocaleString('en-IN');
+      const totalSavings = ((pack.mrp - pack.price) * currentQty).toLocaleString('en-IN');
+      const discountPercent = Math.round(((pack.mrp - pack.price) / pack.mrp) * 100);
 
       const shareTitle = 'Herb-O-Care™ Ayurvedic Churna | Dharatatva';
       const shareText = 
-`🌿 *Dharatatva Herb-O-Care™ Churna*
-Sacred Vedic formulation — Awaken internal Agni, flush stubborn Ama toxins & restore natural lightness.
+`🌿 *Herb-O-Care™ | Sacred Agni Ritual*
+Awaken sluggish digestive fire, clear bloating & flush trapped Ama toxins naturally.
 
-⭐ *4.94 / 5 Rating* (42+ Verified Ayurvedic Sadhakas)
-🍃 23+ Rare Pure Forest Herbs · 100% Chemical & Preservative Free
-🗡️ Active Lekhana Karma · Zero Synthetic Stimulants
+⭐ *4.94 / 5 Rating* (42+ Verified Reviews)
+🏷️ *Deal:* *₹${currentPrice}* ~₹${mrpPrice}~ *(Save ₹${totalSavings} · ${discountPercent}% OFF)*
+⚡ *UPI Offer:* Extra ₹100 Instant Discount
+🍃 23+ Sacred Pure Herbs · 100% Chemical-Free
+🚚 Free Express Delivery + COD Available
 
-🏷️ *Exclusive Offer:* Only ₹${currentPrice} (MRP: ~₹${mrpPrice}~) · ${pack.discountTag}
-⚡ *Prepaid Privilege:* Extra ₹100 OFF on UPI
-🚚 Free Priority Pan-India Delivery + Cash on Delivery (COD) Available
-
-👇 *Tap here to discover ingredients & claim offer:*
+👉 *Tap to explore 23+ herbs & order:*
 ${shareUrl}`;
 
-      // 1. Try Native Share with Image File (Android & iOS Chrome/Safari support)
+      // Native Image Share with High-Res File
       if (navigator.share) {
         try {
-          // Photo blob fetch karke share sheet me image file pass karna
           const response = await fetch(pack.img);
           const blob = await response.blob();
-          const file = new File([blob], 'Herb-O-Care.jpg', { type: blob.type });
+          const file = new File([blob], 'Herb-O-Care.jpg', { type: blob.type || 'image/jpeg' });
 
           if (navigator.canShare && navigator.canShare({ files: [file] })) {
             await navigator.share({
@@ -1234,9 +1233,7 @@ ${shareUrl}`;
             });
             return;
           }
-        } catch (e) {
-          // Agar file sharing fail ho to text + URL fallback chalega
-        }
+        } catch (e) {}
 
         try {
           await navigator.share({
@@ -1250,16 +1247,9 @@ ${shareUrl}`;
         }
       }
 
-      // 2. Fallback: Direct WhatsApp Web / App share
+      // Fallback Direct WhatsApp Redirect
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-      const opened = window.open(waUrl, '_blank');
-      
-      // 3. Fallback: Clipboard Copy
-      if (!opened) {
-        navigator.clipboard.writeText(shareText).then(() => {
-          alert('🌿 Ayurvedic Offer details copied! Paste it in WhatsApp to share with family & friends.');
-        });
-      }
+      window.open(waUrl, '_blank');
     }
 
     /* AUDIO ENGINE */
