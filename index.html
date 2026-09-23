@@ -16,14 +16,14 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
 
   <!-- GSAP Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <!-- External Stylesheet -->
   <link rel="stylesheet" type="text/css" href="css/home_style.css"/>
-    <style>
+  <style>
   :root {
     --bg-cream: #F7F5F0;
     --bg: linear-gradient(165deg, #F0F5EE 0%, #DEE8DC 100%);
@@ -67,7 +67,7 @@
 
       <div class="ambient-glow" id="ambientGlow"></div>
 
-      <!-- HEADER (TRANSPARENT) -->
+      <!-- TOP FLOATING HEADER -->
       <header>
         <div class="header-left">
           <button class="menu-toggle-btn" id="menuBtn" aria-label="Open Navigation Menu">
@@ -81,18 +81,27 @@
         </div>
 
         <div class="header-right-actions">
-          <button class="icon-circle-btn" id="notifyBtn" aria-label="Notifications" onclick="showToast('No new notices')">
+          <!-- DOCKED CATEGORY & VIEW PILL IN HEADER -->
+          <button class="header-cat-pill" id="headerCatPill" onclick="openCategoryPanel(); haptic(8);" title="Change Category & View">
+            <span class="header-cat-label" id="headerCatLabel">🌿 Health</span>
+            <span class="header-cat-sep"></span>
+            <span class="header-cat-mode" id="headerCatModeIcon">⊞</span>
+          </button>
+
+          <div class="header-action-spacer"></div>
+
+          <button class="icon-circle-btn" id="notifyBtn" aria-label="Notifications" onclick="showToast('No new notices'); haptic(6);">
             <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             <div class="notify-badge"></div>
           </button>
 
           <div class="audio-wrapper-group">
-            <div class="audio-reminder-pill" id="audioReminderPill" onclick="toggleAudio()">
+            <div class="audio-reminder-pill" id="audioReminderPill" onclick="toggleAudio(); haptic(6);">
               <span>Tap for Sound</span>
               <span style="font-size:11px; color:#725bb7;">🎵</span>
             </div>
 
-            <div class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio()" title="Play / Pause Ambient Sound">
+            <div class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio(); haptic(6);" title="Play / Pause Ambient Sound">
               <svg class="audio-progress-svg" viewBox="0 0 38 38">
                 <circle class="audio-progress-bg" cx="19" cy="19" r="17"/>
                 <circle class="audio-progress-bar" id="audioProgressCircle" cx="19" cy="19" r="17"/>
@@ -103,86 +112,84 @@
         </div>
       </header>
 
-      <!-- GREETING -->
-      <div class="greeting-section">
-        <div class="greeting-user-row">
-          <span class="greeting-user-title">Hi, Honoured Guest</span>
+      <!-- FLOATING POPUP CATEGORY & VIEW BAR (ELASTIC LIQUID DROP MORPH) -->
+      <div class="category-dock-panel" id="categoryDockPanel">
+        <div class="dock-panel-card">
           
-          <button class="namaste-badge-btn" id="namasteTrigger" title="Open Namasté Vault">
-            <span class="namaste-hands">🙏</span>
-            <span class="namaste-text">नमस्ते</span>
-          </button>
-        </div>
-        <div class="greeting-subtext">Discover pure botanical harmony</div>
-      </div>
-
-      <!-- CATEGORY & VIEW BAR -->
-      <div class="unified-category-bar">
-        <div class="category-zone">
-          <span class="zone-label">Explore by Category</span>
-          <div class="category-scroll-container">
-            <nav class="category-rail" id="categoryRail">
-              <button class="cat-btn active" data-cat="health">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 2v20M2 12h20"/>
-                  <circle cx="12" cy="12" r="9"/>
-                </svg>
-                <span>Health</span>
-              </button>
-
-              <button class="cat-btn" data-cat="women">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="10" r="6"/>
-                  <line x1="12" y1="16" x2="12" y2="22"/>
-                  <line x1="9" y1="19" x2="15" y2="19"/>
-                </svg>
-                <span>Women</span>
-              </button>
-
-              <button class="cat-btn" data-cat="men">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="10" cy="14" r="6"/>
-                  <line x1="14.5" y1="9.5" x2="21" y2="3"/>
-                  <polyline points="16 3 21 3 21 8"/>
-                </svg>
-                <span>Men</span>
-              </button>
-
-              <button class="cat-btn" data-cat="kids">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="7" r="4"/>
-                  <path d="M5.5 21v-2a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v2"/>
-                </svg>
-                <span>Kids</span>
-              </button>
-            </nav>
+          <div class="dock-panel-top-labels">
+            <span class="dock-label-left">EXPLORE COLLECTIONS</span>
+            <span class="dock-label-right">VIEW</span>
           </div>
-        </div>
 
-        <!-- VIEW TOGGLE ZONE -->
-        <div class="view-zone">
-          <span class="zone-label">View</span>
-          <div class="view-control-container">
-            <div class="view-divider-line"></div>
-            <button class="view-toggle-btn" id="viewToggleBtn" aria-label="Toggle Grid / Single View" onclick="handleViewChange()">
-              <div class="view-icon-flipper">
-                <div class="view-grid-icon" id="viewGridIcon">
-                  <span></span><span></span><span></span><span></span>
-                </div>
-                <div class="view-single-icon" id="viewSingleIcon">
+          <div class="dock-content-row">
+            <div class="category-scroll-container">
+              <nav class="category-rail" id="categoryRail">
+                <button class="cat-btn active" data-cat="health">
                   <svg viewBox="0 0 24 24">
-                    <rect x="5" y="4" width="14" height="16" rx="3"></rect>
-                    <line x1="8" y1="14" x2="16" y2="14" stroke-linecap="round"></line>
-                    <line x1="8" y1="17" x2="13" y2="17" stroke-linecap="round"></line>
+                    <path d="M12 2v20M2 12h20"/>
+                    <circle cx="12" cy="12" r="9"/>
                   </svg>
+                  <span>Health</span>
+                </button>
+
+                <button class="cat-btn" data-cat="women">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="10" r="6"/>
+                    <line x1="12" y1="16" x2="12" y2="22"/>
+                    <line x1="9" y1="19" x2="15" y2="19"/>
+                  </svg>
+                  <span>Women</span>
+                </button>
+
+                <button class="cat-btn" data-cat="men">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="10" cy="14" r="6"/>
+                    <line x1="14.5" y1="9.5" x2="21" y2="3"/>
+                    <polyline points="16 3 21 3 21 8"/>
+                  </svg>
+                  <span>Men</span>
+                </button>
+
+                <button class="cat-btn" data-cat="kids">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="7" r="4"/>
+                    <path d="M5.5 21v-2a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v2"/>
+                  </svg>
+                  <span>Kids</span>
+                </button>
+              </nav>
+            </div>
+
+            <div class="dock-view-divider"></div>
+
+            <!-- VIEW TOGGLE ZONE -->
+            <div class="dock-view-zone">
+              <button class="view-toggle-btn" id="viewToggleBtn" aria-label="Toggle Grid / Single View" onclick="handleViewChange()">
+                <div class="view-icon-flipper">
+                  <div class="view-grid-icon" id="viewGridIcon">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                  <div class="view-single-icon" id="viewSingleIcon">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="5" y="4" width="14" height="16" rx="3"></rect>
+                      <line x1="8" y1="14" x2="16" y2="14" stroke-linecap="round"></line>
+                      <line x1="8" y1="17" x2="13" y2="17" stroke-linecap="round"></line>
+                    </svg>
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            </div>
           </div>
+
+          <!-- FLOATING OUTSIDE CIRCULAR CLOSE BUTTON (CENTERED AT BOTTOM) -->
+          <button class="dock-outside-close-btn" onclick="dockCategoryPanel(true); haptic(8);" aria-label="Close Category Selector" title="Close">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+
         </div>
       </div>
 
-      <!-- MAIN STAGE (HOLDS BOTH SINGLE SWIPE CARD & GRID STAGE) -->
+      <!-- MAIN FULL-SCREEN IMMERSIVE PRODUCT STAGE -->
       <div class="stage-wrapper" id="swipeArea">
         <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
           <svg viewBox="0 0 24 24">
@@ -191,54 +198,99 @@
           </svg>
         </button>
 
-        <!-- SINGLE PRODUCT CARD -->
+        <!-- FULL-PAGE SINGLE PRODUCT CARD -->
         <div class="product-unified-card" id="productCanvas">
-          <div class="product-media-zone">
-            <img class="product-img" id="productDisplay" 
-                 src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=1000&q=90" 
-                 alt="Dharatatva Botanical Formulation">
+          
+          <!-- TOP-LEFT 2-TONE COLOR EDITORIAL BRAND WATERMARK -->
+          <div class="editorial-brand-stacked" id="brandWatermark">
+            <span class="brand-tone-pure" id="brandPart1">Herb</span>
+            <span class="brand-tone-clean" id="brandPart2">O-Care</span>
           </div>
 
+          <!-- IMAGE 1: FULL SCREEN LIFESTYLE/MODEL WITH FADE OVERLAY -->
+          <div class="product-media-zone">
+            <img class="product-model-img" id="productModelImg" 
+                 src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=85" 
+                 alt="Ayurvedic Wellness & Botanical Ritual">
+            <div class="product-scrim-gradient"></div>
+          </div>
+
+          <!-- IMAGE 2: PRODUCT BOTTLE/JAR AT BOTTOM RIGHT (HIGH-END STUDIO STYLING) -->
+          <div class="floating-product-dock" id="floatingProductDock">
+            <div class="floating-pack-ambient-shadow"></div>
+            <img class="floating-pack-img" id="floatingPackImg" 
+                 src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=800&q=90" 
+                 alt="Herb-O-Care Formulation Bottle">
+          </div>
+
+          <!-- BOTTOM-LEFT PRODUCT DETAILS OVERLAY -->
           <div class="product-details-overlay" id="detailsCard">
-            <div class="card-title-action-row">
-              <div class="card-title" id="prodName">Herb-O-Care Churna</div>
-
-              <div class="card-header-actions-group">
-                <div class="card-rating-row">
-                  <span class="card-star">★</span>
-                  <span id="prodRating">4.9</span>
-                  <span class="card-reviews" id="prodReviews">(182)</span>
-                </div>
-
-                <button class="card-action-circle-btn" id="shareBtn" aria-label="Share Product" onclick="handleProductShare(event)">
-                  <svg viewBox="0 0 24 24">
-                    <circle cx="18" cy="5" r="3"></circle>
-                    <circle cx="6" cy="12" r="3"></circle>
-                    <circle cx="18" cy="19" r="3"></circle>
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                  </svg>
-                </button>
+            
+            <!-- Reference Tag Chip & Rating Row -->
+            <div class="pure-eyebrow-row">
+              <div class="pure-tag-pill" id="prodTagChip">
+                <span>✧ Daily Agni Ritual ›</span>
+              </div>
+              <div class="card-rating-row">
+                <span class="card-star">★</span>
+                <span id="prodRating">4.94</span>
+                <span class="card-reviews" id="prodReviews">(182)</span>
               </div>
             </div>
 
-            <div class="card-desc" id="prodNotes">Immunity & metabolic digestive fire (Agni) awakening with 23+ wild botanicals</div>
+            <!-- Big Bold Headline -->
+            <div class="card-headline-row">
+              <h1 class="pure-main-headline" id="prodHeadline">Your Sacred Daily Reset</h1>
+            </div>
 
+            <!-- Descriptive Notes -->
+            <p class="pure-sub-desc" id="prodNotes">
+              23+ Sacred Himalayan Botanicals. Awakens sluggish Agni, clears toxic Ama, and activates Lekhana Karma.
+            </p>
+
+            <!-- Pricing Row -->
             <div class="card-price-row">
               <div class="card-price-group">
                 <span class="card-price" id="prodPrice">₹383</span>
                 <span class="card-mrp" id="prodMrp">₹437</span>
                 <span class="card-discount-pill" id="prodDiscount">-12%</span>
               </div>
-
-              <a href="https://dharatatva.github.io/web/" class="card-explore-btn" id="exploreBtn">
-                <span>Explore</span>
-                <svg viewBox="0 0 24 24">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </a>
             </div>
+
+            <!-- SINGLE ACTION ROW: EXPLORE ON LEFT & SHARE ON RIGHT -->
+            <div class="pure-actions-dock-row">
+              <a href="https://dharatatva.github.io/web/herb_o_care" class="pure-btn-explore" id="exploreBtn">
+                <span>Explore Products</span>
+                <span class="pure-btn-arrow">→</span>
+              </a>
+
+              <button class="card-action-circle-btn" id="shareBtn" aria-label="Share Product" onclick="handleProductShare(event); haptic(8);" title="Share Formulation">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Reference Style Trust Badges -->
+            <div class="pure-trust-badges-row">
+              <div class="pure-trust-item">
+                <span class="pure-trust-icon">🌿</span>
+                <span>100% Pure Herbs</span>
+              </div>
+              <div class="pure-trust-item">
+                <span class="pure-trust-icon">🛡️</span>
+                <span>Lab Certified</span>
+              </div>
+              <div class="pure-trust-item">
+                <span class="pure-trust-icon">💧</span>
+                <span>Chemical Free</span>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -269,7 +321,7 @@
 
         <div class="warm-drawer-menu-list">
           <span class="drawer-section-heading">Explore</span>
-		  <div class="warm-menu-group">
+          <div class="warm-menu-group">
             <a href="https://dharatatva.github.io/web" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
@@ -277,8 +329,8 @@
               <span class="warm-item-title">Home / Products</span>
             </a>
           </div>
-		  
-		  <div class="warm-menu-group">
+          
+          <div class="warm-menu-group">
             <a href="https://dharatatva.github.io/web/about_dharatatva" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -351,19 +403,19 @@
         </div>
 
         <div class="warm-drawer-footer-brand">
-			  <div class="warm-menu-item">
-              <div class="warm-item-icon">
-                <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
-              </div>
-              <div>
-			  <span class="footer-brand-title">Dharatatva</span><br>
-			  <span class="footer-brand-tagline">Herbal | Ayurveda | Modern Science</span>
-			  </div>
+          <div class="warm-menu-item">
+            <div class="warm-item-icon">
+              <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
             </div>
+            <div>
+              <span class="footer-brand-title">Dharatatva</span><br>
+              <span class="footer-brand-tagline">Herbal | Ayurveda | Modern Science</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- NAMASTE AUTH SHEET -->
+      <!-- USER AUTH SHEET -->
       <div class="user-auth-sheet" id="userAuthSheet">
         <div class="sheet-drag-pill"></div>
         
@@ -415,256 +467,125 @@
   <script>
   const collections = {
     health: {
+      label: "🌿 Health",
       bg: "linear-gradient(165deg, #F0F5EE 20%, #bdf5e052 50%)",
       glow: "rgba(142, 194, 150, 0.42)",
       items: [
         { 
-          rating: "4.9", 
+          brandPart1: "Herb",
+          brandPart2: "O-Care",
+          tag: "✧ Daily Agni Ritual ›",
+          headline: "Your Sacred Daily Reset",
+          notes: "23+ Sacred Himalayan Botanicals. Awakens sluggish Agni, clears toxic Ama, and activates Lekhana Karma.",
+          rating: "4.94", 
           reviews: "182", 
-          name: "Herb-O-Care", 
-          notes: "Immunity booster formulated with raw botanical forest extracts", 
+          name: "Herb-O-Care Churna",
           price: "₹383", 
           mrp: "₹437", 
           discount: "-12%", 
-          img: "https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=1000&q=90",
+          modelImg: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=85",
+          productImg: "https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=800&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
         },
         { 
-          rating: "0", 
+          brandPart1: "Pet",
+          brandPart2: "O-Care",
+          tag: "✧ Vital Gut Harmony ›",
+          headline: "Deep Gut Cleanse & Agni",
+          notes: "Raw forest herb decoction for gentle digestive reset, relieving bloating and abdominal heaviness naturally.",
+          rating: "4.88", 
           reviews: "94", 
-          name: "Pet-O-Care", 
-          notes: "Natural digestive & vitality supplement with raw herbs", 
+          name: "Pet-O-Care Churna",
           price: "₹449", 
           mrp: "₹650", 
           discount: "-30%", 
-          img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
+          modelImg: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=85",
+          productImg: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=90",
+          url: "https://dharatatva.github.io/web/herb_o_care"
         }
       ]
     },
     women: {
+      label: "🌸 Women",
       bg: "linear-gradient(165deg, #EEDAD4 20%, #bdf5e052 90%)",
       glow: "rgba(228, 155, 168, 0.42)",
       items: [
         { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_face_wash.avif?auto=format&fit=crop&w=1000&q=90",
+          brandPart1: "Pure",
+          brandPart2: "Glow",
+          tag: "✧ Glow Daily ›",
+          headline: "Your Daily Fresh Start",
+          notes: "Gentle formulas. Deep clean. Healthy, glowing skin crafted with wild mountain botanicals.",
+          rating: "4.92", 
+          reviews: "68", 
+          name: "Kumkumadi Glow Wash", 
+          price: "₹349", 
+          mrp: "₹499", 
+          discount: "-30%", 
+          modelImg: "https://images.unsplash.com/photo-1512290900672-1f41d999086f?auto=format&fit=crop&w=1200&q=85",
+          productImg: "https://dharatatva.github.io/web/img/women_face_wash.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         },
         { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_night_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_hair_oil.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_face_cream.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_hair_shampoo.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_hair_remover.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_body_wash.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_hair_cream.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You.", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/women_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "4.96", 
+          reviews: "54", 
+          name: "Saffron Night Tailam", 
+          price: "₹599", 
+          mrp: "₹799", 
+          discount: "-25%", 
+          modelImg: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=85",
+          productImg: "https://dharatatva.github.io/web/img/women_night_tailam.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         }
       ]
     },
     men: {
+      label: "🌿 Men",
       bg: "linear-gradient(165deg, #5c9bf033 20%, #bdf5e052 70%)",
       glow: "rgba(195, 155, 105, 0.42)",
       items: [
         { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_face_wash.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_night_tailam.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_hair_oil.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_face_cream.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_hair_shampoo.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_hair_remover.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_body_wash.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_hair_cream.avif?auto=format&fit=crop&w=1000&q=90",
-          url: "javascript:void(0);"
-        },
-        { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You.", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/men_body_cream.avif?auto=format&fit=crop&w=1000&q=90",
+          brandPart1: "Urja",
+          brandPart2: "Vigor",
+          tag: "✧ Active Vitality ›",
+          headline: "Natural Stamina & Shield",
+          notes: "Potent Himalayan Shilajit and Ashwagandha root synergy for sustained cellular endurance.",
+          rating: "4.91", 
+          reviews: "112", 
+          name: "Urja Vitality Rasayan", 
+          price: "₹549", 
+          mrp: "₹799", 
+          discount: "-31%", 
+          modelImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85",
+          productImg: "https://dharatatva.github.io/web/img/men_face_wash.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         }
       ]
     },
     kids: {
+      label: "🌿 Kids",
       bg: "linear-gradient(165deg, #ffd16d1a 20%, #bdf5e052 80%)",
       glow: "rgba(238, 198, 110, 0.42)",
       items: [
         { 
-          rating: "0", 
-          reviews: "0", 
-          name: "Launching Soon", 
-          notes: "Something Special Is Coming…, Crafted by Nature, Made for You.", 
-          price: "₹__", 
-          mrp: "₹__", 
-          discount: "_%", 
-          img: "https://dharatatva.github.io/web/img/Bala_Poshan.avif?auto=format&fit=crop&w=1000&q=90",
+          brandPart1: "Bala",
+          brandPart2: "Poshan",
+          tag: "✧ Suvarna Shield ›",
+          headline: "Gentle Growth & Memory",
+          notes: "Traditional Brahmi, Shankhpushpi and sprouted almond flour elixir designed for young cognitive health.",
+          rating: "4.95", 
+          reviews: "47", 
+          name: "Bala Poshan Mix", 
+          price: "₹499", 
+          mrp: "₹699", 
+          discount: "-28%", 
+          modelImg: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=85",
+          productImg: "https://dharatatva.github.io/web/img/Bala_Poshan.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         }
       ]
@@ -740,8 +661,10 @@
   function preloadAllSiteAssets() {
     Object.values(collections).forEach(category => {
       category.items.forEach(item => {
-        const img = new Image();
-        img.src = item.img;
+        const img1 = new Image();
+        img1.src = item.modelImg;
+        const img2 = new Image();
+        img2.src = item.productImg;
       });
     });
   }
@@ -754,37 +677,21 @@
     if (withAudio) playAudio();
   }
 
-  window.addEventListener('DOMContentLoaded', () => {
-    applyCategoryTheme(currentCategory);
-    ensureDesktopSideCards();
-    updateNavigationState();
-
-    const alreadyAccepted = localStorage.getItem(CACHE_KEY);
-    if (!alreadyAccepted) {
-      setTimeout(() => welcomeModal.classList.add('active'), 2700);
-    } else {
-      preloadAllSiteAssets();
-      setTimeout(() => {
-        playAudio().catch(() => {
-          const handleFirstUserTouch = () => {
-            playAudio().then(() => dismissReminderPill()).catch(() => {});
-          };
-          window.addEventListener('touchstart', handleFirstUserTouch, { once: true, passive: true });
-          window.addEventListener('click', handleFirstUserTouch, { once: true });
-        });
-      }, 800);
-    }
-  });
-
   let currentCategory = 'health';
   let currentIndex = 0;
   let isAnimating = false;
   let currentViewMode = 'single';
+  let catDockTimer = null;
 
   const swipeArea = document.getElementById('swipeArea');
-  const prodImg = document.getElementById('productDisplay');
   const prodCanvas = document.getElementById('productCanvas');
-  const prodName = document.getElementById('prodName');
+  const brandPart1 = document.getElementById('brandPart1');
+  const brandPart2 = document.getElementById('brandPart2');
+  const productModelImg = document.getElementById('productModelImg');
+  const floatingPackImg = document.getElementById('floatingPackImg');
+  const floatingProductDock = document.getElementById('floatingProductDock');
+  const prodTagChip = document.getElementById('prodTagChip');
+  const prodHeadline = document.getElementById('prodHeadline');
   const prodRating = document.getElementById('prodRating');
   const prodReviews = document.getElementById('prodReviews');
   const prodNotes = document.getElementById('prodNotes');
@@ -799,6 +706,10 @@
   const nextBtn = document.getElementById('nextBtn');
   const gridStage = document.getElementById('gridStage');
   const viewToggleBtn = document.getElementById('viewToggleBtn');
+  const headerCatPill = document.getElementById('headerCatPill');
+  const headerCatLabel = document.getElementById('headerCatLabel');
+  const headerCatModeIcon = document.getElementById('headerCatModeIcon');
+  const categoryDockPanel = document.getElementById('categoryDockPanel');
 
   function applyCategoryTheme(catKey) {
     const cat = collections[catKey];
@@ -807,9 +718,97 @@
     if (ambientGlow) {
       ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 68%)`;
     }
+    if (headerCatLabel) {
+      headerCatLabel.textContent = cat.label || "🌿 " + catKey.toUpperCase();
+    }
   }
 
-  /* DESKTOP SIDE PREVIEW CARDS INJECTION & DYNAMIC SYNC */
+  /* 1-SEC POPUP SEQUENCE */
+  function startCategoryEntranceSequence() {
+    setTimeout(() => {
+      openCategoryPanel(true);
+    }, 1000);
+  }
+
+  /* LIQUID SPRING EXPAND FROM HEADER PILL (DYNAMIC ISLAND MORPH EFFECT) */
+  function openCategoryPanel(autoDock = false) {
+    if (catDockTimer) clearTimeout(catDockTimer);
+    
+    // Animate out header pill smoothly so it disappears while panel opens
+    gsap.to(headerCatPill, {
+      opacity: 0,
+      scale: 0.6,
+      duration: 0.22,
+      ease: "power2.in",
+      onComplete: () => {
+        headerCatPill.classList.remove('visible');
+        headerCatPill.style.pointerEvents = 'none';
+      }
+    });
+
+    categoryDockPanel.classList.add('active');
+
+    // Elastic liquid drop expansion from top right toward center
+    gsap.fromTo(categoryDockPanel,
+      { 
+        y: -42, 
+        scaleX: 0.35, 
+        scaleY: 0.25, 
+        opacity: 0.2, 
+        transformOrigin: "85% 0%" 
+      },
+      { 
+        y: 0, 
+        scaleX: 1, 
+        scaleY: 1, 
+        opacity: 1, 
+        duration: 0.6, 
+        ease: "elastic.out(1, 0.65)" 
+      }
+    );
+
+    // Stagger buttons like liquid bubbles separating into position
+    const catBtns = categoryDockPanel.querySelectorAll('.cat-btn, .view-toggle-btn');
+    gsap.fromTo(catBtns,
+      { scale: 0.4, opacity: 0, y: 12 },
+      { scale: 1, opacity: 1, y: 0, duration: 0.42, stagger: 0.035, ease: "back.out(2)", delay: 0.08 }
+    );
+
+    if (autoDock) {
+      catDockTimer = setTimeout(() => {
+        dockCategoryPanel();
+      }, 2500);
+    }
+  }
+
+  /* ELASTIC SNAP BACK INTO HEADER PILL */
+  function dockCategoryPanel(manualDismiss = false) {
+    if (catDockTimer) clearTimeout(catDockTimer);
+    
+    // Liquid shrink snapping back into header pill coordinates
+    gsap.to(categoryDockPanel, {
+      y: -35,
+      scaleX: 0.32,
+      scaleY: 0.22,
+      opacity: 0,
+      transformOrigin: "85% 0%",
+      duration: manualDismiss ? 0.26 : 0.34,
+      ease: "power3.in",
+      onComplete: () => {
+        categoryDockPanel.classList.remove('active');
+        headerCatPill.classList.add('visible');
+        headerCatPill.style.pointerEvents = 'auto';
+        
+        // Header pill bounces back into existence with elastic liquid spring
+        gsap.fromTo(headerCatPill,
+          { scale: 0.45, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.45, ease: "elastic.out(1.2, 0.55)" }
+        );
+      }
+    });
+  }
+
+  /* DESKTOP SIDE PREVIEW CARDS */
   function ensureDesktopSideCards() {
     let prevCard = document.getElementById('desktopSidePrev');
     let nextCard = document.getElementById('desktopSideNext');
@@ -858,10 +857,9 @@
     const items = collections[currentCategory].items;
     const total = items.length;
 
-    // Previous Side Card (Left Blur)
     if (currentIndex > 0) {
       const prevItem = items[currentIndex - 1];
-      prevCard.querySelector('.desktop-side-card-img').src = prevItem.img;
+      prevCard.querySelector('.desktop-side-card-img').src = prevItem.modelImg || prevItem.productImg;
       prevCard.querySelector('.desktop-side-card-scrim span').textContent = prevItem.name;
       prevCard.style.display = 'flex';
       prevCard.style.opacity = '0.55';
@@ -870,10 +868,9 @@
       prevCard.style.display = 'none';
     }
 
-    // Next Side Card (Right Blur)
     if (currentIndex < total - 1) {
       const nextItem = items[currentIndex + 1];
-      nextCard.querySelector('.desktop-side-card-img').src = nextItem.img;
+      nextCard.querySelector('.desktop-side-card-img').src = nextItem.modelImg || nextItem.productImg;
       nextCard.querySelector('.desktop-side-card-scrim span').textContent = nextItem.name;
       nextCard.style.display = 'flex';
       nextCard.style.opacity = '0.55';
@@ -883,7 +880,7 @@
     }
   }
 
-  /* RENDER GRID WITH BALANCED RATIO & AUTONOMOUS CENTERING */
+  /* RENDER GRID WITH PROPORTIONAL CARDS */
   function renderGridContent(catKey) {
     const items = collections[catKey].items;
     gridStage.innerHTML = '';
@@ -892,7 +889,7 @@
       card.className = 'grid-card';
       card.innerHTML = `
         <div class="grid-card-img-wrap">
-          <img src="${item.img}" alt="${item.name}" class="grid-card-img" loading="lazy">
+          <img src="${item.productImg}" alt="${item.name}" class="grid-card-img" loading="lazy">
         </div>
 
         <button class="grid-card-share-btn" aria-label="Share ${item.name}" onclick="handleGridShare(event, ${idx})">
@@ -941,13 +938,11 @@
     });
   }
 
-  /* HIGH-CONVERTING SHARE ENGINE (SINGLE VIEW & GRID VIEW) */
-  /* 10/10 HIGH-CONVERTING SHARE ENGINE (new_home.html) */
+  /* HIGH-CONVERTING SHARE ENGINE */
   async function generateSharePayload(product) {
-    const prodUrl = product.url && product.url !== '#' ? product.url : window.location.href;
+    const prodUrl = product.url && product.url !== '#' && product.url !== 'javascript:void(0);' ? product.url : window.location.href;
     const shareTitle = `${product.name} | Dharatatva`;
 
-    // Price formatting & discount clean-up
     const cleanPrice = product.price.replace(/[^\d]/g, '');
     const cleanMrp = product.mrp.replace(/[^\d]/g, '');
     const savings = cleanMrp && cleanPrice ? parseInt(cleanMrp) - parseInt(cleanPrice) : 0;
@@ -957,14 +952,9 @@
       ? `🏷️ *Special Price:* *${product.price}* ~${product.mrp}~ (Save ₹${savings} · ${discountClean} OFF)`
       : `🏷️ *Price:* *${product.price}*`;
 
-    // High curiosity headline hook based on product
-    const hookLine = product.name.includes("Herb-O-Care")
-      ? "Awaken sluggish Agni, clear morning bloating & flush trapped Ama toxins naturally."
-      : product.notes;
-
     const shareText = 
 `🌿 *${product.name}* | Dharatatva
-${hookLine}
+${product.notes}
 
 ⭐ *${product.rating} / 5 Rating* (${product.reviews} Verified Reviews)
 ${priceLine}
@@ -974,13 +964,12 @@ ${priceLine}
 👉 *Tap here to discover Shastra & claim offer:*
 ${prodUrl}`;
 
-    return { shareTitle, shareText, prodUrl, imgUrl: product.img };
+    return { shareTitle, shareText, prodUrl, imgUrl: product.productImg };
   }
 
   async function executeSmartShare(payload) {
     haptic(16);
 
-    // 1. Mobile Native Share With Actual Image File
     if (navigator.share) {
       try {
         const response = await fetch(payload.imgUrl);
@@ -996,9 +985,7 @@ ${prodUrl}`;
           showToast("Shared Successfully ✓");
           return;
         }
-      } catch (e) {
-        // Fallback agar file sharing allow na ho
-      }
+      } catch (e) {}
 
       try {
         await navigator.share({
@@ -1013,18 +1000,15 @@ ${prodUrl}`;
       }
     }
 
-    // 2. Fallback: Direct WhatsApp App / Web Redirect
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(payload.shareText)}`;
     const opened = window.open(waUrl, '_blank');
 
-    // 3. Fallback: Clipboard Copy
     if (!opened) {
       await navigator.clipboard.writeText(payload.shareText);
       showToast("Offer Details Copied ✓");
     }
   }
 
-  /* Single View Share Handler */
   async function handleProductShare(e) {
     e.stopPropagation();
     const product = collections[currentCategory].items[currentIndex];
@@ -1032,7 +1016,6 @@ ${prodUrl}`;
     await executeSmartShare(payload);
   }
 
-  /* Grid View Share Handler */
   async function handleGridShare(e, idx) {
     e.stopPropagation();
     const product = collections[currentCategory].items[idx];
@@ -1049,6 +1032,7 @@ ${prodUrl}`;
       currentViewMode = 'grid';
       viewToggleBtn.classList.add('is-grid');
       swipeArea.classList.add('grid-mode');
+      headerCatModeIcon.textContent = '☰';
       isAnimating = true;
 
       prevBtn.classList.remove('visible');
@@ -1083,7 +1067,10 @@ ${prodUrl}`;
           stagger: 0.05, 
           ease: 'power3.out', 
           delay: 0.08, 
-          onComplete: () => { isAnimating = false; } 
+          onComplete: () => { 
+            isAnimating = false; 
+            dockCategoryPanel(true);
+          } 
         }
       );
     } else {
@@ -1096,6 +1083,7 @@ ${prodUrl}`;
     currentViewMode = 'single';
     viewToggleBtn.classList.remove('is-grid');
     swipeArea.classList.remove('grid-mode');
+    headerCatModeIcon.textContent = '⊞';
     isAnimating = true;
 
     const cards = gridStage.querySelectorAll('.grid-card');
@@ -1124,6 +1112,7 @@ ${prodUrl}`;
               isAnimating = false;
               updateNavigationState();
               gsap.to(dotsTrack, { opacity: 1, duration: 0.2 });
+              dockCategoryPanel(true);
             }
           }
         );
@@ -1137,17 +1126,30 @@ ${prodUrl}`;
     switchToSingleView();
   }
 
+  /* RENDER DUAL-IMAGE & STYLED TEXT CONTENT (STATIC PRODUCT BOTTLE) */
   function renderProductDataOnly() {
     const product = collections[currentCategory].items[currentIndex];
-    prodImg.src = product.img;
+    
+    // 2-tone brand typography
+    brandPart1.textContent = product.brandPart1 || "Herb";
+    brandPart2.textContent = product.brandPart2 || "O-Care";
+
+    // Dual Visual Images
+    productModelImg.src = product.modelImg;
+    floatingPackImg.src = product.productImg;
+
+    // Content Block
+    prodTagChip.querySelector('span').textContent = product.tag || "✧ Daily Ritual ›";
+    prodHeadline.textContent = product.headline || product.name;
     prodRating.textContent = product.rating;
     prodReviews.textContent = `(${product.reviews})`;
-    prodName.textContent = product.name;
     prodNotes.textContent = product.notes;
     prodPrice.textContent = product.price;
     prodMrp.textContent = product.mrp;
     prodDiscount.textContent = product.discount;
-    if (product.url) exploreBtn.href = product.url;
+
+    const targetUrl = product.url && product.url !== '#' ? product.url : 'javascript:void(0);';
+    exploreBtn.href = targetUrl;
   }
 
   function updateNavigationState() {
@@ -1183,58 +1185,42 @@ ${prodUrl}`;
     updateDesktopSideCards();
   }
 
-  /* OPTIMIZED INSTANT RENDER (NO LAG ON RAPID CLICKS) */
+  /* CINEMATIC LUXURY PRODUCT TRANSITION (NO JUMPING PACK, SMOOTH EDITORIAL REVEAL) */
   function renderProduct(direction = 1) {
     if (isAnimating) {
-      gsap.killTweensOf([prodCanvas, detailsCard, prodImg]);
+      gsap.killTweensOf([prodCanvas, detailsCard, productModelImg, floatingPackImg]);
       isAnimating = false;
     }
     isAnimating = true;
     haptic(10);
 
-    // Desktop Carousel Glide Effect
-    if (window.innerWidth >= 1024) {
-      gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.12, ease: 'power2.in' });
-      gsap.to(prodCanvas, {
-        x: direction * -35,
-        scale: 0.96,
-        opacity: 0.6,
-        duration: 0.14,
-        ease: 'power2.in',
-        onComplete: () => {
-          renderProductDataOnly();
-          updateNavigationState();
-
-          gsap.fromTo(prodCanvas,
-            { x: direction * 40, scale: 0.96, opacity: 0.6 },
-            { x: 0, scale: 1, opacity: 1, duration: 0.26, ease: 'power3.out' }
-          );
-          gsap.to(detailsCard, { 
-            y: 0, 
-            opacity: 1, 
-            duration: 0.22, 
-            ease: 'power2.out', 
-            onComplete: () => { isAnimating = false; }
-          });
-        }
-      });
-      return;
-    }
-
-    // Mobile Swipe Fallback
-    gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.18, ease: 'power2.in' });
-    gsap.to(prodImg, {
-      opacity: 0,
-      x: direction * -30,
-      scale: 0.97,
-      duration: 0.22,
-      ease: 'power2.in',
+    // Fade and translate text content smoothly
+    gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.16, ease: 'power2.in' });
+    
+    // Smooth cinematic zoom and cross-dissolve on model backdrop
+    gsap.to(productModelImg, {
+      opacity: 0.2,
+      scale: 1.05,
+      x: direction * -20,
+      duration: 0.24,
+      ease: "power2.inOut",
       onComplete: () => {
         renderProductDataOnly();
         updateNavigationState();
 
-        gsap.set(prodImg, { x: direction * 30, scale: 0.97, opacity: 0 });
-        gsap.to(prodImg, { x: 0, scale: 1, opacity: 1, duration: 0.38, ease: 'power3.out' });
+        // Elegant editorial reveal: Slow settling glide (1.06 -> 1.0)
+        gsap.fromTo(productModelImg,
+          { scale: 1.06, x: direction * 20, opacity: 0.2 },
+          { scale: 1, x: 0, opacity: 1, duration: 0.55, ease: "power2.out" }
+        );
+
+        // Subtle studio lighting sweep on the stationary bottle
+        gsap.fromTo(floatingPackImg,
+          { filter: "drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18)) brightness(1.2)" },
+          { filter: "drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18)) brightness(1)", duration: 0.6, ease: "power2.out" }
+        );
+
+        // Text Content Reveal
         gsap.to(detailsCard, { 
           y: 0, 
           opacity: 1, 
@@ -1264,7 +1250,7 @@ ${prodUrl}`;
   nextBtn.addEventListener('click', nextProduct);
   prevBtn.addEventListener('click', prevProduct);
 
-  /* DRAG & SWIPE (MOBILE FRIENDLY) */
+  /* DRAG & SWIPE */
   let startX = 0, currentDragX = 0, isDragging = false;
 
   swipeArea.addEventListener('touchstart', (e) => {
@@ -1304,7 +1290,7 @@ ${prodUrl}`;
   swipeArea.addEventListener('touchend', finalizeDrag);
   swipeArea.addEventListener('touchcancel', finalizeDrag);
 
-  /* CATEGORY SELECTION WITH VIBRANT ICON ANIMATION */
+  /* CATEGORY BUTTON HANDLER */
   document.querySelectorAll('.cat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedCat = btn.dataset.cat;
@@ -1343,17 +1329,20 @@ ${prodUrl}`;
             const newCards = gridStage.querySelectorAll('.grid-card');
             gsap.fromTo(newCards,
               { opacity: 0, y: 24, scale: 0.94 },
-              { opacity: 1, y: 0, scale: 1, duration: 0.32, stagger: 0.04, ease: 'power3.out', onComplete: () => { isAnimating = false; } }
+              { opacity: 1, y: 0, scale: 1, duration: 0.32, stagger: 0.04, ease: 'power3.out', onComplete: () => { 
+                isAnimating = false; 
+                dockCategoryPanel(true);
+              }}
             );
           }
         });
       } else {
         renderProduct(1);
+        dockCategoryPanel(true);
       }
     });
   });
 
-  /* RESIZE LISTENER */
   window.addEventListener('resize', () => {
     if (currentViewMode === 'single') {
       updateNavigationState();
@@ -1382,14 +1371,6 @@ ${prodUrl}`;
   });
 
   document.getElementById('closeMenuBtn').addEventListener('click', closeAllModals);
-
-  document.getElementById('namasteTrigger').addEventListener('click', () => {
-    haptic(15);
-    closeAllModals();
-    globalBackdrop.classList.add('active');
-    userAuthSheet.classList.add('open');
-  });
-
   document.getElementById('closeUserBtn').addEventListener('click', closeAllModals);
 
   function requestOtp() {
@@ -1427,6 +1408,30 @@ ${prodUrl}`;
     showToast("Namasté! Welcome ✓");
     setTimeout(closeAllModals, 1200);
   }
-</script>
+
+  window.addEventListener('DOMContentLoaded', () => {
+    applyCategoryTheme(currentCategory);
+    renderProductDataOnly();
+    ensureDesktopSideCards();
+    updateNavigationState();
+    startCategoryEntranceSequence();
+
+    const alreadyAccepted = localStorage.getItem(CACHE_KEY);
+    if (!alreadyAccepted) {
+      setTimeout(() => welcomeModal.classList.add('active'), 2700);
+    } else {
+      preloadAllSiteAssets();
+      setTimeout(() => {
+        playAudio().catch(() => {
+          const handleFirstUserTouch = () => {
+            playAudio().then(() => dismissReminderPill()).catch(() => {});
+          };
+          window.addEventListener('touchstart', handleFirstUserTouch, { once: true, passive: true });
+          window.addEventListener('click', handleFirstUserTouch, { once: true });
+        });
+      }, 800);
+    }
+  });
+  </script>
 </body>
 </html>
