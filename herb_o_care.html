@@ -140,12 +140,11 @@
 
       <div class="product-fixed-viewport" id="productFixedStage">
         
-		<!-- YEH NAYA TEXT ELEMENT ADD KAREIN (IMAGE KE THEEK PEECHE DIKHEGA) -->
-<div class="hero-backdrop-brand-text" aria-hidden="true">
-  <span class="brand-part">HERB-O-CARE</span>
-</div>
+        <div class="hero-backdrop-brand-text" aria-hidden="true">
+          <span class="brand-part">HERB-O-CARE</span>
+        </div>
         
-		<button class="desktop-hero-arrow desktop-prev-arrow" onclick="desktopPrevSlide(); haptic(6);" title="Previous Image">
+        <button class="desktop-hero-arrow desktop-prev-arrow" onclick="desktopPrevSlide(); haptic(6);" title="Previous Image">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <button class="desktop-hero-arrow desktop-next-arrow" onclick="desktopNextSlide(); haptic(6);" title="Next Image">
@@ -167,9 +166,9 @@
           </div>
           <div class="badge-icon-item">
             <div class="spec-icon-wrap">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-              </div>
-              <span>Non-GMO</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <span>Non-GMO</span>
           </div>
         </div>
 
@@ -399,7 +398,7 @@
           </div>
         </div>
         <div class="policy-content-body" id="detailSheetBody">
-          </div>
+        </div>
       </div>
 
     </div>
@@ -408,11 +407,9 @@
   <div class="lightbox-modal" id="lightboxModal">
     <div class="lightbox-top">
       <span id="lbCounter" style="font-weight: 800; font-size: 12px; letter-spacing: 0.06em; background: rgba(255,255,255,0.16); padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">1 / 6</span>
-      <!-- Sirf yeh cross button dabane par hi lightbox close hoga -->
       <button type="button" class="icon-circle-btn" style="background:rgba(255,255,255,0.2); color:#FFF; border-color:rgba(255,255,255,0.3); width:34px; height:34px;" onclick="closeLightbox(); haptic(6);" aria-label="Close Gallery">✕</button>
     </div>
     
-    <!-- Outer div se onclick="closeLightbox()" hata diya gaya hai -->
     <div class="lightbox-content-box" id="lightboxContentBox">
       <button type="button" class="lb-nav-btn lb-prev-btn" onclick="prevPhoto(); haptic(6);" aria-label="Previous Photo">‹</button>
       
@@ -432,115 +429,351 @@
     </div>
   </div>
 
+  <!-- SEO SEMANTIC VAULT (DETAILS TAB REDESIGNED ACCORDING TO REFERENCE LAYOUT) -->
   <div class="seo-semantic-vault" id="seoVault">
     
     <div id="vault-details">
-      <div class="drawer-card-box">
-        <span class="drawer-eyebrow-tag">Recognize The Signals · 10 Indicators</span>
-        <h3 class="drawer-card-title serif-font">When Your Body Starts Giving You Signals…</h3>
-        <p style="font-size:12px; color:#555; line-height:1.55;">
-          We live in a world where purity is becoming harder to find. The air we breathe, the water we drink, and the food we consume can place an increasing burden on the body. And your body rarely changes overnight. It gives signals:
-        </p>
-        <div class="signals-swipe-deck">
-          <div class="signal-chip">⚖️<strong>Unwanted Weight</strong><span>Gradual buildup</span></div>
-          <div class="signal-chip">⏳<strong>Heaviness & Swelling</strong><span>Water retention</span></div>
-          <div class="signal-chip">⚡<strong>Low Energy</strong><span>Sluggish fire</span></div>
-          <div class="signal-chip">🔥<strong>Sluggish Digestion</strong><span>Weak Agni</span></div>
-          <div class="signal-chip">🚶<strong>Reduced Activity</strong><span>Morning fatigue</span></div>
-          <div class="signal-chip">🔄<strong>Metabolic Imbalance</strong><span>Sticky Ama</span></div>
-          <div class="signal-chip">📏<strong>Growing Waistline</strong><span>Deep tissue fat</span></div>
-          <div class="signal-chip">🦴<strong>Physical Stiffness</strong><span>Blocked srotas</span></div>
-          <div class="signal-chip">🌿<strong>Joint Discomfort</strong><span>Mobility strain</span></div>
-          <div class="signal-chip">✨<strong>Hair Fall & Dullness</strong><span>Low nutrient flow</span></div>
+      <div class="detail-infographic-shell">
+
+        <!-- 1. TOP MASTHEAD BANNER & INTRO -->
+        <div class="infographic-masthead-card">
+          <div class="masthead-visual-cover">
+            <!-- Space Placeholder: Replace with your custom banner image -->
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80" alt="Body Signals & Inner Health" onerror="this.onerror=null; this.src='img/18.png';"/>
+            <div class="masthead-scrim-overlay"></div>
+            <div class="masthead-badge-pill">🌿 AYURVEDIC SENSORY OBSERVATION</div>
+          </div>
+          <div class="masthead-body-box">
+            <span class="section-tag-eyebrow">Inner Health Signals · 10 Indicators</span>
+            <h3 class="infographic-main-title serif-font">When Your Body Starts Giving You Signals…</h3>
+            <p class="infographic-lead-desc">
+              In today’s world, pure living is hard to maintain. Between what we eat, drink, and breathe, our bodies carry a silent, growing load.
+            </p>
+            <p class="infographic-sub-lead">
+              A sluggish body doesn't happen overnight. It gives signals:
+            </p>
+          </div>
         </div>
-        <div style="margin-top:14px; padding:12px 14px; background:#1C2621; border-radius:14px; color:#FFFFFF; text-align:center;">
-          <p style="font-family:'Playfair Display', serif; font-style:italic; font-size:14px; color:#F7EEDB;">
-            “What if the answer was not outside… but within nature?”
+
+        <!-- 2. 10 SIGNALS INFOGRAPHIC GRID (SPOKE & CARD DISPLAY) -->
+        <div class="signals-feature-grid">
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">⚖️</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Unwanted Weight</strong>
+              <span class="signal-explanation">Gradual and persistent accumulation of excess weight</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">📏</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Expanding Waistline</strong>
+              <span class="signal-explanation">Clothes no longer fitting comfortably</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">⏳</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Heaviness & Swelling</strong>
+              <span class="signal-explanation">Fluid retention and abdominal bloating</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">🔥</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Weakened Digestion</strong>
+              <span class="signal-explanation">Post-meal bloating and sluggish digestive capacity</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">⚡</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Low Energy</strong>
+              <span class="signal-explanation">Waking up exhausted with daytime lethargy</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">🔄</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Metabolic Imbalance</strong>
+              <span class="signal-explanation">Accumulation of sticky metabolic toxins (<em>Ama</em>)</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">🚶</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Reduced Activity</strong>
+              <span class="signal-explanation">Daily physical movements no longer feel effortless</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">🦴</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Physical Stiffness</strong>
+              <span class="signal-explanation">Congested micro-channels (<em>Srotas</em>) restricting flexibility</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">🌿</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Joint Discomfort</strong>
+              <span class="signal-explanation">Strain and restricted mobility</span>
+            </div>
+          </div>
+
+          <div class="signal-feature-card">
+            <div class="signal-glyph-icon">✨</div>
+            <div class="signal-card-texts">
+              <strong class="signal-name">Hair Fall & Dull Skin</strong>
+              <span class="signal-explanation">Impaired systemic nutrient delivery</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- REALITY WAKE-UP CARD -->
+        <div class="reality-alert-card">
+          <p class="reality-subdued-text">
+            We often ignore these signs, dismissing them as the cost of a hectic lifestyle or aging.
           </p>
-        </div>
-      </div>
-
-      <div class="drawer-card-box">
-        <span class="drawer-eyebrow-tag">The Root Cause</span>
-        <h3 class="drawer-card-title serif-font">An Ayurvedic Perspective</h3>
-        <p style="font-size:12px; color:#555; line-height:1.55;">
-          In Ayurveda, health begins with Agni—the digestive fire. When Agni becomes sluggish (Mandagni), digestion and metabolism become less efficient, while Ama accumulates and Tridosha loses its natural balance.
-        </p>
-        <span class="drawer-eyebrow-tag" style="margin-top:14px;">The 4 Key Principles</span>
-        <div class="principles-deck-2x2">
-          <div class="principle-sub-box">
-            <div style="font-size:9px; font-weight:800; color:var(--accent-rust); margin-bottom:2px;">STEP 01 · 🔥</div>
-            <h4>Awaken Agni</h4>
-            <p>Kindles digestive fire for peak nutrient breakdown.</p>
-          </div>
-          <div class="principle-sub-box">
-            <div style="font-size:9px; font-weight:800; color:var(--accent-rust); margin-bottom:2px;">STEP 02 · 💧</div>
-            <h4>Clear Ama</h4>
-            <p>Flushes toxic metabolic sludge clogging micro-channels.</p>
-          </div>
-          <div class="principle-sub-box">
-            <div style="font-size:9px; font-weight:800; color:var(--accent-rust); margin-bottom:2px;">STEP 03 · ⚖️</div>
-            <h4>Balance Kapha</h4>
-            <p>Pacifies internal heaviness, fluid retention and lethargy.</p>
-          </div>
-          <div class="principle-sub-box">
-            <div style="font-size:9px; font-weight:800; color:var(--accent-rust); margin-bottom:2px;">STEP 04 · 🗡️</div>
-            <h4>Lekhana Karma</h4>
-            <p>Ancient Ayurvedic scraping action melts stubborn fat deposits.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="drawer-card-box">
-        <span class="drawer-eyebrow-tag">The Ayurvedic Pathway to Lightness</span>
-        <h3 class="drawer-card-title serif-font">7 Phase Complete Roadmap</h3>
-        <div class="timeline-vertical-path">
-          <div class="timeline-step-node">
-            <strong>Phase 01: Mandagni Identified</strong>
-            <p>Targets the sluggish digestive fire that traps stubborn metabolic debris.</p>
-          </div>
-          <div class="timeline-step-node">
-            <strong>Phase 02: Awaken Agni</strong>
-            <p>23+ potent botanicals stimulate natural digestive enzymes and gastric juices.</p>
-          </div>
-          <div class="timeline-step-node">
-            <strong>Phase 03: Clear Ama (Toxins)</strong>
-            <p>Systematically flushes trapped metabolic toxins from blocked pathways.</p>
-          </div>
-          <div class="timeline-step-node">
-            <strong>Phase 04: Balance Kapha Dosha</strong>
-            <p>Relieves excessive internal heaviness, fluid retention, and sluggish lethargy.</p>
-          </div>
-          <div class="timeline-step-node rust-highlight">
-            <strong>Phase 05: Lekhana Karma</strong>
-            <p>Ancient Ayurvedic 'scraping' action breaks down deeply packed visceral fat deposits.</p>
-          </div>
-          <div class="timeline-step-node rust-highlight">
-            <strong>Phase 06 & 07: Healthy Fat Metabolism → Feel Lighter</strong>
-            <p>Sustainable daytime stamina, unburdened organs, and a visibly balanced silhouette.</p>
+          <div class="reality-bold-callout">
+            However, the reality is clear: <strong>this is not the time to neglect your body, but to support it from within.</strong>
           </div>
         </div>
 
-        <div class="dosha-row-grid">
-          <div class="dosha-pill-card"><strong>VATA</strong><span>Calmed ↓</span></div>
-          <div class="dosha-pill-card"><strong>PITTA</strong><span>Balanced ⚖️</span></div>
-          <div class="dosha-pill-card"><strong>KAPHA</strong><span>Lightened ✦</span></div>
-        </div>
-      </div>
+        <!-- 3. THE CORE PROBLEM (AS METABOLIC DIAGNOSIS) -->
+        <div class="core-problem-box">
+          <span class="section-tag-eyebrow">[The Core Problem]</span>
+          <h3 class="infographic-section-title serif-font">Weight gain is rarely just about overeating; it begins with sluggish 'Agni'</h3>
+          <p class="core-problem-subtext">
+            Modern diets laden with chemicals, synthetic preservatives, chronic stress, and a fast-paced lifestyle exhaust our digestive system.
+          </p>
 
-      <div class="drawer-card-box">
-        <span class="drawer-eyebrow-tag">More Than an Ordinary Fat Burner</span>
-        <p style="font-size:12px; color:#555; line-height:1.6;">
-          True transformation doesn't begin on the weighing scale. It begins within. A carefully crafted Ayurvedic herbal churna created for the modern body—supporting your journey from excess heaviness toward greater lightness, balance and well-being.
-        </p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px;">
-          <div style="padding:8px 10px; border-radius:10px; box-shadow: var(--glass-shadow); font-size:11px;">
-            <strong>100% Herbal Purity</strong><div style="color:#777; font-size:9.5px;">No synthetic caffeine</div>
+          <div class="ayurvedic-diagnosis-banner">
+            <div class="diagnosis-lead-pill">Classical Ayurvedic Diagnosis</div>
+            <div class="diagnosis-subhead">According to classical Ayurveda, when your <strong>Jatharagni (Digestive Fire)</strong> weakens:</div>
           </div>
-          <div style="padding:8px 10px; border-radius:10px; box-shadow: var(--glass-shadow); font-size:11px;">
-            <strong>Non-Habit Forming</strong><div style="color:#777; font-size:9.5px;">Zero jitters or crashes</div>
+
+          <div class="problem-points-vertical-list">
+            <div class="problem-point-item">
+              <div class="problem-point-badge">01</div>
+              <div class="problem-point-text">
+                Ingested food fails to convert into clean energy, fermenting into toxic metabolic waste (<strong>Ama</strong>).
+              </div>
+            </div>
+            <div class="problem-point-item">
+              <div class="problem-point-badge">02</div>
+              <div class="problem-point-text">
+                Metabolism slows drastically, causing Kapha buildup and internal heaviness.
+              </div>
+            </div>
+            <div class="problem-point-item">
+              <div class="problem-point-badge">03</div>
+              <div class="problem-point-text">
+                Fat cells turn dense and stubborn—making starvation diets and crash regimens ineffective.
+              </div>
+            </div>
+          </div>
+
+          <div class="ayurvedic-quote-card">
+            <div class="quote-symbol">“</div>
+            <p>Until the digestive foundation is cleansed and restored from within, no external shortcuts can deliver lasting results.</p>
           </div>
         </div>
+
+        <!-- 4. THE SOLUTION: HERB-O-CARE (100% PURITY & BOTANICAL SCIENCE) -->
+        <div class="solution-showcase-box">
+          <span class="section-tag-eyebrow">[The Solution: Herb-o-care]</span>
+          <h3 class="infographic-section-title serif-font">Herb-o-care: Grounded in Ayurvedic Wisdom</h3>
+          <p class="solution-lead-desc">
+            Herb-o-care is neither a generic digestive powder nor a chemically synthesized slimming product.
+          </p>
+
+          <!-- 100% Spec Ribbon inspired by reference layout -->
+          <div class="infographic-stat-ribbon">
+            <div class="stat-number-box">
+              <div class="stat-huge-number">23+</div>
+              <div class="stat-category-label">Potent Botanicals</div>
+              <div class="stat-sub-text">Himalayan Herbs & Roots</div>
+            </div>
+            <div class="stat-dimensions-row">
+              <div class="stat-circle-pill">
+                <span class="pill-dot">🔥</span>
+                <span class="pill-label">Agni</span>
+              </div>
+              <div class="stat-circle-pill">
+                <span class="pill-dot">🗡️</span>
+                <span class="pill-label">Lekhana</span>
+              </div>
+              <div class="stat-circle-pill">
+                <span class="pill-dot">⚖️</span>
+                <span class="pill-label">Tridosha</span>
+              </div>
+              <div class="stat-circle-pill">
+                <span class="pill-dot">🌿</span>
+                <span class="pill-label">100%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-body-card">
+            <div class="solution-visual-split">
+              <!-- Space Placeholder: Replace with Product / Herb jar photo -->
+              <div class="solution-thumb-wrap">
+                <img src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=600&q=80" alt="Herb-o-care Formulation" onerror="this.onerror=null; this.src='img/18.png';"/>
+              </div>
+              <div class="solution-split-content">
+                <p>
+                  It is a complete restorative formulation crafted from extracts of <strong>23+ rare and potent Ayurvedic botanicals</strong>, developed around the principles of Tridosha balance and the classical therapeutic science of <strong>Lekhana Karma</strong> (natural metabolic scraping).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. THE 3-STEP ACTION FORMULA (FLOW PILLS 01, 02, 03) -->
+        <div class="formula-action-flow-box">
+          <span class="section-tag-eyebrow">[The 3-Step Action Formula]</span>
+          <h3 class="infographic-section-title serif-font">Sacred Sequential Restoration</h3>
+          <p style="font-size:11.5px; color:#5D6661; margin-bottom:14px; line-height:1.5;">
+            Working systematically from the digestive core outward to microscopic tissue channels:
+          </p>
+
+          <div class="action-steps-flow-container">
+            <!-- Step 01 -->
+            <div class="action-step-card">
+              <div class="action-step-header">
+                <span class="step-counter-pill">STEP 01</span>
+                <h4 class="step-title">Awaken Agni & Clear Ama (Deep Detox)</h4>
+              </div>
+              <div class="action-step-body">
+                <div class="step-glyph-col">🔥</div>
+                <p>Reignites digestive fire to flush accumulated metabolic toxins (<em>Ama</em>) from the digestive tract, ensuring daily nutrition converts into vitality rather than visceral fat.</p>
+              </div>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="action-step-card">
+              <div class="action-step-header">
+                <span class="step-counter-pill">STEP 02</span>
+                <h4 class="step-title">Kapha Balance & Lekhana Action (Natural Fat Scraping)</h4>
+              </div>
+              <div class="action-step-body">
+                <div class="step-glyph-col">🗡️</div>
+                <p>Inspired by ancient <em>Lekhana Karma</em>, it helps break down long-standing stubborn fat reserves and relieves systemic heaviness.</p>
+              </div>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="action-step-card">
+              <div class="action-step-header">
+                <span class="step-counter-pill">STEP 03</span>
+                <h4 class="step-title">Channel Cleansing & Systemic Lightness</h4>
+              </div>
+              <div class="action-step-body">
+                <div class="step-glyph-col">✨</div>
+                <p>Purifies bodily channels (<em>Micro-channels / Srotas</em>), restoring natural lightness, flexibility, and sustained daytime energy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. THE HERB-O-CARE PURITY PROMISE (GRID BADGE DISPLAY) -->
+        <div class="purity-promise-container">
+          <span class="section-tag-eyebrow">[The Herb-o-care Purity Promise]</span>
+          <h3 class="infographic-section-title serif-font">Uncompromising Shastric Standards</h3>
+          
+          <div class="purity-badges-grid">
+            <div class="purity-badge-card">
+              <div class="purity-check-icon">✓</div>
+              <div class="purity-info">
+                <strong>100% Pure Herbal Extracts</strong>
+                <span>No artificial additives</span>
+              </div>
+            </div>
+
+            <div class="purity-badge-card">
+              <div class="purity-check-icon">✓</div>
+              <div class="purity-info">
+                <strong>Zero Synthetic Caffeine</strong>
+                <span>No jitters, palpitations, or energy crashes</span>
+              </div>
+            </div>
+
+            <div class="purity-badge-card">
+              <div class="purity-check-icon">✓</div>
+              <div class="purity-info">
+                <strong>Non-Habit Forming</strong>
+                <span>Completely natural and safe for routine use</span>
+              </div>
+            </div>
+
+            <div class="purity-badge-card">
+              <div class="purity-check-icon">✓</div>
+              <div class="purity-info">
+                <strong>No Preservatives</strong>
+                <span>Sun-dried & sterile cold processed</span>
+              </div>
+            </div>
+
+            <div class="purity-badge-card">
+              <div class="purity-check-icon">✓</div>
+              <div class="purity-info">
+                <strong>No Alcohol</strong>
+                <span>Zero harsh solvents or fermented spirits</span>
+              </div>
+            </div>
+
+            <div class="purity-badge-card">
+              <div class="purity-check-icon">✓</div>
+              <div class="purity-info">
+                <strong>No Harsh Chemicals</strong>
+                <span>Zero synthetic fillers, binders, or dyes</span>
+              </div>
+            </div>
+
+            <div class="purity-badge-card">
+              <div class="purity-check-icon">✓</div>
+              <div class="purity-info">
+                <strong>Tridosha Friendly</strong>
+                <span>Harmoniously balances Vata, Pitta, and Kapha</span>
+              </div>
+            </div>
+
+            <div class="purity-badge-card highlight-card">
+              <div class="purity-check-icon">✓</div>
+              <div class="purity-info">
+                <strong>No Overnight Illusions</strong>
+                <span>A truly sustainable, deep wellness journey</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. CLOSING & CALL TO ACTION CARD (REFERENCE BOTTOM CONCIERGE/CTA) -->
+        <div class="closing-cta-card">
+          <div class="closing-brand-badge">DHARYA SATVA · HERB-O-CARE</div>
+          <span class="section-tag-eyebrow" style="color:#C29B38;">[Closing & Call to Action]</span>
+          <h3 class="closing-cta-title serif-font">“Nature has always possessed the solution; all it takes is the right beginning.”</h3>
+          <p class="closing-cta-desc">
+            The choice is yours: take a conscious step forward today with <strong>Herb-o-care</strong>, creating a dependable shield for you and your family against the hazards of modern living.
+          </p>
+
+          <button type="button" class="cta-order-trigger-btn" onclick="closeDrawer(); selectVolumePack('detox'); switchMainTab('buynow'); haptic(12);">
+            <span>👉 Order Herb-o-care Today — Begin Your Natural Wellness Journey</span>
+          </button>
+          <div class="closing-card-assurance">
+            🔒 100% Ayurvedic Guarantee · Flat 50% Off · Free Pan-India Delivery
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -901,7 +1134,7 @@
       document.body.style.overflow = 'hidden';
     }
 
-    /* DRAWER ONLY CLOSES ON CROSS (X) BUTTON */
+    /* DRAWER CLOSES ONLY ON CROSS (X) BUTTON */
     function closeDrawer() {
       const backdrop = document.getElementById('globalBackdrop');
       const sheet = document.getElementById('productDetailSheet');
@@ -1081,7 +1314,6 @@
       const totalMrp = pack.mrp * currentQty;
       const upiExtraOff = (selectedPayMode === 'upi') ? 100 : 0;
       const finalPrice = totalPrice - upiExtraOff;
-      const baseDiscount = totalMrp - totalPrice;
 
       const upiRow = document.getElementById('chkUpiDiscountRow');
       if (upiRow) upiRow.style.display = (selectedPayMode === 'upi') ? 'flex' : 'none';
@@ -1199,7 +1431,7 @@
       document.getElementById('lightboxModal').classList.remove('active');
     }
 
-    /* HIGH-CONVERTING SMART SHARE FUNCTION */
+    /* SMART SHARE FUNCTION */
     async function shareProduct() {
       haptic(14);
       const shareUrl = window.location.href;
@@ -1223,7 +1455,6 @@ Awaken sluggish digestive fire, clear bloating & flush trapped Ama toxins natura
 👉 *Tap to explore 23+ herbs & order:*
 ${shareUrl}`;
 
-      // Native Image Share with High-Res File
       if (navigator.share) {
         try {
           const response = await fetch(pack.img);
@@ -1252,7 +1483,6 @@ ${shareUrl}`;
         }
       }
 
-      // Fallback Direct WhatsApp Redirect
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
       window.open(waUrl, '_blank');
     }
