@@ -81,26 +81,24 @@
         </div>
 
         <div class="header-right-actions">
-          <!-- DOCKED CATEGORY & VIEW PILL IN HEADER -->
-          <button class="header-cat-pill" id="headerCatPill" onclick="openCategoryPanel(); haptic(8);" title="Change Category & View">
-            <span class="header-cat-label" id="headerCatLabel">🌿 Health</span>
-            <span class="header-cat-sep"></span>
-            <span class="header-cat-mode" id="headerCatModeIcon">⊞</span>
-          </button>
-
-          <div class="header-action-spacer"></div>
+          <!-- DOCKED CATEGORY PILL (2-LINE TEXT + CATEGORY ICON DISC) -->
+<button class="header-cat-pill" id="headerCatPill" onclick="openCategoryPanel(); haptic(8);" title="Change Category">
+  <div class="header-cat-text-col">
+    <span class="header-cat-prefix">Cat.</span>
+    <span class="header-cat-val" id="headerCatVal">Health</span>
+  </div>
+  <div class="header-cat-icon-disc" id="headerCatIconDisc">
+    🌿
+  </div>
+</button>
 
           <button class="icon-circle-btn" id="notifyBtn" aria-label="Notifications" onclick="showToast('No new notices'); haptic(6);">
             <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
             <div class="notify-badge"></div>
           </button>
 
+          <!-- AUDIO CONTROLS (TAP FOR SOUND UNDER PLAY BUTTON) -->
           <div class="audio-wrapper-group">
-            <div class="audio-reminder-pill" id="audioReminderPill" onclick="toggleAudio(); haptic(6);">
-              <span>Tap for Sound</span>
-              <span style="font-size:11px; color:#725bb7;">🎵</span>
-            </div>
-
             <div class="header-audio-btn" id="headerAudioBtn" onclick="toggleAudio(); haptic(6);" title="Play / Pause Ambient Sound">
               <svg class="audio-progress-svg" viewBox="0 0 38 38">
                 <circle class="audio-progress-bg" cx="19" cy="19" r="17"/>
@@ -108,11 +106,16 @@
               </svg>
               <div class="audio-state-icon" id="audioStateIcon">▶</div>
             </div>
+
+            <div class="audio-reminder-pill" id="audioReminderPill" onclick="toggleAudio(); haptic(6);">
+              <span>Tap for Sound</span>
+              <span style="font-size:11px; color:#725bb7;">🎵</span>
+            </div>
           </div>
         </div>
       </header>
 
-      <!-- FLOATING POPUP CATEGORY & VIEW BAR (ELASTIC LIQUID DROP MORPH) -->
+      <!-- FLOATING POPUP CATEGORY & VIEW BAR -->
       <div class="category-dock-panel" id="categoryDockPanel">
         <div class="dock-panel-card">
           
@@ -181,7 +184,7 @@
             </div>
           </div>
 
-          <!-- FLOATING OUTSIDE CIRCULAR CLOSE BUTTON (CENTERED AT BOTTOM) -->
+          <!-- FLOATING OUTSIDE CIRCULAR CLOSE BUTTON -->
           <button class="dock-outside-close-btn" onclick="dockCategoryPanel(true); haptic(8);" aria-label="Close Category Selector" title="Close">
             <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
@@ -189,33 +192,37 @@
         </div>
       </div>
 
-      <!-- MAIN FULL-SCREEN IMMERSIVE PRODUCT STAGE -->
+      <!-- MAIN IMMERSIVE PRODUCT STAGE (ARROWS REMOVED) -->
       <div class="stage-wrapper" id="swipeArea">
-        <button class="arrow-btn prev" id="prevBtn" aria-label="Previous Product">
-          <svg viewBox="0 0 24 24">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="11 6 5 12 11 18"></polyline>
-          </svg>
-        </button>
 
         <!-- FULL-PAGE SINGLE PRODUCT CARD -->
         <div class="product-unified-card" id="productCanvas">
           
-          <!-- TOP-LEFT 2-TONE COLOR EDITORIAL BRAND WATERMARK -->
+          <!-- TOP-LEFT 2-TONE BRAND WATERMARK -->
           <div class="editorial-brand-stacked" id="brandWatermark">
             <span class="brand-tone-pure" id="brandPart1">Herb</span>
             <span class="brand-tone-clean" id="brandPart2">O-Care</span>
           </div>
 
-          <!-- IMAGE 1: FULL SCREEN LIFESTYLE/MODEL WITH FADE OVERLAY -->
-          <div class="product-media-zone">
+          <!-- MEDIA ZONE: WITH TAP-TO-PAUSE / RESUME -->
+          <div class="product-media-zone" onclick="handleMediaTap(event)">
             <img class="product-model-img" id="productModelImg" 
                  src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=85" 
                  alt="Ayurvedic Wellness & Botanical Ritual">
+            
+            <video class="product-model-video" id="productModelVideo" 
+                   playsinline webkit-playsinline muted loop preload="none">
+            </video>
+
+            <!-- TAP PLAY/PAUSE VISUAL INDICATOR -->
+            <div class="video-tap-indicator" id="videoTapIndicator">
+              <span id="videoIndicatorIcon">❚❚</span>
+            </div>
+
             <div class="product-scrim-gradient"></div>
           </div>
 
-          <!-- IMAGE 2: PRODUCT BOTTLE/JAR AT BOTTOM RIGHT (HIGH-END STUDIO STYLING) -->
+          <!-- BOTTOM RIGHT FLOATING PRODUCT PACK -->
           <div class="floating-product-dock" id="floatingProductDock">
             <div class="floating-pack-ambient-shadow"></div>
             <img class="floating-pack-img" id="floatingPackImg" 
@@ -238,12 +245,12 @@
               </div>
             </div>
 
-            <!-- Big Bold Headline -->
+            <!-- Main Headline -->
             <div class="card-headline-row">
               <h1 class="pure-main-headline" id="prodHeadline">Your Sacred Daily Reset</h1>
             </div>
 
-            <!-- Descriptive Notes -->
+            <!-- Notes -->
             <p class="pure-sub-desc" id="prodNotes">
               23+ Sacred Himalayan Botanicals. Awakens sluggish Agni, clears toxic Ama, and activates Lekhana Karma.
             </p>
@@ -257,10 +264,10 @@
               </div>
             </div>
 
-            <!-- SINGLE ACTION ROW: EXPLORE ON LEFT & SHARE ON RIGHT -->
+            <!-- ACTION ROW: EXPLORE & SHARE -->
             <div class="pure-actions-dock-row">
               <a href="https://dharatatva.github.io/web/herb_o_care" class="pure-btn-explore" id="exploreBtn">
-                <span>Explore Products</span>
+                <span>Explore</span>
                 <span class="pure-btn-arrow">→</span>
               </a>
 
@@ -275,7 +282,7 @@
               </button>
             </div>
 
-            <!-- Reference Style Trust Badges -->
+            <!-- Trust Badges -->
             <div class="pure-trust-badges-row">
               <div class="pure-trust-item">
                 <span class="pure-trust-icon">🌿</span>
@@ -294,13 +301,6 @@
           </div>
         </div>
 
-        <button class="arrow-btn next" id="nextBtn" aria-label="Next Product">
-          <svg viewBox="0 0 24 24">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="13 6 19 12 13 18"></polyline>
-          </svg>
-        </button>
-
         <!-- LUXURY SEQUENCE GRID CONTAINER -->
         <div class="product-grid-stage" id="gridStage"></div>
       </div>
@@ -311,7 +311,7 @@
         <div class="dot"></div>
       </div>
 
-      <!-- WARM FLOATING CURVED LUXURY DRAWER WITH FOOTER -->
+      <!-- NAVIGATION DRAWER -->
       <div class="curved-warm-drawer" id="editorialMenuDrawer">
         <div class="warm-drawer-top">
           <button class="warm-drawer-close" id="closeMenuBtn" aria-label="Close Navigation">
@@ -463,8 +463,14 @@
     </div>
   </div>
 
-  <!-- External Application Logic -->
+  <!-- Application Logic -->
   <script>
+  // =========================================================================
+  // ⏱️ VIDEO DELAY CONFIGURATION (Millisecond me)
+  // 3500 = 3.5 seconds (Ise aap 2000, 3000, 4000, 5000 etc. manually kar sakte hain)
+  // =========================================================================
+  const VIDEO_PLAY_DELAY_MS = 3500; 
+
   const collections = {
     health: {
       label: "🌿 Health",
@@ -484,6 +490,7 @@
           mrp: "₹437", 
           discount: "-12%", 
           modelImg: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
           productImg: "https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=800&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
         },
@@ -500,6 +507,7 @@
           mrp: "₹650", 
           discount: "-30%", 
           modelImg: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
           productImg: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
         }
@@ -523,6 +531,7 @@
           mrp: "₹499", 
           discount: "-30%", 
           modelImg: "https://images.unsplash.com/photo-1512290900672-1f41d999086f?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
           productImg: "https://dharatatva.github.io/web/img/women_face_wash.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         },
@@ -539,6 +548,7 @@
           mrp: "₹799", 
           discount: "-25%", 
           modelImg: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
           productImg: "https://dharatatva.github.io/web/img/women_night_tailam.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         }
@@ -562,6 +572,7 @@
           mrp: "₹799", 
           discount: "-31%", 
           modelImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
           productImg: "https://dharatatva.github.io/web/img/men_face_wash.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         }
@@ -585,6 +596,7 @@
           mrp: "₹699", 
           discount: "-28%", 
           modelImg: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
           productImg: "https://dharatatva.github.io/web/img/Bala_Poshan.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         }
@@ -688,6 +700,7 @@
   const brandPart1 = document.getElementById('brandPart1');
   const brandPart2 = document.getElementById('brandPart2');
   const productModelImg = document.getElementById('productModelImg');
+  const productModelVideo = document.getElementById('productModelVideo');
   const floatingPackImg = document.getElementById('floatingPackImg');
   const floatingProductDock = document.getElementById('floatingProductDock');
   const prodTagChip = document.getElementById('prodTagChip');
@@ -702,8 +715,6 @@
   const dotsTrack = document.getElementById('dotsTrack');
   const detailsCard = document.getElementById('detailsCard');
   const ambientGlow = document.getElementById('ambientGlow');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
   const gridStage = document.getElementById('gridStage');
   const viewToggleBtn = document.getElementById('viewToggleBtn');
   const headerCatPill = document.getElementById('headerCatPill');
@@ -711,30 +722,43 @@
   const headerCatModeIcon = document.getElementById('headerCatModeIcon');
   const categoryDockPanel = document.getElementById('categoryDockPanel');
 
-  function applyCategoryTheme(catKey) {
-    const cat = collections[catKey];
-    if (!cat) return;
-    document.documentElement.style.setProperty('--bg', cat.bg);
-    if (ambientGlow) {
-      ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 68%)`;
-    }
-    if (headerCatLabel) {
-      headerCatLabel.textContent = cat.label || "🌿 " + catKey.toUpperCase();
-    }
+  /* CATEGORY THEME & HEADER PILL UPDATE */
+function applyCategoryTheme(catKey) {
+  const cat = collections[catKey];
+  if (!cat) return;
+  document.documentElement.style.setProperty('--bg', cat.bg);
+  if (ambientGlow) {
+    ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 68%)`;
   }
 
-  /* 1-SEC POPUP SEQUENCE */
+  // 1st Line prefix "Cat." ke baad 2nd Line category name
+  const catValEl = document.getElementById('headerCatVal');
+  if (catValEl) {
+    catValEl.textContent = catKey.charAt(0).toUpperCase() + catKey.slice(1);
+  }
+
+  // Category ke mutabiq right side disc icon
+  const catIconEl = document.getElementById('headerCatIconDisc');
+  if (catIconEl) {
+    const icons = {
+      health: '🌿',
+      women: '🌸',
+      men: '⚡',
+      kids: '🌱'
+    };
+    catIconEl.textContent = icons[catKey] || '🌿';
+  }
+}
+
   function startCategoryEntranceSequence() {
     setTimeout(() => {
       openCategoryPanel(true);
     }, 1000);
   }
 
-  /* LIQUID SPRING EXPAND FROM HEADER PILL (DYNAMIC ISLAND MORPH EFFECT) */
   function openCategoryPanel(autoDock = false) {
     if (catDockTimer) clearTimeout(catDockTimer);
     
-    // Animate out header pill smoothly so it disappears while panel opens
     gsap.to(headerCatPill, {
       opacity: 0,
       scale: 0.6,
@@ -748,7 +772,6 @@
 
     categoryDockPanel.classList.add('active');
 
-    // Elastic liquid drop expansion from top right toward center
     gsap.fromTo(categoryDockPanel,
       { 
         y: -42, 
@@ -767,7 +790,6 @@
       }
     );
 
-    // Stagger buttons like liquid bubbles separating into position
     const catBtns = categoryDockPanel.querySelectorAll('.cat-btn, .view-toggle-btn');
     gsap.fromTo(catBtns,
       { scale: 0.4, opacity: 0, y: 12 },
@@ -781,11 +803,9 @@
     }
   }
 
-  /* ELASTIC SNAP BACK INTO HEADER PILL */
   function dockCategoryPanel(manualDismiss = false) {
     if (catDockTimer) clearTimeout(catDockTimer);
     
-    // Liquid shrink snapping back into header pill coordinates
     gsap.to(categoryDockPanel, {
       y: -35,
       scaleX: 0.32,
@@ -799,7 +819,6 @@
         headerCatPill.classList.add('visible');
         headerCatPill.style.pointerEvents = 'auto';
         
-        // Header pill bounces back into existence with elastic liquid spring
         gsap.fromTo(headerCatPill,
           { scale: 0.45, opacity: 0 },
           { scale: 1, opacity: 1, duration: 0.45, ease: "elastic.out(1.2, 0.55)" }
@@ -880,7 +899,6 @@
     }
   }
 
-  /* RENDER GRID WITH PROPORTIONAL CARDS */
   function renderGridContent(catKey) {
     const items = collections[catKey].items;
     gridStage.innerHTML = '';
@@ -938,7 +956,6 @@
     });
   }
 
-  /* HIGH-CONVERTING SHARE ENGINE */
   async function generateSharePayload(product) {
     const prodUrl = product.url && product.url !== '#' && product.url !== 'javascript:void(0);' ? product.url : window.location.href;
     const shareTitle = `${product.name} | Dharatatva`;
@@ -1023,102 +1040,114 @@ ${prodUrl}`;
     await executeSmartShare(payload);
   }
 
-  /* VIEW SWITCH CONTROLLER */
-  function handleViewChange() {
-    if (isAnimating) return;
-    haptic(16);
+function handleViewChange() {
+  if (isAnimating) return;
+  haptic(16);
 
-    if (currentViewMode === 'single') {
-      currentViewMode = 'grid';
-      viewToggleBtn.classList.add('is-grid');
-      swipeArea.classList.add('grid-mode');
-      headerCatModeIcon.textContent = '☰';
-      isAnimating = true;
+  const headerModeIcon = document.getElementById('headerCatModeIcon');
 
-      prevBtn.classList.remove('visible');
-      nextBtn.classList.remove('visible');
-      gsap.to(dotsTrack, { opacity: 0, duration: 0.2 });
-
-      updateDesktopSideCards();
-
-      renderGridContent(currentCategory);
-      gridStage.style.display = 'grid';
-      gridStage.scrollTop = 0;
-
-      gsap.to(prodCanvas, {
-        opacity: 0,
-        scale: 0.94,
-        y: 16,
-        duration: 0.24,
-        ease: 'power2.in',
-        onComplete: () => {
-          prodCanvas.style.display = 'none';
-        }
-      });
-
-      const cards = gridStage.querySelectorAll('.grid-card');
-      gsap.fromTo(cards, 
-        { opacity: 0, y: 32, scale: 0.94 }, 
-        { 
-          opacity: 1, 
-          y: 0, 
-          scale: 1, 
-          duration: 0.38, 
-          stagger: 0.05, 
-          ease: 'power3.out', 
-          delay: 0.08, 
-          onComplete: () => { 
-            isAnimating = false; 
-            dockCategoryPanel(true);
-          } 
-        }
-      );
-    } else {
-      switchToSingleView();
-    }
-  }
-
-  function switchToSingleView() {
-    if (isAnimating) return;
-    currentViewMode = 'single';
-    viewToggleBtn.classList.remove('is-grid');
-    swipeArea.classList.remove('grid-mode');
-    headerCatModeIcon.textContent = '⊞';
+  if (currentViewMode === 'single') {
+    currentViewMode = 'grid';
+    viewToggleBtn.classList.add('is-grid');
+    swipeArea.classList.add('grid-mode');
+    
+    // Safe check: agar icon exist kare tabhi update ho
+    if (headerModeIcon) headerModeIcon.textContent = '☰';
     isAnimating = true;
 
-    const cards = gridStage.querySelectorAll('.grid-card');
-    gsap.to(cards, {
+    // Background video aur timers ko pause karein
+    if (videoDelayTimer) {
+      clearTimeout(videoDelayTimer);
+      videoDelayTimer = null;
+    }
+    if (productModelVideo) {
+      productModelVideo.pause();
+      productModelVideo.style.opacity = '0';
+    }
+
+    gsap.to(dotsTrack, { opacity: 0, duration: 0.2 });
+    updateDesktopSideCards();
+
+    renderGridContent(currentCategory);
+    gridStage.style.display = 'grid';
+    gridStage.scrollTop = 0;
+
+    gsap.to(prodCanvas, {
       opacity: 0,
-      y: -16,
-      scale: 0.96,
-      duration: 0.18,
-      stagger: 0.025,
+      scale: 0.94,
+      y: 16,
+      duration: 0.24,
       ease: 'power2.in',
       onComplete: () => {
-        gridStage.style.display = 'none';
-        prodCanvas.style.display = 'flex';
-
-        renderProductDataOnly();
-
-        gsap.fromTo(prodCanvas,
-          { opacity: 0, scale: 0.95, y: 12 },
-          { 
-            opacity: 1, 
-            scale: 1, 
-            y: 0, 
-            duration: 0.32, 
-            ease: 'power3.out', 
-            onComplete: () => {
-              isAnimating = false;
-              updateNavigationState();
-              gsap.to(dotsTrack, { opacity: 1, duration: 0.2 });
-              dockCategoryPanel(true);
-            }
-          }
-        );
+        prodCanvas.style.display = 'none';
       }
     });
+
+    const cards = gridStage.querySelectorAll('.grid-card');
+    gsap.fromTo(cards, 
+      { opacity: 0, y: 32, scale: 0.94 }, 
+      { 
+        opacity: 1, 
+        y: 0, 
+        scale: 1, 
+        duration: 0.38, 
+        stagger: 0.05, 
+        ease: 'power3.out', 
+        delay: 0.08, 
+        onComplete: () => { 
+          isAnimating = false; 
+          dockCategoryPanel(true);
+        } 
+      }
+    );
+  } else {
+    switchToSingleView();
   }
+}
+
+function switchToSingleView() {
+  if (isAnimating) return;
+  currentViewMode = 'single';
+  viewToggleBtn.classList.remove('is-grid');
+  swipeArea.classList.remove('grid-mode');
+
+  const headerModeIcon = document.getElementById('headerCatModeIcon');
+  if (headerModeIcon) headerModeIcon.textContent = '⊞';
+  isAnimating = true;
+
+  const cards = gridStage.querySelectorAll('.grid-card');
+  gsap.to(cards, {
+    opacity: 0,
+    y: -16,
+    scale: 0.96,
+    duration: 0.18,
+    stagger: 0.025,
+    ease: 'power2.in',
+    onComplete: () => {
+      gridStage.style.display = 'none';
+      prodCanvas.style.display = 'flex';
+
+      renderProductDataOnly();
+
+      gsap.fromTo(prodCanvas,
+        { opacity: 0, scale: 0.95, y: 12 },
+        { 
+          opacity: 1, 
+          scale: 1, 
+          y: 0, 
+          duration: 0.32, 
+          ease: 'power3.out', 
+          onComplete: () => {
+            isAnimating = false;
+            updateNavigationState();
+            gsap.to(dotsTrack, { opacity: 1, duration: 0.2 });
+            dockCategoryPanel(true);
+          }
+        }
+      );
+    }
+  });
+}
 
   function selectProductFromGrid(index) {
     haptic(14);
@@ -1126,19 +1155,133 @@ ${prodUrl}`;
     switchToSingleView();
   }
 
-  /* RENDER DUAL-IMAGE & STYLED TEXT CONTENT (STATIC PRODUCT BOTTLE) */
+  /* TIMED BACKGROUND VIDEO STREAM CONTROLLER */
+  let activeVideoToken = 0;
+  let videoDelayTimer = null;
+
+  function handleBackgroundMediaPlayback(product) {
+    activeVideoToken++;
+    const currentToken = activeVideoToken;
+
+    if (videoDelayTimer) {
+      clearTimeout(videoDelayTimer);
+      videoDelayTimer = null;
+    }
+
+    if (!productModelVideo) return;
+
+    productModelVideo.pause();
+    productModelVideo.style.opacity = '0';
+    productModelVideo.removeAttribute('src');
+    productModelVideo.load();
+
+    gsap.to(productModelImg, { opacity: 1, duration: 0.2 });
+
+    if (product.videoUrl && product.videoUrl.trim() !== '') {
+      productModelVideo.muted = true;
+      productModelVideo.defaultMuted = true;
+      productModelVideo.playsInline = true;
+      productModelVideo.setAttribute('playsinline', '');
+      productModelVideo.setAttribute('webkit-playsinline', '');
+      productModelVideo.src = product.videoUrl;
+      productModelVideo.load();
+
+      const scheduleDelayedPlayback = () => {
+        if (videoDelayTimer) return;
+
+        videoDelayTimer = setTimeout(() => {
+          if (currentToken === activeVideoToken && currentViewMode === 'single') {
+            const playPromise = productModelVideo.play();
+            if (playPromise !== undefined) {
+              playPromise.then(() => {
+                gsap.to(productModelVideo, { opacity: 1, duration: 0.65, ease: "power2.out" });
+              }).catch(() => {
+                const userTouchResume = () => {
+                  if (currentToken === activeVideoToken) {
+                    productModelVideo.play().then(() => {
+                      gsap.to(productModelVideo, { opacity: 1, duration: 0.65 });
+                    }).catch(() => {});
+                  }
+                };
+                window.addEventListener('touchstart', userTouchResume, { once: true, passive: true });
+                window.addEventListener('click', userTouchResume, { once: true });
+              });
+            }
+          }
+        }, VIDEO_PLAY_DELAY_MS);
+      };
+
+      productModelVideo.addEventListener('loadeddata', scheduleDelayedPlayback, { once: true });
+      productModelVideo.addEventListener('canplay', scheduleDelayedPlayback, { once: true });
+    }
+  }
+
+  /* TAP TO PLAY / PAUSE VIDEO */
+function handleMediaTap(e) {
+  // Details card ya floating bottle pack par tap hone par ignore karein
+  if (e.target.closest('#detailsCard') || e.target.closest('#floatingProductDock') || isAnimating) return;
+  // Agar video ka source load nahi hai ya video buffer nahi hua to ignore karein
+  if (!productModelVideo || !productModelVideo.src || productModelVideo.readyState < 2) return;
+
+  haptic(10);
+  const indicator = document.getElementById('videoTapIndicator');
+  const icon = document.getElementById('videoIndicatorIcon');
+
+  if (productModelVideo.paused) {
+    // ▶ RESUME: Video usi point se aage chalega aur fade-in hokar image ke upar aa jayega
+    productModelVideo.play().then(() => {
+      gsap.to(productModelVideo, { opacity: 1, duration: 0.45, ease: "power2.out" });
+    }).catch(() => {});
+    if (icon) icon.textContent = '▶';
+  } else {
+    // ❚❚ PAUSE: Video usi point par rukega aur fade-out hokar fallback image dikha dega
+    productModelVideo.pause();
+    gsap.to(productModelVideo, { opacity: 0, duration: 0.35, ease: "power2.inOut" });
+    if (icon) icon.textContent = '❚❚';
+  }
+
+  // Center feedback icon animation
+  if (indicator) {
+    gsap.fromTo(indicator, 
+      { opacity: 0.95, scale: 0.75 }, 
+      { opacity: 0, scale: 1.25, duration: 0.6, ease: "power2.out" }
+    );
+  }
+}
+
+  /* RENDER DUAL-IMAGE & STYLED TEXT CONTENT WITH SLOW-MOTION PRODUCT PACK REVEAL */
   function renderProductDataOnly() {
     const product = collections[currentCategory].items[currentIndex];
     
-    // 2-tone brand typography
     brandPart1.textContent = product.brandPart1 || "Herb";
     brandPart2.textContent = product.brandPart2 || "O-Care";
 
-    // Dual Visual Images
     productModelImg.src = product.modelImg;
     floatingPackImg.src = product.productImg;
 
-    // Content Block
+    handleBackgroundMediaPlayback(product);
+
+    // Right-bottom product pack slow motion reveal
+    gsap.fromTo(floatingPackImg,
+      { 
+        y: 45, 
+        opacity: 0, 
+        scale: 0.88, 
+        rotation: 3,
+        filter: "drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08)) brightness(1.25)"
+      },
+      { 
+        y: 0, 
+        opacity: 1, 
+        scale: 1, 
+        rotation: 0,
+        filter: "drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18)) brightness(1)",
+        duration: 0.95, 
+        ease: "power2.out",
+        delay: 0.04
+      }
+    );
+
     prodTagChip.querySelector('span').textContent = product.tag || "✧ Daily Ritual ›";
     prodHeadline.textContent = product.headline || product.name;
     prodRating.textContent = product.rating;
@@ -1161,8 +1304,6 @@ ${prodUrl}`;
     }
 
     if (total <= 1) {
-      prevBtn.classList.remove('visible');
-      nextBtn.classList.remove('visible');
       dotsTrack.style.display = 'none';
       updateDesktopSideCards();
       return;
@@ -1176,16 +1317,10 @@ ${prodUrl}`;
       dotsTrack.appendChild(dot);
     }
 
-    if (currentIndex > 0) prevBtn.classList.add('visible');
-    else prevBtn.classList.remove('visible');
-
-    if (currentIndex < total - 1) nextBtn.classList.add('visible');
-    else nextBtn.classList.remove('visible');
-
     updateDesktopSideCards();
   }
 
-  /* CINEMATIC LUXURY PRODUCT TRANSITION (NO JUMPING PACK, SMOOTH EDITORIAL REVEAL) */
+  /* CINEMATIC PRODUCT TRANSITION */
   function renderProduct(direction = 1) {
     if (isAnimating) {
       gsap.killTweensOf([prodCanvas, detailsCard, productModelImg, floatingPackImg]);
@@ -1194,10 +1329,8 @@ ${prodUrl}`;
     isAnimating = true;
     haptic(10);
 
-    // Fade and translate text content smoothly
     gsap.to(detailsCard, { opacity: 0.15, y: 6, duration: 0.16, ease: 'power2.in' });
     
-    // Smooth cinematic zoom and cross-dissolve on model backdrop
     gsap.to(productModelImg, {
       opacity: 0.2,
       scale: 1.05,
@@ -1208,19 +1341,11 @@ ${prodUrl}`;
         renderProductDataOnly();
         updateNavigationState();
 
-        // Elegant editorial reveal: Slow settling glide (1.06 -> 1.0)
         gsap.fromTo(productModelImg,
           { scale: 1.06, x: direction * 20, opacity: 0.2 },
           { scale: 1, x: 0, opacity: 1, duration: 0.55, ease: "power2.out" }
         );
 
-        // Subtle studio lighting sweep on the stationary bottle
-        gsap.fromTo(floatingPackImg,
-          { filter: "drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18)) brightness(1.2)" },
-          { filter: "drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18)) brightness(1)", duration: 0.6, ease: "power2.out" }
-        );
-
-        // Text Content Reveal
         gsap.to(detailsCard, { 
           y: 0, 
           opacity: 1, 
@@ -1247,10 +1372,7 @@ ${prodUrl}`;
     }
   }
 
-  nextBtn.addEventListener('click', nextProduct);
-  prevBtn.addEventListener('click', prevProduct);
-
-  /* DRAG & SWIPE */
+  /* TOUCH DRAG & SWIPE */
   let startX = 0, currentDragX = 0, isDragging = false;
 
   swipeArea.addEventListener('touchstart', (e) => {
