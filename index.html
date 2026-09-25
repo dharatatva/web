@@ -28,6 +28,23 @@
     --bg-cream: #F7F5F0;
     --bg: linear-gradient(165deg, #F0F5EE 0%, #DEE8DC 100%);
   }
+
+  /* Header Category Disc SVG Alignment */
+  .header-cat-icon-disc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-cat-icon-disc svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   </style>
 </head>
 <body class="page-home">
@@ -82,15 +99,18 @@
 
         <div class="header-right-actions">
           <!-- DOCKED CATEGORY PILL (2-LINE TEXT + CATEGORY ICON DISC) -->
-<button class="header-cat-pill" id="headerCatPill" onclick="openCategoryPanel(); haptic(8);" title="Change Category">
-  <div class="header-cat-text-col">
-    <span class="header-cat-prefix">Cat.</span>
-    <span class="header-cat-val" id="headerCatVal">Health</span>
-  </div>
-  <div class="header-cat-icon-disc" id="headerCatIconDisc">
-    🌿
-  </div>
-</button>
+          <button class="header-cat-pill" id="headerCatPill" onclick="openCategoryPanel(); haptic(8);" title="Change Category">
+            <div class="header-cat-text-col">
+              <span class="header-cat-prefix">Cat.</span>
+              <span class="header-cat-val" id="headerCatVal">Health</span>
+            </div>
+            <div class="header-cat-icon-disc" id="headerCatIconDisc">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2v20M2 12h20"/>
+                <circle cx="12" cy="12" r="9"/>
+              </svg>
+            </div>
+          </button>
 
           <button class="icon-circle-btn" id="notifyBtn" aria-label="Notifications" onclick="showToast('No new notices'); haptic(6);">
             <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
@@ -192,7 +212,7 @@
         </div>
       </div>
 
-      <!-- MAIN IMMERSIVE PRODUCT STAGE (ARROWS REMOVED) -->
+      <!-- MAIN IMMERSIVE PRODUCT STAGE -->
       <div class="stage-wrapper" id="swipeArea">
 
         <!-- FULL-PAGE SINGLE PRODUCT CARD -->
@@ -395,7 +415,7 @@
 
             <a href="https://wa.me/919713065064?text=Namaste%20Dharatatva%2C%20I%20need%20assistance%20with%20my%20order." target="_blank" rel="noopener" class="whatsapp-action-pill">
               <svg viewBox="0 0 24 24">
-                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                <path d="M.057 24l1.07-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.08-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.80-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.70.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
               </svg>
               <span>Chat on WhatsApp</span>
             </a>
@@ -465,15 +485,22 @@
 
   <!-- Application Logic -->
   <script>
-  // =========================================================================
-  // ⏱️ VIDEO DELAY CONFIGURATION (Millisecond me)
-  // 3500 = 3.5 seconds (Ise aap 2000, 3000, 4000, 5000 etc. manually kar sakte hain)
-  // =========================================================================
   const VIDEO_PLAY_DELAY_MS = 3500; 
+
+  // =========================================================================
+  // 1 & 2: CATEGORY SVG ICONS & COLLECTIONS MAPPING
+  // =========================================================================
+  const icons = {
+    health: `<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>`,
+    women: `<svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="9" y1="19" x2="15" y2="19"/></svg>`,
+    men: `<svg viewBox="0 0 24 24"><circle cx="10" cy="14" r="6"/><line x1="14.5" y1="9.5" x2="21" y2="3"/><polyline points="16 3 21 3 21 8"/></svg>`,
+    kids: `<svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5.5 21v-2a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v2"/></svg>`
+  };
 
   const collections = {
     health: {
-      label: "🌿 Health",
+      label: "Health",
+      icon: icons.health,
       bg: "linear-gradient(165deg, #F0F5EE 20%, #bdf5e052 50%)",
       glow: "rgba(142, 194, 150, 0.42)",
       items: [
@@ -506,7 +533,7 @@
           price: "₹449", 
           mrp: "₹650", 
           discount: "-30%", 
-          modelImg: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=85",
+          modelImg: "https://images.unsplash.com/photo-1506126613408-eca07ce0773?auto=format&fit=crop&w=1200&q=85",
           videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
           productImg: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
@@ -514,9 +541,10 @@
       ]
     },
     women: {
-      label: "🌸 Women",
+      label: "Women",
+      icon: icons.women,
       bg: "linear-gradient(165deg, #EEDAD4 20%, #bdf5e052 90%)",
-      glow: "rgba(228, 155, 168, 0.42)",
+      glow: "rgba(228, 155, 10, 0.42)",
       items: [
         { 
           brandPart1: "Pure",
@@ -524,14 +552,14 @@
           tag: "✧ Glow Daily ›",
           headline: "Your Daily Fresh Start",
           notes: "Gentle formulas. Deep clean. Healthy, glowing skin crafted with wild mountain botanicals.",
-          rating: "4.92", 
-          reviews: "68", 
+          rating: "0", 
+          reviews: "0", 
           name: "Kumkumadi Glow Wash", 
-          price: "₹349", 
-          mrp: "₹499", 
-          discount: "-30%", 
-          modelImg: "https://images.unsplash.com/photo-1512290900672-1f41d999086f?auto=format&fit=crop&w=1200&q=85",
-          videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_face_wash_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
           productImg: "https://dharatatva.github.io/web/img/women_face_wash.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         },
@@ -541,45 +569,302 @@
           tag: "✧ Cellular Renewal ›",
           headline: "Overnight Radiance Nectar",
           notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
-          rating: "4.96", 
-          reviews: "54", 
+          rating: "0", 
+          reviews: "0", 
           name: "Saffron Night Tailam", 
-          price: "₹599", 
-          mrp: "₹799", 
-          discount: "-25%", 
-          modelImg: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=85",
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_face_cream_cover.avif?auto=format&fit=crop&w=1200&q=85",
           videoUrl: "",
-          productImg: "https://dharatatva.github.io/web/img/women_night_tailam.avif?auto=format&fit=crop&w=800&q=90",
+          productImg: "https://dharatatva.github.io/web/img/women_face_cream.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_face_night_oil_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/women_face_night_oil.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_hair_shampoo_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/women_hair_shampoo.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_hair_oil_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/women_hair_oil.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_hair_cream_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/women_hair_cream.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_body_wash_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/women_body_wash.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_body_cream_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/women_body_cream.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/women_hair_remover_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/women_hair_remover.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         }
       ]
     },
     men: {
-      label: "🌿 Men",
+      label: "Men",
+      icon: icons.men,
       bg: "linear-gradient(165deg, #5c9bf033 20%, #bdf5e052 70%)",
       glow: "rgba(195, 155, 105, 0.42)",
       items: [
         { 
-          brandPart1: "Urja",
-          brandPart2: "Vigor",
-          tag: "✧ Active Vitality ›",
-          headline: "Natural Stamina & Shield",
-          notes: "Potent Himalayan Shilajit and Ashwagandha root synergy for sustained cellular endurance.",
-          rating: "4.91", 
-          reviews: "112", 
-          name: "Urja Vitality Rasayan", 
-          price: "₹549", 
-          mrp: "₹799", 
-          discount: "-31%", 
-          modelImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85",
-          videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          brandPart1: "Pure",
+          brandPart2: "Glow",
+          tag: "✧ Glow Daily ›",
+          headline: "Your Daily Fresh Start",
+          notes: "Gentle formulas. Deep clean. Healthy, glowing skin crafted with wild mountain botanicals.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Kumkumadi Glow Wash", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_face_wash_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
           productImg: "https://dharatatva.github.io/web/img/men_face_wash.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_face_cream_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/men_face_cream.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_face_night_oil_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/men_face_night_oil.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_hair_shampoo_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/men_hair_shampoo.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_hair_oil_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/men_hair_oil.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_hair_cream_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/men_hair_cream.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_body_wash_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/men_body_wash.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_body_cream_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/men_body_cream.avif?auto=format&fit=crop&w=800&q=90",
+          url: "javascript:void(0);"
+        },
+        { 
+          brandPart1: "Night",
+          brandPart2: "Tailam",
+          tag: "✧ Cellular Renewal ›",
+          headline: "Overnight Radiance Nectar",
+          notes: "Cold-pressed saffron and sandalwood infusion restoring elasticity and clearing daytime pigment burden.",
+          rating: "0", 
+          reviews: "0", 
+          name: "Saffron Night Tailam", 
+          price: "₹xx", 
+          mrp: "₹xx", 
+          discount: "-x%", 
+          modelImg: "https://dharatatva.github.io/web/img/men_hair_remover_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          videoUrl: "",
+          productImg: "https://dharatatva.github.io/web/img/men_hair_remover.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
         }
       ]
     },
     kids: {
-      label: "🌿 Kids",
+      label: "Kids",
+      icon: icons.kids,
       bg: "linear-gradient(165deg, #ffd16d1a 20%, #bdf5e052 80%)",
       glow: "rgba(238, 198, 110, 0.42)",
       items: [
@@ -595,7 +880,7 @@
           price: "₹499", 
           mrp: "₹699", 
           discount: "-28%", 
-          modelImg: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=85",
+          modelImg: "https://images.unsplash.com/photo-1516627145497-ae690895b74?auto=format&fit=crop&w=1200&q=85",
           videoUrl: "",
           productImg: "https://dharatatva.github.io/web/img/Bala_Poshan.avif?auto=format&fit=crop&w=800&q=90",
           url: "javascript:void(0);"
@@ -718,37 +1003,29 @@
   const gridStage = document.getElementById('gridStage');
   const viewToggleBtn = document.getElementById('viewToggleBtn');
   const headerCatPill = document.getElementById('headerCatPill');
-  const headerCatLabel = document.getElementById('headerCatLabel');
-  const headerCatModeIcon = document.getElementById('headerCatModeIcon');
   const categoryDockPanel = document.getElementById('categoryDockPanel');
 
   /* CATEGORY THEME & HEADER PILL UPDATE */
-function applyCategoryTheme(catKey) {
-  const cat = collections[catKey];
-  if (!cat) return;
-  document.documentElement.style.setProperty('--bg', cat.bg);
-  if (ambientGlow) {
-    ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 68%)`;
-  }
+  function applyCategoryTheme(catKey) {
+    const cat = collections[catKey];
+    if (!cat) return;
+    document.documentElement.style.setProperty('--bg', cat.bg);
+    if (ambientGlow) {
+      ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 0%)`;
+    }
 
-  // 1st Line prefix "Cat." ke baad 2nd Line category name
-  const catValEl = document.getElementById('headerCatVal');
-  if (catValEl) {
-    catValEl.textContent = catKey.charAt(0).toUpperCase() + catKey.slice(1);
-  }
+    // Category name display
+    const catValEl = document.getElementById('headerCatVal');
+    if (catValEl) {
+      catValEl.textContent = catKey.charAt(0).toUpperCase() + catKey.slice(1);
+    }
 
-  // Category ke mutabiq right side disc icon
-  const catIconEl = document.getElementById('headerCatIconDisc');
-  if (catIconEl) {
-    const icons = {
-      health: '🌿',
-      women: '🌸',
-      men: '⚡',
-      kids: '🌱'
-    };
-    catIconEl.textContent = icons[catKey] || '🌿';
+    // Category right-side disc SVG update
+    const catIconEl = document.getElementById('headerCatIconDisc');
+    if (catIconEl) {
+      catIconEl.innerHTML = icons[catKey] || icons.health;
+    }
   }
-}
 
   function startCategoryEntranceSequence() {
     setTimeout(() => {
@@ -1040,114 +1317,112 @@ ${prodUrl}`;
     await executeSmartShare(payload);
   }
 
-function handleViewChange() {
-  if (isAnimating) return;
-  haptic(16);
+  function handleViewChange() {
+    if (isAnimating) return;
+    haptic(16);
 
-  const headerModeIcon = document.getElementById('headerCatModeIcon');
+    const headerModeIcon = document.getElementById('headerCatModeIcon');
 
-  if (currentViewMode === 'single') {
-    currentViewMode = 'grid';
-    viewToggleBtn.classList.add('is-grid');
-    swipeArea.classList.add('grid-mode');
-    
-    // Safe check: agar icon exist kare tabhi update ho
-    if (headerModeIcon) headerModeIcon.textContent = '☰';
-    isAnimating = true;
+    if (currentViewMode === 'single') {
+      currentViewMode = 'grid';
+      viewToggleBtn.classList.add('is-grid');
+      swipeArea.classList.add('grid-mode');
+      
+      if (headerModeIcon) headerModeIcon.textContent = '☰';
+      isAnimating = true;
 
-    // Background video aur timers ko pause karein
-    if (videoDelayTimer) {
-      clearTimeout(videoDelayTimer);
-      videoDelayTimer = null;
-    }
-    if (productModelVideo) {
-      productModelVideo.pause();
-      productModelVideo.style.opacity = '0';
-    }
-
-    gsap.to(dotsTrack, { opacity: 0, duration: 0.2 });
-    updateDesktopSideCards();
-
-    renderGridContent(currentCategory);
-    gridStage.style.display = 'grid';
-    gridStage.scrollTop = 0;
-
-    gsap.to(prodCanvas, {
-      opacity: 0,
-      scale: 0.94,
-      y: 16,
-      duration: 0.24,
-      ease: 'power2.in',
-      onComplete: () => {
-        prodCanvas.style.display = 'none';
+      if (videoDelayTimer) {
+        clearTimeout(videoDelayTimer);
+        videoDelayTimer = null;
       }
-    });
-
-    const cards = gridStage.querySelectorAll('.grid-card');
-    gsap.fromTo(cards, 
-      { opacity: 0, y: 32, scale: 0.94 }, 
-      { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1, 
-        duration: 0.38, 
-        stagger: 0.05, 
-        ease: 'power3.out', 
-        delay: 0.08, 
-        onComplete: () => { 
-          isAnimating = false; 
-          dockCategoryPanel(true);
-        } 
+      if (productModelVideo) {
+        productModelVideo.pause();
+        productModelVideo.style.opacity = '0';
       }
-    );
-  } else {
-    switchToSingleView();
-  }
-}
 
-function switchToSingleView() {
-  if (isAnimating) return;
-  currentViewMode = 'single';
-  viewToggleBtn.classList.remove('is-grid');
-  swipeArea.classList.remove('grid-mode');
+      gsap.to(dotsTrack, { opacity: 0, duration: 0.2 });
+      updateDesktopSideCards();
 
-  const headerModeIcon = document.getElementById('headerCatModeIcon');
-  if (headerModeIcon) headerModeIcon.textContent = '⊞';
-  isAnimating = true;
+      renderGridContent(currentCategory);
+      gridStage.style.display = 'grid';
+      gridStage.scrollTop = 0;
 
-  const cards = gridStage.querySelectorAll('.grid-card');
-  gsap.to(cards, {
-    opacity: 0,
-    y: -16,
-    scale: 0.96,
-    duration: 0.18,
-    stagger: 0.025,
-    ease: 'power2.in',
-    onComplete: () => {
-      gridStage.style.display = 'none';
-      prodCanvas.style.display = 'flex';
+      gsap.to(prodCanvas, {
+        opacity: 0,
+        scale: 0.94,
+        y: 16,
+        duration: 0.24,
+        ease: 'power2.in',
+        onComplete: () => {
+          prodCanvas.style.display = 'none';
+        }
+      });
 
-      renderProductDataOnly();
-
-      gsap.fromTo(prodCanvas,
-        { opacity: 0, scale: 0.95, y: 12 },
+      const cards = gridStage.querySelectorAll('.grid-card');
+      gsap.fromTo(cards, 
+        { opacity: 0, y: 32, scale: 0.94 }, 
         { 
           opacity: 1, 
-          scale: 1, 
           y: 0, 
-          duration: 0.32, 
+          scale: 1, 
+          duration: 0.38, 
+          stagger: 0.05, 
           ease: 'power3.out', 
-          onComplete: () => {
-            isAnimating = false;
-            updateNavigationState();
-            gsap.to(dotsTrack, { opacity: 1, duration: 0.2 });
+          delay: 0.08, 
+          onComplete: () => { 
+            isAnimating = false; 
             dockCategoryPanel(true);
-          }
+          } 
         }
       );
+    } else {
+      switchToSingleView();
     }
-  });
-}
+  }
+
+  function switchToSingleView() {
+    if (isAnimating) return;
+    currentViewMode = 'single';
+    viewToggleBtn.classList.remove('is-grid');
+    swipeArea.classList.remove('grid-mode');
+
+    const headerModeIcon = document.getElementById('headerCatModeIcon');
+    if (headerModeIcon) headerModeIcon.textContent = '⊞';
+    isAnimating = true;
+
+    const cards = gridStage.querySelectorAll('.grid-card');
+    gsap.to(cards, {
+      opacity: 0,
+      y: -16,
+      scale: 0.96,
+      duration: 0.18,
+      stagger: 0.025,
+      ease: 'power2.in',
+      onComplete: () => {
+        gridStage.style.display = 'none';
+        prodCanvas.style.display = 'flex';
+
+        renderProductDataOnly();
+
+        gsap.fromTo(prodCanvas,
+          { opacity: 0, scale: 0.95, y: 12 },
+          { 
+            opacity: 1, 
+            scale: 1, 
+            y: 0, 
+            duration: 0.32, 
+            ease: 'power3.out', 
+            onComplete: () => {
+              isAnimating = false;
+              updateNavigationState();
+              gsap.to(dotsTrack, { opacity: 1, duration: 0.2 });
+              dockCategoryPanel(true);
+            }
+          }
+        );
+      }
+    });
+  }
 
   function selectProductFromGrid(index) {
     haptic(14);
@@ -1217,39 +1492,34 @@ function switchToSingleView() {
   }
 
   /* TAP TO PLAY / PAUSE VIDEO */
-function handleMediaTap(e) {
-  // Details card ya floating bottle pack par tap hone par ignore karein
-  if (e.target.closest('#detailsCard') || e.target.closest('#floatingProductDock') || isAnimating) return;
-  // Agar video ka source load nahi hai ya video buffer nahi hua to ignore karein
-  if (!productModelVideo || !productModelVideo.src || productModelVideo.readyState < 2) return;
+  function handleMediaTap(e) {
+    if (e.target.closest('#detailsCard') || e.target.closest('#floatingProductDock') || isAnimating) return;
+    if (!productModelVideo || !productModelVideo.src || productModelVideo.readyState < 2) return;
 
-  haptic(10);
-  const indicator = document.getElementById('videoTapIndicator');
-  const icon = document.getElementById('videoIndicatorIcon');
+    haptic(10);
+    const indicator = document.getElementById('videoTapIndicator');
+    const icon = document.getElementById('videoIndicatorIcon');
 
-  if (productModelVideo.paused) {
-    // ▶ RESUME: Video usi point se aage chalega aur fade-in hokar image ke upar aa jayega
-    productModelVideo.play().then(() => {
-      gsap.to(productModelVideo, { opacity: 1, duration: 0.45, ease: "power2.out" });
-    }).catch(() => {});
-    if (icon) icon.textContent = '▶';
-  } else {
-    // ❚❚ PAUSE: Video usi point par rukega aur fade-out hokar fallback image dikha dega
-    productModelVideo.pause();
-    gsap.to(productModelVideo, { opacity: 0, duration: 0.35, ease: "power2.inOut" });
-    if (icon) icon.textContent = '❚❚';
+    if (productModelVideo.paused) {
+      productModelVideo.play().then(() => {
+        gsap.to(productModelVideo, { opacity: 1, duration: 0.45, ease: "power2.out" });
+      }).catch(() => {});
+      if (icon) icon.textContent = '▶';
+    } else {
+      productModelVideo.pause();
+      gsap.to(productModelVideo, { opacity: 0, duration: 0.35, ease: "power2.inOut" });
+      if (icon) icon.textContent = '❚❚';
+    }
+
+    if (indicator) {
+      gsap.fromTo(indicator, 
+        { opacity: 0.95, scale: 0.75 }, 
+        { opacity: 0, scale: 1.25, duration: 0.6, ease: "power2.out" }
+      );
+    }
   }
 
-  // Center feedback icon animation
-  if (indicator) {
-    gsap.fromTo(indicator, 
-      { opacity: 0.95, scale: 0.75 }, 
-      { opacity: 0, scale: 1.25, duration: 0.6, ease: "power2.out" }
-    );
-  }
-}
-
-  /* RENDER DUAL-IMAGE & STYLED TEXT CONTENT WITH SLOW-MOTION PRODUCT PACK REVEAL */
+  /* RENDER DUAL-IMAGE & STYLED TEXT CONTENT */
   function renderProductDataOnly() {
     const product = collections[currentCategory].items[currentIndex];
     
@@ -1261,7 +1531,6 @@ function handleMediaTap(e) {
 
     handleBackgroundMediaPlayback(product);
 
-    // Right-bottom product pack slow motion reveal
     gsap.fromTo(floatingPackImg,
       { 
         y: 45, 
@@ -1274,10 +1543,10 @@ function handleMediaTap(e) {
         y: 0, 
         opacity: 1, 
         scale: 1, 
-        rotation: 0,
+        rotation: 0, 
         filter: "drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18)) brightness(1)",
         duration: 0.95, 
-        ease: "power2.out",
+        ease: "power2.out", 
         delay: 0.04
       }
     );
