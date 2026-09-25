@@ -151,7 +151,7 @@ body.page-home {
   flex-shrink: 0;
   pointer-events: none;
   /* Subtle ambient gradient taaki light/dark dono par contrast perfect rahe */
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.06) 55%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(246, 244, 239, 0.95) 0%, rgba(246, 244, 239, 0) 100%);
 }
 
 .page-home .header-left,
@@ -163,10 +163,8 @@ body.page-home {
 }
 
 .page-home .menu-toggle-btn {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid #fff;
+  background: none;
+  border: none;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -176,7 +174,7 @@ body.page-home {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
   transition: transform 0.15s ease, background 0.2s ease;
 }
 
@@ -189,7 +187,7 @@ body.page-home {
   display: block;
   width: 15px;
   height: 1.8px;
-  background: #161513;
+  background: #000;
   border-radius: 2px;
 }
 
@@ -221,10 +219,8 @@ body.page-home {
 
 /* DOCKED CATEGORY PILL IN HEADER */
 .page-home .header-cat-pill {
-  background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(20px) saturate(190%);
-    -webkit-backdrop-filter: blur(20px) saturate(190%);
-    border: 1px solid #fff;
+  background: none;
+    border: none;
     border-radius: 999px;
     height: 38px;
     padding: 3px 4px 3px 12px;
@@ -232,7 +228,7 @@ body.page-home {
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
     opacity: 0;
     transform: scale(0.8);
     pointer-events: none;
@@ -278,16 +274,16 @@ body.page-home {
 
 /* RIGHT 3D GLOSSY DISC ICON */
 .page-home .header-cat-icon-disc {
-  width: 30px;
-  height: 30px;
+  width: 27px;
+  height: 27px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 13px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), inset 0 1px 1px #ffffff;
+  box-shadow: 0px 0px 9px rgb(255 255 255 / 50%);
   flex-shrink: 0;
 }
 
@@ -319,14 +315,12 @@ body.page-home {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid #fff;
+  background: none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
   cursor: pointer;
   color: var(--primary-dark);
   position: relative;
@@ -341,7 +335,7 @@ body.page-home {
 .page-home .icon-circle-btn svg {
   width: 16px;
   height: 16px;
-  stroke: #161513;
+  stroke: #000;
   fill: none;
   stroke-width: 1.9;
 }
@@ -353,8 +347,8 @@ body.page-home {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #161513;
-  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  background: #000000;
+  border: 1.5px solid #000000;
 }
 
 /* AUDIO CONTROLS (TAP FOR SOUND POSITIONED DIRECTLY UNDER PLAY BUTTON) */
@@ -402,17 +396,15 @@ body.page-home {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.68);
-  backdrop-filter: blur(20px) saturate(190%);
-  -webkit-backdrop-filter: blur(20px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: none;
+  border: none;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: #161513;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
   transition: transform 0.15s ease, background 0.2s ease;
   z-index: 6;
 }
@@ -1047,16 +1039,16 @@ body.page-home {
 .page-home .pure-btn-explore {
   flex: 0 0 auto;
   width: 124px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 9px 16px;
   border-radius: 26px;
-  background: rgba(255, 255, 255, 0.85);
+  background: #0a631d;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(22, 21, 19, 0.1);
-  color: var(--primary-dark);
+  color: #fff;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -1113,6 +1105,7 @@ body.page-home {
 .page-home .pure-trust-badges-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   padding-top: 8px;
   border-top: 1px solid rgba(22, 21, 19, 0.08);
