@@ -1393,7 +1393,7 @@ body.page-home {
 .page-home .global-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(18, 24, 21, 0.45);
+  background: rgb(151 151 151 / 49%);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 100;
