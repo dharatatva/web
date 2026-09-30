@@ -164,6 +164,8 @@ body.page-home {
 
 .page-home .menu-toggle-btn {
   background: none;
+  backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: var(--glass-blur);
   border: none;
   width: 38px;
   height: 38px;
@@ -221,6 +223,8 @@ body.page-home {
 .page-home .header-cat-pill {
   background: none;
     border: none;
+	backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: var(--glass-blur);
     border-radius: 999px;
     height: 38px;
     padding: 3px 4px 3px 12px;
@@ -314,6 +318,8 @@ body.page-home {
 .page-home .icon-circle-btn {
   width: 38px;
   height: 38px;
+  backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: var(--glass-blur);
   border-radius: 50%;
   background: none;
   border: none;
@@ -395,9 +401,11 @@ body.page-home {
 .page-home .header-audio-btn {
   width: 38px;
   height: 38px;
+  backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: var(--glass-blur);
   border-radius: 50%;
   background: none;
-  border: none;
+  border: 1px solid rgb(255 255 255 / 40%);
   position: relative;
   display: flex;
   align-items: center;
@@ -1168,11 +1176,11 @@ body.page-home {
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  padding: 68px 14px 28px;
+  padding: 72px 14px 34px;
   display: none;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: min-content;
-  gap: 12px;
+  gap: 14px;
   z-index: 25;
   scrollbar-width: none;
 }
@@ -1181,7 +1189,10 @@ body.page-home {
 
 .page-home .grid-card {
   position: relative;
-  height: 270px;
+  /* Fixed 270px ki jagah dynamic clamp height */
+  height: clamp(285px, 37.5vh, 370px);
+  height: clamp(285px, 37.5dvh, 370px);
+  min-height: 285px;
   border-radius: 18px;
   overflow: hidden;
   display: flex;
@@ -1192,6 +1203,7 @@ body.page-home {
   cursor: pointer;
   transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s ease;
   will-change: transform, opacity;
+  
 }
 
 .page-home .grid-card:active {
@@ -2136,21 +2148,21 @@ body.page-product {
 }
 
 .page-product .icon-circle-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  cursor: pointer;
-  color: var(--primary-dark);
-  transition: transform 0.15s;
-  text-decoration: none;
+      background: none;
+	  backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
+    transition: transform 0.15s ease, background 0.2s ease;
 }
 
 .page-product .icon-circle-btn:active {
@@ -2158,9 +2170,9 @@ body.page-product {
 }
 
 .page-product .lang-pill-btn {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: none;
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
   border-radius: 20px;
   padding: 4px 8px;
   display: flex;
@@ -2168,7 +2180,6 @@ body.page-product {
   gap: 4px;
   font-size: 11px;
   font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.95);
   box-shadow: 0 4px 14px rgba(0,0,0,0.06);
   cursor: pointer;
 }
@@ -2226,10 +2237,10 @@ body.page-product {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: none;
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgb(255 255 255 / 40%);
   position: relative;
   display: flex;
   align-items: center;
@@ -4852,7 +4863,7 @@ body.page-policy {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg);
+  background: linear-gradient(165deg, #F0F5EE 20%, #bdf5e052 50%);
   overflow: hidden;
   position: relative;
 }
@@ -4862,7 +4873,6 @@ body.page-policy {
   max-width: 100%;
   height: 100%;
   position: relative;
-  background: var(--bg);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -4870,10 +4880,10 @@ body.page-policy {
 
 @media (min-width: 769px) and (max-width: 1023px) {
   .page-policy .app-viewport-wrapper {
-    background-color: #dfdcd3;
+    background: linear-gradient(165deg, #F0F5EE 20%, #bdf5e052 50%);
   }
   .page-policy .app-viewport-shell {
-    max-width: 540px;
+    max-width: 440px;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
     border-left: 1px solid var(--hairline);
     border-right: 1px solid var(--hairline);
@@ -4882,13 +4892,19 @@ body.page-policy {
 
 /* HEADER */
 .page-policy header {
-  width: 100%;
-  padding: 12px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 60;
-  flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 70;
+    flex-shrink: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(246, 244, 239, 0.95) 0%, rgba(246, 244, 239, 0) 100%);
 }
 
 .page-policy .header-left {
@@ -4899,13 +4915,20 @@ body.page-policy {
 
 .page-policy .menu-toggle-btn {
   background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  padding: 6px 2px;
+    border: none;
+	    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
+    transition: transform 0.15s ease, background 0.2s ease;
 }
 
 .page-policy .menu-toggle-btn span {
@@ -4942,21 +4965,21 @@ body.page-policy {
 }
 
 .page-policy .icon-circle-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  cursor: pointer;
-  color: var(--text);
-  position: relative;
-  transition: transform 0.15s;
+      width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: none;
+	    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
+    cursor: pointer;
+    color: var(--primary-dark);
+    position: relative;
+    transition: transform 0.15s ease, background 0.2s ease;
 }
 
 .page-policy .icon-circle-btn:active {
@@ -5021,22 +5044,21 @@ body.page-policy {
 }
 
 .page-policy .header-audio-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--primary-dark);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  transition: box-shadow 0.25s, transform 0.15s;
-  z-index: 6;
+      width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: none;
+	    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgb(0 0 0 / 10%);
+    cursor: pointer;
+    color: var(--primary-dark);
+    position: relative;
+    transition: transform 0.15s ease, background 0.2s ease;
 }
 
 .page-policy .header-audio-btn:active {
