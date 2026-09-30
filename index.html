@@ -1264,23 +1264,8 @@ ${prodUrl}`;
   async function executeSmartShare(payload) {
     haptic(16);
 
+    // 1. Direct Web Share API (Instant user gesture se bina kisi delay ke)
     if (navigator.share) {
-      try {
-        const response = await fetch(payload.imgUrl);
-        const blob = await response.blob();
-        const file = new File([blob], 'dharatatva-product.jpg', { type: blob.type });
-
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            files: [file],
-            title: payload.shareTitle,
-            text: payload.shareText
-          });
-          showToast("Shared Successfully ✓");
-          return;
-        }
-      } catch (e) {}
-
       try {
         await navigator.share({
           title: payload.shareTitle,
@@ -1290,14 +1275,16 @@ ${prodUrl}`;
         showToast("Shared Successfully ✓");
         return;
       } catch (err) {
+        // Agar user ne share cancel kar diya toh kuch mat karo
         if (err.name === 'AbortError') return;
       }
     }
 
+    // 2. Fallback: Direct redirect (Pop-up block nahi hoga)
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(payload.shareText)}`;
-    const opened = window.open(waUrl, '_blank');
-
-    if (!opened) {
+    try {
+      window.location.href = waUrl;
+    } catch (e) {
       await navigator.clipboard.writeText(payload.shareText);
       showToast("Offer Details Copied ✓");
     }
@@ -1800,27 +1787,51 @@ ${prodUrl}`;
     setTimeout(closeAllModals, 1200);
   }
 
+// Page load aur Back navigation control
+  function initAudioExperience() {
+    const alreadyAccepted = localStorage.getItem(CACHE_KEY);
+    const hasVisitedInSession = sessionStorage.getItem("dharatatva_session_visited");
+
+    if (!alreadyAccepted) {
+      // First ever visit: Welcome dialog dikhayen
+      setTimeout(() => welcomeModal.classList.add('active'), 2700);
+      sessionStorage.setItem("dharatatva_session_visited", "true");
+    } else if (hasVisitedInSession) {
+      // Customer usi session me wapas aaya hai: Audio pause rahega, notification pill dikhega
+      preloadAllSiteAssets();
+      pauseAudio();
+      setTimeout(() => {
+        if (audioReminderPill) audioReminderPill.classList.add('active');
+        if (audioBtn) audioBtn.classList.add('attention');
+      }, 500);
+    } else {
+      // Fresh session load
+      sessionStorage.setItem("dharatatva_session_visited", "true");
+      preloadAllSiteAssets();
+      setTimeout(() => {
+        playAudio().catch(() => {
+          if (audioReminderPill) audioReminderPill.classList.add('active');
+          if (audioBtn) audioBtn.classList.add('attention');
+        });
+      }, 800);
+    }
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     applyCategoryTheme(currentCategory);
     renderProductDataOnly();
     ensureDesktopSideCards();
     updateNavigationState();
     startCategoryEntranceSequence();
+    initAudioExperience();
+  });
 
-    const alreadyAccepted = localStorage.getItem(CACHE_KEY);
-    if (!alreadyAccepted) {
-      setTimeout(() => welcomeModal.classList.add('active'), 2700);
-    } else {
-      preloadAllSiteAssets();
-      setTimeout(() => {
-        playAudio().catch(() => {
-          const handleFirstUserTouch = () => {
-            playAudio().then(() => dismissReminderPill()).catch(() => {});
-          };
-          window.addEventListener('touchstart', handleFirstUserTouch, { once: true, passive: true });
-          window.addEventListener('click', handleFirstUserTouch, { once: true });
-        });
-      }, 800);
+  // Browser back button (Bfcache) par handle karne ke liye
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      pauseAudio();
+      if (audioReminderPill) audioReminderPill.classList.add('active');
+      if (audioBtn) audioBtn.classList.add('attention');
     }
   });
   </script>
