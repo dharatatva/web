@@ -7,12 +7,11 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
   <link rel="stylesheet" type="text/css" href="css/home_style.css"/>
 </head>
 <body class="page-policy">
@@ -30,8 +29,7 @@
       <div class="global-backdrop" id="globalBackdrop"></div>
 
       <!-- VEDIC WELCOME DIALOG -->
-      <div class="welcome-dialog-overlay" id="welcomeDialogOverlay">
-      </div>
+      <div class="welcome-dialog-overlay" id="welcomeDialogOverlay"></div>
 
       <!-- HEADER -->
       <header>
@@ -70,170 +68,173 @@
       </header>
 
       <!-- SCROLLABLE PAGE BODY -->
-<div class="app-scroll-body">
+      <div class="app-scroll-body">
+        
+        <div class="editorial-page-container">
 
-  <div class="policy-content-card">
+          <!-- POLICY CARD SHELL -->
+          <section class="origin-grid-card" style="padding: 34px 24px;">
 
-    <h3 style="text-align: center; margin-bottom: 4px;">
-      Cancellation Policy
-    </h3>
+            <!-- PAGE HEADER -->
+            <div style="text-align: center; margin-bottom: 24px;">
+              <span class="section-eyebrow">ORDERS, FULFILLMENT &amp; GOVERNANCE</span>
+              <h1 class="editorial-title" style="margin-bottom: 6px;">
+                Cancellation <span class="italic-accent">Policy</span>
+              </h1>
+              <div class="editorial-rule-divider" style="margin: 14px auto 18px;"></div>
+              <p class="editorial-lead" style="max-width: 600px; margin: 0 auto; color: var(--text);">
+                At <strong>Dharatatva</strong>, we aim to process and dispatch orders efficiently. This Cancellation Policy explains when an order may be cancelled and how applicable refunds are handled.
+              </p>
+            </div>
 
-    <div style="
-      width: 40px;
-      height: 2px;
-      background: var(--bronze);
-      margin: 0 auto 16px;
-    "></div>
+            <!-- 1. CUSTOMER-INITIATED CANCELLATION -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 01</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                1. Customer-Initiated Cancellation
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Customers may request cancellation of an order before the order has been processed for dispatch.</p>
+                <p>• Cancellation requests should be submitted as soon as possible after placing the order.</p>
+                <p>• Once an order has been dispatched, cancellation through the website may no longer be possible. In such cases, the request may be handled according to our Returns and Refunds Policy.</p>
+              </div>
+            </div>
 
+            <!-- 2. HOW TO REQUEST CANCELLATION -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 02</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                2. How to Request Cancellation
+              </h3>
+              <div class="editorial-lead">
+                <p>To request cancellation, contact our Customer Support team with your order details, preferably including your order number and registered contact information.</p>
+                <p style="margin-top: 8px;">
+                  <strong style="color: var(--text);">Email:</strong> 
+                  <a href="mailto:support@dharatatva.com" style="color: var(--bronze); font-weight: 700; text-decoration: none;">support@dharatatva.com</a>
+                </p>
+              </div>
+            </div>
 
-    <p>
-      At <strong>Dharatatva</strong>, we aim to process and dispatch orders
-      efficiently. This Cancellation Policy explains when an order may be
-      cancelled and how applicable refunds are handled.
-    </p>
+            <!-- 3. CANCELLATION BY DHARATATVA -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 03</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                3. Cancellation by Dharatatva
+              </h3>
+              <div class="editorial-lead">
+                <p>Dharatatva may cancel an order where reasonably necessary, including circumstances such as:</p>
+                <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding-left: 6px;">
+                  <p>• Product being unavailable.</p>
+                  <p>• Incorrect or obvious pricing or product information error.</p>
+                  <p>• Delivery address or serviceability issues.</p>
+                  <p>• Suspected fraudulent or unauthorised transaction.</p>
+                  <p>• Technical or system-related issues.</p>
+                  <p>• Other legitimate operational or legal reasons.</p>
+                </div>
+              </div>
+            </div>
 
+            <!-- 4. REFUND AFTER CANCELLATION -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 04</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                4. Refund After Cancellation
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• If an eligible prepaid order is successfully cancelled before dispatch, the applicable refundable amount will be processed according to our refund procedure.</p>
+                <p>• Refund processing time may depend on the payment gateway, bank, financial institution, or payment method used.</p>
+                <p>• Shipping or other charges, where applicable and legally permissible, may be treated according to the circumstances of the cancellation and our applicable refund policy.</p>
+              </div>
+            </div>
 
-    <h5>1. Customer-Initiated Cancellation</h5>
+            <!-- 5. CASH ON DELIVERY ORDERS -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 05</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                5. Cash on Delivery Orders
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• For Cash on Delivery orders, customers may request cancellation before dispatch.</p>
+                <p>• Repeated refusal, non-acceptance, or cancellation of COD shipments after dispatch may affect future COD availability for the customer, subject to applicable business practices and law.</p>
+              </div>
+            </div>
 
-    <p>
-      * Customers may request cancellation of an order before the order has
-      been processed for dispatch.
-    </p>
+            <!-- 6. CANCELLATION AFTER DISPATCH -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 06</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                6. Cancellation After Dispatch
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Once an order has been handed over to the shipping or logistics provider, cancellation may not be available through the normal cancellation process.</p>
+                <p>• If the customer no longer wishes to receive a dispatched order, the applicable process will be governed by our Returns and Refunds Policy and the circumstances of the shipment.</p>
+              </div>
+            </div>
 
-    <p>
-      * Cancellation requests should be submitted as soon as possible after
-      placing the order.
-    </p>
+            <!-- 7. DUPLICATE ORDERS -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 07</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                7. Duplicate Orders
+              </h3>
+              <div class="editorial-lead">
+                <p>• If you accidentally place duplicate orders, contact Customer Support as soon as possible. We will make reasonable efforts to cancel the duplicate order if it has not yet been dispatched.</p>
+              </div>
+            </div>
 
-    <p>
-      * Once an order has been dispatched, cancellation through the website
-      may no longer be possible. In such cases, the request may be handled
-      according to our Returns and Refunds Policy.
-    </p>
+            <!-- 8. CONTACT US -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 08</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                8. Contact Us
+              </h3>
+              <div class="editorial-lead">
+                <p>For cancellation requests or assistance, please reach out directly:</p>
+                <p style="margin-top: 8px;">
+                  <strong style="color: var(--text);">Email:</strong> 
+                  <a href="mailto:support@dharatatva.com" style="color: var(--bronze); font-weight: 700; text-decoration: none;">support@dharatatva.com</a>
+                </p>
+              </div>
+            </div>
 
+            <!-- IMPORTANT NOTE HIGHLIGHT CARD -->
+            <div class="reflection-quote-card" style="margin-top: 32px;">
+              <span style="font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 6px;">Important Note</span>
+              <p style="font-family: var(--font-sans); font-style: normal; font-size: 13px; line-height: 1.65; color: var(--text);">
+                Cancellation eligibility may depend on the processing and dispatch status of the order. Customers are encouraged to contact us as soon as possible if they wish to cancel an order.
+              </p>
+            </div>
 
-    <h5>2. How to Request Cancellation</h5>
+          </section>
 
-    <p>
-      To request cancellation, contact our Customer Support team with your
-      order details, preferably including your order number and registered
-      contact information.
-    </p>
+          <!-- CONCIERGE & CARE CARD -->
+          <section class="contact-sanctum-card">
+            <span class="section-eyebrow">CARE DESK</span>
+            <h3 style="font-family: var(--font-cormorant); font-size: 1.6rem; color: var(--text); margin-bottom: 6px;">
+              Need help with your order?
+            </h3>
+            <p class="editorial-lead" style="max-width: 460px; margin: 0 auto;">
+              Our concierge team is available Monday to Saturday to assist you with order modifications or cancellation queries.
+            </p>
 
-    <p>
-      <strong>Email:</strong>
-      <a
-        href="mailto:support@dharatatva.com"
-        style="color: var(--text); font-weight: 600;"
-      >
-        support@dharatatva.com
-      </a>
-    </p>
+            <div class="sanctum-emails">
+              <a href="mailto:support@dharatatva.com">support@dharatatva.com</a>
+              <a href="mailto:care@dharatatva.com">care@dharatatva.com</a>
+            </div>
 
+            <div style="margin-top: 14px;">
+              <span style="font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 800; color: var(--muted); display: block; margin-bottom: 8px;">FOLLOW THE JOURNEY</span>
+              <div class="social-links-row">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </section>
 
-    <h5>3. Cancellation by Dharatatva</h5>
+        </div>
 
-    <p>
-      Dharatatva may cancel an order where reasonably necessary, including
-      circumstances such as:
-    </p>
-
-    <p>
-      * Product being unavailable.<br>
-      * Incorrect or obvious pricing or product information error.<br>
-      * Delivery address or serviceability issues.<br>
-      * Suspected fraudulent or unauthorised transaction.<br>
-      * Technical or system-related issues.<br>
-      * Other legitimate operational or legal reasons.
-    </p>
-
-
-    <h5>4. Refund After Cancellation</h5>
-
-    <p>
-      * If an eligible prepaid order is successfully cancelled before
-      dispatch, the applicable refundable amount will be processed according
-      to our refund procedure.
-    </p>
-
-    <p>
-      * Refund processing time may depend on the payment gateway, bank,
-      financial institution, or payment method used.
-    </p>
-
-    <p>
-      * Shipping or other charges, where applicable and legally permissible,
-      may be treated according to the circumstances of the cancellation and
-      our applicable refund policy.
-    </p>
-
-
-    <h5>5. Cash on Delivery Orders</h5>
-
-    <p>
-      * For Cash on Delivery orders, customers may request cancellation
-      before dispatch.
-    </p>
-
-    <p>
-      * Repeated refusal, non-acceptance, or cancellation of COD shipments
-      after dispatch may affect future COD availability for the customer,
-      subject to applicable business practices and law.
-    </p>
-
-
-    <h5>6. Cancellation After Dispatch</h5>
-
-    <p>
-      * Once an order has been handed over to the shipping or logistics
-      provider, cancellation may not be available through the normal
-      cancellation process.
-    </p>
-
-    <p>
-      * If the customer no longer wishes to receive a dispatched order,
-      the applicable process will be governed by our Returns and Refunds
-      Policy and the circumstances of the shipment.
-    </p>
-
-
-    <h5>7. Duplicate Orders</h5>
-
-    <p>
-      * If you accidentally place duplicate orders, contact Customer Support
-      as soon as possible. We will make reasonable efforts to cancel the
-      duplicate order if it has not yet been dispatched.
-    </p>
-
-
-    <h5>8. Contact Us</h5>
-
-    <p>
-      For cancellation requests or assistance, please contact:
-    </p>
-
-    <p>
-      <strong>Email:</strong>
-      <a
-        href="mailto:support@dharatatva.com"
-        style="color: var(--text); font-weight: 600;"
-      >
-        support@dharatatva.com
-      </a>
-    </p>
-
-
-    <h5>Important Note</h5>
-
-    <p>
-      Cancellation eligibility may depend on the processing and dispatch
-      status of the order. Customers are encouraged to contact us as soon
-      as possible if they wish to cancel an order.
-    </p>
-
-  </div>
-
-</div>
+      </div>
 
       <!-- WARM FLOATING CURVED LUXURY DRAWER WITH FOOTER -->
       <div class="curved-warm-drawer" id="editorialMenuDrawer">
@@ -245,7 +246,7 @@
 
         <div class="warm-drawer-menu-list">
           <span class="drawer-section-heading">Explore</span>
-		  <div class="warm-menu-group">
+          <div class="warm-menu-group">
             <a href="https://dharatatva.github.io/web" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
@@ -254,7 +255,7 @@
             </a>
           </div>
 		  
-		  <div class="warm-menu-group">
+          <div class="warm-menu-group">
             <a href="https://dharatatva.github.io/web/about_dharatatva" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -303,6 +304,7 @@
               <span class="warm-item-title">Terms and Conditions</span>
             </a>
           </div>
+
           <div class="concierge-glass-card">
             <div class="concierge-card-head">
               <span class="concierge-card-title">Customer Service</span>
@@ -327,15 +329,15 @@
         </div>
 
         <div class="warm-drawer-footer-brand">
-			  <div class="warm-menu-item">
-              <div class="warm-item-icon">
-                <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
-              </div>
-              <div>
-			  <span class="footer-brand-title">Dharatatva</span><br>
-			  <span class="footer-brand-tagline">Herbal | Ayurveda | Modern Science</span>
-			  </div>
+          <div class="warm-menu-item">
+            <div class="warm-item-icon">
+              <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
             </div>
+            <div>
+              <span class="footer-brand-title">Dharatatva</span><br>
+              <span class="footer-brand-tagline">Herbal | Ayurveda | Modern Science</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -348,14 +350,68 @@
         try { navigator.vibrate(ms); } catch (e) {}
       }
     }
-	
-    const welcomeModal = document.getElementById('welcomeDialogOverlay');
 
-    /* MODAL MANAGEMENT */
+    let toastTimer = null;
+    function showToast(text) {
+      const toast = document.getElementById('toastAlert');
+      toast.textContent = text;
+      toast.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    /* AUDIO CONTROLLER */
+    const audioEl = document.getElementById('ambientAudio');
+    const audioBtn = document.getElementById('headerAudioBtn');
+    const audioIcon = document.getElementById('audioStateIcon');
+    const audioReminderPill = document.getElementById('audioReminderPill');
+    const progressCircle = document.getElementById('audioProgressCircle');
+    const circumference = 2 * Math.PI * 17;
+    let isAudioPlaying = false;
+
+    function dismissReminderPill() {
+      if (audioReminderPill) audioReminderPill.classList.remove('active');
+      if (audioBtn) audioBtn.classList.remove('attention');
+    }
+
+    function playAudio() {
+      return audioEl.play().then(() => {
+        isAudioPlaying = true;
+        audioBtn.classList.add('playing');
+        audioIcon.innerText = '❚❚';
+        dismissReminderPill();
+      }).catch(err => {
+        if (audioReminderPill) audioReminderPill.classList.add('active');
+        if (audioBtn) audioBtn.classList.add('attention');
+      });
+    }
+
+    function pauseAudio() {
+      audioEl.pause();
+      isAudioPlaying = false;
+      audioBtn.classList.remove('playing');
+      audioIcon.innerText = '▶';
+    }
+
+    function toggleAudio() {
+      dismissReminderPill();
+      if (isAudioPlaying) pauseAudio();
+      else playAudio();
+    }
+
+    audioEl.addEventListener('timeupdate', () => {
+      if (audioEl.duration) {
+        const percent = audioEl.currentTime / audioEl.duration;
+        const offset = circumference - (percent * circumference);
+        progressCircle.style.strokeDashoffset = offset;
+      }
+    });
+
+    const welcomeModal = document.getElementById('welcomeDialogOverlay');
     const editorialMenuDrawer = document.getElementById('editorialMenuDrawer');
+    const globalBackdrop = document.getElementById('globalBackdrop');
 
     function closeAllModals() {
-      if (welcomeModal.classList.contains('active')) return;
       editorialMenuDrawer.classList.remove('open');
       globalBackdrop.classList.remove('active');
     }
