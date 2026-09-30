@@ -7,12 +7,11 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
   <link rel="stylesheet" type="text/css" href="css/home_style.css"/>
 </head>
 <body class="page-policy">
@@ -27,11 +26,11 @@
 
   <div class="app-viewport-wrapper">
     <div class="app-viewport-shell" id="appShell">
+      <div class="toast-alert" id="toastAlert">Notice</div>
       <div class="global-backdrop" id="globalBackdrop"></div>
 
       <!-- VEDIC WELCOME DIALOG -->
-      <div class="welcome-dialog-overlay" id="welcomeDialogOverlay">
-      </div>
+      <div class="welcome-dialog-overlay" id="welcomeDialogOverlay"></div>
 
       <!-- HEADER -->
       <header>
@@ -70,229 +69,237 @@
       </header>
 
       <!-- SCROLLABLE PAGE BODY -->
-<div class="app-scroll-body">
+      <div class="app-scroll-body">
+        
+        <div class="editorial-page-container">
 
-  <div class="policy-content-card">
+          <!-- POLICY CARD SHELL -->
+          <section class="origin-grid-card" style="padding: 34px 24px;">
 
-    <h3 style="text-align: center; margin-bottom: 4px;">
-      Privacy Policy
-    </h3>
+            <!-- PAGE HEADER -->
+            <div style="text-align: center; margin-bottom: 24px;">
+              <span class="section-eyebrow">ORDERS, FULFILLMENT &amp; GOVERNANCE</span>
+              <h1 class="editorial-title" style="margin-bottom: 6px;">
+                Privacy <span class="italic-accent">Policy</span>
+              </h1>
+              <div class="editorial-rule-divider" style="margin: 14px auto 18px;"></div>
+              <p class="editorial-lead" style="max-width: 620px; margin: 0 auto; color: var(--text);">
+                At <strong>Dharatatva</strong>, we respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, store, and protect information when you visit our website, place an order, or interact with our services.
+              </p>
+            </div>
 
-    <div style="
-      width: 40px;
-      height: 2px;
-      background: var(--bronze);
-      margin: 0 auto 16px;
-    "></div>
+            <!-- 1. INFORMATION WE COLLECT -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 01</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                1. Information We Collect
+              </h3>
+              <div class="editorial-lead">
+                <p>Depending on how you interact with our website, we may collect information such as:</p>
+                <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding-left: 6px;">
+                  <p>• Name and contact details.</p>
+                  <p>• Billing and delivery address.</p>
+                  <p>• Mobile number and email address.</p>
+                  <p>• Order and transaction-related information.</p>
+                  <p>• Product preferences and customer support communications.</p>
+                  <p>• Information voluntarily provided through forms, reviews, feedback, or other website interactions.</p>
+                </div>
+              </div>
+            </div>
 
+            <!-- 2. PAYMENT INFORMATION -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 02</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                2. Payment Information
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Payments may be processed through authorised third-party payment gateways.</p>
+                <p>• Where payment information is handled directly by a payment service provider, such information may be subject to that provider's privacy and security practices.</p>
+                <p>• Dharatatva does not intentionally store complete payment-card information on its own systems where such information is processed directly by an authorised payment gateway.</p>
+              </div>
+            </div>
 
-    <p>
-      At <strong>Dharatatva</strong>, we respect your privacy and are
-      committed to protecting the personal information you share with us.
-      This Privacy Policy explains how we collect, use, store, and protect
-      information when you visit our website, place an order, or interact
-      with our services.
-    </p>
+            <!-- 3. HOW WE USE YOUR INFORMATION -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 03</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                3. How We Use Your Information
+              </h3>
+              <div class="editorial-lead">
+                <p>We may use collected information to:</p>
+                <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding-left: 6px;">
+                  <p>• Process and fulfil orders.</p>
+                  <p>• Arrange delivery and shipment.</p>
+                  <p>• Process payments and refunds.</p>
+                  <p>• Provide customer support.</p>
+                  <p>• Communicate regarding orders, products, or services.</p>
+                  <p>• Improve our website, products, services, and customer experience.</p>
+                  <p>• Prevent fraud, misuse, and unauthorised activity.</p>
+                  <p>• Meet applicable legal and regulatory requirements.</p>
+                </div>
+              </div>
+            </div>
 
+            <!-- 4. COMMUNICATIONS -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 04</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                4. Communications
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• We may contact customers through email, phone, SMS, WhatsApp, or other available communication channels regarding orders, customer support, account-related matters, or service updates.</p>
+                <p>• Where legally required, promotional communications will be subject to applicable consent and opt-out requirements.</p>
+              </div>
+            </div>
 
-    <h5>1. Information We Collect</h5>
+            <!-- 5. COOKIES & SIMILAR TECHNOLOGIES -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 05</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                5. Cookies &amp; Similar Technologies
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Our website may use cookies or similar technologies to support website functionality, security, analytics, preferences, and performance.</p>
+                <p>• You may be able to manage certain cookie preferences through your browser or device settings.</p>
+              </div>
+            </div>
 
-    <p>
-      Depending on how you interact with our website, we may collect
-      information such as:
-    </p>
+            <!-- 6. THIRD-PARTY SERVICE PROVIDERS -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 06</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                6. Third-Party Service Providers
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• We may work with trusted service providers for payment processing, shipping, logistics, website hosting, analytics, communication, technology, customer support, and other business functions.</p>
+                <p>• Such service providers may process information only as necessary to provide the relevant services, subject to applicable agreements and laws.</p>
+              </div>
+            </div>
 
-    <p>
-      * Name and contact details.<br>
-      * Billing and delivery address.<br>
-      * Mobile number and email address.<br>
-      * Order and transaction-related information.<br>
-      * Product preferences and customer support communications.<br>
-      * Information voluntarily provided through forms, reviews, feedback,
-      or other website interactions.
-    </p>
+            <!-- 7. INFORMATION SECURITY -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 07</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                7. Information Security
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• We use reasonable administrative, technical, and organisational measures designed to protect personal information against unauthorised access, misuse, alteration, disclosure, or destruction.</p>
+                <p>• However, no method of electronic transmission or storage can be guaranteed to be completely secure.</p>
+              </div>
+            </div>
 
+            <!-- 8. DATA RETENTION -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 08</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                8. Data Retention
+              </h3>
+              <div class="editorial-lead">
+                <p>• We may retain personal information for as long as reasonably necessary to fulfil the purposes described in this Privacy Policy, provide services, maintain business records, resolve disputes, prevent fraud, and comply with applicable legal requirements.</p>
+              </div>
+            </div>
 
-    <h5>2. Payment Information</h5>
+            <!-- 9. CHILDREN'S PRIVACY -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 09</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                9. Children's Privacy
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Our website is not intended to knowingly collect personal information from children in violation of applicable law.</p>
+                <p>• Parents or legal guardians should supervise children's use of online services where appropriate.</p>
+              </div>
+            </div>
 
-    <p>
-      * Payments may be processed through authorised third-party payment
-      gateways.
-    </p>
+            <!-- 10. YOUR RIGHTS & CHOICES -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 10</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                10. Your Rights &amp; Choices
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Depending on applicable law, you may have rights relating to your personal information, including requesting access, correction, updating, or other lawful requests.</p>
+                <p>• You may contact us at any time to make a privacy-related request.</p>
+              </div>
+            </div>
 
-    <p>
-      * Where payment information is handled directly by a payment service
-      provider, such information may be subject to that provider's privacy
-      and security practices.
-    </p>
+            <!-- 11. EXTERNAL LINKS -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 11</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                11. External Links
+              </h3>
+              <div class="editorial-lead">
+                <p>• Our website may contain links to third-party websites or services. Dharatatva is not responsible for the privacy practices or content of third-party websites.</p>
+              </div>
+            </div>
 
-    <p>
-      * Dharatatva does not intentionally store complete payment-card
-      information on its own systems where such information is processed
-      directly by an authorised payment gateway.
-    </p>
+            <!-- 12. CHANGES TO THIS PRIVACY POLICY -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 12</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                12. Changes to This Privacy Policy
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Dharatatva may update this Privacy Policy periodically to reflect changes in our practices, technology, services, or applicable law.</p>
+                <p>• Any updated version will be published on this page with immediate effect.</p>
+              </div>
+            </div>
 
+            <!-- 13. CONTACT US -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 13</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                13. Contact Us
+              </h3>
+              <div class="editorial-lead">
+                <p>For privacy-related questions, requests, or concerns, please contact us directly:</p>
+                <p style="margin-top: 8px;">
+                  <strong style="color: var(--text);">Email:</strong> 
+                  <a href="mailto:support@dharatatva.com" style="color: var(--bronze); font-weight: 700; text-decoration: none;">support@dharatatva.com</a>
+                </p>
+              </div>
+            </div>
 
-    <h5>3. How We Use Your Information</h5>
+            <!-- IMPORTANT NOTE HIGHLIGHT CARD -->
+            <div class="reflection-quote-card" style="margin-top: 32px;">
+              <span style="font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 6px;">Important Note</span>
+              <p style="font-family: var(--font-sans); font-style: normal; font-size: 13px; line-height: 1.65; color: var(--text);">
+                By using the Dharatatva website, you acknowledge that you have reviewed this Privacy Policy and understand how information may be collected and processed as described above.
+              </p>
+            </div>
 
-    <p>
-      We may use collected information to:
-    </p>
+          </section>
 
-    <p>
-      * Process and fulfil orders.<br>
-      * Arrange delivery and shipment.<br>
-      * Process payments and refunds.<br>
-      * Provide customer support.<br>
-      * Communicate regarding orders, products, or services.<br>
-      * Improve our website, products, services, and customer experience.<br>
-      * Prevent fraud, misuse, and unauthorised activity.<br>
-      * Meet applicable legal and regulatory requirements.
-    </p>
+          <!-- CONCIERGE & CARE CARD -->
+          <section class="contact-sanctum-card">
+            <span class="section-eyebrow">PRIVACY &amp; CARE DESK</span>
+            <h3 style="font-family: var(--font-cormorant); font-size: 1.6rem; color: var(--text); margin-bottom: 6px;">
+              Have questions about your data?
+            </h3>
+            <p class="editorial-lead" style="max-width: 460px; margin: 0 auto;">
+              Our team is committed to data transparency. Feel free to contact our support desk for any assistance.
+            </p>
 
+            <div class="sanctum-emails">
+              <a href="mailto:support@dharatatva.com">support@dharatatva.com</a>
+              <a href="mailto:care@dharatatva.com">care@dharatatva.com</a>
+            </div>
 
-    <h5>4. Communications</h5>
+            <div style="margin-top: 14px;">
+              <span style="font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 800; color: var(--muted); display: block; margin-bottom: 8px;">FOLLOW THE JOURNEY</span>
+              <div class="social-links-row">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </section>
 
-    <p>
-      * We may contact customers through email, phone, SMS, WhatsApp, or
-      other available communication channels regarding orders, customer
-      support, account-related matters, or service updates.
-    </p>
+        </div>
 
-    <p>
-      * Where legally required, promotional communications will be subject
-      to applicable consent and opt-out requirements.
-    </p>
-
-
-    <h5>5. Cookies & Similar Technologies</h5>
-
-    <p>
-      * Our website may use cookies or similar technologies to support
-      website functionality, security, analytics, preferences, and
-      performance.
-    </p>
-
-    <p>
-      * You may be able to manage certain cookie preferences through your
-      browser or device settings.
-    </p>
-
-
-    <h5>6. Third-Party Service Providers</h5>
-
-    <p>
-      * We may work with trusted service providers for payment processing,
-      shipping, logistics, website hosting, analytics, communication,
-      technology, customer support, and other business functions.
-    </p>
-
-    <p>
-      * Such service providers may process information only as necessary
-      to provide the relevant services, subject to applicable agreements
-      and laws.
-    </p>
-
-
-    <h5>7. Information Security</h5>
-
-    <p>
-      * We use reasonable administrative, technical, and organisational
-      measures designed to protect personal information against
-      unauthorised access, misuse, alteration, disclosure, or destruction.
-    </p>
-
-    <p>
-      * However, no method of electronic transmission or storage can be
-      guaranteed to be completely secure.
-    </p>
-
-
-    <h5>8. Data Retention</h5>
-
-    <p>
-      * We may retain personal information for as long as reasonably
-      necessary to fulfil the purposes described in this Privacy Policy,
-      provide services, maintain business records, resolve disputes,
-      prevent fraud, and comply with applicable legal requirements.
-    </p>
-
-
-    <h5>9. Children's Privacy</h5>
-
-    <p>
-      * Our website is not intended to knowingly collect personal
-      information from children in violation of applicable law.
-    </p>
-
-    <p>
-      * Parents or legal guardians should supervise children's use of
-      online services where appropriate.
-    </p>
-
-
-    <h5>10. Your Rights & Choices</h5>
-
-    <p>
-      * Depending on applicable law, you may have rights relating to your
-      personal information, including requesting access, correction,
-      updating, or other lawful requests.
-    </p>
-
-    <p>
-      * You may contact us to make a privacy-related request.
-    </p>
-
-
-    <h5>11. External Links</h5>
-
-    <p>
-      * Our website may contain links to third-party websites or services.
-      Dharatatva is not responsible for the privacy practices or content
-      of third-party websites.
-    </p>
-
-
-    <h5>12. Changes to This Privacy Policy</h5>
-
-    <p>
-      * Dharatatva may update this Privacy Policy periodically to reflect
-      changes in our practices, technology, services, or applicable law.
-    </p>
-
-    <p>
-      * Any updated version will be published on this page.
-    </p>
-
-
-    <h5>13. Contact Us</h5>
-
-    <p>
-      For privacy-related questions, requests, or concerns, please contact:
-    </p>
-
-    <p>
-      <strong>Email:</strong>
-      <a
-        href="mailto:support@dharatatva.com"
-        style="color: var(--text); font-weight: 600;"
-      >
-        support@dharatatva.com
-      </a>
-    </p>
-
-
-    <h5>Note</h5>
-
-    <p>
-      By using the Dharatatva website, you acknowledge that you have
-      reviewed this Privacy Policy and understand how information may be
-      collected and processed as described above.
-    </p>
-
-  </div>
-
-</div>
+      </div>
 
       <!-- WARM FLOATING CURVED LUXURY DRAWER WITH FOOTER -->
       <div class="curved-warm-drawer" id="editorialMenuDrawer">
@@ -304,7 +311,7 @@
 
         <div class="warm-drawer-menu-list">
           <span class="drawer-section-heading">Explore</span>
-		  <div class="warm-menu-group">
+          <div class="warm-menu-group">
             <a href="https://dharatatva.github.io/web" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
@@ -313,7 +320,7 @@
             </a>
           </div>
 		  
-		  <div class="warm-menu-group">
+          <div class="warm-menu-group">
             <a href="https://dharatatva.github.io/web/about_dharatatva" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -362,6 +369,7 @@
               <span class="warm-item-title">Terms and Conditions</span>
             </a>
           </div>
+
           <div class="concierge-glass-card">
             <div class="concierge-card-head">
               <span class="concierge-card-title">Customer Service</span>
@@ -386,15 +394,15 @@
         </div>
 
         <div class="warm-drawer-footer-brand">
-			  <div class="warm-menu-item">
-              <div class="warm-item-icon">
-                <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
-              </div>
-              <div>
-			  <span class="footer-brand-title">Dharatatva</span><br>
-			  <span class="footer-brand-tagline">Herbal | Ayurveda | Modern Science</span>
-			  </div>
+          <div class="warm-menu-item">
+            <div class="warm-item-icon">
+              <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
             </div>
+            <div>
+              <span class="footer-brand-title">Dharatatva</span><br>
+              <span class="footer-brand-tagline">Herbal | Ayurveda | Modern Science</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -407,14 +415,68 @@
         try { navigator.vibrate(ms); } catch (e) {}
       }
     }
-	
-    const welcomeModal = document.getElementById('welcomeDialogOverlay');
 
-    /* MODAL MANAGEMENT */
+    let toastTimer = null;
+    function showToast(text) {
+      const toast = document.getElementById('toastAlert');
+      toast.textContent = text;
+      toast.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    /* AUDIO CONTROLLER */
+    const audioEl = document.getElementById('ambientAudio');
+    const audioBtn = document.getElementById('headerAudioBtn');
+    const audioIcon = document.getElementById('audioStateIcon');
+    const audioReminderPill = document.getElementById('audioReminderPill');
+    const progressCircle = document.getElementById('audioProgressCircle');
+    const circumference = 2 * Math.PI * 17;
+    let isAudioPlaying = false;
+
+    function dismissReminderPill() {
+      if (audioReminderPill) audioReminderPill.classList.remove('active');
+      if (audioBtn) audioBtn.classList.remove('attention');
+    }
+
+    function playAudio() {
+      return audioEl.play().then(() => {
+        isAudioPlaying = true;
+        audioBtn.classList.add('playing');
+        audioIcon.innerText = '❚❚';
+        dismissReminderPill();
+      }).catch(err => {
+        if (audioReminderPill) audioReminderPill.classList.add('active');
+        if (audioBtn) audioBtn.classList.add('attention');
+      });
+    }
+
+    function pauseAudio() {
+      audioEl.pause();
+      isAudioPlaying = false;
+      audioBtn.classList.remove('playing');
+      audioIcon.innerText = '▶';
+    }
+
+    function toggleAudio() {
+      dismissReminderPill();
+      if (isAudioPlaying) pauseAudio();
+      else playAudio();
+    }
+
+    audioEl.addEventListener('timeupdate', () => {
+      if (audioEl.duration) {
+        const percent = audioEl.currentTime / audioEl.duration;
+        const offset = circumference - (percent * circumference);
+        progressCircle.style.strokeDashoffset = offset;
+      }
+    });
+
+    const welcomeModal = document.getElementById('welcomeDialogOverlay');
     const editorialMenuDrawer = document.getElementById('editorialMenuDrawer');
+    const globalBackdrop = document.getElementById('globalBackdrop');
 
     function closeAllModals() {
-      if (welcomeModal.classList.contains('active')) return;
       editorialMenuDrawer.classList.remove('open');
       globalBackdrop.classList.remove('active');
     }
