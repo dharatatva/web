@@ -7,8 +7,8 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -26,11 +26,11 @@
 
   <div class="app-viewport-wrapper">
     <div class="app-viewport-shell" id="appShell">
+      <div class="toast-alert" id="toastAlert">Notice</div>
       <div class="global-backdrop" id="globalBackdrop"></div>
 
       <!-- VEDIC WELCOME DIALOG -->
-      <div class="welcome-dialog-overlay" id="welcomeDialogOverlay">
-      </div>
+      <div class="welcome-dialog-overlay" id="welcomeDialogOverlay"></div>
 
       <!-- HEADER -->
       <header>
@@ -69,269 +69,229 @@
       </header>
 
       <!-- SCROLLABLE PAGE BODY -->
-<div class="app-scroll-body">
-
-  <div class="policy-content-card">
-
-    <h3 style="text-align: center; margin-bottom: 4px;">
-      Terms and Conditions
-    </h3>
-
-    <div style="
-      width: 40px;
-      height: 2px;
-      background: var(--bronze);
-      margin: 0 auto 16px;
-    "></div>
-
-
-    <p>
-      Welcome to <strong>Dharatatva</strong>. These Terms and Conditions
-      govern your access to and use of the Dharatatva website, products,
-      services, and related features.
-    </p>
-
-    <p>
-      Dharatatva develops and offers products across multiple categories,
-      including herbal and Ayurvedic personal care, skin care, hair care,
-      wellness, nutrition, churna, creams, washes, oils, and other
-      formulations. Our products are developed using a combination of
-      traditional Ayurvedic knowledge, herbal ingredients, natural principles,
-      and modern scientific understanding.
-    </p>
-
-    <p>
-      By accessing our website, placing an order, or purchasing any
-      Dharatatva product, you acknowledge that you have read, understood,
-      and agreed to these Terms and Conditions.
-    </p>
-
-
-    <h5>1. Product Information</h5>
-
-    <p>
-      * We make reasonable efforts to ensure that product descriptions,
-      photographs, ingredients, directions for use, specifications, and
-      other information displayed on our website are accurate and current.
-    </p>
-
-    <p>
-      * Product appearance, colour, texture, fragrance, or other physical
-      characteristics may vary slightly due to natural ingredients,
-      manufacturing batches, packaging updates, or other legitimate
-      production variations.
-    </p>
-
-    <p>
-      * Website information is provided for general informational purposes
-      and should not be considered a substitute for professional medical,
-      dermatological, nutritional, or healthcare advice.
-    </p>
-
-
-    <h5>2. Product Use & Safety</h5>
-
-    <p>
-      * Customers should carefully read the product label, ingredients,
-      directions, warnings, precautions, and recommended usage before using
-      any Dharatatva product.
-    </p>
-
-    <p>
-      * Individual responses to herbal, Ayurvedic, cosmetic, nutritional,
-      and wellness products may vary.
-    </p>
-
-    <p>
-      * Being herbal, natural, or Ayurvedic does not guarantee that a product
-      will be suitable for every individual or that an adverse reaction is
-      impossible.
-    </p>
-
-    <p>
-      * For topical products, users with sensitive skin or known allergies
-      should consider an appropriate patch test before regular use.
-    </p>
-
-    <p>
-      * For ingestible products, individuals who are pregnant or
-      breastfeeding, taking medication, managing a medical condition, or
-      using a product for a specific health concern should consult a
-      qualified healthcare professional before use.
-    </p>
-
-
-    <h5>3. Individual Results</h5>
-
-    <p>
-      * Individual results may vary depending on factors such as age,
-      lifestyle, diet, skin or hair type, health status, consistency of use,
-      and other individual circumstances.
-    </p>
-
-    <p>
-      * Dharatatva does not guarantee identical results or outcomes for
-      every customer.
-    </p>
-
-
-    <h5>4. Customer Responsibility</h5>
-
-    <p>
-      * Customers are responsible for providing accurate and complete
-      information while placing an order, including name, delivery address,
-      contact details, and other required information.
-    </p>
-
-    <p>
-      * Customers are responsible for using products according to the
-      instructions and precautions provided with the applicable product.
-    </p>
-
-
-    <h5>5. Order Acceptance</h5>
-
-    <p>
-      * Placing an order constitutes an offer to purchase the selected
-      products.
-    </p>
-
-    <p>
-      * An order is considered accepted only after it has been successfully
-      processed and confirmed by Dharatatva.
-    </p>
-
-    <p>
-      * We reserve the right to accept, reject, cancel, or limit an order
-      where reasonably necessary, including stock limitations, pricing
-      errors, incorrect product information, suspected fraudulent activity,
-      delivery restrictions, or other legitimate reasons.
-    </p>
-
-
-    <h5>6. Pricing & Availability</h5>
-
-    <p>
-      * Product prices and availability may change without prior notice.
-    </p>
-
-    <p>
-      * We make reasonable efforts to maintain accurate pricing and product
-      information. However, technical, typographical, or system errors may
-      occasionally occur.
-    </p>
-
-
-    <h5>7. Payment</h5>
-
-    <p>
-      * Payments must be made using the payment methods made available on
-      our website.
-    </p>
-
-    <p>
-      * Payment transactions may be processed through authorised
-      third-party payment gateways.
-    </p>
-
-
-    <h5>8. Intellectual Property</h5>
-
-    <p>
-      * All Dharatatva website content, including logos, brand names,
-      product names, photographs, graphics, designs, text, videos, icons,
-      layouts, and other materials, is owned by or licensed to Dharatatva
-      and protected by applicable intellectual property laws.
-    </p>
-
-    <p>
-      * Such content may not be copied, reproduced, modified, distributed,
-      published, or commercially used without prior written permission,
-      except where permitted by law.
-    </p>
-
-
-    <h5>9. Website Use</h5>
-
-    <p>
-      * Users must not misuse the website, attempt unauthorised access,
-      interfere with website functionality, engage in fraudulent activity,
-      or use the website for unlawful purposes.
-    </p>
-
-
-    <h5>10. Limitation of Liability</h5>
-
-    <p>
-      * To the extent permitted by applicable law, Dharatatva shall not be
-      responsible for indirect, incidental, special, or consequential losses
-      arising from use of the website or products.
-    </p>
-
-    <p>
-      * Nothing in these Terms is intended to exclude or limit any liability
-      that cannot legally be excluded or limited under applicable law.
-    </p>
-
-
-    <h5>11. Governing Law & Jurisdiction</h5>
-
-    <p>
-      * These Terms and Conditions shall be governed by the applicable laws
-      of India.
-    </p>
-
-    <p>
-      * Subject to applicable law, courts having jurisdiction at
-      <strong>Indore, Madhya Pradesh, India</strong> shall have jurisdiction
-      over disputes relating to these Terms, the website, or transactions
-      with Dharatatva.
-    </p>
-
-
-    <h5>12. Changes to These Terms</h5>
-
-    <p>
-      * Dharatatva may update or modify these Terms and Conditions from time
-      to time.
-    </p>
-
-    <p>
-      * Updated Terms shall become effective when published on the website,
-      unless otherwise specified.
-    </p>
-
-
-    <h5>13. Contact Us</h5>
-
-    <p>
-      For questions or concerns regarding these Terms and Conditions,
-      please contact:
-    </p>
-
-    <p>
-      <strong>Email:</strong>
-      <a
-        href="mailto:support@dharatatva.com"
-        style="color: var(--text); font-weight: 600;"
-      >
-        support@dharatatva.com
-      </a>
-    </p>
-
-
-    <h5>Note</h5>
-
-    <p>
-      Please review the latest version of these Terms and Conditions before
-      placing an order, as policies may be updated from time to time.
-    </p>
-
-  </div>
-
-</div>
-	  
-	  
+      <div class="app-scroll-body">
+        
+        <div class="editorial-page-container">
+
+          <!-- POLICY CARD SHELL -->
+          <section class="origin-grid-card" style="padding: 34px 24px;">
+
+            <!-- PAGE HEADER -->
+            <div style="text-align: center; margin-bottom: 24px;">
+              <span class="section-eyebrow">ORDERS, FULFILLMENT &amp; GOVERNANCE</span>
+              <h1 class="editorial-title" style="margin-bottom: 6px;">
+                Terms &amp; <span class="italic-accent">Conditions</span>
+              </h1>
+              <div class="editorial-rule-divider" style="margin: 14px auto 18px;"></div>
+              
+              <div class="editorial-lead" style="max-width: 620px; margin: 0 auto; color: var(--text); text-align: left; display: flex; flex-direction: column; gap: 10px;">
+                <p>Welcome to <strong>Dharatatva</strong>. These Terms and Conditions govern your access to and use of the Dharatatva website, products, services, and related features.</p>
+                <p>Dharatatva develops and offers products across multiple categories, including herbal and Ayurvedic personal care, skin care, hair care, wellness, nutrition, churna, creams, washes, oils, and other formulations. Our products are developed using a combination of traditional Ayurvedic knowledge, herbal ingredients, natural principles, and modern scientific understanding.</p>
+                <p>By accessing our website, placing an order, or purchasing any Dharatatva product, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.</p>
+              </div>
+            </div>
+
+            <!-- 1. PRODUCT INFORMATION -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 01</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                1. Product Information
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• We make reasonable efforts to ensure that product descriptions, photographs, ingredients, directions for use, specifications, and other information displayed on our website are accurate and current.</p>
+                <p>• Product appearance, colour, texture, fragrance, or other physical characteristics may vary slightly due to natural ingredients, manufacturing batches, packaging updates, or other legitimate production variations.</p>
+                <p>• Website information is provided for general informational purposes and should not be considered a substitute for professional medical, dermatological, nutritional, or healthcare advice.</p>
+              </div>
+            </div>
+
+            <!-- 2. PRODUCT USE & SAFETY -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 02</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                2. Product Use &amp; Safety
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Customers should carefully read the product label, ingredients, directions, warnings, precautions, and recommended usage before using any Dharatatva product.</p>
+                <p>• Individual responses to herbal, Ayurvedic, cosmetic, nutritional, and wellness products may vary.</p>
+                <p>• Being herbal, natural, or Ayurvedic does not guarantee that a product will be suitable for every individual or that an adverse reaction is impossible.</p>
+                <p>• For topical products, users with sensitive skin or known allergies should consider an appropriate patch test before regular use.</p>
+                <p>• For ingestible products, individuals who are pregnant or breastfeeding, taking medication, managing a medical condition, or using a product for a specific health concern should consult a qualified healthcare professional before use.</p>
+              </div>
+            </div>
+
+            <!-- 3. INDIVIDUAL RESULTS -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 03</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                3. Individual Results
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Individual results may vary depending on factors such as age, lifestyle, diet, skin or hair type, health status, consistency of use, and other individual circumstances.</p>
+                <p>• Dharatatva does not guarantee identical results or outcomes for every customer.</p>
+              </div>
+            </div>
+
+            <!-- 4. CUSTOMER RESPONSIBILITY -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 04</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                4. Customer Responsibility
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Customers are responsible for providing accurate and complete information while placing an order, including name, delivery address, contact details, and other required information.</p>
+                <p>• Customers are responsible for using products according to the instructions and precautions provided with the applicable product.</p>
+              </div>
+            </div>
+
+            <!-- 5. ORDER ACCEPTANCE -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 05</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                5. Order Acceptance
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Placing an order constitutes an offer to purchase the selected products.</p>
+                <p>• An order is considered accepted only after it has been successfully processed and confirmed by Dharatatva.</p>
+                <p>• We reserve the right to accept, reject, cancel, or limit an order where reasonably necessary, including stock limitations, pricing errors, incorrect product information, suspected fraudulent activity, delivery restrictions, or other legitimate reasons.</p>
+              </div>
+            </div>
+
+            <!-- 6. PRICING & AVAILABILITY -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 06</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                6. Pricing &amp; Availability
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Product prices and availability may change without prior notice.</p>
+                <p>• We make reasonable efforts to maintain accurate pricing and product information. However, technical, typographical, or system errors may occasionally occur.</p>
+              </div>
+            </div>
+
+            <!-- 7. PAYMENT -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 07</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                7. Payment
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Payments must be made using the payment methods made available on our website.</p>
+                <p>• Payment transactions may be processed through authorised third-party payment gateways.</p>
+              </div>
+            </div>
+
+            <!-- 8. INTELLECTUAL PROPERTY -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 08</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                8. Intellectual Property
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• All Dharatatva website content, including logos, brand names, product names, photographs, graphics, designs, text, videos, icons, layouts, and other materials, is owned by or licensed to Dharatatva and protected by applicable intellectual property laws.</p>
+                <p>• Such content may not be copied, reproduced, modified, distributed, published, or commercially used without prior written permission, except where permitted by law.</p>
+              </div>
+            </div>
+
+            <!-- 9. WEBSITE USE -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 09</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                9. Website Use
+              </h3>
+              <div class="editorial-lead">
+                <p>Users must not misuse the website, attempt unauthorised access, interfere with website functionality, engage in fraudulent activity, or use the website for unlawful purposes.</p>
+              </div>
+            </div>
+
+            <!-- 10. LIMITATION OF LIABILITY -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 10</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                10. Limitation of Liability
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• To the extent permitted by applicable law, Dharatatva shall not be responsible for indirect, incidental, special, or consequential losses arising from use of the website or products.</p>
+                <p>• Nothing in these Terms is intended to exclude or limit any liability that cannot legally be excluded or limited under applicable law.</p>
+              </div>
+            </div>
+
+            <!-- 11. GOVERNING LAW & JURISDICTION -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 11</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                11. Governing Law &amp; Jurisdiction
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• These Terms and Conditions shall be governed by the applicable laws of India.</p>
+                <p>• Subject to applicable law, courts having jurisdiction at <strong>Indore, Madhya Pradesh, India</strong> shall have jurisdiction over disputes relating to these Terms, the website, or transactions with Dharatatva.</p>
+              </div>
+            </div>
+
+            <!-- 12. CHANGES TO THESE TERMS -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 12</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                12. Changes to These Terms
+              </h3>
+              <div class="editorial-lead" style="display: flex; flex-direction: column; gap: 8px;">
+                <p>• Dharatatva may update or modify these Terms and Conditions from time to time.</p>
+                <p>• Updated Terms shall become effective when published on the website, unless otherwise specified.</p>
+              </div>
+            </div>
+
+            <!-- 13. CONTACT US -->
+            <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--hairline);">
+              <span style="font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 4px;">Section 13</span>
+              <h3 style="font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif); font-size: 1.45rem; color: var(--text); margin-bottom: 8px; font-weight: 600;">
+                13. Contact Us
+              </h3>
+              <div class="editorial-lead">
+                <p>For questions or concerns regarding these Terms and Conditions, please contact:</p>
+                <p style="margin-top: 8px;">
+                  <strong style="color: var(--text);">Email:</strong> 
+                  <a href="mailto:support@dharatatva.com" style="color: var(--bronze); font-weight: 700; text-decoration: none;">support@dharatatva.com</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- IMPORTANT NOTE HIGHLIGHT CARD -->
+            <div class="reflection-quote-card" style="margin-top: 32px;">
+              <span style="font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); font-weight: 800; display: block; margin-bottom: 6px;">Important Note</span>
+              <p style="font-family: var(--font-sans); font-style: normal; font-size: 13px; line-height: 1.65; color: var(--text);">
+                Please review the latest version of these Terms and Conditions before placing an order, as policies may be updated from time to time.
+              </p>
+            </div>
+
+          </section>
+
+          <!-- CONCIERGE & CARE CARD -->
+          <section class="contact-sanctum-card">
+            <span class="section-eyebrow">LEGAL &amp; GOVERNANCE DESK</span>
+            <h3 style="font-family: var(--font-cormorant); font-size: 1.6rem; color: var(--text); margin-bottom: 6px;">
+              Questions about our terms?
+            </h3>
+            <p class="editorial-lead" style="max-width: 460px; margin: 0 auto;">
+              Our support team is available Monday through Saturday to address any governance, policy, or ordering questions.
+            </p>
+
+            <div class="sanctum-emails">
+              <a href="mailto:support@dharatatva.com">support@dharatatva.com</a>
+              <a href="mailto:care@dharatatva.com">care@dharatatva.com</a>
+            </div>
+
+            <div style="margin-top: 14px;">
+              <span style="font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 800; color: var(--muted); display: block; margin-bottom: 8px;">FOLLOW THE JOURNEY</span>
+              <div class="social-links-row">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
 
       <!-- WARM FLOATING CURVED LUXURY DRAWER WITH FOOTER -->
       <div class="curved-warm-drawer" id="editorialMenuDrawer">
@@ -343,7 +303,7 @@
 
         <div class="warm-drawer-menu-list">
           <span class="drawer-section-heading">Explore</span>
-		  <div class="warm-menu-group">
+          <div class="warm-menu-group">
             <a href="https://dharatatva.github.io/web" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
@@ -352,7 +312,7 @@
             </a>
           </div>
 		  
-		  <div class="warm-menu-group">
+          <div class="warm-menu-group">
             <a href="https://dharatatva.github.io/web/about_dharatatva" class="warm-menu-item">
               <div class="warm-item-icon">
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -401,6 +361,7 @@
               <span class="warm-item-title">Terms and Conditions</span>
             </a>
           </div>
+
           <div class="concierge-glass-card">
             <div class="concierge-card-head">
               <span class="concierge-card-title">Customer Service</span>
@@ -425,15 +386,15 @@
         </div>
 
         <div class="warm-drawer-footer-brand">
-			  <div class="warm-menu-item">
-              <div class="warm-item-icon">
-                <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
-              </div>
-              <div>
-			  <span class="footer-brand-title">Dharatatva</span><br>
-			  <span class="footer-brand-tagline">Herbal | Ayurveda | Modern Science</span>
-			  </div>
+          <div class="warm-menu-item">
+            <div class="warm-item-icon">
+              <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
             </div>
+            <div>
+              <span class="footer-brand-title">Dharatatva</span><br>
+              <span class="footer-brand-tagline">Herbal | Ayurveda | Modern Science</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -446,14 +407,68 @@
         try { navigator.vibrate(ms); } catch (e) {}
       }
     }
-	
-    const welcomeModal = document.getElementById('welcomeDialogOverlay');
 
-    /* MODAL MANAGEMENT */
+    let toastTimer = null;
+    function showToast(text) {
+      const toast = document.getElementById('toastAlert');
+      toast.textContent = text;
+      toast.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    /* AUDIO CONTROLLER */
+    const audioEl = document.getElementById('ambientAudio');
+    const audioBtn = document.getElementById('headerAudioBtn');
+    const audioIcon = document.getElementById('audioStateIcon');
+    const audioReminderPill = document.getElementById('audioReminderPill');
+    const progressCircle = document.getElementById('audioProgressCircle');
+    const circumference = 2 * Math.PI * 17;
+    let isAudioPlaying = false;
+
+    function dismissReminderPill() {
+      if (audioReminderPill) audioReminderPill.classList.remove('active');
+      if (audioBtn) audioBtn.classList.remove('attention');
+    }
+
+    function playAudio() {
+      return audioEl.play().then(() => {
+        isAudioPlaying = true;
+        audioBtn.classList.add('playing');
+        audioIcon.innerText = '❚❚';
+        dismissReminderPill();
+      }).catch(err => {
+        if (audioReminderPill) audioReminderPill.classList.add('active');
+        if (audioBtn) audioBtn.classList.add('attention');
+      });
+    }
+
+    function pauseAudio() {
+      audioEl.pause();
+      isAudioPlaying = false;
+      audioBtn.classList.remove('playing');
+      audioIcon.innerText = '▶';
+    }
+
+    function toggleAudio() {
+      dismissReminderPill();
+      if (isAudioPlaying) pauseAudio();
+      else playAudio();
+    }
+
+    audioEl.addEventListener('timeupdate', () => {
+      if (audioEl.duration) {
+        const percent = audioEl.currentTime / audioEl.duration;
+        const offset = circumference - (percent * circumference);
+        progressCircle.style.strokeDashoffset = offset;
+      }
+    });
+
+    const welcomeModal = document.getElementById('welcomeDialogOverlay');
     const editorialMenuDrawer = document.getElementById('editorialMenuDrawer');
+    const globalBackdrop = document.getElementById('globalBackdrop');
 
     function closeAllModals() {
-      if (welcomeModal.classList.contains('active')) return;
       editorialMenuDrawer.classList.remove('open');
       globalBackdrop.classList.remove('active');
     }
