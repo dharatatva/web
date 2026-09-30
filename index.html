@@ -1247,12 +1247,13 @@
       : `🏷️ *Price:* *${product.price}*`;
 
     const shareText = 
-`🌿 *${product.name}* by Dharatatva
+`🌿 *${product.name}* by DHARATATVA
 ${product.notes}
 
 ⭐ *${product.rating} / 5 Rating* (${product.reviews} Verified Reviews)
 
-👉 *${prodUrl}*`;
+👉 *Tap here to discover Shastra & claim offer:*
+*${prodUrl}*`;
 
     return { shareTitle, shareText, prodUrl, imgUrl: product.productImg };
   }
@@ -1265,7 +1266,6 @@ ${product.notes}
       try {
         await navigator.share({
           title: payload.shareTitle,
-          text: payload.shareText,
           url: payload.prodUrl
         });
         showToast("Shared Successfully ✓");
