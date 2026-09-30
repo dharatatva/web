@@ -1475,22 +1475,8 @@ Awaken sluggish digestive fire, clear bloating & flush trapped Ama toxins natura
 👉 *Tap to explore 23+ herbs & order:*
 ${shareUrl}`;
 
+      // 1. Direct Web Share API (Bina async fetch delay ke)
       if (navigator.share) {
-        try {
-          const response = await fetch(pack.img);
-          const blob = await response.blob();
-          const file = new File([blob], 'Herb-O-Care.jpg', { type: blob.type || 'image/jpeg' });
-
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({
-              files: [file],
-              title: shareTitle,
-              text: shareText
-            });
-            return;
-          }
-        } catch (e) {}
-
         try {
           await navigator.share({
             title: shareTitle,
@@ -1503,8 +1489,15 @@ ${shareUrl}`;
         }
       }
 
+      // 2. Direct redirect fallback (Popup block warning nahi aayegi)
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-      window.open(waUrl, '_blank');
+      try {
+        window.location.href = waUrl;
+      } catch (e) {
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(shareText);
+        }
+      }
     }
 
     /* AUDIO ENGINE */
@@ -1578,6 +1571,35 @@ ${shareUrl}`;
       if (withAudio) playAudio();
     }
 
+    function initProductAudioExperience() {
+      const alreadyAccepted = localStorage.getItem(CACHE_KEY);
+      const hasVisitedInSession = sessionStorage.getItem("dharatatva_prod_visited");
+
+      if (!alreadyAccepted) {
+        // Pehli baar aane par dialog dikhayen
+        setTimeout(() => welcomeModal.classList.add('active'), 2700);
+        sessionStorage.setItem("dharatatva_prod_visited", "true");
+      } else if (hasVisitedInSession) {
+        // User isi session me wapas aaya hai: Audio pause rahega aur notification pill active dikhega
+        preloadAllSiteAssets();
+        pauseAudio();
+        setTimeout(() => {
+          if (audioReminderPill) audioReminderPill.classList.add('active');
+          if (audioBtn) audioBtn.classList.add('attention');
+        }, 400);
+      } else {
+        // Fresh session load
+        sessionStorage.setItem("dharatatva_prod_visited", "true");
+        preloadAllSiteAssets();
+        setTimeout(() => {
+          playAudio().catch(() => {
+            if (audioReminderPill) audioReminderPill.classList.add('active');
+            if (audioBtn) audioBtn.classList.add('attention');
+          });
+        }, 800);
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         goToSlide(0);
@@ -1591,21 +1613,15 @@ ${shareUrl}`;
         if (activeTab) updateTabIndicator(activeTab);
       });
 
-      const alreadyAccepted = localStorage.getItem(CACHE_KEY);
+      initProductAudioExperience();
+    });
 
-      if (!alreadyAccepted) {
-        setTimeout(() => welcomeModal.classList.add('active'), 2700);
-      } else {
-        preloadAllSiteAssets();
-        setTimeout(() => {
-          playAudio().catch(() => {
-            const handleFirstUserTouch = () => {
-              playAudio().then(() => dismissReminderPill()).catch(() => {});
-            };
-            window.addEventListener('touchstart', handleFirstUserTouch, { once: true, passive: true });
-            window.addEventListener('click', handleFirstUserTouch, { once: true });
-          });
-        }, 800);
+    // Browser back button (Bfcache) par handle karne ke liye
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        pauseAudio();
+        if (audioReminderPill) audioReminderPill.classList.add('active');
+        if (audioBtn) audioBtn.classList.add('attention');
       }
     });
   </script>
