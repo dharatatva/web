@@ -1235,7 +1235,7 @@
 
   async function generateSharePayload(product) {
     const prodUrl = product.url && product.url !== '#' && product.url !== 'javascript:void(0);' ? product.url : window.location.href;
-    const shareTitle = `${product.name} by Dharatatva`;
+    const shareTitle = `${product.name} | Dharatatva`;
 
     const cleanPrice = product.price.replace(/[^\d]/g, '');
     const cleanMrp = product.mrp.replace(/[^\d]/g, '');
@@ -1251,9 +1251,12 @@
 ${product.notes}
 
 ⭐ *${product.rating} / 5 Rating* (${product.reviews} Verified Reviews)
+${priceLine}
+🍃 100% Pure Botanical Synergy · Zero Chemicals
+🚚 Free Express Pan-India Delivery + COD Available
 
 👉 *Tap here to discover Shastra & claim offer:*
-*${prodUrl}*`;
+${prodUrl}`;
 
     return { shareTitle, shareText, prodUrl, imgUrl: product.productImg };
   }
@@ -1266,6 +1269,7 @@ ${product.notes}
       try {
         await navigator.share({
           title: payload.shareTitle,
+          text: payload.shareText,
           url: payload.prodUrl
         });
         showToast("Shared Successfully ✓");
