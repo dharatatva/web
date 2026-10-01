@@ -485,7 +485,7 @@
 
   <!-- Application Logic -->
   <script>
-  const VIDEO_PLAY_DELAY_MS = 3500; 
+  const VIDEO_PLAY_DELAY_MS = 5000; 
 
   // =========================================================================
   // 1 & 2: CATEGORY SVG ICONS & COLLECTIONS MAPPING
@@ -505,8 +505,8 @@
       glow: "rgba(142, 194, 150, 0.42)",
       items: [
         { 
-          brandPart1: "Herb",
-          brandPart2: "O-Care",
+          brandPart1: "",
+          brandPart2: "",
           tag: "✧ Daily Agni Ritual ›",
           headline: "Your Sacred Daily Reset",
           notes: "23+ Sacred Himalayan Botanicals. Awakens sluggish Agni, clears toxic Ama, and activates Lekhana Karma.",
@@ -516,7 +516,7 @@
           price: "₹383", 
           mrp: "₹437", 
           discount: "-12%", 
-          modelImg: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=85",
+          modelImg: "https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_cover.avif?auto=format&fit=crop&w=1200&q=85",
           videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
           productImg: "https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=800&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
@@ -533,9 +533,9 @@
           price: "₹449", 
           mrp: "₹650", 
           discount: "-30%", 
-          modelImg: "https://images.unsplash.com/photo-1506126613408-eca07ce0773?auto=format&fit=crop&w=1200&q=85",
+          modelImg: "https://dharatatva.github.io/web/img/pet_o_care/pet_o_care_cover2.avif?auto=format&fit=crop&w=1200&q=85",
           videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-          productImg: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=90",
+          productImg: "https://dharatatva.github.io/web/img/pet_o_care/pet_o_care_cover2.avif?auto=format&fit=crop&w=800&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
         }
       ]
@@ -1510,8 +1510,8 @@ ${prodUrl}`;
   function renderProductDataOnly() {
     const product = collections[currentCategory].items[currentIndex];
     
-    brandPart1.textContent = product.brandPart1 || "Herb";
-    brandPart2.textContent = product.brandPart2 || "O-Care";
+    brandPart1.textContent = product.brandPart1 || "";
+    brandPart2.textContent = product.brandPart2 || "";
 
     productModelImg.src = product.modelImg;
     floatingPackImg.src = product.productImg;
