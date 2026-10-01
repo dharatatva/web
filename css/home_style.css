@@ -860,14 +860,7 @@ body.page-home {
 .page-home .product-scrim-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, 
-    rgba(240, 245, 238, 0) 0%, 
-    rgba(240, 245, 238, 0.12) 32%, 
-    rgba(240, 245, 238, 0.55) 54%, 
-    rgba(240, 245, 238, 0.88) 72%, 
-    #F0F5EE 92%,
-    #F0F5EE 100%
-  );
+  background: linear-gradient(180deg, rgb(240 245 238 / 0%) 0%, rgb(240 245 238 / 0%) 32%, rgb(240 245 238 / 33%) 54%, rgb(240 245 238 / 83%) 72%, #f0f5ee 92%, #f0f5ee 100%);
   pointer-events: none;
   z-index: 3;
 }
@@ -875,10 +868,10 @@ body.page-home {
 /* 3. FLOATING PRODUCT DOCK (BOTTOM-RIGHT) */
 .page-home .floating-product-dock {
   position: absolute;
-  bottom: 22px;
-  right: 8px;
-  width: 44vw;
-  max-width: 220px;
+  bottom: 59px;
+  right: 5px;
+  width: 50vw;
+  max-width: 225px;
   height: 48vh;
   max-height: 330px;
   z-index: 22;
@@ -1122,7 +1115,10 @@ body.page-home {
 
 .page-home .pure-trust-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  width: 59px;
   gap: 4px;
   font-size: 9px;
   font-weight: 700;
@@ -1934,7 +1930,7 @@ body.page-home {
   }
 
   .page-home .product-details-overlay {
-    padding: 24px 22px 28px;
+    padding: 14px 14px 18px;
   }
 
   .page-home .pure-main-headline {
