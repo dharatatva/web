@@ -1028,10 +1028,11 @@ body.page-home {
 .page-home .pure-actions-dock-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   width: auto;
   max-width: 58%;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .page-home .pure-btn-explore {
