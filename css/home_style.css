@@ -150,8 +150,8 @@ body.page-home {
   z-index: 70;
   flex-shrink: 0;
   pointer-events: none;
-  /* Subtle ambient gradient taaki light/dark dono par contrast perfect rahe */
-  background: linear-gradient(to bottom, rgba(246, 244, 239, 0.95) 0%, rgba(246, 244, 239, 0) 100%);
+  /* Subtle ambient gradient taaki light/dark dono par contrast perfect rahe 
+  background: linear-gradient(to bottom, rgba(246, 244, 239, 0.95) 0%, rgba(246, 244, 239, 0) 100%);*/
 }
 
 .page-home .header-left,
