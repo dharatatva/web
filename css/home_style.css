@@ -1152,7 +1152,7 @@ body.page-home {
 }
 
 .page-home .dot.active {
-  width: 22px;
+  width: 18px;
   background: var(--text);
 }
 
@@ -2396,21 +2396,23 @@ body.page-product {
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 5px;
   z-index: 28;
 }
 
 .page-product .slider-dot {
   width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.28);
-  transition: all 0.25s;
+  height: 3px;
+  background: rgba(22, 21, 19, 0.22);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .page-product .slider-dot.active {
   width: 18px;
-  border-radius: 8px;
+  border-radius: 3px;
   background: var(--primary-dark);
 }
 
