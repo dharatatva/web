@@ -182,27 +182,24 @@
           <div class="hero-slide-item">
             <img src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_cover.avif?auto=format&fit=crop&w=1000&q=85" alt="Ayurvedic Wellness Pack" onerror="this.onerror=null; this.src='https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_cover.avif?auto=format&fit=crop&w=1000&q=85';" />
           </div>
-		  <div class="hero-slide-item">
+          <div class="hero-slide-item">
             <img src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_gallery1.avif?auto=format&fit=crop&w=1000&q=85" alt="Ayurvedic Wellness Pack" onerror="this.onerror=null; this.src='https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_gallery1.avif?auto=format&fit=crop&w=1000&q=85';" />
           </div>
-		  <div class="hero-slide-item">
+          <div class="hero-slide-item">
             <img src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_gallery2.avif?auto=format&fit=crop&w=1000&q=85" alt="Ayurvedic Wellness Pack" onerror="this.onerror=null; this.src='https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_gallery2.avif?auto=format&fit=crop&w=1000&q=85';" />
           </div>
-		  <div class="hero-slide-item">
+          <div class="hero-slide-item">
             <img src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_gallery3.avif?auto=format&fit=crop&w=1000&q=85" alt="Ayurvedic Wellness Pack" onerror="this.onerror=null; this.src='https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_gallery3.avif?auto=format&fit=crop&w=1000&q=85';" />
           </div>
-		  <div class="hero-slide-item">
+          <div class="hero-slide-item">
             <img src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_gallery4.avif?auto=format&fit=crop&w=1000&q=85" alt="Ayurvedic Wellness Pack" onerror="this.onerror=null; this.src='https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_gallery4.avif?auto=format&fit=crop&w=1000&q=85';" />
           </div>
         </div>
         
         <div class="hero-stage-fade-overlay"></div>
 
-        <div class="bottom-slider-indicator-capsule">
-          <div class="slider-dot active" id="dot0" onclick="goToSlide(0); haptic(6);" style="cursor:pointer;"></div>
-          <div class="slider-dot" id="dot1" onclick="goToSlide(1); haptic(6);" style="cursor:pointer;"></div>
-          <div class="slider-dot" id="dot2" onclick="goToSlide(2); haptic(6);" style="cursor:pointer;"></div>
-        </div>
+        <!-- Dynamic Dots Container -->
+        <div class="bottom-slider-indicator-capsule" id="sliderDotsCapsule"></div>
 
         <button class="hero-share-corner-btn" onclick="shareProduct(); haptic(6);" title="Share Herb-O-Care">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -441,7 +438,7 @@
     </div>
   </div>
 
-  <!-- SEO SEMANTIC VAULT (DETAILS TAB REDESIGNED ACCORDING TO REFERENCE LAYOUT) -->
+  <!-- SEO SEMANTIC VAULT -->
   <div class="seo-semantic-vault" id="seoVault">
     
     <div id="vault-details">
@@ -466,7 +463,7 @@
           </div>
         </div>
 
-        <!-- 2. 10 SIGNALS INFOGRAPHIC GRID (SPOKE & CARD DISPLAY) -->
+        <!-- 2. 10 SIGNALS INFOGRAPHIC GRID -->
         <div class="signals-feature-grid">
           <div class="signal-feature-card">
             <div class="signal-glyph-icon">⚖️</div>
@@ -559,7 +556,7 @@
           </div>
         </div>
 
-        <!-- 3. THE CORE PROBLEM (AS METABOLIC DIAGNOSIS) -->
+        <!-- 3. THE CORE PROBLEM -->
         <div class="core-problem-box">
           <span class="section-tag-eyebrow">[The Core Problem]</span>
           <h3 class="infographic-section-title serif-font">Weight gain is rarely just about overeating; it begins with sluggish 'Agni'</h3>
@@ -599,7 +596,7 @@
           </div>
         </div>
 
-        <!-- 4. THE SOLUTION: HERB-O-CARE (100% PURITY & BOTANICAL SCIENCE) -->
+        <!-- 4. THE SOLUTION -->
         <div class="solution-showcase-box">
           <span class="section-tag-eyebrow">[The Solution: Herb-o-care]</span>
           <h3 class="infographic-section-title serif-font">Herb-o-care: Grounded in Ayurvedic Wisdom</h3>
@@ -643,7 +640,7 @@
           </div>
         </div>
 
-        <!-- 5. THE 3-STEP ACTION FORMULA (FLOW PILLS 01, 02, 03) -->
+        <!-- 5. THE 3-STEP ACTION FORMULA -->
         <div class="formula-action-flow-box">
           <span class="section-tag-eyebrow">[The 3-Step Action Formula]</span>
           <h3 class="infographic-section-title serif-font">Sacred Sequential Restoration</h3>
@@ -687,7 +684,7 @@
           </div>
         </div>
 
-        <!-- 6. THE HERB-O-CARE PURITY PROMISE (GRID BADGE DISPLAY) -->
+        <!-- 6. THE PURITY PROMISE -->
         <div class="purity-promise-container">
           <span class="section-tag-eyebrow">[The Herb-o-care Purity Promise]</span>
           <h3 class="infographic-section-title serif-font">Uncompromising Shastric Standards</h3>
@@ -814,7 +811,7 @@
       </div>
     </div>
 
-    <!-- UPDATED COMPREHENSIVE FAQ SECTION -->
+    <!-- FAQ SECTION -->
     <div id="vault-faq">
       <!-- 1 -->
       <div class="faq-unit-card open" onclick="toggleFaqUnit(this); haptic(4);">
@@ -949,12 +946,117 @@
       }
     }
 
+    /* ================= DYNAMIC HERO SLIDER SCRIPT ================= */
     let currentSlide = 0;
-    const totalSlides = 3;
+    let totalSlides = 0;
+    const track = document.getElementById('heroSliderTrack');
+    const heroStage = document.getElementById('productFixedStage');
+    const dotsContainer = document.getElementById('sliderDotsCapsule');
+
+    function initSlider() {
+      if (!track) return;
+      const slides = track.querySelectorAll('.hero-slide-item');
+      totalSlides = slides.length;
+      if (totalSlides === 0) return;
+
+      // Mobile/Tablet dynamic track & slide percentage override
+      if (window.innerWidth < 1024) {
+        track.style.width = `${totalSlides * 100}%`;
+        slides.forEach(slide => {
+          slide.style.width = `${100 / totalSlides}%`;
+          slide.style.flex = `0 0 ${100 / totalSlides}%`;
+        });
+      } else {
+        track.style.width = 'auto';
+        slides.forEach(slide => {
+          slide.style.width = '';
+          slide.style.flex = '';
+        });
+      }
+
+      // Dynamic dots generate karna
+      if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement('div');
+          dot.className = `slider-dot ${i === currentSlide ? 'active' : ''}`;
+          dot.id = `dot${i}`;
+          dot.style.cursor = 'pointer';
+          dot.addEventListener('click', () => {
+            goToSlide(i);
+            haptic(6);
+          });
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      goToSlide(currentSlide >= totalSlides ? 0 : currentSlide);
+    }
+
+    function goToSlide(idx) {
+      if (totalSlides === 0) return;
+      currentSlide = idx;
+
+      if (window.innerWidth >= 1024) {
+        track.style.transform = `translateX(-${idx * 56}vw)`;
+      } else {
+        track.style.transform = `translateX(-${(idx * 100) / totalSlides}%)`;
+      }
+
+      if (dotsContainer) {
+        const allDots = dotsContainer.querySelectorAll('.slider-dot');
+        allDots.forEach((dot, dIdx) => {
+          dot.classList.toggle('active', dIdx === idx);
+        });
+      }
+    }
+
+    function desktopPrevSlide() {
+      if (totalSlides === 0) return;
+      if (currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      } else {
+        goToSlide(totalSlides - 1);
+      }
+      haptic(6);
+    }
+
+    function desktopNextSlide() {
+      if (totalSlides === 0) return;
+      if (currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+      } else {
+        goToSlide(0);
+      }
+      haptic(6);
+    }
+
+    // Touch swipe gestures
+    let startX = 0, endX = 0;
+    heroStage.addEventListener('touchstart', e => {
+      startX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    heroStage.addEventListener('touchend', e => {
+      endX = e.changedTouches[0].screenX;
+      if (endX < startX - 35) {
+        if (currentSlide < totalSlides - 1) { 
+          goToSlide(currentSlide + 1); 
+          haptic(6); 
+        }
+      }
+      if (endX > startX + 35) {
+        if (currentSlide > 0) { 
+          goToSlide(currentSlide - 1); 
+          haptic(6); 
+        }
+      }
+    }, { passive: true });
+
+    /* DEFINED TREATMENT PACKS */
     let currentQty = 1;
     let currentLang = 'en';
 
-    /* DEFINED TREATMENT PACKS */
     const PACKS = {
       starter: {
         id: 'starter',
@@ -986,55 +1088,6 @@
     };
 
     let currentPackKey = 'detox';
-
-    const track = document.getElementById('heroSliderTrack');
-    const heroStage = document.getElementById('productFixedStage');
-    let startX = 0, endX = 0;
-
-    heroStage.addEventListener('touchstart', e => {
-      startX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    heroStage.addEventListener('touchend', e => {
-      endX = e.changedTouches[0].screenX;
-      if (endX < startX - 35) {
-        if (currentSlide < totalSlides - 1) { goToSlide(currentSlide + 1); haptic(6); }
-      }
-      if (endX > startX + 35) {
-        if (currentSlide > 0) { goToSlide(currentSlide - 1); haptic(6); }
-      }
-    }, { passive: true });
-
-    /* RESPONSIVE SLIDE NAVIGATION */
-    function goToSlide(idx) {
-      currentSlide = idx;
-      if (window.innerWidth >= 1024) {
-        track.style.transform = `translateX(-${idx * 56}vw)`;
-      } else {
-        track.style.transform = `translateX(-${idx * 33.333}%)`;
-      }
-      document.getElementById('dot0').classList.toggle('active', idx === 0);
-      document.getElementById('dot1').classList.toggle('active', idx === 1);
-      document.getElementById('dot2').classList.toggle('active', idx === 2);
-    }
-
-    function desktopPrevSlide() {
-      if (currentSlide > 0) {
-        goToSlide(currentSlide - 1);
-      } else {
-        goToSlide(totalSlides - 1);
-      }
-      haptic(6);
-    }
-
-    function desktopNextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        goToSlide(currentSlide + 1);
-      } else {
-        goToSlide(0);
-      }
-      haptic(6);
-    }
 
     /* MAIN PAGE VOLUME SELECTION */
     function selectVolumePack(packKey) {
@@ -1093,11 +1146,11 @@
     /* PRECISE TAB INDICATOR POSITIONING */
     function updateTabIndicator(activeEl) {
       const indicator = document.getElementById('tabSliderIndicator');
-      const track = document.getElementById('tabsPillTrack');
-      if (!indicator || !track) return;
+      const tabTrack = document.getElementById('tabsPillTrack');
+      if (!indicator || !tabTrack) return;
       
       if (!activeEl) {
-        activeEl = track.querySelector('.tab-btn-item.active');
+        activeEl = tabTrack.querySelector('.tab-btn-item.active');
       }
       if (!activeEl) return;
 
@@ -1487,7 +1540,6 @@ Awaken sluggish digestive fire, clear bloating & flush trapped Ama toxins natura
 👉 *Tap to explore 23+ herbs & order:*
 ${shareUrl}`;
 
-      // 1. Direct Web Share API (Bina async fetch delay ke)
       if (navigator.share) {
         try {
           await navigator.share({
@@ -1501,7 +1553,6 @@ ${shareUrl}`;
         }
       }
 
-      // 2. Direct redirect fallback (Popup block warning nahi aayegi)
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
       try {
         window.location.href = waUrl;
@@ -1588,11 +1639,9 @@ ${shareUrl}`;
       const hasVisitedInSession = sessionStorage.getItem("dharatatva_prod_visited");
 
       if (!alreadyAccepted) {
-        // Pehli baar aane par dialog dikhayen
         setTimeout(() => welcomeModal.classList.add('active'), 2700);
         sessionStorage.setItem("dharatatva_prod_visited", "true");
       } else if (hasVisitedInSession) {
-        // User isi session me wapas aaya hai: Audio pause rahega aur notification pill active dikhega
         preloadAllSiteAssets();
         pauseAudio();
         setTimeout(() => {
@@ -1600,7 +1649,6 @@ ${shareUrl}`;
           if (audioBtn) audioBtn.classList.add('attention');
         }, 400);
       } else {
-        // Fresh session load
         sessionStorage.setItem("dharatatva_prod_visited", "true");
         preloadAllSiteAssets();
         setTimeout(() => {
@@ -1613,22 +1661,21 @@ ${shareUrl}`;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      initSlider();
       setTimeout(() => {
-        goToSlide(0);
         const activeTab = document.querySelector('.tab-btn-item.active');
         if (activeTab) updateTabIndicator(activeTab);
       }, 100);
 
-      window.addEventListener('resize', () => {
-        goToSlide(currentSlide);
-        const activeTab = document.querySelector('.tab-btn-item.active');
-        if (activeTab) updateTabIndicator(activeTab);
-      });
-
       initProductAudioExperience();
     });
 
-    // Browser back button (Bfcache) par handle karne ke liye
+    window.addEventListener('resize', () => {
+      initSlider();
+      const activeTab = document.querySelector('.tab-btn-item.active');
+      if (activeTab) updateTabIndicator(activeTab);
+    });
+
     window.addEventListener('pageshow', (event) => {
       if (event.persisted) {
         pauseAudio();
