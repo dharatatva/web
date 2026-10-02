@@ -1108,18 +1108,15 @@ body.page-home {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding-top: 8px;
+  padding-top: 12px;
   border-top: 1px solid rgba(22, 21, 19, 0.08);
   width: 100%;
 }
 
 .page-home .pure-trust-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  width: 59px;
-  gap: 4px;
+  gap: 3px;
   font-size: 9px;
   font-weight: 700;
   color: var(--text-muted);
@@ -2309,13 +2306,12 @@ body.page-product {
 
 .page-product .hero-slider-track {
   display: flex;
-  width: 300%;
   height: 100%;
   transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1);
+  will-change: transform;
 }
 
 .page-product .hero-slide-item {
-  width: 33.333%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -2324,6 +2320,7 @@ body.page-product {
   margin: 0;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .page-product .hero-slide-item img {
