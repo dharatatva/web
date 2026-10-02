@@ -108,9 +108,6 @@ body.page-home {
 }
 
 @media (min-width: 769px) and (max-width: 1023px) {
-  .page-home .app-viewport-wrapper {
-    background-color: #d6d3c8;
-  }
   .page-home .app-viewport-shell {
     max-width: 440px;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
@@ -1422,7 +1419,6 @@ body.page-home {
   flex-direction: column;
   transform: translateX(-105%);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 20px 0 60px rgba(0, 0, 0, 0.25);
   color: #ffffff;
   overflow: hidden;
   pointer-events: none;
@@ -1918,8 +1914,7 @@ body.page-home {
     max-width: 32vw;
     height: 90vh;
     border-radius: 32px;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 230px 80px rgb(162 163 161 / 17%);
   }
 
   .page-home .product-media-zone {
@@ -4819,13 +4814,13 @@ body.page-product {
 body.page-policy {
   --bg: #F7F5F0;
   --bg-sand: #F2EFE9;
-  --bg-card: #FFFFFF;
+  --bg-card: #48484814;
   --text: #161513;
   --text-muted: #5E5A54;
   --muted: #797771;
   --border-subtle: #E6E1D6;
   --hairline: rgba(22, 21, 19, 0.08);
-  --bronze: #8e7146;
+  --bronze: #198554;
   --bronze-light: rgba(142, 113, 70, 0.12);
   --accent-green: #1B5E3B;
 
@@ -5016,7 +5011,7 @@ body.page-policy {
   border-radius: 20px;
   padding: 4px 10px;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--accent-green);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   white-space: nowrap;
@@ -5865,7 +5860,6 @@ body.page-policy {
   flex-direction: column;
   transform: translateX(-105%);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.3);
   color: #ffffff;
   overflow: hidden;
   pointer-events: none;
