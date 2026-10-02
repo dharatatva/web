@@ -5210,7 +5210,7 @@ body.page-policy {
 
 .page-policy .reflection-quote-card {
   margin-top: 22px;
-  background: #fbf9f4;
+  background: #88c5785c;
   border-left: 3px solid var(--bronze);
   border-radius: 12px;
   padding: 16px 20px;
@@ -5283,7 +5283,7 @@ body.page-policy {
 
 /* 4. ORIGIN 2-COLUMN */
 .page-policy .origin-grid-card {
-  padding: 28px 22px;
+  padding: 28px ox;
 }
 
 .page-policy .origin-two-cols {
@@ -5668,7 +5668,7 @@ body.page-policy {
 
 /* 15. CONTACT & SANCTUM FOOTER */
 .page-policy .contact-sanctum-card {
-  background: #F2EFE9;
+  background: #0000001f;
   border-radius: 24px;
   padding: 34px 22px;
   text-align: center;
