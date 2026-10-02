@@ -4,19 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Dharatatva — Elements of Earth</title>
-  
-    <!-- Website Favicon & WhatsApp Preview Logo Icon -->
+
+  <!-- Website Favicon & WhatsApp Preview Logo Icon -->
   <link rel="icon" type="image/avif" href="https://dharatatva.github.io/web/img/dharatatva_icon_black.avif" />
   <link rel="shortcut icon" href="https://dharatatva.github.io/web/img/dharatatva_icon_black.avif" />
   <link rel="apple-touch-icon" href="https://dharatatva.github.io/web/img/dharatatva_icon_black.avif" />
-  
-  
-  <!-- Social & WhatsApp Rich Link Preview -->
+
+  <!-- Social & WhatsApp Rich Link Preview (Brand Catalog / Home Level) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Dharatatva" />
   <meta property="og:title" content="Dharatatva — Elements of Earth | Sacred Ayurveda & Modern Science" />
   <meta property="og:description" content="Discover pure botanical harmony crafted strictly from traditional Ayurvedic texts. 100% natural, lab-tested herbal formulations." />
   <meta property="og:image" content="https://dharatatva.github.io/web/img/logo_dharatatva.avif" />
+  <meta property="og:image:secure_url" content="https://dharatatva.github.io/web/img/logo_dharatatva.avif" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://dharatatva.github.io/web/" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -316,7 +318,7 @@
                 <span>100% Pure Herbs</span>
               </div>
               <div class="pure-trust-item">
-                <span class="pure-trust-icon">🛡️</span>
+                <span class="pure-trust-icon">🛡️️</span>
                 <span>Lab Certified</span>
               </div>
               <div class="pure-trust-item">
@@ -386,7 +388,7 @@
 
             <a href="https://dharatatva.github.io/web/Cancellation_Policy" class="warm-menu-item">
               <div class="warm-item-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
               </div>
               <span class="warm-item-title">Cancellation Policy</span>
             </a>
@@ -432,7 +434,7 @@
         <div class="warm-drawer-footer-brand">
           <div class="warm-menu-item">
             <div class="warm-item-icon">
-              <img src="https://dharatatva.github.io/web/img/logo_dharatatva_icon.avif" alt="logo icon" style="height: 45px;" />
+              <img src="https://dharatatva.github.io/web/img/dharatatva_icon_black.avif" alt="logo icon" style="height: 45px;" />
             </div>
             <div>
               <span class="footer-brand-title">Dharatatva</span><br>
@@ -494,13 +496,10 @@
   <script>
   const VIDEO_PLAY_DELAY_MS = 5000; 
 
-  // =========================================================================
-  // 1 & 2: CATEGORY SVG ICONS & COLLECTIONS MAPPING
-  // =========================================================================
   const icons = {
     health: `<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>`,
     women: `<svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="9" y1="19" x2="15" y2="19"/></svg>`,
-    men: `<svg viewBox="0 0 24 24"><circle cx="10" cy="14" r="6"/><line x1="14.5" y1="9.5" x2="21" y2="3"/><polyline points="16 3 21 3 21 8"/></svg>`,
+    men: `<svg viewBox="0 0 24 24"><circle cx="10" cy="14" r="6"/><line x1="14.5" y1="9.5" x2="21" y2="3"/><polyline points="16 3 21 3 21 8"/>/></svg>`,
     kids: `<svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5.5 21v-2a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v2"/></svg>`
   };
 
@@ -1012,7 +1011,6 @@
   const headerCatPill = document.getElementById('headerCatPill');
   const categoryDockPanel = document.getElementById('categoryDockPanel');
 
-  /* CATEGORY THEME & HEADER PILL UPDATE */
   function applyCategoryTheme(catKey) {
     const cat = collections[catKey];
     if (!cat) return;
@@ -1021,13 +1019,11 @@
       ambientGlow.style.background = `radial-gradient(ellipse, ${cat.glow} 0%, transparent 0%)`;
     }
 
-    // Category name display
     const catValEl = document.getElementById('headerCatVal');
     if (catValEl) {
       catValEl.textContent = catKey.charAt(0).toUpperCase() + catKey.slice(1);
     }
 
-    // Category right-side disc SVG update
     const catIconEl = document.getElementById('headerCatIconDisc');
     if (catIconEl) {
       catIconEl.innerHTML = icons[catKey] || icons.health;
@@ -1240,61 +1236,51 @@
     });
   }
 
-  async function generateSharePayload(product) {
+  /* CLEAN SHARE PAYLOAD (NO EXTRA BULLET TEXT) */
+  function generateSharePayload(product) {
     const prodUrl = product.url && product.url !== '#' && product.url !== 'javascript:void(0);' ? product.url : window.location.href;
     const shareTitle = `${product.name} | Dharatatva`;
-
-    // As per new requirement:
-    // - No cross marked lines (notes, link at bottom with url only)
-    // - English greeting (Connects with customer)
-    // - No gap between greeting and product name
-    const shareText = `🌿 Hello, discover pure wellness with *${product.name}* by Dharatatva
-
-${prodUrl}`;
-
-    return { shareTitle, shareText, prodUrl, imgUrl: product.productImg };
+    return { shareTitle, prodUrl };
   }
 
   async function executeSmartShare(payload) {
     haptic(16);
 
-    // 1. Direct Web Share API (Instant user gesture se bina kisi delay ke)
+    // 1. Web Share API (Sirf clean Link share hoga)
     if (navigator.share) {
       try {
         await navigator.share({
           title: payload.shareTitle,
-          text: payload.shareText,
-          url: payload.prodUrl // Web share handle karega native popup
+          url: payload.prodUrl
         });
         showToast("Shared Successfully ✓");
         return;
       } catch (err) {
-        // Agar user ne share cancel kar diya toh kuch mat karo
         if (err.name === 'AbortError') return;
       }
     }
 
-    // 2. Fallback: Direct redirect (WhatsApp message ke liye link bheje without explicit image tag to avoid dual preview bug on whatsapp)
-    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(payload.shareText)}`;
+    // 2. Fallback: WhatsApp direct link (Extra text removed)
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(payload.prodUrl)}`;
     try {
       window.location.href = waUrl;
     } catch (e) {
-      await navigator.clipboard.writeText(payload.shareText);
-      showToast("Offer Details Copied ✓");
+      await navigator.clipboard.writeText(payload.prodUrl);
+      showToast("Link Copied ✓");
     }
   }
 
   async function handleProductShare(e) {
     e.stopPropagation();
     const product = collections[currentCategory].items[currentIndex];
-    const payload = await generateSharePayload(product);
+    const payload = generateSharePayload(product);
     await executeSmartShare(payload);
   }
 
   async function handleGridShare(e, idx) {
     e.stopPropagation();
     const product = collections[currentCategory].items[idx];
-    const payload = await generateSharePayload(product);
+    const payload = generateSharePayload(product);
     await executeSmartShare(payload);
   }
 
@@ -1411,7 +1397,6 @@ ${prodUrl}`;
     switchToSingleView();
   }
 
-  /* TIMED BACKGROUND VIDEO STREAM CONTROLLER */
   let activeVideoToken = 0;
   let videoDelayTimer = null;
 
@@ -1472,7 +1457,6 @@ ${prodUrl}`;
     }
   }
 
-  /* TAP TO PLAY / PAUSE VIDEO */
   function handleMediaTap(e) {
     if (e.target.closest('#detailsCard') || e.target.closest('#floatingProductDock') || isAnimating) return;
     if (!productModelVideo || !productModelVideo.src || productModelVideo.readyState < 2) return;
@@ -1500,7 +1484,6 @@ ${prodUrl}`;
     }
   }
 
-  /* RENDER DUAL-IMAGE & STYLED TEXT CONTENT */
   function renderProductDataOnly() {
     const product = collections[currentCategory].items[currentIndex];
     
@@ -1570,7 +1553,6 @@ ${prodUrl}`;
     updateDesktopSideCards();
   }
 
-  /* CINEMATIC PRODUCT TRANSITION */
   function renderProduct(direction = 1) {
     if (isAnimating) {
       gsap.killTweensOf([prodCanvas, detailsCard, productModelImg, floatingPackImg]);
@@ -1622,7 +1604,6 @@ ${prodUrl}`;
     }
   }
 
-  /* TOUCH DRAG & SWIPE */
   let startX = 0, currentDragX = 0, isDragging = false;
 
   swipeArea.addEventListener('touchstart', (e) => {
@@ -1662,7 +1643,6 @@ ${prodUrl}`;
   swipeArea.addEventListener('touchend', finalizeDrag);
   swipeArea.addEventListener('touchcancel', finalizeDrag);
 
-  /* CATEGORY BUTTON HANDLER */
   document.querySelectorAll('.cat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedCat = btn.dataset.cat;
@@ -1721,7 +1701,6 @@ ${prodUrl}`;
     }
   });
 
-  /* MODAL MANAGEMENT */
   const globalBackdrop = document.getElementById('globalBackdrop');
   const editorialMenuDrawer = document.getElementById('editorialMenuDrawer');
   const userAuthSheet = document.getElementById('userAuthSheet');
@@ -1781,17 +1760,14 @@ ${prodUrl}`;
     setTimeout(closeAllModals, 1200);
   }
 
-// Page load aur Back navigation control
   function initAudioExperience() {
     const alreadyAccepted = localStorage.getItem(CACHE_KEY);
     const hasVisitedInSession = sessionStorage.getItem("dharatatva_session_visited");
 
     if (!alreadyAccepted) {
-      // First ever visit: Welcome dialog dikhayen
       setTimeout(() => welcomeModal.classList.add('active'), 2700);
       sessionStorage.setItem("dharatatva_session_visited", "true");
     } else if (hasVisitedInSession) {
-      // Customer usi session me wapas aaya hai: Audio pause rahega, notification pill dikhega
       preloadAllSiteAssets();
       pauseAudio();
       setTimeout(() => {
@@ -1799,7 +1775,6 @@ ${prodUrl}`;
         if (audioBtn) audioBtn.classList.add('attention');
       }, 500);
     } else {
-      // Fresh session load
       sessionStorage.setItem("dharatatva_session_visited", "true");
       preloadAllSiteAssets();
       setTimeout(() => {
@@ -1820,7 +1795,6 @@ ${prodUrl}`;
     initAudioExperience();
   });
 
-  // Browser back button (Bfcache) par handle karne ke liye
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
       pauseAudio();
