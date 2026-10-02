@@ -1244,18 +1244,12 @@
     const prodUrl = product.url && product.url !== '#' && product.url !== 'javascript:void(0);' ? product.url : window.location.href;
     const shareTitle = `${product.name} | Dharatatva`;
 
-    // As per requirement:
-    // 🙏 Aapka Swagat Hai,
-    // *Product Name* by Dharatatva
-    // Details
-    // Link (WhatsApp will generate preview from link)
-    const shareText = `🙏 Aapka Swagat Hai,
+    // As per new requirement:
+    // - No cross marked lines (notes, link at bottom with url only)
+    // - English greeting (Connects with customer)
+    // - No gap between greeting and product name
+    const shareText = `🌿 Hello, discover pure wellness with *${product.name}* by Dharatatva
 
-*${product.name}* by Dharatatva
-
-${product.notes}
-
-👉 *Tap here to discover Shastra & claim offer:*
 ${prodUrl}`;
 
     return { shareTitle, shareText, prodUrl, imgUrl: product.productImg };
