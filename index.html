@@ -31,7 +31,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <!-- External Stylesheet -->
-  <link rel="stylesheet" type="text/css" href="css/home_style.css"/>
+  <link rel="stylesheet" type="text/css" href="css/home_style_old.css"/>
   <style>
   :root {
     --bg-cream: #F7F5F0;
@@ -60,8 +60,8 @@
 
   <!-- AMBIENT AUDIO -->
   <audio id="ambientAudio" loop preload="auto">
-    <source src="audio/landing_page.opus" type="audio/ogg; codecs=opus">
-    <source src="audio/landing_page.opus" type="audio/opus">
+    <source src="" type="audio/ogg; codecs=opus">
+    <source src="" type="audio/opus">
   </audio>
 
   <div class="paper-grain"></div>
@@ -111,7 +111,7 @@
           <button class="header-cat-pill" id="headerCatPill" onclick="openCategoryPanel(); haptic(8);" title="Change Category">
             <div class="header-cat-text-col">
               <span class="header-cat-prefix">Cat.</span>
-              <span class="header-cat-val" id="headerCatVal">Health</span>
+              <span class="header-cat-val" id="headerCatVal">Women</span>
             </div>
             <div class="header-cat-icon-disc" id="headerCatIconDisc">
               <svg viewBox="0 0 24 24">
@@ -156,12 +156,12 @@
           <div class="dock-content-row">
             <div class="category-scroll-container">
               <nav class="category-rail" id="categoryRail">
-                <button class="cat-btn active" data-cat="health">
+                <button class="cat-btn active" data-cat="Women">
                   <svg viewBox="0 0 24 24">
                     <path d="M12 2v20M2 12h20"/>
                     <circle cx="12" cy="12" r="9"/>
                   </svg>
-                  <span>Health</span>
+                  <span>Women</span>
                 </button>
               </nav>
             </div>
@@ -210,7 +210,7 @@
           <!-- MEDIA ZONE: WITH TAP-TO-PAUSE / RESUME -->
           <div class="product-media-zone" onclick="handleMediaTap(event)">
             <img class="product-model-img" id="productModelImg" 
-                 src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_cover.avif?auto=format&fit=crop&w=900&q=85" 
+                 src="https://dharatatva.github.io/web/img/women_aloevera_cover.avif?auto=format&fit=crop&w=900&q=85" 
                  alt="Ayurvedic Wellness & Botanical Ritual">
             
             <video class="product-model-video" id="productModelVideo" 
@@ -229,7 +229,7 @@
           <div class="floating-product-dock" id="floatingProductDock">
             <div class="floating-pack-ambient-shadow"></div>
             <img class="floating-pack-img" id="floatingPackImg" 
-                 src="https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_cover.avif?auto=format&fit=crop&w=900&q=85" 
+                 src="https://dharatatva.github.io/web/women_aloevera_cover.avif?auto=format&fit=crop&w=900&q=85" 
                  alt="Herb-O-Care Formulation Bottle">
           </div>
 
@@ -250,7 +250,7 @@
 
             <!-- Main Headline -->
             <div class="card-headline-row">
-              <h1 class="pure-main-headline" id="prodHeadline">Herb-O-Care</h1>
+              <h1 class="pure-main-headline" id="prodHeadline">Aloe Vera Gel</h1>
             </div>
 
             <!-- Notes -->
@@ -261,8 +261,8 @@
             <!-- Pricing Row -->
             <div class="card-price-row">
               <div class="card-price-group">
-                <span class="card-price" id="prodPrice">₹383</span>
-                <span class="card-mrp" id="prodMrp">₹437</span>
+                <span class="card-price" id="prodPrice">₹183</span>
+                <span class="card-mrp" id="prodMrp">₹237</span>
                 <span class="card-discount-pill" id="prodDiscount">-12%</span>
               </div>
             </div>
@@ -478,9 +478,9 @@
   };
 
   const collections = {
-    health: {
-      label: "Health",
-      icon: icons.health,
+    women: {
+      label: "women",
+      icon: icons.women,
       bg: "linear-gradient(165deg, #F0F5EE 20%, #bdf5e052 50%)",
       glow: "rgba(142, 194, 150, 0.42)",
       items: [
@@ -488,34 +488,34 @@
           brandPart1: "",
           brandPart2: "",
           tag: "✧ Daily Agni Ritual ›",
-          headline: "Herb-O-Care Churna",
+          headline: "Aloe Vera Gel",
           notes: "23+ Sacred Himalayan Botanicals. Awakens sluggish Agni, clears toxic Ama, and activates Lekhana Karma.",
           rating: "4.1", 
           reviews: "182", 
-          name: "Herb-O-Care Churna",
-          price: "₹383", 
-          mrp: "₹437", 
+          name: "Aloe Vera Gel",
+          price: "₹183", 
+          mrp: "₹237", 
           discount: "-12%", 
-          modelImg: "https://dharatatva.github.io/web/img/herb_o_care/herb_o_care_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          modelImg: "https://dharatatva.github.io/web/img/women_aloevera_cover.avif?auto=format&fit=crop&w=1200&q=85",
           videoUrl: "",
-          productImg: "https://dharatatva.github.io/web/img/herb_o_care/herb_o_care.avif?auto=format&fit=crop&w=800&q=90",
+          productImg: "https://dharatatva.github.io/web/img/aloevera.avif?auto=format&fit=crop&w=800&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
         },
         { 
           brandPart1: "",
           brandPart2: "",
           tag: "✧ Vital Gut Harmony ›",
-          headline: "Pet-O-Care Churna",
+          headline: "Deep Gut Cleanse & Agni",
           notes: "Raw forest herb decoction for gentle digestive reset, relieving bloating and abdominal heaviness naturally.",
           rating: "4.88", 
           reviews: "94", 
-          name: "Pet-O-Care Churna",
-          price: "₹449", 
-          mrp: "₹650", 
+          name: "Hair Removal Powder",
+          price: "₹249", 
+          mrp: "₹350", 
           discount: "-30%", 
-          modelImg: "https://dharatatva.github.io/web/img/pet_o_care/pet_o_care_cover.avif?auto=format&fit=crop&w=1200&q=85",
+          modelImg: "https://dharatatva.github.io/web/img/women_hair_remover_cover.avif?auto=format&fit=crop&w=1200&q=85",
           videoUrl: "",
-          productImg: "https://dharatatva.github.io/web/img/pet_o_care/pet_o_care.avif?auto=format&fit=crop&w=800&q=90",
+          productImg: "https://dharatatva.github.io/web/img/women_hair_remover_powder.avif?auto=format&fit=crop&w=800&q=90",
           url: "https://dharatatva.github.io/web/herb_o_care"
         }
       ]
@@ -607,7 +607,7 @@
     if (withAudio) playAudio();
   }
 
-  let currentCategory = 'health';
+  let currentCategory = 'women';
   let currentIndex = 0;
   let isAnimating = false;
   let currentViewMode = 'single';
@@ -653,7 +653,7 @@
 
     const catIconEl = document.getElementById('headerCatIconDisc');
     if (catIconEl) {
-      catIconEl.innerHTML = icons[catKey] || icons.health;
+      catIconEl.innerHTML = icons[catKey] || icons.women;
     }
   }
 
